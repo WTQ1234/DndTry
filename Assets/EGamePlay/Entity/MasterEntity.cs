@@ -22,7 +22,16 @@ namespace EGamePlay
             Instance = null;
         }
 
-        public void Update()
+        public void AddEntity(Type entityType, Entity entity)
+        {
+            if (!Entities.ContainsKey(entityType))
+            {
+                Entities.Add(entityType, new List<Entity>());
+            }
+            Entities[entityType].Add(entity);
+        }
+
+        public override void Update()
         {
             if (AllComponents.Count == 0)
             {

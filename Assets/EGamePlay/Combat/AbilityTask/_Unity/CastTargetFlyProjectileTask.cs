@@ -21,7 +21,7 @@ namespace EGamePlay.Combat.Ability
         public Action OnEnterCallback { get; set; }
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             CastProjectileData = (CastTargetFlyProjectileTaskData)initData;
             OnEnterCallback = null;

@@ -19,7 +19,7 @@ namespace EGamePlay.Combat.Ability
         public CreateEffectTaskData TaskData { get; set; }
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             TaskData = (CreateEffectTaskData)initData;
         }

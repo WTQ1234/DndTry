@@ -20,7 +20,7 @@ namespace EGamePlay.Combat.Skill
         private List<StatusAbility> ChildrenStatuses { get; set; } = new List<StatusAbility>();
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             base.Setup(initData);
 #if EGAMEPLAY_EXCEL
@@ -84,7 +84,7 @@ namespace EGamePlay.Combat.Skill
 
         public override AbilityExecution CreateExecution()
         {
-            var execution = Entity.CreateWithParent<SkillExecution>(OwnerEntity, this);
+            var execution = Entity.Create<SkillExecution>(null, null, OwnerEntity);
             execution.AddComponent<UpdateComponent>();
             return execution;
         }

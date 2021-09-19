@@ -43,11 +43,18 @@ namespace ET
 
         private void OnEnable()
         {
-            ExcelPath = Application.dataPath + "/../Excel";
+            ExcelPath = Application.dataPath + "/Excel";
         }
 
-        private string ExcelPath = "../Excel";
-        private string ServerConfigPath = "../Config/";
+        private string ExcelPath = "/Excel";
+        private string ServerConfigPath = "/Config/";
+        //private void OnEnable()
+        //{
+        //    ExcelPath = Application.dataPath + "/../Excel";
+        //}
+
+        //private string ExcelPath = "../Excel";
+        //private string ServerConfigPath = "../Config/";
 
         private bool isClient;
 
@@ -193,7 +200,8 @@ namespace ET
             {
                 this.md5Info = JsonHelper.FromJson<ExcelMD5Info>(File.ReadAllText(md5File));
             }
-
+            Debug.Log(111);
+            Debug.Log(ExcelPath);
             foreach (string filePath in Directory.GetFiles(ExcelPath))
             {
                 if (Path.GetExtension(filePath) != ".xlsx")

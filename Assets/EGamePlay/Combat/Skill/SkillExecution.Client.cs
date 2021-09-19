@@ -35,7 +35,7 @@ namespace EGamePlay.Combat.Skill
         public List<ColliderSpawnData> ColliderSpawnDatas { get; set; } = new List<ColliderSpawnData>();
         
         
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             base.Setup(initData);
 

@@ -23,7 +23,7 @@ public abstract class AbilityComponent : EGamePlay.Component
     public int Level = 1;
     public bool isAction = false;
 
-    public override void Setup(object initData)
+    public override void Setup(object initData = null, bool asGameObject = false)
     {
         ConfigObject = initData;
     }

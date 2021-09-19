@@ -23,7 +23,7 @@ namespace EGamePlay.Combat.Ability
         public int Level { get; set; } = 1;
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             ConfigObject = initData;
         }

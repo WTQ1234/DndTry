@@ -15,8 +15,8 @@ public class GameController : SingleTon<GameController>
     {
         Instance = this;
         //SynchronizationContext.SetSynchronizationContext(ThreadSynchronizationContext.Instance);
-        Entity.CreateObj<TimerComponent>();
-        Entity.CreateObj<CombatContext>();
+        Entity.Create<TimerComponent>();
+        Entity.Create<CombatContext>();
         MasterEntity.Instance.AddComponent<ConfigManageComponent>(ConfigsCollector);
     }
 

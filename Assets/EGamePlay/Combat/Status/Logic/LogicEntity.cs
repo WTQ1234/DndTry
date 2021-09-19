@@ -9,7 +9,7 @@ namespace EGamePlay.Combat.Status
         public Effect Effect { get; set; }
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             Effect = initData as Effect;
         }

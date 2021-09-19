@@ -18,7 +18,7 @@ namespace EGamePlay.Combat.Ability
         public CreateExplosionTaskData CreateExplosionTaskData { get; set; }
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             CreateExplosionTaskData = (CreateExplosionTaskData)initData;
         }

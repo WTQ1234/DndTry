@@ -8,11 +8,11 @@ namespace EGamePlay.Combat
         private GameTimer NoDamageTimer { get; set; }
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             var time = (float)initData;
             NoDamageTimer = new GameTimer(time);
-            GetParent<CombatEntity>().ListenActionPoint(ActionPointType.PostReceiveDamage, WhenReceiveDamage);
+            GetParent<CardEntity>().ListenActionPoint(ActionPointType.PostReceiveDamage, WhenReceiveDamage);
         }
 
         public async void StartListen(Action whenNoDamageInTimeCallback)
@@ -28,7 +28,7 @@ namespace EGamePlay.Combat
             }
         }
 
-        private void WhenReceiveDamage(ActionExecution combatAction)
+        private void WhenReceiveDamage(CardActionExecution combatAction)
         {
             //Log.Debug($"{GetType().Name}->WhenReceiveDamage");
             NoDamageTimer.Reset();

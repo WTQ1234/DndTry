@@ -25,7 +25,7 @@ namespace EGamePlay.Combat.Ability
         public GameTimer FlyTimer { get; set; } = new GameTimer(3f);
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             CastProjectileData = (CastDirectFlyProjectileTaskData)initData;
             OnCollisionCallback = null;

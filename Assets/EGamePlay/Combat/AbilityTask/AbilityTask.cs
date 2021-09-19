@@ -14,7 +14,7 @@ namespace EGamePlay.Combat.Ability
         public AbilityTaskState TaskState { get; set; }
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             taskInitData = initData;
         }

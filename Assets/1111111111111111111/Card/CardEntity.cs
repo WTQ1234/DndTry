@@ -11,6 +11,7 @@ using UnityEngine.UIElements;
 using DG.Tweening;
 using ET;
 using GameUtils;
+using UnityEngine.UI;
 
 // 考虑拆分成 Logic和Show
 public class CardEntity : Entity
@@ -25,12 +26,18 @@ public class CardEntity : Entity
 
     public Dictionary<Type, AbilityComponent> TypeActions = new Dictionary<Type, AbilityComponent>();
     public Dictionary<Type, AbilityComponent> TypeAbility = new Dictionary<Type, AbilityComponent>();
+    public Dictionary<string, List<StatusEntity>> TypeIdStatuses { get; set; } = new Dictionary<string, List<StatusEntity>>();
+
+    public ActionControlType ActionControlType;
+
 
     #region 组件
     public HealthPointComponent healthPointComponent { get; private set; }
     public AttributeComponent attributeComponent { get; private set; }
+
     public CardShowComponent cardShowComponent { get; private set; }
     public Click2DComponent click2DComponent { get; private set; }
+    public ConditionManageComponent ConditionManageComponent { get; private set; }
     #endregion
 
     #region 能力
@@ -45,6 +52,7 @@ public class CardEntity : Entity
     {
         click2DComponent = AddComponent<Click2DComponent>();
         cardShowComponent = AddComponent<CardShowComponent>();
+        ConditionManageComponent = AddComponent<ConditionManageComponent>();
 
         CardAttackActionAbility = AttachAbilityComponent<CardAttackActionAbility>(null);
         CardDamageActionAbility = AttachAbilityComponent<CardDamageActionAbility>(null);
@@ -61,6 +69,13 @@ public class CardEntity : Entity
         {
             Player = this;
         }
+
+        // 测试buff
+        var config = Resources.Load<StatusConfigObject>("StatusConfigs/BaseStatus/Status_Mute");
+        var Status = AttachStatus<StatusEntity>(config);
+        Status.Caster = this;
+        Status.TryActivateAbility();
+        
         Setup();
     }
 
@@ -94,7 +109,7 @@ public class CardEntity : Entity
     /// </summary>
     public T CreateAction<T>() where T : CardActionExecution
     {
-        var action = Entity.CreateByOwner<T>() as T;
+        var action = Entity.Create<T>(null, null, this) as T;
         action.Creator = this;
         //var action = Parent.GetComponent<CombatActionManageComponent>().CreateAction<T>(this);
         return action;
@@ -102,7 +117,7 @@ public class CardEntity : Entity
 
     public T CreateExecution<T>() where T : CardAbilityExecution
     {
-        var action = Entity.CreateByOwner<T>() as T;
+        var action = Entity.Create<T>(null, null, this) as T;
         //action.Creator = this;
         //var action = Parent.GetComponent<CombatActionManageComponent>().CreateAction<T>(this);
         return action;
@@ -125,6 +140,18 @@ public class CardEntity : Entity
     }
     #endregion
 
+    #region 条件事件
+    public void ListenerCondition(ConditionType conditionType, Action action, object paramObj = null)
+    {
+        ConditionManageComponent.AddListener(conditionType, action, paramObj);
+    }
+
+    public void UnListenCondition(ConditionType conditionType, Action action)
+    {
+        ConditionManageComponent.RemoveListener(conditionType, action);
+    }
+    #endregion
+
     #region 挂载能力、技能、被动、buff等
     private T AttachAbilityComponent<T>(object configObject) where T : AbilityComponent
     {
@@ -132,6 +159,28 @@ public class CardEntity : Entity
         ability.Setup(configObject, this);
         TypeAbility.Add(typeof(T), ability);
         return ability;
+    }
+
+    public T AttachStatus<T>(object configObject) where T : StatusEntity
+    {
+        var status = Create<T>(configObject, gameObject, this);
+        //status.OwnerEntity = this;
+        if (!TypeIdStatuses.ContainsKey(status.StatusConfigObject.ID))
+        {
+            TypeIdStatuses.Add(status.StatusConfigObject.ID, new List<StatusEntity>());
+        }
+        TypeIdStatuses[status.StatusConfigObject.ID].Add(status);
+        return status;
+    }
+
+    public void OnStatusRemove(StatusEntity statusAbility)
+    {
+        TypeIdStatuses[statusAbility.StatusConfigObject.ID].Remove(statusAbility);
+        if (TypeIdStatuses[statusAbility.StatusConfigObject.ID].Count == 0)
+        {
+            TypeIdStatuses.Remove(statusAbility.StatusConfigObject.ID);
+        }
+        //this.Publish(new RemoveStatusEvent() { CardEntity = this, Status = statusAbility, StatusId = statusAbility.Id });
     }
 
     //public T AttachActionAbility<T>() where T : ActionAbilityComponent<H>

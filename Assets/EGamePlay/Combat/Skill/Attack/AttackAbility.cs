@@ -9,11 +9,11 @@ namespace EGamePlay.Combat
 {
     public class AttackAbility : AbilityEntity<AttackExecution>
     {
-        public override AttackExecution CreateExecution()
-        {
-            var execution = Entity.CreateWithParent<AttackExecution>(OwnerEntity, this);
-            execution.AddComponent<UpdateComponent>();
-            return execution;
-        }
+        //public override AttackExecution CreateExecution()
+        //{
+        //    var execution = Entity.Create<AttackExecution>(OwnerEntity, this);
+        //    execution.AddComponent<UpdateComponent>();
+        //    return execution;
+        //}
     }
 }

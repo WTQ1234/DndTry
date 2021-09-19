@@ -15,176 +15,11 @@ namespace EGamePlay
         }
     }
 
-    public abstract partial class Entity : MonoBehaviour
+    public abstract class Entity : MonoBehaviour, IDisposable
     {
         public static MasterEntity Master => MasterEntity.Instance;
         public static bool EnableLog { get; set; } = false;
 
-        private static void OnEntityCreate(Type entityType, Entity entity)
-        {
-            entity.InstanceId = IdFactory.NewInstanceId();
-            entity.Id = entity.InstanceId;
-            Master.AddChild(entity);
-            if (!Master.Entities.ContainsKey(entityType))
-            {
-                Master.Entities.Add(entityType, new List<Entity>());
-            }
-            Master.Entities[entityType].Add(entity);
-        }
-
-        public Entity()
-        {
-
-        }
-
-        private static Entity NewEntity(Type entityType)
-        {
-            var entity = Activator.CreateInstance(entityType) as Entity;
-            entity.InstanceId = IdFactory.NewInstanceId();
-            if (!Master.Entities.ContainsKey(entityType))
-            {
-                Master.Entities.Add(entityType, new List<Entity>());
-            }
-            Master.Entities[entityType].Add(entity);
-            return entity;
-        }
-
-        // 创建分为几种情况：
-        // 1.创建一个GameObject并挂载组件
-        public static T CreateObj<T>() where T : Entity
-        {
-            GameObject gameObj = new GameObject();
-            Entity entity = gameObj.AddComponent(typeof(T)) as T;
-            OnEntityCreate(typeof(T), entity);
-            entity.Setup(true);
-            entity.Name = typeof(T).ToString();
-            if (EnableLog) Log.Debug($"Entity->Create, {typeof(T).Name}={entity.InstanceId}");
-            return entity as T;
-        }
-
-        // 2.在现有的GameObject上挂载组件
-        public static T CreateByOwner<T>(GameObject owner) where T : Entity
-        {
-            Entity entity = owner.AddComponent(typeof(T)) as T;
-            OnEntityCreate(typeof(T), entity);
-            entity.Setup();
-            entity.Name = typeof(T).ToString();
-            if (EnableLog) Log.Debug($"Entity->Create, {typeof(T).Name}={entity.InstanceId}");
-            return entity as T;
-        }
-
-        // 3.不挂载，是临时的
-        public static T CreateByOwner<T>() where T : Entity
-        {
-            Entity entity = Activator.CreateInstance(typeof(T)) as Entity;
-            entity.Setup();
-            OnEntityCreate(typeof(T), entity);
-            entity.Name = typeof(T).ToString();
-            if (EnableLog) Log.Debug($"Entity->Create, {typeof(T).Name}={entity.InstanceId}");
-            return entity as T;
-        }
-
-        public static T Create<T>(bool newGameObject = false, bool byComponent = false) where T : Entity
-        {
-            Entity entity;
-            if (newGameObject)
-            {
-                GameObject gameObj = null;
-                gameObj = new GameObject();
-                if (byComponent)
-                {
-                    entity = gameObj.AddComponent(typeof(T)) as T;
-                }
-            }
-            entity = NewEntity(typeof(T)) as T;
-            entity.Id = entity.InstanceId;
-            if (EnableLog) Log.Debug($"Entity->Create, {typeof(T).Name}={entity.InstanceId}");
-            Master.AddChild(entity);
-            entity.Setup();
-            entity.Name = typeof(T).ToString();
-            return entity as T;
-        }
-
-        public static T Create<T>(object initData) where T : Entity
-        {
-            var entity = NewEntity(typeof(T)) as T;
-            entity.Id = entity.InstanceId;
-            if (EnableLog) Log.Debug($"Entity->Create, {typeof(T).Name}={entity.InstanceId}, {initData}");
-            Master.AddChild(entity);
-            entity.Setup(initData);
-            entity.Name = typeof(T).ToString();
-            return entity;
-        }
-
-        public static T CreateWithParent<T>(Entity parent) where T : Entity
-        {
-            var entity = NewEntity(typeof(T)) as T;
-            entity.Id = entity.InstanceId;
-            if (EnableLog) Log.Debug($"Entity->CreateWithParent, {parent.GetType().Name}, {typeof(T).Name}={entity.InstanceId}");
-            parent.AddChild(entity);
-            entity.Setup();
-            return entity;
-        }
-
-        public static T CreateWithParent<T>(Entity parent, object initData) where T : Entity
-        {
-            var entity = NewEntity(typeof(T)) as T;
-            entity.Id = entity.InstanceId;
-            if (EnableLog) Log.Debug($"Entity->CreateWithParent, {parent.GetType().Name}, {typeof(T).Name}={entity.InstanceId}");
-            parent.AddChild(entity);
-            entity.Setup(initData);
-            return entity;
-        }
-
-        public static Entity Create(Type entityType)
-        {
-            var entity = NewEntity(entityType);
-            entity.Id = entity.InstanceId;
-            if (EnableLog) Log.Debug($"Entity->Create, {entityType.Name}={entity.InstanceId}");
-            Master.AddChild(entity);
-            entity.Setup();
-            return entity;
-        }
-
-        public static Entity Create(Type entityType, object initData)
-        {
-            var entity = NewEntity(entityType);
-            entity.Id = entity.InstanceId;
-            if (EnableLog) Log.Debug($"Entity->Create, {entityType.Name}={entity.InstanceId}, {initData}");
-            Master.AddChild(entity);
-            entity.Setup(initData);
-            return entity;
-        }
-
-        public static Entity CreateWithParent(Type entityType, Entity parent)
-        {
-            var entity = NewEntity(entityType);
-            entity.Id = entity.InstanceId;
-            if (EnableLog) Log.Debug($"Entity->CreateWithParent, {parent.GetType().Name}, {entityType.Name}={entity.InstanceId}");
-            parent.AddChild(entity);
-            entity.Setup();
-            return entity;
-        }
-
-        public static Entity CreateWithParent(Type entityType, Entity parent, object initData)
-        {
-            var entity = NewEntity(entityType);
-            entity.Id = entity.InstanceId;
-            if (EnableLog) Log.Debug($"Entity->CreateWithParent, {parent.GetType().Name}, {entityType.Name}={entity.InstanceId}");
-            parent.AddChild(entity);
-            entity.Setup(initData);
-            return entity;
-        }
-
-        public static void Destroy(Entity entity)
-        {
-            entity.OnDestroy();
-            //entity.Dispose();
-        }
-    }
-
-    public abstract partial class Entity : IDisposable
-    {
         public long Id { get; set; }
         private string name_trans;
         public string Name
@@ -206,18 +41,36 @@ namespace EGamePlay
         public Action<Component> OnRemoveComponentAction { get; set; }
         public Action<Entity> OnAddChildAction { get; set; }
         public Action<Entity> OnRemoveChildAction { get; set; }
-        
-        public virtual void Setup(object initData)
-        {
 
+        #region 创建与销毁
+        public static T Create<T>(object initData = null, GameObject owner = null, Entity parent = null) where T : Entity
+        {
+            bool needObj = owner == null;
+            Type type = typeof(T);
+            if (needObj) owner = new GameObject();
+            var entity = owner.AddComponent(type) as T;
+
+            if (parent != null)
+            {
+                parent.AddChild(entity);
+            }
+            else
+            {
+                Master.AddChild(entity);
+            }
+            entity.Setup(initData, !needObj);
+            Master.AddEntity(type, entity);
+
+            long id = IdFactory.NewInstanceId();
+            entity.InstanceId = entity.Id = id;
+            entity.Name = typeof(T).ToString();
+
+            if (EnableLog) Log.Debug($"Entity->Create, {typeof(T).Name}={entity.InstanceId}");
+
+            return entity;
         }
 
-        public virtual void Setup()
-        {
-
-        }
-
-        public virtual void Setup(bool asGameObject)
+        public virtual void Setup(object initData = null, bool asGameObject = false)
         {
             if (asGameObject)
             {
@@ -226,6 +79,14 @@ namespace EGamePlay
             }
         }
 
+        public static void Destroy(Entity entity)
+        {
+            entity.OnDestroy();
+            //entity.Dispose();
+        }
+        #endregion
+
+        #region 生命周期
         public virtual void Awake()
         {
         }
@@ -242,6 +103,7 @@ namespace EGamePlay
         {
 
         }
+        #endregion
 
         public void Dispose()
         {
@@ -372,19 +234,19 @@ namespace EGamePlay
             OnRemoveChildAction?.Invoke(child);
         }
 
-        public Entity CreateChild(Type entityType)
-        {
-            return CreateWithParent(entityType, this);
-        }
+        //public Entity CreateChild(Type entityType)
+        //{
+        //    return Create(entityType, this);
+        //}
 
         public T CreateChild<T>() where T : Entity
         {
-            return CreateWithParent<T>(this);
+            return Create<T>(null, null, this) as T;
         }
 
         public T CreateChild<T>(object initData) where T : Entity
         {
-            return CreateWithParent<T>(this, initData);
+            return Create<T>(initData, null, this) as T;
         }
 
         public Entity[] GetChildren()

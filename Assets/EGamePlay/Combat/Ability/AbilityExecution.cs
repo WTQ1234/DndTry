@@ -15,7 +15,7 @@ namespace EGamePlay.Combat.Ability
         public CombatEntity OwnerEntity { get => GetParent<CombatEntity>(); }
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             AbilityEntity = initData as AbilityEntity;
         }

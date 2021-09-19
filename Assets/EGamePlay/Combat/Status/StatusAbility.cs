@@ -15,7 +15,7 @@ namespace EGamePlay.Combat.Status
         private List<StatusAbility> ChildrenStatuses { get; set; } = new List<StatusAbility>();
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             base.Setup(initData);
             StatusConfigObject = initData as StatusConfigObject;
@@ -103,7 +103,7 @@ namespace EGamePlay.Combat.Status
                             }
                         }
                     }
-                    var logicEntity = Entity.CreateWithParent<LogicEntity>(this, effectItem);
+                    var logicEntity = Entity.Create<LogicEntity>(effectItem, gameObject, this);
                     if (effectItem.EffectTriggerType == EffectTriggerType.Instant)
                     {
                         logicEntity.ApplyEffect();

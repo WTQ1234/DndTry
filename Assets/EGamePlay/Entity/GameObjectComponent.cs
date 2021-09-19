@@ -56,7 +56,13 @@ namespace EGamePlay
         
         private void OnRemoveChild(Entity child)
         {
-            child.transform.SetParent(null);
+            if (child)
+            {
+                if (child.transform)
+                {
+                    child.transform.SetParent(null);
+                }
+            }
         }
     }
 }

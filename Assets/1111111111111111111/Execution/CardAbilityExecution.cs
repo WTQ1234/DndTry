@@ -22,7 +22,7 @@ public abstract class CardAbilityExecution : Entity
     public CardEntity OwnerEntity;
 
 
-    public override void Setup(object initData)
+    public override void Setup(object initData = null, bool asGameObject = false)
     {
         AbilityEntity = initData as AbilityEntity;
     }

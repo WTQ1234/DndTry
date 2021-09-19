@@ -26,7 +26,7 @@ namespace EGamePlay.Combat
         public Dictionary<Type, object> TypeConfigCategarys { get; set; } = new Dictionary<Type, object>();
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             Instance = this;
             var assembly = Assembly.GetAssembly(typeof(TimerComponent));

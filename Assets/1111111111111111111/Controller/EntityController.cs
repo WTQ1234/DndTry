@@ -10,6 +10,6 @@ public class EntityController : MonoBehaviour
 {
     void Awake()
     {
-        Entity.CreateObj<MasterEntity>();
+        Entity.Create<MasterEntity>();
     }
 }

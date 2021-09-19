@@ -17,7 +17,7 @@ namespace EGamePlay.Combat.Ability
         public CombatEntity TargetEntity { get; set; }
 
 
-        public override void Setup(object initData)
+        public override void Setup(object initData = null, bool asGameObject = false)
         {
             Name = (string)initData;
         }
