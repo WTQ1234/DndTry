@@ -12,6 +12,10 @@ using DG.Tweening;
 using ET;
 using GameUtils;
 
+public class Attr{
+    
+}
+
 /// <summary>
 /// 战斗属性数值组件，在这里管理所有角色战斗属性数值的存储、变更、刷新等
 /// </summary>
