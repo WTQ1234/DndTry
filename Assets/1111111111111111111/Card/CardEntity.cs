@@ -24,9 +24,11 @@ public class CardEntity : Entity
     public bool isSpeak;    // 是否可交谈（呼出对话框），进而达成交谈、购买、抽奖等
     public bool isTool;      // 是否可交互
 
+    public Transform StatusParent;
+
     public Dictionary<Type, AbilityComponent> TypeActions = new Dictionary<Type, AbilityComponent>();
     public Dictionary<Type, AbilityComponent> TypeAbility = new Dictionary<Type, AbilityComponent>();
-    public Dictionary<string, List<StatusEntity>> TypeIdStatuses { get; set; } = new Dictionary<string, List<StatusEntity>>();
+    public Dictionary<string, List<StatusEntity>> TypeIdStatuses = new Dictionary<string, List<StatusEntity>>();
 
     public ActionControlType ActionControlType;
 
@@ -47,6 +49,7 @@ public class CardEntity : Entity
     public CardDamageActionAbility CardDamageActionAbility { get; private set; }
     #endregion
 
+    #region 初始化
     // 根据配置表进行赋值，创建一张卡牌
     public void SetUp()
     {
@@ -76,7 +79,13 @@ public class CardEntity : Entity
         Status.Caster = this;
         Status.TryActivateAbility();
         
-        Setup();
+        Setup(null, true);
+    }
+
+    public override void Awake()
+    {
+        base.Awake();
+        StatusParent = transform.Find("StatusParent");
     }
 
     // 临时在Start里面创建
@@ -84,7 +93,9 @@ public class CardEntity : Entity
     {
         SetUp();
     }
-
+    
+    #endregion
+    
     public void onClickAttack()
     {
         if (!isMe)
@@ -163,7 +174,7 @@ public class CardEntity : Entity
 
     public T AttachStatus<T>(object configObject) where T : StatusEntity
     {
-        var status = Create<T>(configObject, gameObject, this);
+        var status = Create<T>(configObject, StatusParent.gameObject, this);
         //status.OwnerEntity = this;
         if (!TypeIdStatuses.ContainsKey(status.StatusConfigObject.ID))
         {

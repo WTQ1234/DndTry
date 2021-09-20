@@ -1,31 +1,30 @@
-﻿/* * * * * * * * * * * * * *
- * A simple expression parser
- * --------------------------
- * 
- * The parser can parse a mathematical expression into a simple custom
- * expression tree. It can recognise methods and fields/contants which
- * are user extensible. It can also contain expression parameters which
- * are registrated automatically. An expression tree can be "converted"
- * into a delegate.
- * 
- * Written by Bunny83
- * 2014-11-02
- * 
- * Features:
- * - Elementary arithmetic [ + - * / ]
- * - Power [ ^ ]
- * - Brackets ( )
- * - Most function from System.Math (abs, sin, round, floor, min, ...)
- * - Constants ( e, PI )
- * - MultiValue return (quite slow, produce extra garbage each call)
- * 
- * * * * * * * * * * * * * */
+using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-
-namespace B83.ExpressionParser
+// 战斗公式解析
+namespace ExpressionParserHelper
 {
+    public static class ExpressionHelper
+    {
+        public static ExpressionParser ExpressionParser { get; set; } = new ExpressionParser();
+
+        public static Expression TryEvaluate(string expressionStr)
+        {
+            Expression expression = null;
+            try
+            {
+                expression = ExpressionParser.EvaluateExpression(expressionStr);
+            }
+            catch (System.Exception e)
+            {
+                // Log.Error(expressionStr);
+                // Log.Error(e);
+            }
+            return expression;
+        }
+    }
+
     public interface IValue
     {
         double Value { get; }

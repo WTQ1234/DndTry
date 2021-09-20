@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EGamePlay;
 using System;
-using B83.ExpressionParser;
+using ExpressionParserHelper;
 using GameUtils;
 
 namespace EGamePlay.Combat

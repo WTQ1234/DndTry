@@ -11,17 +11,19 @@ using UnityEngine.UIElements;
 using DG.Tweening;
 using ET;
 using GameUtils;
-
-//[LabelText("行动类型")]
+using Sirenix.OdinInspector;
+[LabelText("行动类型")]
 public enum ActionType
 {
-    //[LabelText("施放技能")]
+    [LabelText("普通攻击")]
+    NormalAtk,
+    [LabelText("施放技能")]
     SpellSkill,
-    //[LabelText("造成伤害")]
+    [LabelText("造成伤害")]
     CauseDamage,
-    //[LabelText("给予治疗")]
+    [LabelText("给予治疗")]
     GiveCure,
-    //[LabelText("赋给效果")]
+    [LabelText("赋给效果")]
     AssignEffect,
 }
 
@@ -33,9 +35,9 @@ public enum ActionType
 /// </remarks>
 public abstract class CardActionExecution : CardAbilityExecution
 {
-    public ActionType ActionType { get; set; }
-    public CardEntity Creator { get; set; }
-    public CardEntity Target { get; set; }
+    public ActionType ActionType;
+    public CardEntity Creator;
+    public CardEntity Target;
 
 
     public virtual void ApplyAction()

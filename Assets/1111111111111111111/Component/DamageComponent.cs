@@ -4,7 +4,7 @@ using UnityEngine;
 using EGamePlay;
 using EGamePlay.Combat;
 using System;
-using B83.ExpressionParser;
+using ExpressionParserHelper;
 using GameUtils;
 
 // 用于创建 CardDamageAction
@@ -18,13 +18,19 @@ public class CardDamageActionAbility : ActionAbilityComponent<CardDamageAction>
 /// </summary>
 public class CardDamageAction : CardActionExecution
 {
-    public DamageEffect DamageEffect { get; set; }
+    public DamageEffect DamageEffect;
     //伤害来源
-    public DamageSource DamageSource { get; set; }
+    public DamageSource DamageSource;
     //伤害数值
-    public int DamageValue { get; set; }
+    public int DamageValue;
     //是否是暴击
-    public bool IsCritical { get; set; }
+    public bool IsCritical;
+
+    public override void Setup(object initData = null, bool asGameObject = false)
+    {
+        base.Setup(initData, asGameObject);
+        ActionType = ActionType.CauseDamage;
+    }
 
     //前置处理
     private int ParseDamage()

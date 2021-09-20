@@ -50,16 +50,9 @@ namespace EGamePlay
             if (needObj) owner = new GameObject();
             var entity = owner.AddComponent(type) as T;
 
-            if (parent != null)
-            {
-                parent.AddChild(entity);
-            }
-            else
-            {
-                Master.AddChild(entity);
-            }
-            entity.Setup(initData, !needObj);
+            entity.Setup(initData, needObj);
             Master.AddEntity(type, entity);
+            (parent == null ? Master : parent).AddChild(entity);
 
             long id = IdFactory.NewInstanceId();
             entity.InstanceId = entity.Id = id;

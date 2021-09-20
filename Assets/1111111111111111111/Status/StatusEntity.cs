@@ -11,21 +11,21 @@ using UnityEngine.UIElements;
 using DG.Tweening;
 using ET;
 using GameUtils;
-
+using ExpressionParserHelper;
 public class StatusEntity : Entity
 {
     public CardEntity OwnerEntity { get => GetParent<CardEntity>(); }
-    public bool Enable { get; set; } = true;
-    public object ConfigObject { get; set; }
-    public int Level { get; set; } = 1;
+    public bool Enable = true;
+    public object ConfigObject;
+    public int Level = 1;
 
     //投放者、施术者
-    public CardEntity Caster { get; set; }
-    public StatusConfigObject StatusConfigObject { get; set; }
-    public FloatModifier NumericModifier { get; set; }
-    public bool IsChildStatus { get; set; }
-    public ChildStatus ChildStatusData { get; set; }
-    private List<StatusEntity> ChildrenStatuses { get; set; } = new List<StatusEntity>();
+    public CardEntity Caster;
+    public StatusConfigObject StatusConfigObject;
+    public FloatModifier NumericModifier;
+    public bool IsChildStatus;
+    public ChildStatus ChildStatusData;
+    private List<StatusEntity> ChildrenStatuses = new List<StatusEntity>();
 
     public override void Setup(object initData, bool asGameObject)
     {

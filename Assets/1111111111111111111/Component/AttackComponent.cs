@@ -18,6 +18,12 @@ public class CardAttackActionAbility : ActionAbilityComponent<CardAttackAction>{
 /// 普攻行动
 public class CardAttackAction : CardActionExecution
 {
+    public override void Setup(object initData = null, bool asGameObject = false)
+    {
+        base.Setup(initData, asGameObject);
+        ActionType = ActionType.NormalAtk;
+    }
+
     // 处理流程，如播放特效等等
     public async ETTask ApplyAttackAwait()
     {

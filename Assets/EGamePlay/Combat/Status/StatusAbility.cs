@@ -1,7 +1,7 @@
 ﻿using EGamePlay.Combat.Ability;
 using System.Collections.Generic;
 using ET;
-
+using ExpressionParserHelper;
 namespace EGamePlay.Combat.Status
 {
     public class StatusAbility : AbilityEntity

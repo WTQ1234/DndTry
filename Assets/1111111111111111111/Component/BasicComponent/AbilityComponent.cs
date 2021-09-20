@@ -13,7 +13,7 @@ using ET;
 using GameUtils;
 
 /// <summary>
-/// 能力实体，存储着某个英雄某个能力的数据和状态
+/// 能力实体，存储着某个英雄某个能力的数据和状态，主要作用为储存数据
 /// </summary>
 public abstract class AbilityComponent : EGamePlay.Component
 {
