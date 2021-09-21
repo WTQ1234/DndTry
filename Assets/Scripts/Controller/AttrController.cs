@@ -6,9 +6,6 @@ using EGamePlay.Combat.Ability;
 using EGamePlay.Combat.Status;
 using EGamePlay.Combat.Skill;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using EGamePlay;
 using EGamePlay.Combat;
 using UnityEngine.UIElements;
@@ -22,27 +19,58 @@ public class AttrController : SingleTon<AttrController>
 {
     public void Awake()
     {
+    
     }
 
-    public void OnGetDefaultAttr()
+    public Dictionary<AttrType, FloatNumeric> OnGetDefaultAttr()
     {
         var dict = ConfigController.Instance.GetAll<AttrConfig>();
-        Dictionary<AttributeType, FloatNumeric> attributeTypeNumerics = new Dictionary<AttributeType, FloatNumeric>();
-        foreach(var item in dict){
-            AttributeType type = (AttributeType)System.Enum.Parse(typeof(AttributeType), item.Value.AttributeName);
-            FloatNumeric floatNumeric = new FloatNumeric();
+        Dictionary<AttrType, FloatNumeric> attr = new Dictionary<AttrType, FloatNumeric>();
+        _OnGetDefaultAttr(false, ref dict, ref attr);
+        _OnGetDefaultAttr(true, ref dict, ref attr);
+        return attr;
+    }
+
+    private void _OnGetDefaultAttr(bool useFormula, ref Dictionary<int, AttrConfig> dict, ref Dictionary<AttrType, FloatNumeric> attr)
+    {
+        foreach (var item in dict)
+        {
             if (item.Value.AttrFormula == "" || item.Value.AttrFormula == null)
             {
-                // 根据公式计算属性 test
+                if (!useFormula)
+                {
+                    AttrType type = (AttrType)System.Enum.Parse(typeof(AttrType), item.Value.AttributeName);
+                    FloatNumeric floatNumeric = new FloatNumeric();
+                    floatNumeric.SetBase(item.Value.DefalutValue);
+                    attr.Add(type, floatNumeric);
+                }
             }
             else
             {
-                floatNumeric.SetBase(item.Value.DefalutValue);
+                if (useFormula)
+                {
+                    // 根据公式计算属性 test
+                    var exp = ExpressionHelper.TryEvaluate(item.Value.AttrFormula);
+                    foreach (var param in exp.Parameters)
+                    {
+                        AttrType typeNeed = (AttrType)System.Enum.Parse(typeof(AttrType), param.Key);
+                        if (attr.ContainsKey(typeNeed))
+                        {
+                            exp.Parameters[param.Key].Value = attr[typeNeed].Value;
+                        }
+                    }
+
+                    AttrType type = (AttrType)System.Enum.Parse(typeof(AttrType), item.Value.AttributeName);
+                    FloatNumeric floatNumeric = new FloatNumeric();
+                    floatNumeric.SetBase((float)exp.Value);
+                    attr.Add(type, floatNumeric);
+                }
             }
-            // print(item.Key);
-            // print(item.Value);
-            // print(item.Value.AttributeName);
         }
+    }
+
+    public void OnGetAttrByFormula()
+    {
 
     }
 }

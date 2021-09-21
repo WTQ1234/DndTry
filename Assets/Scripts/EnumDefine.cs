@@ -177,26 +177,29 @@ public enum AttrType
     Physique = 2004,
 
     // 二级属性
+    [LabelText("最大理智值")]
+    SanMax = 3001,
     [LabelText("生命值_阳气")]
-    HP_P = 3001,
+    HpMax_P = 3002,
     [LabelText("生命值_阴气")]
-    HP_S = 3002,
-    [LabelText("护盾值")]
-    Shield = 3003,
+    HpMax_S = 3003,
     [LabelText("攻击力_阳气")]
     Atk_P = 3004,
     [LabelText("攻击力_阴气")]
     Atk_S = 3005,
-    [LabelText("攻击力_真实")]
-    Atk_R = 3006,
-    [LabelText("防御力_阳气")]
-    Def_P = 3007,
-    [LabelText("防御力_阴气")]
-    Def_S = 3008,
-    [LabelText("防御力_真实")]
-    Def_R = 3009,
     [LabelText("先攻")]
-    FirstStrike = 3010,
+    FirstStrike = 3006,
+    [LabelText("护盾值")]
+    Shield = 3007,
+    [LabelText("攻击力_真实")]
+    Atk_R = 3008,
+    [LabelText("防御力_阳气")]
+    Def_P = 3009,
+    [LabelText("防御力_阴气")]
+    Def_S = 3010,
+    [LabelText("防御力_真实")]
+    Def_R = 3011,
+
 
     // 三级属性
     [LabelText("暴击概率")]
@@ -219,10 +222,22 @@ public enum AttrType
     [LabelText("战利品概率")]
     Good_P = 5002,
 
-    [LabelText("造成伤害")]
-    CauseDamage = 4001,
-}
+    [LabelText("理智转换系数")]
+    Sanity_C = 6001,
+    [LabelText("体质转换系数")]
+    Physique_C = 6002,
+    [LabelText("感知转换系数")]
+    Perceive_C = 6003,
+    [LabelText("力量转换系数")]
+    Power_C = 6004,
+    [LabelText("灵能转换系数")]
+    Psionic_C = 6005,
+    [LabelText("速度转换系数")]
+    Speed_C = 6006,
 
+    [LabelText("造成伤害")]
+    CauseDamage = 7001,
+}
 
 [LabelText("修饰类型")]
 public enum ModifyType

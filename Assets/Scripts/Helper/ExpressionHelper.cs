@@ -7,10 +7,16 @@ namespace ExpressionParserHelper
 {
     public static class ExpressionHelper
     {
+        private static Dictionary<string, Expression> ExpressionsDict = new Dictionary<string, Expression>();
+
         public static ExpressionParser ExpressionParser { get; set; } = new ExpressionParser();
 
         public static Expression TryEvaluate(string expressionStr)
         {
+            if (ExpressionsDict.ContainsKey(expressionStr))
+            {
+                return ExpressionsDict[expressionStr];
+            }
             Expression expression = null;
             try
             {
@@ -18,8 +24,12 @@ namespace ExpressionParserHelper
             }
             catch (System.Exception e)
             {
-                // Log.Error(expressionStr);
-                // Log.Error(e);
+                Log.Error(expressionStr);
+                Log.Error(e);
+            }
+            if (expression != null)
+            {
+                ExpressionsDict.Add(expressionStr, expression);
             }
             return expression;
         }
@@ -286,8 +296,6 @@ namespace ExpressionParserHelper
     }
     public delegate double ExpressionDelegate(params double[] aParams);
     public delegate double[] MultiResultDelegate(params double[] aParams);
-
-
 
     public class ExpressionParser
     {

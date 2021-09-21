@@ -1,42 +1,24 @@
 ﻿using System;
 
-namespace EGamePlay
+public static class Log
 {
-#if !SERVER
-    public static class Log
+    public static void Debug(string log)
     {
-        public static void Debug(string log)
-        {
-            UnityEngine.Debug.Log(log);
-        }
-
-        public static void Error(string log)
-        {
-            UnityEngine.Debug.LogError(log);
-        }
-
-        public static void Error(Exception e)
-        {
-            UnityEngine.Debug.LogException(e);
-        }
+        UnityEngine.Debug.Log(log);
     }
-#else
-    public static class Log
+
+    public static void Error(string log)
     {
-        public static void Debug(string log)
-        {
-            ET.Log.Debug(log);
-        }
-
-        public static void Error(string log)
-        {
-            ET.Log.Error(log);
-        }
-
-        public static void Error(Exception e)
-        {
-            ET.Log.Error(e);
-        }
+        UnityEngine.Debug.LogError(log);
     }
-#endif
+
+    public static void Error(Exception e)
+    {
+        UnityEngine.Debug.LogException(e);
+    }
+
+    public static void Info(string log)
+    {
+        UnityEngine.Debug.Log(log);
+    }
 }

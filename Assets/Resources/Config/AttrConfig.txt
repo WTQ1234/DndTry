@@ -5,12 +5,12 @@
 "4":{"Id":4,"AttributeName":"Speed","EnumName":"速度","DefalutValue":5},
 "5":{"Id":5,"AttributeName":"Perceive","EnumName":"感知","DefalutValue":5},
 "6":{"Id":6,"AttributeName":"Physique","EnumName":"体质","DefalutValue":5},
-"7":{"Id":7,"AttributeName":"SanMax","EnumName":"最大理智值","DefalutValue":200,"AttrFormula":"理智 * 理智转换系数"},
-"8":{"Id":8,"AttributeName":"HpMax_P","EnumName":"生命值_阳气","DefalutValue":10,"AttrFormula":"体质 * 体质转换系数"},
-"9":{"Id":9,"AttributeName":"HpMax_S","EnumName":"生命值_阴气","DefalutValue":10,"AttrFormula":"感知 * 感知转换系数"},
-"10":{"Id":10,"AttributeName":"Atk_P","EnumName":"攻击力_阳气","DefalutValue":5,"AttrFormula":"力量 * 力量转换系数"},
-"11":{"Id":11,"AttributeName":"Atk_S","EnumName":"攻击力_阴气","DefalutValue":5,"AttrFormula":"灵能 * 灵能转换系数"},
-"12":{"Id":12,"AttributeName":"FirstStrike","EnumName":"先攻","DefalutValue":5,"AttrFormula":"速度 * 速度转换系数"},
+"7":{"Id":7,"AttributeName":"SanMax","EnumName":"最大理智值","DefalutValue":200,"AttrFormula":"Sanity*Sanity_C"},
+"8":{"Id":8,"AttributeName":"HpMax_P","EnumName":"生命值_阳气","DefalutValue":10,"AttrFormula":"Physique*Physique_C"},
+"9":{"Id":9,"AttributeName":"HpMax_S","EnumName":"生命值_阴气","DefalutValue":10,"AttrFormula":"Perceive*Perceive_C"},
+"10":{"Id":10,"AttributeName":"Atk_P","EnumName":"攻击力_阳气","DefalutValue":5,"AttrFormula":"Power*Power_C"},
+"11":{"Id":11,"AttributeName":"Atk_S","EnumName":"攻击力_阴气","DefalutValue":5,"AttrFormula":"Psionic*Psionic_C"},
+"12":{"Id":12,"AttributeName":"FirstStrike","EnumName":"先攻","DefalutValue":5,"AttrFormula":"Speed*Speed_C"},
 "13":{"Id":13,"AttributeName":"Shield","EnumName":"护盾值","DefalutValue":0,"ShowJudge":"是"},
 "14":{"Id":14,"AttributeName":"Atk_R","EnumName":"攻击力_真实","DefalutValue":0,"ShowJudge":"是"},
 "15":{"Id":15,"AttributeName":"Def_P","EnumName":"防御力_阳气","DefalutValue":0},
@@ -29,5 +29,6 @@
 "28":{"Id":28,"AttributeName":"Physique_C","EnumName":"体质转换系数","DefalutValue":2,"Hide":"是"},
 "29":{"Id":29,"AttributeName":"Perceive_C","EnumName":"感知转换系数","DefalutValue":2,"Hide":"是"},
 "30":{"Id":30,"AttributeName":"Power_C","EnumName":"力量转换系数","DefalutValue":1,"Hide":"是"},
-"31":{"Id":31,"AttributeName":"Psionic_C","EnumName":"灵能转换系数","DefalutValue":1,"Hide":"是"}
+"31":{"Id":31,"AttributeName":"Psionic_C","EnumName":"灵能转换系数","DefalutValue":1,"Hide":"是"},
+"32":{"Id":32,"AttributeName":"Speed_C","EnumName":"速度转换系数","DefalutValue":1,"Hide":"是"}
 }

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using UnityEngine;
 using EGamePlay.Combat.Ability;
 using ET;
-using Log = EGamePlay.Log;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
 

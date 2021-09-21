@@ -20,35 +20,35 @@ public class CardAttributeComponent : EGamePlay.Component
     private readonly Dictionary<string, FloatNumeric> attr_Name_Num = new Dictionary<string, FloatNumeric>();
     private readonly Dictionary<AttrType, FloatNumeric> attributeTypeNumerics = new Dictionary<AttrType, FloatNumeric>();
 
-    public FloatNumeric Sanity { get { return attr_Name_Num[nameof(AttrType.Sanity)]; } }
-    public FloatNumeric Power { get { return attr_Name_Num[nameof(AttrType.Power)]; } }
-    public FloatNumeric Psionic { get { return attr_Name_Num[nameof(AttrType.Psionic)]; } }
-    public FloatNumeric Speed { get { return attr_Name_Num[nameof(AttrType.Speed)]; } }
-    public FloatNumeric Perceive { get { return attr_Name_Num[nameof(AttrType.Perceive)]; } }
-    public FloatNumeric Physique { get { return attr_Name_Num[nameof(AttrType.Physique)]; } }
+    //public FloatNumeric Sanity { get { return attr_Name_Num[nameof(AttrType.Sanity)]; } }
+    //public FloatNumeric Power { get { return attr_Name_Num[nameof(AttrType.Power)]; } }
+    //public FloatNumeric Psionic { get { return attr_Name_Num[nameof(AttrType.Psionic)]; } }
+    //public FloatNumeric Speed { get { return attr_Name_Num[nameof(AttrType.Speed)]; } }
+    //public FloatNumeric Perceive { get { return attr_Name_Num[nameof(AttrType.Perceive)]; } }
+    //public FloatNumeric Physique { get { return attr_Name_Num[nameof(AttrType.Physique)]; } }
 
-    public FloatNumeric HP_P { get { return attr_Name_Num[nameof(AttrType.HP_P)]; } }
-    public FloatNumeric HP_S { get { return attr_Name_Num[nameof(AttrType.HP_S)]; } }
-    public FloatNumeric Shield { get { return attr_Name_Num[nameof(AttrType.Shield)]; } }
-    public FloatNumeric Atk_P { get { return attr_Name_Num[nameof(AttrType.Atk_P)]; } }
-    public FloatNumeric Atk_S { get { return attr_Name_Num[nameof(AttrType.Atk_S)]; } }
-    public FloatNumeric Atk_R { get { return attr_Name_Num[nameof(AttrType.Atk_R)]; } }
-    public FloatNumeric Def_P { get { return attr_Name_Num[nameof(AttrType.Def_P)]; } }
-    public FloatNumeric Def_S { get { return attr_Name_Num[nameof(AttrType.Def_S)]; } }
-    public FloatNumeric Def_R { get { return attr_Name_Num[nameof(AttrType.Def_R)]; } }
-    public FloatNumeric FirstStrike { get { return attr_Name_Num[nameof(AttrType.FirstStrike)]; } }
+    //public FloatNumeric HP_P { get { return attr_Name_Num[nameof(AttrType.HP_P)]; } }
+    //public FloatNumeric HP_S { get { return attr_Name_Num[nameof(AttrType.HP_S)]; } }
+    //public FloatNumeric Shield { get { return attr_Name_Num[nameof(AttrType.Shield)]; } }
+    //public FloatNumeric Atk_P { get { return attr_Name_Num[nameof(AttrType.Atk_P)]; } }
+    //public FloatNumeric Atk_S { get { return attr_Name_Num[nameof(AttrType.Atk_S)]; } }
+    //public FloatNumeric Atk_R { get { return attr_Name_Num[nameof(AttrType.Atk_R)]; } }
+    //public FloatNumeric Def_P { get { return attr_Name_Num[nameof(AttrType.Def_P)]; } }
+    //public FloatNumeric Def_S { get { return attr_Name_Num[nameof(AttrType.Def_S)]; } }
+    //public FloatNumeric Def_R { get { return attr_Name_Num[nameof(AttrType.Def_R)]; } }
+    //public FloatNumeric FirstStrike { get { return attr_Name_Num[nameof(AttrType.FirstStrike)]; } }
 
-    public FloatNumeric Critical_P { get { return attr_Name_Num[nameof(AttrType.Critical_P)]; } }
-    public FloatNumeric Critical_E { get { return attr_Name_Num[nameof(AttrType.Critical_E)]; } }
-    public FloatNumeric Dodge_P { get { return attr_Name_Num[nameof(AttrType.Dodge_P)]; } }
-    public FloatNumeric Parry_P { get { return attr_Name_Num[nameof(AttrType.Parry_P)]; } }
-    public FloatNumeric Sneak_P { get { return attr_Name_Num[nameof(AttrType.Sneak_P)]; } }
-    public FloatNumeric Aware_P { get { return attr_Name_Num[nameof(AttrType.Aware_P)]; } }
-    public FloatNumeric Resist_P { get { return attr_Name_Num[nameof(AttrType.Resist_P)]; } }
-    public FloatNumeric Coin_E { get { return attr_Name_Num[nameof(AttrType.Coin_E)]; } }
-    public FloatNumeric Good_P { get { return attr_Name_Num[nameof(AttrType.Good_P)]; } }
+    //public FloatNumeric Critical_P { get { return attr_Name_Num[nameof(AttrType.Critical_P)]; } }
+    //public FloatNumeric Critical_E { get { return attr_Name_Num[nameof(AttrType.Critical_E)]; } }
+    //public FloatNumeric Dodge_P { get { return attr_Name_Num[nameof(AttrType.Dodge_P)]; } }
+    //public FloatNumeric Parry_P { get { return attr_Name_Num[nameof(AttrType.Parry_P)]; } }
+    //public FloatNumeric Sneak_P { get { return attr_Name_Num[nameof(AttrType.Sneak_P)]; } }
+    //public FloatNumeric Aware_P { get { return attr_Name_Num[nameof(AttrType.Aware_P)]; } }
+    //public FloatNumeric Resist_P { get { return attr_Name_Num[nameof(AttrType.Resist_P)]; } }
+    //public FloatNumeric Coin_E { get { return attr_Name_Num[nameof(AttrType.Coin_E)]; } }
+    //public FloatNumeric Good_P { get { return attr_Name_Num[nameof(AttrType.Good_P)]; } }
 
-    public FloatNumeric CauseDamage { get { return attr_Name_Num[nameof(AttrType.CauseDamage)]; } }
+    //public FloatNumeric CauseDamage { get { return attr_Name_Num[nameof(AttrType.CauseDamage)]; } }
 
     public override void Setup()
     {
