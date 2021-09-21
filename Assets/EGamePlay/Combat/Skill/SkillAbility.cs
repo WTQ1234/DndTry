@@ -116,51 +116,51 @@ namespace EGamePlay.Combat.Skill
         public Effect ParseEffect(string effectConfig)
         {
             Effect effect = null;
-            if (!string.IsNullOrEmpty(effectConfig) && effectConfig.Contains("="))
-            {
-                var arr = effectConfig.Split('=');
-                var effectType = arr[0];
-                var effectId = arr[1];
-                if (effectType == "Damage")
-                {
-                    var damageEffectConfig = ConfigHelper.Get<SkillDamageEffectConfig>(int.Parse(effectId));
-                    var damageEffect = new DamageEffect();
-                    effect = damageEffect;
-                    damageEffect.DamageValueFormula = damageEffectConfig.ValueFormula;
-                    damageEffect.TriggerProbability = damageEffectConfig.Probability;
-                    if (damageEffectConfig.Target == "自身") damageEffect.AddSkillEffectTargetType = AddSkillEffetTargetType.Self;
-                    if (damageEffectConfig.Target == "技能目标") damageEffect.AddSkillEffectTargetType = AddSkillEffetTargetType.SkillTarget;
-                    if (damageEffectConfig.Type == "魔法伤害") damageEffect.DamageType = DamageType.Magic;
-                    if (damageEffectConfig.Type == "物理伤害") damageEffect.DamageType = DamageType.Physic;
-                    if (damageEffectConfig.Type == "真实伤害") damageEffect.DamageType = DamageType.Real;
-                }
-                if (effectType == "AddStatus")
-                {
-                    var addStatusEffectConfig = ConfigHelper.Get<SkillAddStatusEffectConfig>(int.Parse(effectId));
-                    var addStatusEffect = new AddStatusEffect();
-                    effect = addStatusEffect;
-                    addStatusEffect.AddStatus = Resources.Load<StatusConfigObject>($"StatusConfigs/Status_{addStatusEffectConfig.StatusID}");
-                    if (addStatusEffect.AddStatus == null)
-                    {
-                        addStatusEffect.AddStatus = Resources.Load<StatusConfigObject>($"StatusConfigs/BaseStatus/Status_{addStatusEffectConfig.StatusID}");
-                    }
-                    addStatusEffect.Duration = (uint)(float.Parse(addStatusEffectConfig.Duration) * 1000);
-                    ParseParam(addStatusEffectConfig.Param1);
-                    ParseParam(addStatusEffectConfig.Param2);
-                    void ParseParam(string paramStr)
-                    {
-                        if (!string.IsNullOrEmpty(paramStr))
-                        {
-                            arr = paramStr.Split('=');
-                            addStatusEffect.Params.Add(arr[0], arr[1]);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                effect = new CustomEffect() {  CustomEffectType = effectConfig };
-            }
+            // if (!string.IsNullOrEmpty(effectConfig) && effectConfig.Contains("="))
+            // {
+            //     var arr = effectConfig.Split('=');
+            //     var effectType = arr[0];
+            //     var effectId = arr[1];
+            //     if (effectType == "Damage")
+            //     {
+            //         var damageEffectConfig = ConfigHelper.Get<SkillDamageEffectConfig>(int.Parse(effectId));
+            //         var damageEffect = new DamageEffect();
+            //         effect = damageEffect;
+            //         damageEffect.DamageValueFormula = damageEffectConfig.ValueFormula;
+            //         damageEffect.TriggerProbability = damageEffectConfig.Probability;
+            //         if (damageEffectConfig.Target == "自身") damageEffect.AddSkillEffectTargetType = AddSkillEffetTargetType.Self;
+            //         if (damageEffectConfig.Target == "技能目标") damageEffect.AddSkillEffectTargetType = AddSkillEffetTargetType.SkillTarget;
+            //         if (damageEffectConfig.Type == "魔法伤害") damageEffect.DamageType = DamageType.Magic;
+            //         if (damageEffectConfig.Type == "物理伤害") damageEffect.DamageType = DamageType.Physic;
+            //         if (damageEffectConfig.Type == "真实伤害") damageEffect.DamageType = DamageType.Real;
+            //     }
+            //     if (effectType == "AddStatus")
+            //     {
+            //         var addStatusEffectConfig = ConfigHelper.Get<SkillAddStatusEffectConfig>(int.Parse(effectId));
+            //         var addStatusEffect = new AddStatusEffect();
+            //         effect = addStatusEffect;
+            //         addStatusEffect.AddStatus = Resources.Load<StatusConfigObject>($"StatusConfigs/Status_{addStatusEffectConfig.StatusID}");
+            //         if (addStatusEffect.AddStatus == null)
+            //         {
+            //             addStatusEffect.AddStatus = Resources.Load<StatusConfigObject>($"StatusConfigs/BaseStatus/Status_{addStatusEffectConfig.StatusID}");
+            //         }
+            //         addStatusEffect.Duration = (uint)(float.Parse(addStatusEffectConfig.Duration) * 1000);
+            //         ParseParam(addStatusEffectConfig.Param1);
+            //         ParseParam(addStatusEffectConfig.Param2);
+            //         void ParseParam(string paramStr)
+            //         {
+            //             if (!string.IsNullOrEmpty(paramStr))
+            //             {
+            //                 arr = paramStr.Split('=');
+            //                 addStatusEffect.Params.Add(arr[0], arr[1]);
+            //             }
+            //         }
+            //     }
+            // }
+            // else
+            // {
+            //     effect = new CustomEffect() {  CustomEffectType = effectConfig };
+            // }
             return effect;
         }
 #else

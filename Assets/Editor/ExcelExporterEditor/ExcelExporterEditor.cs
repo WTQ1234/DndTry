@@ -43,18 +43,10 @@ namespace ET
 
         private void OnEnable()
         {
-            ExcelPath = Application.dataPath + "/Excel";
+            ExcelPath = Application.dataPath + "/Other/Excel";
         }
 
-        private string ExcelPath = "/Excel";
-        private string ServerConfigPath = "/Config/";
-        //private void OnEnable()
-        //{
-        //    ExcelPath = Application.dataPath + "/../Excel";
-        //}
-
-        //private string ExcelPath = "../Excel";
-        //private string ServerConfigPath = "../Config/";
+        private string ExcelPath = "/Other/Excel";
 
         private bool isClient;
 
@@ -65,7 +57,7 @@ namespace ET
         {
             try
             {
-                const string clientPath = "./Assets/EGamePlay/Config/Texts";
+                const string clientPath = "./Assets/Resources/Config";
 
                 if (GUILayout.Button("导出客户端配置"))
                 {
@@ -73,21 +65,10 @@ namespace ET
                     Log.Debug($"{ExcelPath}");
                     ExportAll(clientPath);
 
-                    ExportAllClass(@"./Assets/EGamePlay/Config/Scripts", "namespace ET\n{\n");//using MongoDB.Bson.Serialization.Attributes;\n\n
+                    ExportAllClass(@"./Assets/Scripts/Config/Config_ET", "namespace ET\n{\n");//using MongoDB.Bson.Serialization.Attributes;\n\n
 
                     Log.Info($"导出客户端配置完成!");
                 }
-
-                //if (GUILayout.Button("导出服务端配置"))
-                //{
-                //    this.isClient = false;
-
-                //    ExportAll(ServerConfigPath);
-
-                //    ExportAllClass(@"../Server/Model/Config", "using MongoDB.Bson.Serialization.Attributes;\n\nnamespace ET\n{\n");
-
-                //    Log.Info($"导出服务端配置完成!");
-                //}
             }
             catch (Exception e)
             {
