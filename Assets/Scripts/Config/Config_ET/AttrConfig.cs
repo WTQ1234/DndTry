@@ -17,8 +17,7 @@ namespace ET
 		public string EnumName;
 		public float DefalutValue;
 		public string AttrFormula;
-		public string Hide;
-		public string ShowJudge;
+		public int FormulaLevel;
 		public string Description;
 	}
 }

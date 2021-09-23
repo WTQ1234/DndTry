@@ -35,7 +35,7 @@ public class CardEntity : Entity
 
     #region 组件
     public HealthPointComponent healthPointComponent { get; private set; }
-    public AttributeComponent attributeComponent { get; private set; }
+    public CardAttributeComponent CardAttributeComponent { get; private set; }
 
     public CardShowComponent cardShowComponent { get; private set; }
     public Click2DComponent click2DComponent { get; private set; }
@@ -65,8 +65,8 @@ public class CardEntity : Entity
         if (isCreature)
         {
             healthPointComponent = AddComponent<HealthPointComponent>();
-            attributeComponent = AddComponent<AttributeComponent>();
-            healthPointComponent?.SetMaxValue((int)GetComponent<AttributeComponent>().HealthPoint.Value);
+            CardAttributeComponent = AddComponent<CardAttributeComponent>();
+            healthPointComponent?.SetMaxValue((int)CardAttributeComponent.GetFloatValue(AttrType.HpMax_P));
         }
         if (isMe)
         {
@@ -106,13 +106,20 @@ public class CardEntity : Entity
                 //SpawnLineEffect(AttackPrefab, transform.position, monster.transform.position);
                 //SpawnHitEffect(transform.position, monster.transform.position);
 
-                Player.GetComponent<AttributeComponent>().AttackPower.SetBase(ET.RandomHelper.RandomNumber(600, 999));
+                // 设置一下攻击力
+                // Player.GetComponent<CardAttributeComponent>().SetBaseVale(AttrType.Atk_P, ET.RandomHelper.RandomNumber(600, 999));
                 action.OwnerEntity = Player;
                 action.Target = this;
                 action.BeginExecute();
                 Entity.Destroy(action);
             }
         }
+    }
+
+    // 获取属性
+    public float GetAttr(AttrType attrType)
+    {
+        return CardAttributeComponent.GetFloatValue(attrType);
     }
 
     /// <summary>

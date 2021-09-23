@@ -7,6 +7,7 @@ using System;
 using ExpressionParserHelper;
 using GameUtils;
 using ET;
+using GameUtils;
 
 public class Test : MonoBehaviour
 {
@@ -41,18 +42,16 @@ public class Test : MonoBehaviour
         // }
         #endregion
 
-        // 获取默认属性
-        //var item = AttrController.Instance.OnGetDefaultAttr();
-        //print(item);
-        //foreach(var k in item)
-        //{
+        #region 获取默认属性
+        // var item = AttrController.Instance.OnGetDefaultAttr();
+        // print(item);
+        // foreach(var k in item)
+        // {
         //    print(k.Key);
         //    print(k.Value.Value);
-        //}
-    }
-
-    public T ParseEnum<T> (string name)
-    { 
-        return (T)Enum.Parse(typeof(T), name);
+        // }
+        #endregion
+    
+        // print(GameUtils.RandomHelper.RandomRate() / 100f);
     }
 }

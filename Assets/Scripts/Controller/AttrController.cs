@@ -10,7 +10,6 @@ using EGamePlay;
 using EGamePlay.Combat;
 using UnityEngine.UIElements;
 using DG.Tweening;
-using ET;
 using GameUtils;
 using ExpressionParserHelper;
 
@@ -22,55 +21,81 @@ public class AttrController : SingleTon<AttrController>
     
     }
 
+    #region 获取默认属性
     public Dictionary<AttrType, FloatNumeric> OnGetDefaultAttr()
     {
         var dict = ConfigController.Instance.GetAll<AttrConfig>();
         Dictionary<AttrType, FloatNumeric> attr = new Dictionary<AttrType, FloatNumeric>();
-        _OnGetDefaultAttr(false, ref dict, ref attr);
-        _OnGetDefaultAttr(true, ref dict, ref attr);
+        int formulaLevel = 0;
+        while(true)
+        {
+
+            bool isOver = _OnGetDefaultAttr(formulaLevel, ref dict, ref attr);   // 先获取一遍默认值
+            if (isOver)
+            {
+                break;
+            }
+            formulaLevel += 1;
+            if (formulaLevel > 10)
+            {
+                Log.Error("OnGetDefaultAttr while over 10 times");
+                break;
+            } 
+        }
         return attr;
     }
 
-    private void _OnGetDefaultAttr(bool useFormula, ref Dictionary<int, AttrConfig> dict, ref Dictionary<AttrType, FloatNumeric> attr)
+    private bool _OnGetDefaultAttr(int formulaLevel, ref Dictionary<int, AttrConfig> dict, ref Dictionary<AttrType, FloatNumeric> attr)
     {
-        foreach (var item in dict)
+        bool isOver = formulaLevel != 0;    // 如果是0，那么是第一次循环，当然没有over
+        foreach (var config in dict.Values)
         {
-            if (item.Value.AttrFormula == "" || item.Value.AttrFormula == null)
+            if (config.AttrFormula == "" || config.AttrFormula == null)
             {
-                if (!useFormula)
+                if (formulaLevel == 0)
                 {
-                    AttrType type = (AttrType)System.Enum.Parse(typeof(AttrType), item.Value.AttributeName);
-                    FloatNumeric floatNumeric = new FloatNumeric();
-                    floatNumeric.SetBase(item.Value.DefalutValue);
-                    attr.Add(type, floatNumeric);
+                    // 是第一次循环，填入默认值
+                    getDefaultAttr(config, out AttrType type, out FloatNumeric floatNumeric);
+                    if ((type != AttrType.None) && (!attr.ContainsKey(type)))  attr.Add(type, floatNumeric);
                 }
             }
             else
             {
-                if (useFormula)
+                if (formulaLevel == config.FormulaLevel)
                 {
                     // 根据公式计算属性 test
-                    var exp = ExpressionHelper.TryEvaluate(item.Value.AttrFormula);
-                    foreach (var param in exp.Parameters)
-                    {
-                        AttrType typeNeed = (AttrType)System.Enum.Parse(typeof(AttrType), param.Key);
-                        if (attr.ContainsKey(typeNeed))
-                        {
-                            exp.Parameters[param.Key].Value = attr[typeNeed].Value;
-                        }
-                    }
-
-                    AttrType type = (AttrType)System.Enum.Parse(typeof(AttrType), item.Value.AttributeName);
-                    FloatNumeric floatNumeric = new FloatNumeric();
-                    floatNumeric.SetBase((float)exp.Value);
-                    attr.Add(type, floatNumeric);
+                    getFormulaAttr(config, attr, out AttrType type, out FloatNumeric floatNumeric);
+                    if ((type != AttrType.None) && (!attr.ContainsKey(type)))  attr.Add(type, floatNumeric);
+                }
+                else
+                {
+                    isOver = false;
                 }
             }
         }
+        return isOver;
     }
+    #endregion
 
-    public void OnGetAttrByFormula()
+    // 根据配置的公式以及传入的attr属性，计算属性信息
+    private void getFormulaAttr(AttrConfig config, Dictionary<AttrType, FloatNumeric> attr, out AttrType type, out FloatNumeric floatNumeric)
     {
-
+        var exp = ExpressionHelper.TryEvaluate(config.AttrFormula);
+        foreach (var param in exp.Parameters)
+        {
+            AttrType typeNeed = Common.ParseEnum<AttrType>(param.Key);
+            if (attr.ContainsKey(typeNeed))
+            {
+                exp.Parameters[param.Key].Value = attr[typeNeed].Value;
+            }
+        }
+        type = Common.ParseEnum<AttrType>(config.AttributeName);
+        floatNumeric = new FloatNumeric((float)exp.Value);
+    }
+    // 根据配置的默认值获取属性信息
+    private void getDefaultAttr(AttrConfig config, out AttrType type, out FloatNumeric floatNumeric)
+    {
+        type =  Common.ParseEnum<AttrType>(config.AttributeName);
+        floatNumeric = new FloatNumeric(config.DefalutValue);
     }
 }

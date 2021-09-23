@@ -38,7 +38,7 @@ public class CardDamageAction : CardActionExecution
         var expression = ExpressionHelper.ExpressionParser.EvaluateExpression(DamageEffect.DamageValueProperty);
         if (expression.Parameters.ContainsKey("自身攻击力"))
         {
-            expression.Parameters["自身攻击力"].Value = Creator.GetComponent<AttributeComponent>().AttackPower.Value;
+            expression.Parameters["自身攻击力"].Value = Creator.GetAttr(AttrType.Atk_P);
         }
         return (int)expression.Value;
     }
@@ -48,30 +48,30 @@ public class CardDamageAction : CardActionExecution
     {
         if (DamageSource == DamageSource.Attack)
         {
-            IsCritical = (RandomHelper.RandomRate() / 100f) < Creator.GetComponent<AttributeComponent>().CriticalProbability.Value;
-            DamageValue = (int)Mathf.Max(1, Creator.GetComponent<AttributeComponent>().AttackPower.Value - Target.GetComponent<AttributeComponent>().AttackDefense.Value);
+            IsCritical = RandomHelper.RandomRate() < Creator.GetAttr(AttrType.Critical_P);
+            DamageValue = (int)Mathf.Max(1, Creator.GetAttr(AttrType.Atk_P) - Target.GetAttr(AttrType.Def_P));
             if (IsCritical)
             {
-                DamageValue = (int)(DamageValue * 1.5f);
+                DamageValue = (int)(DamageValue * Creator.GetAttr(AttrType.Critical_E));
             }
         }
         if (DamageSource == DamageSource.Skill)
         {
             if (DamageEffect.CanCrit)
             {
-                IsCritical = (RandomHelper.RandomRate() / 100f) < Creator.GetComponent<AttributeComponent>().CriticalProbability.Value;
+                IsCritical = RandomHelper.RandomRate() < Creator.GetAttr(AttrType.Critical_P);
             }
             DamageValue = ParseDamage();
             if (IsCritical)
             {
-                DamageValue = (int)(DamageValue * 1.5f);
+                DamageValue = (int)(DamageValue * Creator.GetAttr(AttrType.Critical_E));
             }
         }
         if (DamageSource == DamageSource.Buff)
         {
             if (DamageEffect.CanCrit)
             {
-                IsCritical = (RandomHelper.RandomRate() / 100f) < Creator.GetComponent<AttributeComponent>().CriticalProbability.Value;
+                IsCritical = RandomHelper.RandomRate() < Creator.GetAttr(AttrType.Critical_P);
             }
             DamageValue = ParseDamage();
         }
@@ -88,7 +88,7 @@ public class CardDamageAction : CardActionExecution
 
         if (Target.CheckDead())
         {
-            //Target.Publish(new DeadEvent());
+            Target.Publish(new DeadEvent());
             //CombatContext.Instance.OnCombatEntityDead(Target);
         }
 

@@ -57,6 +57,10 @@ namespace EGamePlay.Combat
         private FloatModifierCollection FinalAddCollection { get; } = new FloatModifierCollection();
         private FloatModifierCollection FinalPctAddCollection { get; } = new FloatModifierCollection();
 
+        public FloatNumeric(float value = 0)
+        {
+            SetBase(value);
+        }
 
         public void Initialize()
         {
