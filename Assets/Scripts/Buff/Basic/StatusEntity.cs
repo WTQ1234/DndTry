@@ -12,6 +12,8 @@ using DG.Tweening;
 using ET;
 using GameUtils;
 using ExpressionParserHelper;
+
+// 状态
 public class StatusEntity : Entity
 {
     public CardEntity OwnerEntity { get => GetParent<CardEntity>(); }

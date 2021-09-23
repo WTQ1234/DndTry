@@ -16,11 +16,6 @@ using ExpressionParserHelper;
 // 控制并提供属性值，包括默认值，根据不同层数和难度得动态值以及随机生成怪物，以及根据当前状态计算当前强化后得数值
 public class AttrController : SingleTon<AttrController>
 {
-    public void Awake()
-    {
-    
-    }
-
     #region 获取默认属性
     public Dictionary<AttrType, FloatNumeric> OnGetDefaultAttr()
     {

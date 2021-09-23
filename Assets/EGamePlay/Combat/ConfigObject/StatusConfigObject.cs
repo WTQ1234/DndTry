@@ -5,6 +5,11 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Collections;
+using UnityEditor;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities.Editor;
+using Sirenix.Utilities;
 
 namespace EGamePlay.Combat
 {
@@ -99,22 +104,22 @@ namespace EGamePlay.Combat
         {
             if (EffectTypeName != "(添加效果)")
             {
-                //if (EffectTypeName.Contains("施加状态效果 ["))
-                //{
-                //    var effect = Activator.CreateInstance<AddStatusEffect>() as Effect;
-                //    effect.Enabled = true;
-                //    if (effect is AddStatusEffect addStatusEffect)
-                //    {
-                //        var status = AssetDatabase.FindAssets("t:StatusConfigObject", new string[] { "Assets" })
-                //            .Select(guid => AssetDatabase.GUIDToAssetPath(guid))
-                //            .Select(path => AssetDatabase.LoadAssetAtPath<StatusConfigObject>(path).Name)
-                //            .Select(name => $"施加状态效果 [{name}]")
-                //            .Where(name => name == $"施加状态效果 [{name}]");
-                //        //addStatusEffect.AddStatus = AssetDatabase.load
-                //    }
-                //    Effects.Add(effect);
-                //}
-                //else
+                if (EffectTypeName.Contains("施加状态效果 ["))
+                {
+                   var effect = Activator.CreateInstance<AddStatusEffect>() as Effect;
+                   effect.Enabled = true;
+                   if (effect is AddStatusEffect addStatusEffect)
+                   {
+                       var status = AssetDatabase.FindAssets("t:StatusConfigObject", new string[] { "Assets" })
+                           .Select(guid => AssetDatabase.GUIDToAssetPath(guid))
+                           .Select(path => AssetDatabase.LoadAssetAtPath<StatusConfigObject>(path).Name)
+                           .Select(name => $"施加状态效果 [{name}]")
+                           .Where(name => name == $"施加状态效果 [{name}]");
+                       //addStatusEffect.AddStatus = AssetDatabase.load
+                   }
+                   Effects.Add(effect);
+                }
+                else
                 {
                     var effectType = typeof(Effect).Assembly.GetTypes()
                         .Where(x => !x.IsAbstract)
@@ -181,30 +186,30 @@ namespace EGamePlay.Combat
             GUILayout.Space(10);
         }
 
-        //private bool NeedClearLog;
+        private bool NeedClearLog;
         [OnInspectorGUI]
         private void OnInspectorGUI()
         {
-            //if (NeedClearLog)
-            //{
+            // if (NeedClearLog)
+            // {
             //    var assembly = Assembly.GetAssembly(typeof(UnityEditor.SceneView));
             //    var type = assembly.GetType("UnityEditor.LogEntries");
             //    var method = type.GetMethod("Clear");
             //    method.Invoke(new object(), null);
             //    NeedClearLog = false;
-            //}
-            //if (EffectType != SkillEffectType.None)
-            //{
+            // }
+            // if (EffectType != SkillEffectType.None)
+            // {
             //    if (EffectType == SkillEffectType.AddStatus) MyToggleObjects.Add(new StateToggleGroup());
             //    if (EffectType == SkillEffectType.NumericModify) MyToggleObjects.Add(new DurationToggleGroup());
             //    EffectType = SkillEffectType.None;
             //    NeedClearLog = true;
-            //}
+            // }
 
-            if (!AutoRename)
-            {
-                return;
-            }
+            // if (!AutoRename)
+            // {
+            //     return;
+            // }
 
             RenameFile();
         }

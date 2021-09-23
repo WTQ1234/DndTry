@@ -50,9 +50,16 @@ public class CardEntity : Entity
     #endregion
 
     #region 初始化
-    // 根据配置表进行赋值，创建一张卡牌
-    public void SetUp()
+    public override void Awake()
     {
+        base.Awake();
+        StatusParent = transform.Find("StatusParent");
+    }
+
+    // 临时在Start里面创建
+    public override void Start()
+    {
+        // 根据配置表进行赋值，创建一张卡牌
         click2DComponent = AddComponent<Click2DComponent>();
         cardShowComponent = AddComponent<CardShowComponent>();
         ConditionManageComponent = AddComponent<ConditionManageComponent>();
@@ -80,18 +87,6 @@ public class CardEntity : Entity
         Status.TryActivateAbility();
         
         Setup(null, true);
-    }
-
-    public override void Awake()
-    {
-        base.Awake();
-        StatusParent = transform.Find("StatusParent");
-    }
-
-    // 临时在Start里面创建
-    public override void Start()
-    {
-        SetUp();
     }
     
     #endregion
