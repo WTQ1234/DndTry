@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using EGamePlay;
-using EGamePlay.Combat;
-using System;
-using ExpressionParserHelper;
-using GameUtils;
-using ET;
-using GameUtils;
+﻿using UnityEngine;
+// using System.Collections;
+// using System.Collections.Generic;
+// using EGamePlay;
+// using EGamePlay.Combat;
+// using System;
+// using ExpressionParserHelper;
+// using GameUtils;
+// using ET;
+// using GameUtils;
 
 public class Test : MonoBehaviour
 {
@@ -42,7 +42,7 @@ public class Test : MonoBehaviour
         // }
         #endregion
 
-        #region 获取默认属性
+        #region 测试 获取默认属性
         // var item = AttrController.Instance.OnGetDefaultAttr();
         // print(item);
         // foreach(var k in item)
@@ -51,7 +51,24 @@ public class Test : MonoBehaviour
         //    print(k.Value.Value);
         // }
         #endregion
+
+        #region 测试 类型默认值
+        // print(string.Empty);    // ""
+        // print(default(string)); // Null
+        #endregion
+        
+        #region 元组 还挺有意思
+        // (int, Test) b = a<Test>();
+        // print(b.Item1);
+        // print(b.Item2);
+        // print(a<Test>());
+        #endregion
     
-        // print(GameUtils.RandomHelper.RandomRate() / 100f);
+        print(RegexHelper.RegexHelper.RegexReplace("enum_", "enum_AttrType", ""));
+    }
+
+    (int, T) a<T>() where T: Test
+    { 
+        return (1, (T)this);
     }
 }

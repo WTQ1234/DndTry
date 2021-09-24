@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-// 战斗公式解析
+// 战斗公式解析Helper
 namespace ExpressionParserHelper
 {
     public static class ExpressionHelper

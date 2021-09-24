@@ -6,7 +6,7 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using UnityEditor;
 using UnityEngine;
-
+using RegexHelper;
 namespace ET
 {
     public struct CellInfo
@@ -155,9 +155,13 @@ namespace ET
                     }
 
                     string fieldType = GetCellString(sheet, 4, i);
-                    if (fieldType == "" || fieldName == "")
+                    if (fieldType == GlobalDefine.str_Empty || fieldName == GlobalDefine.str_Empty)
                     {
                         continue;
+                    }
+                    if (RegexHelper.RegexHelper.RegexIsOK("enum_.*", fieldType))
+                    {
+                        fieldType = RegexHelper.RegexHelper.RegexReplace("enum_", fieldType, GlobalDefine.str_Empty);
                     }
 
                     sb.Append($"\t\tpublic {fieldType} {fieldName};\n");
@@ -314,6 +318,12 @@ namespace ET
 
         private static string Convert(string type, string value)
         {
+            // todo 新增了枚举变量，是否可用还需验证
+            if (RegexHelper.RegexHelper.RegexIsOK("enum_.*", type))
+            {
+                // 是枚举
+                return $"\"{value}\"";
+            }
             switch (type)
             {
                 case "int[]":
@@ -328,6 +338,7 @@ namespace ET
                 case "long":
                 case "float":
                 case "double":
+                case "bool":    // todo 新增了bool变量，是否可用还需验证
                     return value;
                 case "string":
                     return $"\"{value}\"";

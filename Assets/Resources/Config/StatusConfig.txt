@@ -1,0 +1,6 @@
+{
+"1":{"Id":1,"ID":"Vertigo","Name":"眩晕","StatusType":"Debuff","Duration":0,"ShowInStatusSlots":"是","CanStack":"否","MaxStack":1,"EnableChildrenStatuses":"是","ChildrenStatuses":[2,3],"EnabledStateModify":True,"ActionControlType":"1"},
+"2":{"Id":2,"ID":"AttackPowerModify","Name":"攻击力修饰","StatusType":"其他","Duration":0,"ShowInStatusSlots":"是","CanStack":"否","MaxStack":1,"EnableChildrenStatuses":"否"},
+"3":{"Id":3,"ID":"AttackPowerPctModify","Name":"攻击力百分比修饰","StatusType":"其他","Duration":0,"ShowInStatusSlots":"是","CanStack":"否","MaxStack":1,"EnableChildrenStatuses":"否"},
+"10":{"Id":10,"ID":"Weak","Name":"虚弱","StatusType":"Debuff","Duration":0,"ShowInStatusSlots":"是","CanStack":"否","MaxStack":1,"EnableChildrenStatuses":"否"},
+}
