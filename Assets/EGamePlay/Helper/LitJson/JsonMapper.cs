@@ -18,7 +18,23 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization;
 using LitJson.Extensions;
-
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using ET;
+using EGamePlay.Combat.Ability;
+using EGamePlay.Combat.Status;
+using EGamePlay.Combat.Skill;
+using System;
+using EGamePlay;
+using EGamePlay.Combat;
+using UnityEngine.UIElements;
+using DG.Tweening;
+using GameUtils;
+using ExpressionParserHelper;
 namespace LitJson
 {
     internal struct PropertyMetadata
@@ -393,7 +409,6 @@ namespace LitJson
                 throw new JsonException(String.Format("Can't assign null to an instance of type {0}",
                     inst_type));
             }
-
             if (reader.Token == JsonToken.Double ||
                 reader.Token == JsonToken.Int ||
                 reader.Token == JsonToken.Long ||
@@ -401,7 +416,6 @@ namespace LitJson
                 reader.Token == JsonToken.Boolean)
             {
                 Type json_type = reader.Value.GetType();
-
                 if (value_type.IsAssignableFrom(json_type))
                     return reader.Value;
 
@@ -431,7 +445,16 @@ namespace LitJson
                     return Enum.ToObject (value_type, reader.Value);
 #else
                 if (value_type.IsEnum)
-                    return Enum.ToObject(value_type, reader.Value);
+                {
+                    if (reader.Token == JsonToken.String)
+                    {
+                        return Enum.Parse(value_type, reader.Value.ToString());
+                    }
+                    else
+                    {                            
+                        return Enum.ToObject(value_type, reader.Value);
+                    }
+                }
 #endif
                 // Try using an implicit conversion operator
                 MethodInfo conv_op = GetConvOp(value_type, json_type);

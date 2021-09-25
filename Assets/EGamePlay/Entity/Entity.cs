@@ -63,6 +63,25 @@ namespace EGamePlay
             return entity;
         }
 
+        public static Entity Create(Type type ,object initData = null, GameObject owner = null, Entity parent = null)
+        {
+            bool needObj = owner == null;
+            if (needObj) owner = new GameObject();
+            var entity = owner.AddComponent(type) as Entity;
+
+            entity.Setup(initData, needObj);
+            Master.AddEntity(type, entity);
+            (parent == null ? Master : parent).AddChild(entity);
+
+            long id = IdFactory.NewInstanceId();
+            entity.InstanceId = entity.Id = id;
+            entity.Name = type.ToString();
+
+            if (EnableLog) Log.Debug($"Entity->Create, {type.Name}={entity.InstanceId}");
+
+            return entity;
+        }
+
         public virtual void Setup(object initData = null, bool asGameObject = false)
         {
             if (asGameObject)

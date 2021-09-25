@@ -163,7 +163,7 @@ namespace ET
                     {
                         fieldType = RegexHelper.RegexHelper.RegexReplace("enum_", fieldType, GlobalDefine.str_Empty);
                     }
-
+                    Debug.Log($"\t\tpublic {fieldType} {fieldName};\n");
                     sb.Append($"\t\tpublic {fieldType} {fieldName};\n");
                 }
 
@@ -172,6 +172,7 @@ namespace ET
 
                 sw.Write(sb.ToString());
             }
+            Debug.Log(fileName + protoName);
         }
 
         private void ExportAll(string exportDir)
@@ -340,6 +341,7 @@ namespace ET
                 case "double":
                 case "bool":    // todo 新增了bool变量，是否可用还需验证
                     return value;
+                    //return $"\"{value}\"";
                 case "string":
                     return $"\"{value}\"";
                 default:

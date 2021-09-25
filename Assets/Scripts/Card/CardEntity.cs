@@ -81,10 +81,15 @@ public class CardEntity : Entity
         }
 
         // 测试buff
-        var config = Resources.Load<StatusConfigObject>("ConfigAsset/StatusConfigs/BaseStatus/Status_Mute");
-        var Status = AttachStatus<StatusEntity>(config);
-        Status.Caster = this;
-        Status.TryActivateAbility();
+        var config = Resources.Load<StatusConfigObject>("ConfigAsset/StatusConfigs/BaseStatus/Status_Vertigo");
+
+        // 这里要挂buff的话，直接用AddComponent，和typeof，再在配置表里提前配置好type，就可以挂上子类，不然只会挂上父类
+        // 后续要获取子类的话，只需要在GetComponent就可以了
+        var status = Create(typeof(StatusTenacity), config, StatusParent.gameObject, this);
+
+        //var Status = AttachStatus<StatusEntity>(config);
+        //Status.Caster = this;
+        //Status.TryActivateAbility();
         
         Setup(null, true);
     }

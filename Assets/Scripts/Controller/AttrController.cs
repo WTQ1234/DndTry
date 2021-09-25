@@ -84,13 +84,13 @@ public class AttrController : SingleTon<AttrController>
                 exp.Parameters[param.Key].Value = attr[typeNeed].Value;
             }
         }
-        type = Common.ParseEnum<AttrType>(config.AttributeName);
+        type = config.AttrType;
         floatNumeric = new FloatNumeric((float)exp.Value);
     }
     // 根据配置的默认值获取属性信息
     private void getDefaultAttr(AttrConfig config, out AttrType type, out FloatNumeric floatNumeric)
     {
-        type =  Common.ParseEnum<AttrType>(config.AttributeName);
+        type = config.AttrType;
         floatNumeric = new FloatNumeric(config.DefalutValue);
     }
 }

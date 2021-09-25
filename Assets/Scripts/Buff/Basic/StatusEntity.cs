@@ -63,10 +63,11 @@ public class StatusEntity : Entity
         {
             OwnerEntity.ActionControlType = OwnerEntity.ActionControlType | StatusConfigObject.ActionControlType;
             //Log.Debug($"{OwnerEntity.ActionControlType}");
-            if (OwnerEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid))
-            {
-                OwnerEntity.GetComponent<MotionComponent>().Enable = false;
-            }
+            // 移动相关处理 暂时注释
+            //if (OwnerEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid))
+            //{
+            //    OwnerEntity.GetComponent<MotionComponent>().Enable = false;
+            //}
         }
         //属性修饰
         if (StatusConfigObject.EnabledAttributeModify)
@@ -329,4 +330,8 @@ public class StatusEntity : Entity
         //}
     }
 
+    public StatusTenacity convert()
+    {
+        return this as StatusTenacity;
+    }
 }

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
-// using System.Collections;
-// using System.Collections.Generic;
-// using EGamePlay;
-// using EGamePlay.Combat;
-// using System;
-// using ExpressionParserHelper;
-// using GameUtils;
-// using ET;
-// using GameUtils;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using EGamePlay;
+using EGamePlay.Combat;
+using System;
+using ExpressionParserHelper;
+using GameUtils;
+using ET;
 
 public class Test : MonoBehaviour
 {
@@ -56,15 +56,27 @@ public class Test : MonoBehaviour
         // print(string.Empty);    // ""
         // print(default(string)); // Null
         #endregion
-        
+
         #region 元组 还挺有意思
         // (int, Test) b = a<Test>();
         // print(b.Item1);
         // print(b.Item2);
         // print(a<Test>());
         #endregion
-    
-        print(RegexHelper.RegexHelper.RegexReplace("enum_", "enum_AttrType", ""));
+
+        // 打印AttrConfig属性
+        //var item = ConfigController.Instance.GetAll<AttrConfig>();
+        //foreach (var kv in item)
+        //{
+        //    print("==============================");
+        //    print(kv.Value.testbool.ToString() + kv.Value.AttrType);
+        //}
+
+        // 正则
+        //print(RegexHelper.RegexHelper.RegexReplace("enum_", "enum_AttrType", ""));
+        print(typeof(Type));
+        print(typeof(Status_Vertigo));
+        //Type.GetType(“Int32”)
     }
 
     (int, T) a<T>() where T: Test

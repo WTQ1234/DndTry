@@ -13,11 +13,12 @@ namespace ET
 	public partial class AttrConfig: IConfig
 	{
 		public int Id { get; set; }
-		public string AttributeName;
+		public AttrType AttrType;
 		public string EnumName;
 		public float DefalutValue;
 		public string AttrFormula;
 		public int FormulaLevel;
-		public string Description;
+		public string Description1;
+		public bool testbool;
 	}
 }
