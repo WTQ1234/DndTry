@@ -1,7 +1,7 @@
 {
-"1":{"Id":1,"AttrType":"Sanity","EnumName":"理智","DefalutValue":10,"testbool":true},
-"2":{"Id":2,"AttrType":"Power","EnumName":"力量","DefalutValue":5,"testbool":false},
-"3":{"Id":3,"AttrType":"Psionic","EnumName":"灵能","DefalutValue":5,"testbool":false},
+"1":{"Id":1,"AttrType":"Sanity","EnumName":"理智","DefalutValue":10},
+"2":{"Id":2,"AttrType":"Power","EnumName":"力量","DefalutValue":5},
+"3":{"Id":3,"AttrType":"Psionic","EnumName":"灵能","DefalutValue":5},
 "4":{"Id":4,"AttrType":"Speed","EnumName":"速度","DefalutValue":5},
 "5":{"Id":5,"AttrType":"Perceive","EnumName":"感知","DefalutValue":5},
 "6":{"Id":6,"AttrType":"Physique","EnumName":"体质","DefalutValue":5},

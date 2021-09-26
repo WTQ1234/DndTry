@@ -81,15 +81,9 @@ public class CardEntity : Entity
         }
 
         // 测试buff
-        var config = Resources.Load<StatusConfigObject>("ConfigAsset/StatusConfigs/BaseStatus/Status_Vertigo");
-
-        // 这里要挂buff的话，直接用AddComponent，和typeof，再在配置表里提前配置好type，就可以挂上子类，不然只会挂上父类
-        // 后续要获取子类的话，只需要在GetComponent就可以了
-        var status = Create(typeof(StatusTenacity), config, StatusParent.gameObject, this);
-
-        //var Status = AttachStatus<StatusEntity>(config);
-        //Status.Caster = this;
-        //Status.TryActivateAbility();
+        var status = AttachStatusById(1);
+        status.Caster = this;
+        status.TryActivateAbility();
         
         Setup(null, true);
     }
@@ -179,24 +173,27 @@ public class CardEntity : Entity
         return ability;
     }
 
-    public T AttachStatus<T>(object configObject) where T : StatusEntity
+    // 这里要挂buff的话，直接用AddComponent，和typeof，再在配置表里提前配置好type，就可以挂上子类，不然只会挂上父类
+    // 后续要获取子类的话，只需要在GetComponent就可以了, 但是还是不能强制转换，最多as成StatusEntity这个基类
+    public StatusEntity AttachStatusById(int id)
     {
-        var status = Create<T>(configObject, StatusParent.gameObject, this);
-        //status.OwnerEntity = this;
-        if (!TypeIdStatuses.ContainsKey(status.StatusConfigObject.ID))
+        var config = ConfigController.Instance.Get<StatusConfig>(id);
+        Type type = Type.GetType(config.CName);
+        var status = Create(type, config, StatusParent.gameObject, this) as StatusEntity;
+        if (!TypeIdStatuses.ContainsKey(status.StatusConfig.ID))
         {
-            TypeIdStatuses.Add(status.StatusConfigObject.ID, new List<StatusEntity>());
+            TypeIdStatuses.Add(status.StatusConfig.ID, new List<StatusEntity>());
         }
-        TypeIdStatuses[status.StatusConfigObject.ID].Add(status);
+        TypeIdStatuses[status.StatusConfig.ID].Add(status);
         return status;
     }
 
     public void OnStatusRemove(StatusEntity statusAbility)
     {
-        TypeIdStatuses[statusAbility.StatusConfigObject.ID].Remove(statusAbility);
-        if (TypeIdStatuses[statusAbility.StatusConfigObject.ID].Count == 0)
+        TypeIdStatuses[statusAbility.StatusConfig.ID].Remove(statusAbility);
+        if (TypeIdStatuses[statusAbility.StatusConfig.ID].Count == 0)
         {
-            TypeIdStatuses.Remove(statusAbility.StatusConfigObject.ID);
+            TypeIdStatuses.Remove(statusAbility.StatusConfig.ID);
         }
         //this.Publish(new RemoveStatusEvent() { CardEntity = this, Status = statusAbility, StatusId = statusAbility.Id });
     }

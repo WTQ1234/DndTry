@@ -319,11 +319,15 @@ namespace ET
 
         private static string Convert(string type, string value)
         {
-            // todo 新增了枚举变量，是否可用还需验证
             if (RegexHelper.RegexHelper.RegexIsOK("enum_.*", type))
             {
                 // 是枚举
                 return $"\"{value}\"";
+            }
+            if (type == "string[]")
+            {
+                return $"[\"{RegexHelper.RegexHelper.RegexReplace("\n", value, "\",\"")}\"]";
+                // return String.Format();
             }
             switch (type)
             {
@@ -331,15 +335,15 @@ namespace ET
                 case "int32[]":
                 case "long[]":
                     return $"[{value}]";
-                case "string[]":
-                    return $"[{value}]";
+                // case "string[]":
+                //     return $"[{value}]";
                 case "int":
                 case "int32":
                 case "int64":
                 case "long":
                 case "float":
                 case "double":
-                case "bool":    // todo 新增了bool变量，是否可用还需验证
+                case "bool":
                     return value;
                     //return $"\"{value}\"";
                 case "string":

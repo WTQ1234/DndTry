@@ -8,6 +8,7 @@ using System;
 using ExpressionParserHelper;
 using GameUtils;
 using ET;
+using LitJson;
 
 public class Test : MonoBehaviour
 {
@@ -74,9 +75,14 @@ public class Test : MonoBehaviour
 
         // 正则
         //print(RegexHelper.RegexHelper.RegexReplace("enum_", "enum_AttrType", ""));
-        print(typeof(Type));
-        print(typeof(Status_Vertigo));
+
+        // print(typeof(Type));
+        // print(typeof(Status_Vertigo));
         //Type.GetType(“Int32”)
+
+        // 好像可以了，下一步继续尝试读配置
+        var lexer = new Lexer (new StringReader ("[\"AddNumericType:Add#AttrType:Sanity#Num:2\",\"AddNumericType:Add#AttrType:Power#Num:1\"]"));
+        print (lexer.NextToken());
     }
 
     (int, T) a<T>() where T: Test

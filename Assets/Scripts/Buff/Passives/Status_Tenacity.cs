@@ -9,7 +9,7 @@ using EGamePlay;
 using GameUtils;
 using ET;
 
-public class StatusTenacity : StatusEntity
+public class Status_Tenacity : StatusEntity
 {
     private GameTimer HealthReplyTimer { get; set; } = new GameTimer(2f);
     private bool CanReplyHealth { get; set; }

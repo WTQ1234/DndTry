@@ -1,4 +1,5 @@
 #region Header
+using System.Diagnostics;
 /**
  * Lexer.cs
  *   JSON lexer implementation based on a finite state machine.
@@ -877,10 +878,10 @@ namespace LitJson
         {
             StateHandler handler;
             fsm_context.Return = false;
-
+            // Log.Debug(fsm_context);
             while (true) {
                 handler = fsm_handler_table[state - 1];
-
+                Log.Debug(state.ToString());
                 if (! handler (fsm_context))
                     throw new JsonException (input_char);
 

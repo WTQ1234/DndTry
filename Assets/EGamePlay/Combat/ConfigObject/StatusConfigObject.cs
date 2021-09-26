@@ -61,9 +61,9 @@ namespace EGamePlay.Combat
         public string NumericValueProperty { get; set; }
         [ToggleGroup("EnabledAttributeModify")]
         public ModifyType ModifyType;
-        //[ToggleGroup("EnabledAttributeModify"), LabelText("属性修饰")]
-        //[DictionaryDrawerSettings(KeyLabel =)]
-        //public Dictionary<NumericType, string> AttributeChanges = new Dictionary<NumericType, string>();
+        // [ToggleGroup("EnabledAttributeModify"), LabelText("属性修饰")]
+        // [DictionaryDrawerSettings(KeyLabel =)]
+        // public Dictionary<NumericType, string> AttributeChanges = new Dictionary<NumericType, string>();
 
         [ToggleGroup("EnabledLogicTrigger", "逻辑触发")]
         public bool EnabledLogicTrigger;
@@ -258,16 +258,6 @@ namespace EGamePlay.Combat
 
         [LabelText("参数列表"), HideReferenceObjectPicker]
         public Dictionary<string, string> Params = new Dictionary<string, string>();
-    }
-
-    public enum StatusType
-    {
-        [LabelText("Buff(增益)")]
-        Buff,
-        [LabelText("Debuff(减益)")]
-        Debuff,
-        [LabelText("其他")]
-        Other,
     }
 
     public enum EffectTriggerType

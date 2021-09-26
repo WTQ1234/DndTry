@@ -18,7 +18,6 @@ namespace ET
 		public float DefalutValue;
 		public string AttrFormula;
 		public int FormulaLevel;
-		public string Description1;
-		public bool testbool;
+		public string Description;
 	}
 }

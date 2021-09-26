@@ -127,7 +127,49 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 8|EGamePlay.Combat.DamageEffect, Assembly-CSharp
+    - Name: IsSkillEffect
+      Entry: 5
+      Data: false
+    - Name: Enabled
+      Entry: 5
+      Data: true
+    - Name: AddSkillEffectTargetType
+      Entry: 3
       Data: 0
+    - Name: EffectTriggerType
+      Entry: 3
+      Data: 0
+    - Name: ConditionType
+      Entry: 3
+      Data: 0
+    - Name: ActionPointType
+      Entry: 3
+      Data: 0
+    - Name: Interval
+      Entry: 6
+      Data: 
+    - Name: ConditionParam
+      Entry: 6
+      Data: 
+    - Name: TriggerProbability
+      Entry: 1
+      Data: 100%
+    - Name: DamageType
+      Entry: 3
+      Data: 0
+    - Name: DamageValueFormula
+      Entry: 6
+      Data: 
+    - Name: CanCrit
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -148,7 +190,7 @@ MonoBehaviour:
   AttributeType: 0
   NumericValue: 
   ModifyType: 0
-  EnabledLogicTrigger: 0
+  EnabledLogicTrigger: 1
   EffectTypeName: "(\u6DFB\u52A0\u6548\u679C)"
   ParticleEffect: {fileID: 181232, guid: b9cf594d1d8302e4a884738a176ead3a, type: 3}
   Audio: {fileID: 0}

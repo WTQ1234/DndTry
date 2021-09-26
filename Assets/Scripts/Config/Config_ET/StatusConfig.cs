@@ -14,15 +14,18 @@ namespace ET
 	{
 		public int Id { get; set; }
 		public string ID;
+		public string CName;
 		public string Name;
-		public string StatusType;
+		public StatusType StatusType;
 		public int Duration;
-		public string ShowInStatusSlots;
-		public string CanStack;
+		public bool ShowInSlots;
 		public int MaxStack;
-		public string EnableChildrenStatuses;
 		public int[] ChildrenStatuses;
-		public bool EnabledStateModify;
 		public ActionControlType ActionControlType;
+		public string[] AttrModifyFormula;
+		public int[] Effects;
+		public string ParticleRes;
+		public string AudioRes;
+		public string Description;
 	}
 }

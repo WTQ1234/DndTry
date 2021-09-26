@@ -18,12 +18,11 @@ public class StatusEntity : Entity
 {
     public CardEntity OwnerEntity { get => GetParent<CardEntity>(); }
     public bool Enable = true;
-    public object ConfigObject;
     public int Level = 1;
 
     //投放者、施术者
     public CardEntity Caster;
-    public StatusConfigObject StatusConfigObject;
+    public StatusConfig StatusConfig;
     public FloatModifier NumericModifier;
     public bool IsChildStatus;
     public ChildStatus ChildStatusData;
@@ -32,8 +31,8 @@ public class StatusEntity : Entity
     public override void Setup(object initData, bool asGameObject)
     {
         base.Setup(initData);
-        StatusConfigObject = initData as StatusConfigObject;
-        Name = StatusConfigObject.ID;
+        StatusConfig = initData as StatusConfig;
+        Name = StatusConfig.ID;
     }
 
     public virtual void TryActivateAbility()
@@ -46,22 +45,23 @@ public class StatusEntity : Entity
     public virtual void ActivateAbility()
     {
         //子状态效果
-        if (StatusConfigObject.EnableChildrenStatuses)
+        if (StatusConfig.ChildrenStatuses.Length > 0)
         {
-            foreach (var item in StatusConfigObject.ChildrenStatuses)
+            foreach (var item in StatusConfig.ChildrenStatuses)
             {
-                var status = OwnerEntity.AttachStatus<StatusEntity>(item.StatusConfigObject);
+                var status = OwnerEntity.AttachStatusById(item);
                 status.Caster = Caster;
                 status.IsChildStatus = true;
-                status.ChildStatusData = item;
+                // status.ChildStatusData = item;
+                // todo
                 status.TryActivateAbility();
                 ChildrenStatuses.Add(status);
             }
         }
         //行为禁制
-        if (StatusConfigObject.EnabledStateModify)
+        if (StatusConfig.ActionControlType != ActionControlType.None)
         {
-            OwnerEntity.ActionControlType = OwnerEntity.ActionControlType | StatusConfigObject.ActionControlType;
+            OwnerEntity.ActionControlType = OwnerEntity.ActionControlType | StatusConfig.ActionControlType;
             //Log.Debug($"{OwnerEntity.ActionControlType}");
             // 移动相关处理 暂时注释
             //if (OwnerEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid))
@@ -70,93 +70,93 @@ public class StatusEntity : Entity
             //}
         }
         //属性修饰
-        if (StatusConfigObject.EnabledAttributeModify)
+        if (StatusConfig.AttrModifyFormula.Length > 0)
         {
-            if (StatusConfigObject.AttributeType != AttributeType.None && StatusConfigObject.NumericValue != "")
-            {
-                var numericValue = StatusConfigObject.NumericValue;
-                if (IsChildStatus)
-                {
-                    foreach (var paramItem in ChildStatusData.Params)
-                    {
-                        numericValue = numericValue.Replace(paramItem.Key, paramItem.Value);
-                    }
-                }
-                numericValue = numericValue.Replace("%", "");
-                var expression = ExpressionHelper.ExpressionParser.EvaluateExpression(numericValue);
-                var value = (float)expression.Value;
-                NumericModifier = new FloatModifier() { Value = value };
+            // if (StatusConfig.AttributeType != AttributeType.None && StatusConfig.NumericValue != "")
+            // {
+            //     var numericValue = StatusConfig.NumericValue;
+            //     if (IsChildStatus)
+            //     {
+            //         foreach (var paramItem in ChildStatusData.Params)
+            //         {
+            //             numericValue = numericValue.Replace(paramItem.Key, paramItem.Value);
+            //         }
+            //     }
+            //     numericValue = numericValue.Replace("%", "");
+            //     var expression = ExpressionHelper.ExpressionParser.EvaluateExpression(numericValue);
+            //     var value = (float)expression.Value;
+            //     NumericModifier = new FloatModifier() { Value = value };
 
-                var attributeType = StatusConfigObject.AttributeType.ToString();
-                if (StatusConfigObject.ModifyType == ModifyType.Add)
-                {
-                    OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalAddModifier(NumericModifier);
-                }
-                if (StatusConfigObject.ModifyType == ModifyType.PercentAdd)
-                {
-                    OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalPctAddModifier(NumericModifier);
-                }
-            }
+            //     var attributeType = StatusConfig.AttributeType.ToString();
+            //     if (StatusConfig.ModifyType == ModifyType.Add)
+            //     {
+            //         OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalAddModifier(NumericModifier);
+            //     }
+            //     if (StatusConfig.ModifyType == ModifyType.PercentAdd)
+            //     {
+            //         OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalPctAddModifier(NumericModifier);
+            //     }
+            // }
         }
         //逻辑触发
-        if (StatusConfigObject.EnabledLogicTrigger)
+        if (StatusConfig.Effects.Length > 0)
         {
-            foreach (var effectItem in StatusConfigObject.Effects)
-            {
-                if (IsChildStatus)
-                {
-                    if (effectItem is DamageEffect damageEffect)
-                    {
-                        damageEffect.DamageValueProperty = damageEffect.DamageValueFormula;
-                        foreach (var paramItem in ChildStatusData.Params)
-                        {
-                            damageEffect.DamageValueProperty = damageEffect.DamageValueProperty.Replace(paramItem.Key, paramItem.Value);
-                        }
-                    }
-                    else if (effectItem is CureEffect cureEffect)
-                    {
-                        cureEffect.CureValueProperty = cureEffect.CureValueFormula;
-                        foreach (var paramItem in ChildStatusData.Params)
-                        {
-                            cureEffect.CureValueProperty = cureEffect.CureValueProperty.Replace(paramItem.Key, paramItem.Value);
-                        }
-                    }
-                }
-                var logicEntity = Entity.Create<LogicEntity>(effectItem, gameObject, this);
-                if (effectItem.EffectTriggerType == EffectTriggerType.Instant)
-                {
-                    logicEntity.ApplyEffect();
-                    Destroy(logicEntity);
-                }
-                else if (effectItem.EffectTriggerType == EffectTriggerType.Interval)
-                {
-                    if (IsChildStatus)
-                    {
-                        effectItem.IntervalValue = effectItem.Interval;
-                        foreach (var paramItem in ChildStatusData.Params)
-                        {
-                            effectItem.IntervalValue = effectItem.IntervalValue.Replace(paramItem.Key, paramItem.Value);
-                        }
-                    }
-                    logicEntity.AddComponent<LogicIntervalTriggerComponent>();
-                }
-                else if (effectItem.EffectTriggerType == EffectTriggerType.Condition)
-                {
-                    if (IsChildStatus)
-                    {
-                        effectItem.ConditionParamValue = effectItem.ConditionParam;
-                        foreach (var paramItem in ChildStatusData.Params)
-                        {
-                            effectItem.ConditionParamValue = effectItem.ConditionParamValue.Replace(paramItem.Key, paramItem.Value);
-                        }
-                    }
-                    logicEntity.AddComponent<LogicConditionTriggerComponent>();
-                }
-                else if (effectItem.EffectTriggerType == EffectTriggerType.Action)
-                {
-                    logicEntity.AddComponent<LogicActionTriggerComponent>();
-                }
-            }
+            // foreach (var effectItem in StatusConfig.Effects)
+            // {
+            //     if (IsChildStatus)
+            //     {
+            //         if (effectItem is DamageEffect damageEffect)
+            //         {
+            //             damageEffect.DamageValueProperty = damageEffect.DamageValueFormula;
+            //             foreach (var paramItem in ChildStatusData.Params)
+            //             {
+            //                 damageEffect.DamageValueProperty = damageEffect.DamageValueProperty.Replace(paramItem.Key, paramItem.Value);
+            //             }
+            //         }
+            //         else if (effectItem is CureEffect cureEffect)
+            //         {
+            //             cureEffect.CureValueProperty = cureEffect.CureValueFormula;
+            //             foreach (var paramItem in ChildStatusData.Params)
+            //             {
+            //                 cureEffect.CureValueProperty = cureEffect.CureValueProperty.Replace(paramItem.Key, paramItem.Value);
+            //             }
+            //         }
+            //     }
+            //     var logicEntity = Entity.Create<LogicEntity>(effectItem, gameObject, this);
+            //     if (effectItem.EffectTriggerType == EffectTriggerType.Instant)
+            //     {
+            //         logicEntity.ApplyEffect();
+            //         Destroy(logicEntity);
+            //     }
+            //     else if (effectItem.EffectTriggerType == EffectTriggerType.Interval)
+            //     {
+            //         if (IsChildStatus)
+            //         {
+            //             effectItem.IntervalValue = effectItem.Interval;
+            //             foreach (var paramItem in ChildStatusData.Params)
+            //             {
+            //                 effectItem.IntervalValue = effectItem.IntervalValue.Replace(paramItem.Key, paramItem.Value);
+            //             }
+            //         }
+            //         logicEntity.AddComponent<LogicIntervalTriggerComponent>();
+            //     }
+            //     else if (effectItem.EffectTriggerType == EffectTriggerType.Condition)
+            //     {
+            //         if (IsChildStatus)
+            //         {
+            //             effectItem.ConditionParamValue = effectItem.ConditionParam;
+            //             foreach (var paramItem in ChildStatusData.Params)
+            //             {
+            //                 effectItem.ConditionParamValue = effectItem.ConditionParamValue.Replace(paramItem.Key, paramItem.Value);
+            //             }
+            //         }
+            //         logicEntity.AddComponent<LogicConditionTriggerComponent>();
+            //     }
+            //     else if (effectItem.EffectTriggerType == EffectTriggerType.Action)
+            //     {
+            //         logicEntity.AddComponent<LogicActionTriggerComponent>();
+            //     }
+            // }
         }
     }
 
@@ -164,7 +164,7 @@ public class StatusEntity : Entity
     public void EndAbility()
     {
         //子状态效果
-        if (StatusConfigObject.EnableChildrenStatuses)
+        if (StatusConfig.ChildrenStatuses.Length > 0)
         {
             foreach (var item in ChildrenStatuses)
             {
@@ -173,9 +173,9 @@ public class StatusEntity : Entity
             ChildrenStatuses.Clear();
         }
         //行为禁制
-        if (StatusConfigObject.EnabledStateModify)
+        if (StatusConfig.ActionControlType != ActionControlType.None)
         {
-            OwnerEntity.ActionControlType = OwnerEntity.ActionControlType & (~StatusConfigObject.ActionControlType);
+            OwnerEntity.ActionControlType = OwnerEntity.ActionControlType & (~StatusConfig.ActionControlType);
             //Log.Debug($"{OwnerEntity.ActionControlType}");
             if (OwnerEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid) == false)
             {
@@ -183,23 +183,23 @@ public class StatusEntity : Entity
             }
         }
         //属性修饰
-        if (StatusConfigObject.EnabledAttributeModify)
+        if (StatusConfig.AttrModifyFormula.Length > 0)
         {
-            if (StatusConfigObject.AttributeType != AttributeType.None && StatusConfigObject.NumericValue != "")
-            {
-                var attributeType = StatusConfigObject.AttributeType.ToString();
-                if (StatusConfigObject.ModifyType == ModifyType.Add)
-                {
-                    OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalAddModifier(NumericModifier);
-                }
-                if (StatusConfigObject.ModifyType == ModifyType.PercentAdd)
-                {
-                    OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalPctAddModifier(NumericModifier);
-                }
-            }
+            // if (StatusConfig.AttributeType != AttributeType.None && StatusConfig.NumericValue != "")
+            // {
+            //     var attributeType = StatusConfig.AttributeType.ToString();
+            //     if (StatusConfig.ModifyType == ModifyType.Add)
+            //     {
+            //         OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalAddModifier(NumericModifier);
+            //     }
+            //     if (StatusConfig.ModifyType == ModifyType.PercentAdd)
+            //     {
+            //         OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalPctAddModifier(NumericModifier);
+            //     }
+            // }
         }
         //逻辑触发
-        if (StatusConfigObject.EnabledLogicTrigger)
+        if (StatusConfig.Effects.Length > 0)
         {
 
         }
@@ -214,9 +214,9 @@ public class StatusEntity : Entity
     public void ApplyAbilityEffectsTo(CardEntity targetEntity)
     {
         List<Effect> Effects = null;
-        if (StatusConfigObject.EnabledLogicTrigger)
+        if (StatusConfig.Effects.Length > 0)
         {
-            Effects = StatusConfigObject.Effects;
+            // Effects = StatusConfig.Effects;
         }
         if (Effects == null)
         {
@@ -328,10 +328,5 @@ public class StatusEntity : Entity
         //{
         //    Log.Error(e);
         //}
-    }
-
-    public StatusTenacity convert()
-    {
-        return this as StatusTenacity;
     }
 }

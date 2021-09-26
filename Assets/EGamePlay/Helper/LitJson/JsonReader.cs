@@ -396,7 +396,7 @@ namespace LitJson
             if (end_of_input)
                 return false;
 
-            lexer.NextToken ();     // 这一步是读取下一条数据的！
+            lexer.NextToken ();     // read next data
 
             if (lexer.EndOfInput) {
                 Close ();

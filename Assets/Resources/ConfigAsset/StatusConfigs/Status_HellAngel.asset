@@ -162,7 +162,7 @@ MonoBehaviour:
   EnableChildrenStatuses: 1
   EnabledStateModify: 0
   ActionControlType: 0
-  EnabledAttributeModify: 0
+  EnabledAttributeModify: 1
   AttributeType: 0
   NumericValue: 
   ModifyType: 0
