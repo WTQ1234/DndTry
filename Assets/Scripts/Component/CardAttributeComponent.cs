@@ -23,13 +23,18 @@ public class CardAttributeComponent : EGamePlay.Component
 
     public override void Setup()
     {
-        InitializeDefalut();
-        OwnerEntity.OnAttrChange += OnAttrChange;
+        OnSetDefaultAttr();
+        OwnerEntity.Action_OnAttrChange += OnAttrChange;
     }
 
-    public void InitializeDefalut()
+    public void OnSetDefaultAttr()
     {
-        attributeTypeNumerics = AttrController.Instance.OnGetDefaultAttr();
+         AttrController.Instance.OnGetDefaultAttr(attributeTypeNumerics);
+    }
+
+    private void OnAttrChange()
+    {
+        AttrController.Instance.OnRefreshFormulaAttr(attributeTypeNumerics);
     }
 
     #region Add, Get, Set
@@ -53,7 +58,9 @@ public class CardAttributeComponent : EGamePlay.Component
             floatNumeric = new FloatNumeric();
             attributeTypeNumerics.Add(attrType, floatNumeric);
         }
-        return floatNumeric.AddModifier(addNumericType, value);
+        FloatModifier modifier = floatNumeric.AddModifier(addNumericType, value);
+        OwnerEntity.OnAttrChange();
+        return modifier;
     }
 
     public float GetFloatValue(AttrType attrType)
@@ -94,9 +101,4 @@ public class CardAttributeComponent : EGamePlay.Component
         }
     }
     #endregion
-
-    private void OnAttrChange()
-    {
-
-    }
 }

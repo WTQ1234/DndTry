@@ -52,101 +52,71 @@ public class AttrController : SingleTon<AttrController>
         return (float)exp.Value;
     }
 
-    #region 获取默认属性
-    public Dictionary<AttrType, FloatNumeric> OnGetDefaultAttr()
+    // 获取默认属性
+    public void OnGetDefaultAttr(Dictionary<AttrType, FloatNumeric> attr)
     {
-        Dictionary<AttrType, FloatNumeric> attr = new Dictionary<AttrType, FloatNumeric>();
-        int formulaLevel = 0;
-        while(true)
+        for (int formulaLevel = 0; formulaLevel <= 10; formulaLevel++)
         {
-            bool isOver = _OnGetDefaultAttr(formulaLevel, ref attr);   // 先获取一遍默认值
-            if (isOver)
-            {
-                break;
-            }
-            formulaLevel += 1;
-            if (formulaLevel > 10)
-            {
-                Log.Error("OnGetDefaultAttr while over 10 times");
-                break;
-            } 
+            bool isOver = _OnGetAttrByLevel(formulaLevel, attr);   // formulaLevel为0，先获取一遍默认值
+            if (isOver) return;
         }
-        return attr;
+        Log.Error("OnGetDefaultAttr while over 10 times");
     }
 
-    private bool _OnGetDefaultAttr(int formulaLevel, ref Dictionary<AttrType, FloatNumeric> attr)
+    // 刷新公式属性，设置根据公式计算属性的BaseValue
+    public void OnRefreshFormulaAttr(Dictionary<AttrType, FloatNumeric> attr)
+    {
+        for (int formulaLevel = 1; formulaLevel <= 10; formulaLevel++)
+        {
+            bool isOver = _OnGetAttrByLevel(formulaLevel, attr);   // formulaLevel为1，即不获取默认值
+            if (isOver) return;
+        }
+        Log.Error("OnRefreshFormulaAttr while over 10 times");
+    }
+
+    // 根据公式等级获取属性，若formulaLevel为0，则填入默认值
+    private bool _OnGetAttrByLevel(int formulaLevel, Dictionary<AttrType, FloatNumeric> attr)
     {
         bool isOver = formulaLevel != 0;    // 如果是0，那么是第一次循环，当然没有over
         foreach (var config in dict_ID.Values)
         {
-            if (config.AttrFormula == "" || config.AttrFormula == null)
+            AttrType type = config.AttrType;
+            if (type == AttrType.None) continue;
+            float value = 0;
+            bool setValue = false;
+            if (formulaLevel == 0 && (config.AttrFormula == "" || config.AttrFormula == null))
             {
-                if (formulaLevel == 0)
-                {
-                    // 是第一次循环，填入默认值
-                    getDefaultAttr(config, out AttrType type, out FloatNumeric floatNumeric);
-                    if ((type != AttrType.None) && (!attr.ContainsKey(type)))  attr.Add(type, floatNumeric);
-                }
+                // 是第一次循环，填入默认值
+                value = config.DefalutValue;
+                setValue = true;
             }
             else
             {
                 if (formulaLevel == config.FormulaLevel)
                 {
                     // 根据公式计算属性 test
-                    getFormulaAttr(config, attr, out AttrType type, out FloatNumeric floatNumeric);
-                    if ((type != AttrType.None) && (!attr.ContainsKey(type)))  attr.Add(type, floatNumeric);
+                    value = GetFormulaAttr(config.AttrFormula, (AttrType typeNeed) => { return attr[typeNeed]; });
+                    setValue = true;
                 }
                 else
                 {
-                    isOver = false;
+                    isOver = formulaLevel > config.FormulaLevel;
+                }
+            }
+            if (setValue)
+            {
+                FloatNumeric floatNumeric;
+                if (attr.TryGetValue(type, out floatNumeric))
+                {
+                    floatNumeric.SetBase(value);
+                }
+                else
+                {
+                    floatNumeric = new FloatNumeric(value);
+                    attr.Add(type, floatNumeric);
                 }
             }
         }
         return isOver;
-    }
-    #endregion
-
-    // todo 根据属性的公式，刷新属性
-    public Dictionary<AttrType, FloatNumeric> OnRefreshFormulaAttr()
-    {
-        Dictionary<AttrType, FloatNumeric> attr = new Dictionary<AttrType, FloatNumeric>();
-        //int formulaLevel = 0;
-        //while (true)
-        //{
-        //    bool isOver = _OnGetDefaultAttr(formulaLevel, ref attr);   // 先获取一遍默认值
-        //    if (isOver)
-        //    {
-        //        break;
-        //    }
-        //    formulaLevel += 1;
-        //    if (formulaLevel > 10)
-        //    {
-        //        Log.Error("OnGetDefaultAttr while over 10 times");
-        //        break;
-        //    }
-        //}
-        return attr;
-    }
-
-    // 根据配置的公式以及传入的attr属性，计算属性信息
-    private void getFormulaAttr(AttrConfig config, Dictionary<AttrType, FloatNumeric> attr, out AttrType type, out FloatNumeric floatNumeric)
-    {
-        var exp = ExpressionHelper.TryEvaluate(config.AttrFormula);
-        foreach (var param in exp.Parameters)
-        {
-            AttrType typeNeed = Common.ParseEnum<AttrType>(param.Key);
-            if (attr.ContainsKey(typeNeed))
-            {
-                exp.Parameters[param.Key].Value = attr[typeNeed].Value;
-            }
-        }
-        type = config.AttrType;
-        floatNumeric = new FloatNumeric((float)exp.Value);
-    }
-    // 根据配置的默认值获取属性信息
-    private void getDefaultAttr(AttrConfig config, out AttrType type, out FloatNumeric floatNumeric)
-    {
-        type = config.AttrType;
-        floatNumeric = new FloatNumeric(config.DefalutValue);
     }
 }

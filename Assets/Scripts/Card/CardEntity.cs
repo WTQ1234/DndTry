@@ -32,8 +32,7 @@ public class CardEntity : Entity
 
     private Transform StatusParent;
 
-    public Action OnAttrChange;
-
+    public Action Action_OnAttrChange;
 
     #region 组件
     private HealthPointComponent healthPointComponent { get; set; }
@@ -240,5 +239,11 @@ public class CardEntity : Entity
     public bool CheckDead()
     {
         return healthPointComponent.Value <= 0;
+    }
+
+    public void OnAttrChange()
+    {
+        // 后续实现Effect等还需再添加一次
+        Action_OnAttrChange?.Invoke();
     }
 }

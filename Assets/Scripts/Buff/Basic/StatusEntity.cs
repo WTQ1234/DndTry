@@ -86,9 +86,8 @@ public class StatusEntity : Entity
                 string f = string.IsNullOrEmpty(formulaExpress[2]) ? "0" : formulaExpress[2];
                 CardAttributeComponent CardAttributeComponent = OwnerEntity.GetEntityComponent<CardAttributeComponent>();
                 float addValue = AttrController.Instance.GetFormulaAttr(f, (AttrType t) => { return CardAttributeComponent.attributeTypeNumerics[t]; });
-                CardAttributeComponent.AddModify(attrType, addNumericType, addValue);
-
-                // todo 设置之后，应当触发事件，重新计算属性
+                FloatModifier modify = CardAttributeComponent.AddModify(attrType, addNumericType, addValue);
+                AddModifyDic(modify, attrType, addNumericType);
             }
         }
         //逻辑触发
@@ -321,5 +320,20 @@ public class StatusEntity : Entity
         //{
         //    Log.Error(e);
         //}
+    }
+
+    private void AddModifyDic(FloatModifier modify, AttrType attrType, AddNumericType addNumericType)
+    {
+        Dictionary<AddNumericType, List<FloatModifier>> dic2;
+        List<FloatModifier> modifyList;
+        if (!Dic_AttrModifier.TryGetValue(attrType, out dic2))
+        {
+            dic2 = new Dictionary<AddNumericType, List<FloatModifier>>();
+        }
+        if (!dic2.TryGetValue(addNumericType, out modifyList))
+        {
+            modifyList = new List<FloatModifier>();
+        }
+        modifyList.Add(modify);
     }
 }
