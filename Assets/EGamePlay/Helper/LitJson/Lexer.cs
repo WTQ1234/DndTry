@@ -881,7 +881,7 @@ namespace LitJson
             // Log.Debug(fsm_context);
             while (true) {
                 handler = fsm_handler_table[state - 1];
-                Log.Debug(state.ToString());
+                //Log.Debug(state.ToString());
                 if (! handler (fsm_context))
                     throw new JsonException (input_char);
 

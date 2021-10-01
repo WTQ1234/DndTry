@@ -19,4 +19,14 @@ public static class Common
         }
         return (T)System.Enum.Parse(typeof(T), name);
     }
+
+    // 为String类添加方法
+    //static public bool IsEffectiveString(this string input)
+    //{
+    //    if (string.IsNullOrEmpty(input))
+    //    {
+    //        return false;
+    //    }
+    //    return regexNumber.IsMatch(input);
+    //}
 }

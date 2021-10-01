@@ -24,29 +24,31 @@ public class CardEntity : Entity
     public bool isSpeak;    // 是否可交谈（呼出对话框），进而达成交谈、购买、抽奖等
     public bool isTool;      // 是否可交互
 
-    public Transform StatusParent;
-
-    public Dictionary<Type, AbilityComponent> TypeActions = new Dictionary<Type, AbilityComponent>();
+    //public Dictionary<Type, AbilityComponent> TypeActions = new Dictionary<Type, AbilityComponent>();
     public Dictionary<Type, AbilityComponent> TypeAbility = new Dictionary<Type, AbilityComponent>();
     public Dictionary<string, List<StatusEntity>> TypeIdStatuses = new Dictionary<string, List<StatusEntity>>();
 
     public ActionControlType ActionControlType;
 
+    private Transform StatusParent;
+
+    public Action OnAttrChange;
+
 
     #region 组件
-    public HealthPointComponent healthPointComponent { get; private set; }
-    public CardAttributeComponent CardAttributeComponent { get; private set; }
+    private HealthPointComponent healthPointComponent { get; set; }
+    private CardAttributeComponent CardAttributeComponent { get; set; }
 
-    public CardShowComponent cardShowComponent { get; private set; }
-    public Click2DComponent click2DComponent { get; private set; }
-    public ConditionManageComponent ConditionManageComponent { get; private set; }
+    private CardShowComponent cardShowComponent { get; set; }
+    private Click2DComponent click2DComponent { get; set; }
+    private ConditionManageComponent ConditionManageComponent { get; set; }
     #endregion
 
     #region 能力
     // 普攻行动
-    public CardAttackActionAbility CardAttackActionAbility { get; private set; }
+    private CardAttackActionAbility CardAttackActionAbility { get; set; }
     // 造成伤害
-    public CardDamageActionAbility CardDamageActionAbility { get; private set; }
+    private CardDamageActionAbility CardDamageActionAbility { get; set; }
     #endregion
 
     #region 初始化
@@ -85,6 +87,10 @@ public class CardEntity : Entity
         status.Caster = this;
         status.TryActivateAbility();
         
+        var status2 = AttachStatusById(2);
+        status2.Caster = this;
+        status2.TryActivateAbility();
+
         Setup(null, true);
     }
     
@@ -173,12 +179,18 @@ public class CardEntity : Entity
         return ability;
     }
 
+    public T GetAbilityComponent<T>() where T : AbilityComponent
+    {
+        TypeAbility.TryGetValue(typeof(T), out AbilityComponent ability);
+        return ability as T;
+    }
+
     // 这里要挂buff的话，直接用AddComponent，和typeof，再在配置表里提前配置好type，就可以挂上子类，不然只会挂上父类
     // 后续要获取子类的话，只需要在GetComponent就可以了, 但是还是不能强制转换，最多as成StatusEntity这个基类
     public StatusEntity AttachStatusById(int id)
     {
         var config = ConfigController.Instance.Get<StatusConfig>(id);
-        Type type = Type.GetType(config.CName);
+        Type type = string.IsNullOrEmpty(config.CName) ? typeof(StatusEntity) : Type.GetType(config.CName);
         var status = Create(type, config, StatusParent.gameObject, this) as StatusEntity;
         if (!TypeIdStatuses.ContainsKey(status.StatusConfig.ID))
         {

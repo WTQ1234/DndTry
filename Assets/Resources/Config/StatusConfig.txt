@@ -1,7 +1,4 @@
 {
-"1":{"Id":1,"ID":"Tenacity","CName":"Status_Tenacity","Name":"强韧","StatusType":"Buff","Duration":0,"ShowInSlots":true,"MaxStack":2,"AttrModifyFormula":["AddNumericType:Add#AttrType:Sanity#Num:2","AddNumericType:Add#AttrType:Power#Num:1"]},
-"2":{"Id":2,"ID":"Vertigo","Name":"眩晕","StatusType":"Debuff","Duration":0,"ShowInSlots":true,"MaxStack":1,"ChildrenStatuses":[3,4],"ActionControlType":"None"},
-"3":{"Id":3,"ID":"AttackPowerModify","Name":"攻击力修饰","StatusType":"Other","Duration":0,"ShowInSlots":true,"MaxStack":1,"ActionControlType":"None"},
-"4":{"Id":4,"ID":"AttackPowerPctModify","Name":"攻击力百分比修饰","StatusType":"Other","Duration":0,"ShowInSlots":true,"MaxStack":1,"ActionControlType":"None"},
-"5":{"Id":5,"ID":"Weak","Name":"虚弱","StatusType":"Debuff","Duration":0,"ShowInSlots":true,"MaxStack":1,"ActionControlType":"None"},
+"1":{"Id":1,"ID":"Tenacity","CName":"Status_Tenacity","Name":"强韧","StatusType":"Buff","Duration":0,"ShowInSlots":true,"MaxStack":2,"AttrModifyFormula":"Power_Add_Power*1.2+1;Physique_Add_Physique*1.2+1"},
+"2":{"Id":2,"ID":"Violent","Name":"沉默","StatusType":"Debuff","Duration":0,"ShowInSlots":true,"MaxStack":2,"ActionControlType":"SkillForbid"}
 }

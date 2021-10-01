@@ -18,10 +18,10 @@ public class Status_Tenacity : StatusEntity
     public override void ActivateAbility()
     {
         base.ActivateAbility();
-        CanReplyHealth = true;
-        OwnerEntity.ListenActionPoint(ActionPointType.PostReceiveDamage, EndReplyHealth);
-        OwnerEntity.ListenerCondition(ConditionType.WhenInTimeNoDamage, StartReplyHealth, 4f);
-        Coroutine();
+        //CanReplyHealth = true;
+        //OwnerEntity.ListenActionPoint(ActionPointType.PostReceiveDamage, EndReplyHealth);
+        //OwnerEntity.ListenerCondition(ConditionType.WhenInTimeNoDamage, StartReplyHealth, 4f);
+        //Coroutine();
     }
 
     //协程
@@ -36,10 +36,10 @@ public class Status_Tenacity : StatusEntity
             await TimeHelper.WaitAsync(100);
             if (CanReplyHealth)
             {
-                if (OwnerEntity.healthPointComponent.Percent() < 1f)
-                {
-                    HealthReplyTimer.UpdateAsRepeat(0.1f, ReplyHealth);
-                }
+                //if (OwnerEntity.healthPointComponent.Percent() < 1f)
+                //{
+                //    HealthReplyTimer.UpdateAsRepeat(0.1f, ReplyHealth);
+                //}
             }
         }
     }

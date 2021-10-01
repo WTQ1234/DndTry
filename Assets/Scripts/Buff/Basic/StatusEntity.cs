@@ -28,6 +28,8 @@ public class StatusEntity : Entity
     public ChildStatus ChildStatusData;
     private List<StatusEntity> ChildrenStatuses = new List<StatusEntity>();
 
+    private Dictionary<AttrType, Dictionary<AddNumericType, List<FloatModifier>>> Dic_AttrModifier = new Dictionary<AttrType, Dictionary<AddNumericType, List<FloatModifier>>>();
+
     public override void Setup(object initData, bool asGameObject)
     {
         base.Setup(initData);
@@ -45,7 +47,7 @@ public class StatusEntity : Entity
     public virtual void ActivateAbility()
     {
         //子状态效果
-        if (StatusConfig.ChildrenStatuses.Length > 0)
+        if (StatusConfig.ChildrenStatuses?.Length > 0)
         {
             foreach (var item in StatusConfig.ChildrenStatuses)
             {
@@ -69,37 +71,28 @@ public class StatusEntity : Entity
             //    OwnerEntity.GetComponent<MotionComponent>().Enable = false;
             //}
         }
-        //属性修饰
-        if (StatusConfig.AttrModifyFormula.Length > 0)
+        //单次即时属性修饰——长时间属性修饰如力量翻倍，使用Effect
+        if (!string.IsNullOrEmpty(StatusConfig.AttrModifyFormula))
         {
-            // if (StatusConfig.AttributeType != AttributeType.None && StatusConfig.NumericValue != "")
-            // {
-            //     var numericValue = StatusConfig.NumericValue;
-            //     if (IsChildStatus)
-            //     {
-            //         foreach (var paramItem in ChildStatusData.Params)
-            //         {
-            //             numericValue = numericValue.Replace(paramItem.Key, paramItem.Value);
-            //         }
-            //     }
-            //     numericValue = numericValue.Replace("%", "");
-            //     var expression = ExpressionHelper.ExpressionParser.EvaluateExpression(numericValue);
-            //     var value = (float)expression.Value;
-            //     NumericModifier = new FloatModifier() { Value = value };
+            string AttrModifyFormula = RegexHelper.RegexHelper.RegexReplace(" ", StatusConfig.AttrModifyFormula, GlobalDefine.str_Empty);
+            string[] fomulas = RegexHelper.RegexHelper.RegexSplit(AttrModifyFormula, ";");
+            foreach (string formula in fomulas)
+            {
+                // 公式例子 "Power_Add_Power * 1.2 + 1; Physique_Add_Physique * 1.2 + 1"
+                string[] formulaExpress = RegexHelper.RegexHelper.RegexSplit(formula, "_");
+                AttrType attrType = Common.ParseEnum<AttrType>(formulaExpress[0]);
+                AddNumericType addNumericType = Common.ParseEnum<AddNumericType>(formulaExpress[1]);
 
-            //     var attributeType = StatusConfig.AttributeType.ToString();
-            //     if (StatusConfig.ModifyType == ModifyType.Add)
-            //     {
-            //         OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalAddModifier(NumericModifier);
-            //     }
-            //     if (StatusConfig.ModifyType == ModifyType.PercentAdd)
-            //     {
-            //         OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalPctAddModifier(NumericModifier);
-            //     }
-            // }
+                string f = string.IsNullOrEmpty(formulaExpress[2]) ? "0" : formulaExpress[2];
+                CardAttributeComponent CardAttributeComponent = OwnerEntity.GetEntityComponent<CardAttributeComponent>();
+                float addValue = AttrController.Instance.GetFormulaAttr(f, (AttrType t) => { return CardAttributeComponent.attributeTypeNumerics[t]; });
+                CardAttributeComponent.AddModify(attrType, addNumericType, addValue);
+
+                // todo 设置之后，应当触发事件，重新计算属性
+            }
         }
         //逻辑触发
-        if (StatusConfig.Effects.Length > 0)
+        if (StatusConfig.Effects?.Length > 0)
         {
             // foreach (var effectItem in StatusConfig.Effects)
             // {

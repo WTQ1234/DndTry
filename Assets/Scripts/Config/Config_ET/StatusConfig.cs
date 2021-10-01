@@ -22,7 +22,7 @@ namespace ET
 		public int MaxStack;
 		public int[] ChildrenStatuses;
 		public ActionControlType ActionControlType;
-		public string[] AttrModifyFormula;
+		public string AttrModifyFormula;
 		public int[] Effects;
 		public string ParticleRes;
 		public string AudioRes;

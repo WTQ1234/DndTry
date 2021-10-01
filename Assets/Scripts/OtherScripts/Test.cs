@@ -9,6 +9,7 @@ using ExpressionParserHelper;
 using GameUtils;
 using ET;
 using LitJson;
+using RegexHelper;
 
 public class Test : MonoBehaviour
 {
@@ -65,6 +66,15 @@ public class Test : MonoBehaviour
         // print(a<Test>());
         #endregion
 
+        #region 正则替换 以及解析数值修饰公式
+        //string fomula = RegexHelper.RegexHelper.RegexReplace(" ", "Power_Add_Power*1.2+1;Physique_Add_Physique * 1.2 + 1", "");
+        //string[] item = RegexHelper.RegexHelper.RegexSplit(fomula, ";");
+        //foreach(var it in item)
+        //{
+        //    print(it);
+        //}
+        #endregion
+
         // 打印AttrConfig属性
         //var item = ConfigController.Instance.GetAll<AttrConfig>();
         //foreach (var kv in item)
@@ -72,17 +82,6 @@ public class Test : MonoBehaviour
         //    print("==============================");
         //    print(kv.Value.testbool.ToString() + kv.Value.AttrType);
         //}
-
-        // 正则
-        //print(RegexHelper.RegexHelper.RegexReplace("enum_", "enum_AttrType", ""));
-
-        // print(typeof(Type));
-        // print(typeof(Status_Vertigo));
-        //Type.GetType(“Int32”)
-
-        // 好像可以了，下一步继续尝试读配置
-        var lexer = new Lexer (new StringReader ("[\"AddNumericType:Add#AttrType:Sanity#Num:2\",\"AddNumericType:Add#AttrType:Power#Num:1\"]"));
-        print (lexer.NextToken());
     }
 
     (int, T) a<T>() where T: Test

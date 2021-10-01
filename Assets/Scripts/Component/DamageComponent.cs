@@ -106,11 +106,19 @@ public class CardDamageAction : CardActionExecution
 
     public override void BeginExecute()
     {
-        if (OwnerEntity.CardDamageActionAbility.TryCreateAction(out var action))
+        CardDamageActionAbility CardDamageActionAbility = OwnerEntity.GetAbilityComponent<CardDamageActionAbility>();
+        if (CardDamageActionAbility != null)
         {
-            action.Target = Target;
-            action.DamageSource = DamageSource.Attack;
-            action.ApplyDamage();
+            if (CardDamageActionAbility.TryCreateAction(out var action))
+            {
+                action.Target = Target;
+                action.DamageSource = DamageSource.Attack;
+                action.ApplyDamage();
+            }
+        }
+        else
+        {
+            Log.Error("can not get CardDamageActionAbility");
         }
 
         this.EndExecute();

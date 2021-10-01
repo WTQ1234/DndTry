@@ -163,6 +163,10 @@ namespace ET
                     {
                         fieldType = RegexHelper.RegexHelper.RegexReplace("enum_", fieldType, GlobalDefine.str_Empty);
                     }
+                    if (fieldType == "stringArray")
+                    {
+                        fieldType = "string";
+                    }
                     Debug.Log($"\t\tpublic {fieldType} {fieldName};\n");
                     sb.Append($"\t\tpublic {fieldType} {fieldName};\n");
                 }
@@ -324,10 +328,10 @@ namespace ET
                 // 是枚举
                 return $"\"{value}\"";
             }
-            if (type == "string[]")
+            if (type == "stringArray")
             {
-                return $"[\"{RegexHelper.RegexHelper.RegexReplace("\n", value, "\",\"")}\"]";
-                // return String.Format();
+                return $"\"{RegexHelper.RegexHelper.RegexReplace("\n", value, ";")}\"";
+                //return $"[\"{RegexHelper.RegexHelper.RegexReplace("\n", value, "\",\"")}\"]";
             }
             switch (type)
             {
@@ -335,8 +339,8 @@ namespace ET
                 case "int32[]":
                 case "long[]":
                     return $"[{value}]";
-                // case "string[]":
-                //     return $"[{value}]";
+                case "string[]":
+                    return $"[{value}]";
                 case "int":
                 case "int32":
                 case "int64":

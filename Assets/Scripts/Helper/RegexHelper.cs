@@ -61,5 +61,16 @@ namespace RegexHelper
             string result = rgx.Replace(inputStr, replaceStr);
             return result;
         }
+
+        /// <summary>提取符合正则表达式要求的匹配项进行分割</summary>
+        /// <param name="regularExpression">正则表达式</param>
+        /// <param name="inputStr">输入字符串</param>
+        /// <returns>返回的数据</returns>
+        public static string[] RegexSplit(string inputStr, string splitStr)
+        {
+            string[] result = Regex.Split(inputStr, splitStr);
+            return result;
+        }
+
     }
 }

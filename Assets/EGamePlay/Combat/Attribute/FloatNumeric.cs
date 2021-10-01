@@ -8,6 +8,10 @@ namespace EGamePlay.Combat
     public class FloatModifier
     {
         public float Value;
+        public FloatModifier (float value = 0)
+        {
+            Value = value;
+        }
     }
 
     /// <summary>
@@ -72,6 +76,52 @@ namespace EGamePlay.Combat
             Update();
             return baseValue;
         }
+
+        public FloatModifier AddModifier(AddNumericType addNumericType, float value = 0)
+        {
+            FloatModifier modifier = new FloatModifier(value);
+            switch(addNumericType)
+            {
+                case AddNumericType.Add:
+                    AddAddModifier(modifier);
+                    break;
+                case AddNumericType.PctAdd:
+                    AddPctAddModifier(modifier);
+                    break;
+                case AddNumericType.FinalAdd:
+                    AddFinalAddModifier(modifier);
+                    break;
+                case AddNumericType.FinalPctAdd:
+                    AddFinalPctAddModifier(modifier);
+                    break;
+                default:
+                    Log.Error("get error type when add modifier" + addNumericType.ToString());
+                    return null;
+            }
+            return modifier;
+        }
+        public void RemoveModifier(AddNumericType addNumericType, FloatModifier modifier)
+        {
+            switch (addNumericType)
+            {
+                case AddNumericType.Add:
+                    RemoveAddModifier(modifier);
+                    break;
+                case AddNumericType.PctAdd:
+                    RemovePctAddModifier(modifier);
+                    break;
+                case AddNumericType.FinalAdd:
+                    RemoveFinalAddModifier(modifier);
+                    break;
+                case AddNumericType.FinalPctAdd:
+                    RemoveFinalPctAddModifier(modifier);
+                    break;
+                default:
+                    Log.Error("get error type when remove modifier" + addNumericType.ToString());
+                    break;
+            }
+        }
+
         public void AddAddModifier(FloatModifier modifier)
         {
             add = AddCollection.AddModifier(modifier);
@@ -92,6 +142,7 @@ namespace EGamePlay.Combat
             finalPctAdd = FinalPctAddCollection.AddModifier(modifier);
             Update();
         }
+
         public void RemoveAddModifier(FloatModifier modifier)
         {
             add = AddCollection.RemoveModifier(modifier);

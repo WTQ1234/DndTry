@@ -2,6 +2,16 @@
 
 public static class Log
 {
+    public static void Print(params object[] log)
+    {
+        string logg = "";
+        for(int i = 0; i < log.Length; i++)
+        {
+            logg = logg + " , " + log[i].ToString();
+        }
+        UnityEngine.Debug.Log(logg);
+    }
+
     public static void Debug(string log)
     {
         UnityEngine.Debug.Log(log);

@@ -523,7 +523,7 @@ namespace LitJson
                 while (true)
                 {
                     reader.Read();
-
+                    //Log.Debug("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" + reader.Token.ToString());
                     if (reader.Token == JsonToken.ObjectEnd)
                         break;
 

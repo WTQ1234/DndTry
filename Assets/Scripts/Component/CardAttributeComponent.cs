@@ -17,11 +17,14 @@ using GameUtils;
 /// </summary>
 public class CardAttributeComponent : EGamePlay.Component
 {
-    private Dictionary<AttrType, FloatNumeric> attributeTypeNumerics = new Dictionary<AttrType, FloatNumeric>();
+    public CardEntity OwnerEntity { get => GetEntity<CardEntity>(); }
+
+    public Dictionary<AttrType, FloatNumeric> attributeTypeNumerics = new Dictionary<AttrType, FloatNumeric>();
 
     public override void Setup()
     {
         InitializeDefalut();
+        OwnerEntity.OnAttrChange += OnAttrChange;
     }
 
     public void InitializeDefalut()
@@ -30,24 +33,27 @@ public class CardAttributeComponent : EGamePlay.Component
     }
 
     #region Add, Get, Set
-    public FloatNumeric AddNumeric(AttrType attributeType, float baseValue)
+    // 添加基础属性
+    public void AddNumeric(AttrType attrType, float value)
     {
-        var numeric = new FloatNumeric();
-        numeric.SetBase(baseValue);
-        attributeTypeNumerics.Add(attributeType, numeric);
-        return numeric;
+        FloatNumeric floatNumeric;
+        if (!attributeTypeNumerics.TryGetValue(attrType, out floatNumeric))
+        {
+            floatNumeric = new FloatNumeric();
+            attributeTypeNumerics.Add(attrType, floatNumeric);
+        }
+        floatNumeric.SetBase(value);
     }
-
-    public FloatNumeric GetNumeric(AttrType attrType)
+    // 添加属性修饰
+    public FloatModifier AddModify(AttrType attrType, AddNumericType addNumericType, float value)
     {
-        if (attributeTypeNumerics.ContainsKey(attrType))
+        FloatNumeric floatNumeric;
+        if (!attributeTypeNumerics.TryGetValue(attrType, out floatNumeric))
         {
-            return attributeTypeNumerics[attrType];
+            floatNumeric = new FloatNumeric();
+            attributeTypeNumerics.Add(attrType, floatNumeric);
         }
-        else
-        {
-            return null;
-        }
+        return floatNumeric.AddModifier(addNumericType, value);
     }
 
     public float GetFloatValue(AttrType attrType)
@@ -62,6 +68,7 @@ public class CardAttributeComponent : EGamePlay.Component
         }
     }
 
+    // todo 未使用
     public void SetNumeric(AttrType attrType, FloatNumeric floatNumeric)
     {
         if (attributeTypeNumerics.ContainsKey(attrType))
@@ -74,6 +81,7 @@ public class CardAttributeComponent : EGamePlay.Component
         }
     }
 
+    // todo 未使用
     public void SetBaseVale(AttrType attrType, float baseValue)
     {
         if (attributeTypeNumerics.ContainsKey(attrType))
@@ -86,4 +94,9 @@ public class CardAttributeComponent : EGamePlay.Component
         }
     }
     #endregion
+
+    private void OnAttrChange()
+    {
+
+    }
 }

@@ -120,7 +120,7 @@ namespace EGamePlay
         public void Dispose()
         {
             if (Entity.EnableLog) Log.Debug($"{GetType().Name}->Dispose");
-            var childrenComponent = GetComponent<ChildrenComponent>();
+            var childrenComponent = GetEntityComponent<ChildrenComponent>();
             if (childrenComponent != null)
             {
                 var Children = childrenComponent.Children;
@@ -197,7 +197,7 @@ namespace EGamePlay
             OnRemoveComponentAction?.Invoke((component));
         }
 
-        public virtual T GetComponent<T>() where T : Component
+        public virtual T GetEntityComponent<T>() where T : Component
         {
             if (this.Components.TryGetValue(typeof(T),  out var component))
             {
@@ -214,7 +214,7 @@ namespace EGamePlay
 
         public void AddChild(Entity child)
         {
-            var childrenComponent = GetComponent<ChildrenComponent>();
+            var childrenComponent = GetEntityComponent<ChildrenComponent>();
             if (childrenComponent == null)
             {
                 childrenComponent = AddComponent<ChildrenComponent>();
@@ -234,7 +234,7 @@ namespace EGamePlay
 
         public void RemoveChild(Entity child)
         {
-            var childrenComponent = GetComponent<ChildrenComponent>();
+            var childrenComponent = GetEntityComponent<ChildrenComponent>();
             var Children = childrenComponent.Children;
             var Type2Children = childrenComponent.Type2Children;
             Children.Remove(child);
@@ -263,7 +263,7 @@ namespace EGamePlay
 
         public Entity[] GetChildren()
         {
-            var childrenComponent = GetComponent<ChildrenComponent>();
+            var childrenComponent = GetEntityComponent<ChildrenComponent>();
             if (childrenComponent == null)
             {
                 return new Entity[0];
@@ -273,7 +273,7 @@ namespace EGamePlay
 
         public Entity[] GetTypeChildren<T>() where T : Entity
         {
-            var childrenComponent = GetComponent<ChildrenComponent>();
+            var childrenComponent = GetEntityComponent<ChildrenComponent>();
             if (childrenComponent == null)
             {
                 return new Entity[0];
@@ -283,7 +283,7 @@ namespace EGamePlay
 
         public T Publish<T>(T TEvent) where T : class
         {
-            var eventComponent = GetComponent<EventComponent>();
+            var eventComponent = GetEntityComponent<EventComponent>();
             if (eventComponent == null)
             {
                 return TEvent;
@@ -294,7 +294,7 @@ namespace EGamePlay
 
         public TEvent Publish<TEvent, TParam>(TEvent evnt, TParam param) where TEvent : class
         {
-            var eventComponent = GetComponent<EventComponent>();
+            var eventComponent = GetEntityComponent<EventComponent>();
             if (eventComponent == null)
             {
                 return evnt;
@@ -305,7 +305,7 @@ namespace EGamePlay
 
         public void Subscribe<T>(Action<T> action) where T : class
         {
-            var eventComponent = GetComponent<EventComponent>();
+            var eventComponent = GetEntityComponent<EventComponent>();
             if (eventComponent == null)
             {
                 eventComponent = AddComponent<EventComponent>();
@@ -315,7 +315,7 @@ namespace EGamePlay
 
         public void UnSubscribe<T>(Action<T> action) where T : class
         {
-            var eventComponent = GetComponent<EventComponent>();
+            var eventComponent = GetEntityComponent<EventComponent>();
             if (eventComponent != null)
             {
                 eventComponent.UnSubscribe(action);
