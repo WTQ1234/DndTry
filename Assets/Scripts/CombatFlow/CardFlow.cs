@@ -14,7 +14,7 @@ public class CardFlow : WorkFlow
     public override void Awake()
     {
         FlowSource = CreateChild<WorkFlowSource>();
-        //FlowSource.ToEnter<CombatCreateFlow>().ToEnter<CombatRunFlow>().ToEnter<CombatFinishFlow>().ToRestart();
+        //FlowSource.ToEnter<CardFlow_Create>().ToEnter<CardFlow_Run>().ToEnter<CardFlow_Finish>().ToRestart();
     }
 
     public override void Startup()

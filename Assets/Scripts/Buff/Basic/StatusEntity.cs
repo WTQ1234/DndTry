@@ -85,7 +85,7 @@ public class StatusEntity : Entity
 
                 string f = string.IsNullOrEmpty(formulaExpress[2]) ? "0" : formulaExpress[2];
                 CardAttributeComponent CardAttributeComponent = OwnerEntity.GetEntityComponent<CardAttributeComponent>();
-                float addValue = AttrController.Instance.GetFormulaAttr(f, (AttrType t) => { return CardAttributeComponent.attributeTypeNumerics[t]; });
+                float addValue = AttrController.Instance.GetFormulaAttr(f, CardAttributeComponent.GetFloatNumeric);
                 FloatModifier modify = CardAttributeComponent.AddModify(attrType, addNumericType, addValue);
                 AddModifyDic(modify, attrType, addNumericType);
             }
@@ -177,18 +177,24 @@ public class StatusEntity : Entity
         //属性修饰
         if (StatusConfig.AttrModifyFormula.Length > 0)
         {
-            // if (StatusConfig.AttributeType != AttributeType.None && StatusConfig.NumericValue != "")
-            // {
-            //     var attributeType = StatusConfig.AttributeType.ToString();
-            //     if (StatusConfig.ModifyType == ModifyType.Add)
-            //     {
-            //         OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalAddModifier(NumericModifier);
-            //     }
-            //     if (StatusConfig.ModifyType == ModifyType.PercentAdd)
-            //     {
-            //         OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalPctAddModifier(NumericModifier);
-            //     }
-            // }
+            foreach(var item1 in Dic_AttrModifier)
+            {
+                CardAttributeComponent CardAttributeComponent = OwnerEntity.GetEntityComponent<CardAttributeComponent>();
+                if (CardAttributeComponent != null)
+                {
+                    AttrType attrType = item1.Key;
+                    Dictionary<AddNumericType, List<FloatModifier>> Dic_AddModifier = item1.Value;
+                    foreach(var item2 in Dic_AddModifier)
+                    {
+                        AddNumericType addType = item2.Key;
+                        List<FloatModifier> List_Modifiers = item2.Value;
+                        foreach(FloatModifier modifier in List_Modifiers)
+                        {
+                            CardAttributeComponent.RemoveModify(attrType, addType, modifier);
+                        }
+                    }
+                }
+            }
         }
         //逻辑触发
         if (StatusConfig.Effects.Length > 0)

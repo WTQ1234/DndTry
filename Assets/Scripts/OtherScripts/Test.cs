@@ -88,4 +88,12 @@ public class Test : MonoBehaviour
     { 
         return (1, (T)this);
     }
+
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(50, 50, 150, 35), "按钮"))
+        {
+            RoomEntity.Instance.NextTurn();
+        }
+    }
 }

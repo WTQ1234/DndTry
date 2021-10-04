@@ -17,9 +17,7 @@ using GameUtils;
 /// </summary>
 public class CardAttributeComponent : EGamePlay.Component
 {
-    public CardEntity OwnerEntity { get => GetEntity<CardEntity>(); }
-
-    public Dictionary<AttrType, FloatNumeric> attributeTypeNumerics = new Dictionary<AttrType, FloatNumeric>();
+    private Dictionary<AttrType, FloatNumeric> attributeTypeNumerics = new Dictionary<AttrType, FloatNumeric>();
 
     public override void Setup()
     {
@@ -27,7 +25,7 @@ public class CardAttributeComponent : EGamePlay.Component
         OwnerEntity.Action_OnAttrChange += OnAttrChange;
     }
 
-    public void OnSetDefaultAttr()
+    private void OnSetDefaultAttr()
     {
          AttrController.Instance.OnGetDefaultAttr(attributeTypeNumerics);
     }
@@ -62,6 +60,15 @@ public class CardAttributeComponent : EGamePlay.Component
         OwnerEntity.OnAttrChange();
         return modifier;
     }
+    // 移除属性修饰
+    public void RemoveModify(AttrType attrType, AddNumericType addNumericType, FloatModifier modifier)
+    {
+        if (!attributeTypeNumerics.TryGetValue(attrType, out FloatNumeric floatNumeric))
+        {
+            return;
+        }
+        floatNumeric.RemoveModifier(addNumericType, modifier);
+    }
 
     public float GetFloatValue(AttrType attrType)
     {
@@ -74,6 +81,25 @@ public class CardAttributeComponent : EGamePlay.Component
             return 0;
         }
     }
+
+    public FloatNumeric GetFloatNumeric(AttrType attrType)
+    {
+        if (attributeTypeNumerics.ContainsKey(attrType))
+        {
+            return attributeTypeNumerics[attrType];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    #if UNITY_EDITOR
+    public Dictionary<AttrType, FloatNumeric> GetAllAttr()
+    {
+        return attributeTypeNumerics;
+    }
+    #endif
 
     // todo 未使用
     public void SetNumeric(AttrType attrType, FloatNumeric floatNumeric)
@@ -89,7 +115,7 @@ public class CardAttributeComponent : EGamePlay.Component
     }
 
     // todo 未使用
-    public void SetBaseVale(AttrType attrType, float baseValue)
+    public void SetBaseValue(AttrType attrType, float baseValue)
     {
         if (attributeTypeNumerics.ContainsKey(attrType))
         {

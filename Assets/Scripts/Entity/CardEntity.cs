@@ -89,8 +89,6 @@ public class CardEntity : Entity
         var status2 = AttachStatusById(2);
         status2.Caster = this;
         status2.TryActivateAbility();
-
-        Setup(null, true);
     }
     
     #endregion
@@ -126,7 +124,7 @@ public class CardEntity : Entity
     /// </summary>
     public T CreateAction<T>() where T : CardActionExecution
     {
-        var action = Entity.Create<T>(null, null, this) as T;
+        var action = Entity.Create<T>(parent: this) as T;
         action.Creator = this;
         //var action = Parent.GetComponent<CombatActionManageComponent>().CreateAction<T>(this);
         return action;
@@ -134,7 +132,7 @@ public class CardEntity : Entity
 
     public T CreateExecution<T>() where T : CardAbilityExecution
     {
-        var action = Entity.Create<T>(null, null, this) as T;
+        var action = Entity.Create<T>(parent: this) as T;
         //action.Creator = this;
         //var action = Parent.GetComponent<CombatActionManageComponent>().CreateAction<T>(this);
         return action;
@@ -190,7 +188,7 @@ public class CardEntity : Entity
     {
         var config = ConfigController.Instance.Get<StatusConfig>(id);
         Type type = string.IsNullOrEmpty(config.CName) ? typeof(StatusEntity) : Type.GetType(config.CName);
-        var status = Create(type, config, StatusParent.gameObject, this) as StatusEntity;
+        var status = Create(type, config, StatusParent.gameObject, null, this) as StatusEntity;
         if (!TypeIdStatuses.ContainsKey(status.StatusConfig.ID))
         {
             TypeIdStatuses.Add(status.StatusConfig.ID, new List<StatusEntity>());
@@ -246,4 +244,35 @@ public class CardEntity : Entity
         // 后续实现Effect等还需再添加一次
         Action_OnAttrChange?.Invoke();
     }
+
+    #region 回合制战斗
+    public int SeatNumber { get; set; }
+    public int JumpToTime { get; set; }
+    public bool IsHero { get; set; }
+    public bool IsMonster => IsHero == false;
+
+    public CardEntity GetEnemy(int seat)
+    {
+        if (IsHero)
+        {
+            return RoomEntity.Instance.GetMonster(seat);
+        }
+        else
+        {
+            return RoomEntity.Instance.GetHero(seat);
+        }
+    }
+
+    public CardEntity GetTeammate(int seat)
+    {
+        if (IsHero)
+        {
+            return RoomEntity.Instance.GetHero(seat);
+        }
+        else
+        {
+            return RoomEntity.Instance.GetMonster(seat);
+        }
+    }
+    #endregion
 }
