@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEditor;
+using EGamePlay.Combat;
 
 [CustomEditor(typeof(CardAttributeComponent))]
 public class CardAttributeComponentEditor : Editor
@@ -27,7 +28,8 @@ public class CardAttributeComponentEditor : Editor
         {
             //绘制palyer的基本信息
             EditorGUILayout.LabelField("Attr");
-            foreach(var item in CardAttributeComponent.attributeTypeNumerics)
+            Dictionary<AttrType, FloatNumeric> Dic = CardAttributeComponent.GetAllAttr();
+            foreach (var item in Dic)
             {
                 if (item.Value.Value > 0)
                 {

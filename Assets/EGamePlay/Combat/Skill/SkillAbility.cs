@@ -84,9 +84,10 @@ namespace EGamePlay.Combat.Skill
 
         public override AbilityExecution CreateExecution()
         {
-            var execution = Entity.Create<SkillExecution>(null, null, OwnerEntity);
-            execution.AddComponent<UpdateComponent>();
-            return execution;
+            //var execution = Entity.Create<SkillExecution>(null, null, OwnerEntity);
+            //execution.AddComponent<UpdateComponent>();
+            //return execution;
+            return null;
         }
 
         public override void ApplyAbilityEffectsTo(CombatEntity targetEntity)

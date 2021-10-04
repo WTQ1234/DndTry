@@ -117,8 +117,9 @@ namespace EGamePlay.Combat
         /// <param name="configObject"></param>
         private T AttachAbility<T>(object configObject) where T : AbilityEntity
         {
-            var ability = Entity.Create<T>(configObject, null,this);
-            return ability;
+            //var ability = Entity.Create<T>(configObject, null,this);
+            //return ability;
+            return null;
         }
 
         public T AttachActionAbility<T>() where T : ActionAbility

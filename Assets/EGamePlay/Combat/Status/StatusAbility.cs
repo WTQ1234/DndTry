@@ -82,62 +82,62 @@ namespace EGamePlay.Combat.Status
             //逻辑触发
             if (StatusConfigObject.EnabledLogicTrigger)
             {
-                foreach (var effectItem in StatusConfigObject.Effects)
-                {
-                    if (IsChildStatus)
-                    {
-                        if (effectItem is DamageEffect damageEffect)
-                        {
-                            damageEffect.DamageValueProperty = damageEffect.DamageValueFormula;
-                            foreach (var paramItem in ChildStatusData.Params)
-                            {
-                                damageEffect.DamageValueProperty = damageEffect.DamageValueProperty.Replace(paramItem.Key, paramItem.Value);
-                            }
-                        }
-                        else if (effectItem is CureEffect cureEffect)
-                        {
-                            cureEffect.CureValueProperty = cureEffect.CureValueFormula;
-                            foreach (var paramItem in ChildStatusData.Params)
-                            {
-                                cureEffect.CureValueProperty = cureEffect.CureValueProperty.Replace(paramItem.Key, paramItem.Value);
-                            }
-                        }
-                    }
-                    var logicEntity = Entity.Create<LogicEntity>(effectItem, gameObject, this);
-                    if (effectItem.EffectTriggerType == EffectTriggerType.Instant)
-                    {
-                        logicEntity.ApplyEffect();
-                        Destroy(logicEntity);
-                    }
-                    else if (effectItem.EffectTriggerType == EffectTriggerType.Interval)
-                    {
-                        if (IsChildStatus)
-                        {
-                            effectItem.IntervalValue = effectItem.Interval;
-                            foreach (var paramItem in ChildStatusData.Params)
-                            {
-                                effectItem.IntervalValue = effectItem.IntervalValue.Replace(paramItem.Key, paramItem.Value);
-                            }
-                        }
-                        logicEntity.AddComponent<LogicIntervalTriggerComponent>();
-                    }
-                    else if (effectItem.EffectTriggerType == EffectTriggerType.Condition)
-                    {
-                        if (IsChildStatus)
-                        {
-                            effectItem.ConditionParamValue = effectItem.ConditionParam;
-                            foreach (var paramItem in ChildStatusData.Params)
-                            {
-                                effectItem.ConditionParamValue = effectItem.ConditionParamValue.Replace(paramItem.Key, paramItem.Value);
-                            }
-                        }
-                        logicEntity.AddComponent<LogicConditionTriggerComponent>();
-                    }
-                    else if (effectItem.EffectTriggerType == EffectTriggerType.Action)
-                    {
-                        logicEntity.AddComponent<LogicActionTriggerComponent>();
-                    }
-                }
+                //foreach (var effectItem in StatusConfigObject.Effects)
+                //{
+                //    if (IsChildStatus)
+                //    {
+                //        if (effectItem is DamageEffect damageEffect)
+                //        {
+                //            damageEffect.DamageValueProperty = damageEffect.DamageValueFormula;
+                //            foreach (var paramItem in ChildStatusData.Params)
+                //            {
+                //                damageEffect.DamageValueProperty = damageEffect.DamageValueProperty.Replace(paramItem.Key, paramItem.Value);
+                //            }
+                //        }
+                //        else if (effectItem is CureEffect cureEffect)
+                //        {
+                //            cureEffect.CureValueProperty = cureEffect.CureValueFormula;
+                //            foreach (var paramItem in ChildStatusData.Params)
+                //            {
+                //                cureEffect.CureValueProperty = cureEffect.CureValueProperty.Replace(paramItem.Key, paramItem.Value);
+                //            }
+                //        }
+                //    }
+                //    var logicEntity = Entity.Create<LogicEntity>(effectItem, gameObject, this);
+                //    if (effectItem.EffectTriggerType == EffectTriggerType.Instant)
+                //    {
+                //        logicEntity.ApplyEffect();
+                //        Destroy(logicEntity);
+                //    }
+                //    else if (effectItem.EffectTriggerType == EffectTriggerType.Interval)
+                //    {
+                //        if (IsChildStatus)
+                //        {
+                //            effectItem.IntervalValue = effectItem.Interval;
+                //            foreach (var paramItem in ChildStatusData.Params)
+                //            {
+                //                effectItem.IntervalValue = effectItem.IntervalValue.Replace(paramItem.Key, paramItem.Value);
+                //            }
+                //        }
+                //        logicEntity.AddComponent<LogicIntervalTriggerComponent>();
+                //    }
+                //    else if (effectItem.EffectTriggerType == EffectTriggerType.Condition)
+                //    {
+                //        if (IsChildStatus)
+                //        {
+                //            effectItem.ConditionParamValue = effectItem.ConditionParam;
+                //            foreach (var paramItem in ChildStatusData.Params)
+                //            {
+                //                effectItem.ConditionParamValue = effectItem.ConditionParamValue.Replace(paramItem.Key, paramItem.Value);
+                //            }
+                //        }
+                //        logicEntity.AddComponent<LogicConditionTriggerComponent>();
+                //    }
+                //    else if (effectItem.EffectTriggerType == EffectTriggerType.Action)
+                //    {
+                //        logicEntity.AddComponent<LogicActionTriggerComponent>();
+                //    }
+                //}
             }
         }
 

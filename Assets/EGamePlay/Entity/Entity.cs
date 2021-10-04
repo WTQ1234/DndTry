@@ -43,35 +43,39 @@ namespace EGamePlay
         public Action<Entity> OnRemoveChildAction { get; set; }
 
         #region 创建与销毁
-        public static T Create<T>(object initData = null, GameObject owner = null, Entity parent = null) where T : Entity
+        public static T Create<T>(object initData = null, GameObject owner = null, GameObject prefab = null, Entity parent = null, Transform ownerParent = null) where T : Entity
         {
-            bool needObj = owner == null;
             Type type = typeof(T);
-            if (needObj) owner = new GameObject();
-            var entity = owner.AddComponent(type) as T;
-
-            entity.Setup(initData, needObj);
-            Master.AddEntity(type, entity);
-            (parent == null ? Master : parent).AddChild(entity);
-
-            long id = IdFactory.NewInstanceId();
-            entity.InstanceId = entity.Id = id;
-            entity.Name = typeof(T).ToString();
-
-            if (EnableLog) Log.Debug($"Entity->Create, {typeof(T).Name}={entity.InstanceId}");
-
-            return entity;
+            return _Create(type, initData, owner, prefab, parent, ownerParent) as T;
         }
 
-        public static Entity Create(Type type ,object initData = null, GameObject owner = null, Entity parent = null)
+        public static Entity Create(Type type = null, object initData = null, GameObject owner = null, GameObject prefab = null, Entity parent = null, Transform ownerParent = null)
+        {
+            return _Create(type, initData, owner, prefab, parent, ownerParent);
+        }
+
+        /// <summary>
+        /// 具体创建逻辑
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <param name="initData">初始化参数</param>
+        /// <param name="owner">Entity所在的Obj，不传owner，则视为创建一个新obj，否则只是创建一个Component</param>
+        /// <param name="prefab">新obj对应的prefab</param>
+        /// <param name="parent">Entity指定Parent</param>
+        /// <param name="ownerParent">Transform指定Parent</param>
+        /// <returns></returns>
+        private static Entity _Create( Type type = null, object initData = null, GameObject owner = null, GameObject prefab = null, Entity parent = null, Transform ownerParent = null)
         {
             bool needObj = owner == null;
-            if (needObj) owner = new GameObject();
-            var entity = owner.AddComponent(type) as Entity;
+            if (needObj) owner = prefab ? Instantiate(prefab) : new GameObject();
+            var component = owner.GetComponent(type);
+            var entity = (component != null ? component : owner.AddComponent(type)) as Entity;
 
             entity.Setup(initData, needObj);
             Master.AddEntity(type, entity);
             (parent == null ? Master : parent).AddChild(entity);
+
+            if (ownerParent != null) entity.SetTransformParent(ownerParent);
 
             long id = IdFactory.NewInstanceId();
             entity.InstanceId = entity.Id = id;
@@ -80,6 +84,12 @@ namespace EGamePlay
             if (EnableLog) Log.Debug($"Entity->Create, {type.Name}={entity.InstanceId}");
 
             return entity;
+        }
+
+        // 无法指定owner，一般不用
+        public T CreateChild<T>(object initData = null) where T : Entity
+        {
+            return Create<T>(initData: initData, parent: this) as T;
         }
 
         public virtual void Setup(object initData = null, bool asGameObject = false)
@@ -212,6 +222,12 @@ namespace EGamePlay
             parent?.AddChild(this);
         }
 
+        public void SetTransformParent(Transform parent)
+        {
+            if (parent.Equals(transform.parent)) return;
+            gameObject.transform.parent = parent;
+        }
+
         public void AddChild(Entity child)
         {
             var childrenComponent = GetEntityComponent<ChildrenComponent>();
@@ -250,16 +266,6 @@ namespace EGamePlay
         //{
         //    return Create(entityType, this);
         //}
-
-        public T CreateChild<T>() where T : Entity
-        {
-            return Create<T>(null, null, this) as T;
-        }
-
-        public T CreateChild<T>(object initData) where T : Entity
-        {
-            return Create<T>(initData, null, this) as T;
-        }
 
         public Entity[] GetChildren()
         {
@@ -326,5 +332,17 @@ namespace EGamePlay
         {
 
         }
+    }
+
+    public class NewEntityData
+    {
+        object initData = null;
+        Type type = null;
+        bool asComponent = true;
+
+        GameObject owner = null;
+        GameObject ownerParent = null;
+        GameObject prefab = null; 
+        Entity parent = null;
     }
 }
