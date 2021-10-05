@@ -13,11 +13,9 @@ using ET;
 using GameUtils;
 using UnityEngine.UI;
 
-// 考虑拆分成 Logic和Show
+// 卡牌的基类 考虑拆分成 Logic和Show
 public class CardEntity : Entity
 {
-    // 卡牌的基类
-    // 如果是
     public static CardEntity Player;
     public bool isMe;       // 是否是玩家
     public bool isCreature; // 是否是生物，若是，则生成CardEntity_Creature
@@ -54,6 +52,7 @@ public class CardEntity : Entity
     public override void Awake()
     {
         base.Awake();
+        Start_Test();
         StatusParent = transform.Find("StatusParent");
     }
 
@@ -90,9 +89,22 @@ public class CardEntity : Entity
         status2.Caster = this;
         status2.TryActivateAbility();
     }
-    
     #endregion
-    
+
+    #region 测试用
+    private SpriteRenderer sr;
+
+    private void Start_Test()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
+    public void OnSetColor(Color c)
+    {
+        sr.color = c;
+    }
+
+    #endregion
     public void onClickAttack()
     {
         if (!isMe)

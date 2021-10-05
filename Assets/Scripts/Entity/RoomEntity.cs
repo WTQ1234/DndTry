@@ -20,8 +20,8 @@ public class RoomEntity : Entity
     public Dictionary<GameObject, CardEntity> GameObject2Entitys { get; set; } = new Dictionary<GameObject, CardEntity>();
 
     //public GameTimer TurnRoundTimer { get; set; } = new GameTimer(2f);
-    public Dictionary<int, CardEntity> HeroEntities { get; set; } = new Dictionary<int, CardEntity>();
-    public Dictionary<int, CardEntity> MonsterEntities { get; set; } = new Dictionary<int, CardEntity>();
+    public List<CardEntity> HeroEntities { get; set; } = new List<CardEntity>();
+    public List<CardEntity> MonsterEntities { get; set; } = new List<CardEntity>();
     public List<TurnAction> TurnActions { get; set; } = new List<TurnAction>();
 
     public int seatPos = 1;
@@ -29,8 +29,8 @@ public class RoomEntity : Entity
     public int myTeamNum = 3;
 
     public float Radius = 5;
-    public float Angle = 1;
-    public float m_StartAngle = 0;
+    private float Angle = 1;
+    private float m_StartAngle = 0;
 
     private Transform HeroParent;
     private Transform EnemyParent;
@@ -56,13 +56,13 @@ public class RoomEntity : Entity
         //{
         //    TurnRoundTimer.UpdateAsFinish(Time.deltaTime, StartCombat);
         //}
+        ResetSizeAndPos();
     }
  
     public void NextTurn()
     {
         print("下一回合");
         // 获取可交互的
-        ResetSizeAndPos();
     }
 
     #region 创建
@@ -74,7 +74,9 @@ public class RoomEntity : Entity
             var e = AddHeroEntity(i);
             e.isMe = i == 2;
             e.transform.localPosition = new Vector3(i * 1.5f, 0);
+            e.OnSetColor(Color.gray);
         }
+        interactNum = 2 + myTeamNum - 1;
 
         // 创建3个敌人
         for (int i = 1; i <= myTeamNum + 5; i++)
@@ -82,7 +84,7 @@ public class RoomEntity : Entity
             var e = AddMonsterEntity(i);
             e.transform.localPosition = new Vector3(i * 1.5f, 0);
         }
-        Angle = 360 / (myTeamNum + 5);
+
         ResetSizeAndPos();
         //var combatRoot = GameObject.Find("CombatRoot");
         //if (combatRoot == null)
@@ -114,7 +116,7 @@ public class RoomEntity : Entity
     {
         var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: HeroParent);
         entity.IsHero = true;
-        HeroEntities.Add(seat, entity);
+        HeroEntities.Add(entity);
         entity.SeatNumber = seat;
         return entity;
     }
@@ -123,7 +125,7 @@ public class RoomEntity : Entity
     {
         var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: EnemyParent);
         entity.IsHero = false;
-        MonsterEntities.Add(seat, entity);
+        MonsterEntities.Add(entity);
         entity.SeatNumber = seat;
         return entity;
     }
@@ -135,11 +137,38 @@ public class RoomEntity : Entity
     public void ResetSizeAndPos()
     {
         int length = MonsterEntities.Count;
-        for (int i = 1; i <= length; i++)
+        Angle = 360 / length;
+        m_StartAngle = length % 2 == 0 ? Angle / 2 : 0;
+        for (int i = 0; i < length; i++)
         {
-            var tran = MonsterEntities[i].transform;
-            tran.localPosition = GerCurPosByIndex(i);
-            tran.localRotation = Quaternion.identity;
+            // 此卡当前转动到了？
+            var curPos = seatPos + i;
+            if (curPos >= length) curPos = curPos - length;
+            int max = (int)(interactNum / 2) + seatPos;
+            int min = seatPos - (int)(interactNum / 2);
+            // 此处是0到length-1
+            if (max >= length)
+            {
+                int max2 = max - length;
+                int min2 = 0;
+            }
+            if (min < 0)
+            {
+                int max3 = length - 1;
+                int min3 = 0;
+            }
+            bool isAct = ((int)(interactNum / 2) + seatPos) >= curPos && (seatPos - (int)(interactNum / 2)) <= curPos;
+            print($"{length} {i.ToString()} curPos:{curPos} seatPos:{seatPos}, [{(interactNum / 2) + seatPos}, {seatPos - (interactNum / 2)}] {isAct}");
+
+            var tran = MonsterEntities[curPos].transform;
+            
+
+            // 是否被互动？
+            //interactNum
+            //tran.localPosition = GerCurPosByIndex(i);
+            tran.DOLocalMove(isAct ? new Vector3() : GerCurPosByIndex(curPos), 0.3f);
+            tran.rotation = Camera.main.transform.rotation;
+            //tran.localRotation = Quaternion.identity;
         }
     }
 
@@ -167,8 +196,8 @@ public class RoomEntity : Entity
 
     public void OnCombatEntityDead(CardEntity combatEntity)
     {
-        if (combatEntity.IsHero) HeroEntities.Remove(combatEntity.SeatNumber);
-        else MonsterEntities.Remove(combatEntity.SeatNumber);
+        if (combatEntity.IsHero) HeroEntities.RemoveAt(combatEntity.SeatNumber);
+        else MonsterEntities.RemoveAt(combatEntity.SeatNumber);
     }
 
     public async void StartCombat()
