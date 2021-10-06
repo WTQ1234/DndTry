@@ -93,9 +93,10 @@ public class CardEntity : Entity
 
     #region 测试用
     private SpriteRenderer sr;
-
+    private Text text;
     private void Start_Test()
     {
+        text = Transform.FindObjectOfType<Text>();
         sr = GetComponent<SpriteRenderer>();
     }
 
@@ -104,6 +105,10 @@ public class CardEntity : Entity
         sr.color = c;
     }
 
+    public void OnSetText(string s)
+    {
+        text.text = s;
+    }
     #endregion
     public void onClickAttack()
     {

@@ -75,6 +75,8 @@ public class Test : MonoBehaviour
         //}
         #endregion
 
+        print(-5 % 2);
+
         // 打印AttrConfig属性
         //var item = ConfigController.Instance.GetAll<AttrConfig>();
         //foreach (var kv in item)

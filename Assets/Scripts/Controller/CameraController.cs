@@ -6,6 +6,7 @@ using DG.Tweening;
 public class CameraController : SingleTon<CameraController>
 {
     public Vector3 cameraOriginPos;
+    public float moveRate = 1f;
     public float cameraRadius_X = 1;
     public float cameraRadius_Y = 1;
 
@@ -31,8 +32,8 @@ public class CameraController : SingleTon<CameraController>
     void Update()
     {
         Vector3 input = Input.mousePosition;
-        float X = cameraRadius_X * Mathf.Clamp((input.x - halfScreenWidth) / halfScreenWidth, -1f, 1f);
-        float Y = cameraRadius_Y * Mathf.Clamp((input.y - halfScreenHeight) / halfScreenHeight, -1f, 1f);
+        float X = moveRate * cameraRadius_X * Mathf.Clamp((input.x - halfScreenWidth) / halfScreenWidth, -1f, 1f);
+        float Y = moveRate * cameraRadius_Y * Mathf.Clamp((input.y - halfScreenHeight) / halfScreenHeight, -1f, 1f);
         Vector3 tranPos = new Vector3(X, Y, 0);
         MainCamera.transform.DOLocalMove(curCameraPos + tranPos, 0.5f);
     }
