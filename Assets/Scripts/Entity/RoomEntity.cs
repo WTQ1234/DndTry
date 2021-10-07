@@ -27,6 +27,10 @@ public class RoomEntity : Entity
     public LinkedList<CardEntity> linkedMonsterEntities = new LinkedList<CardEntity>();
     private Dictionary<int, int> enemyActIndex = new Dictionary<int, int>();
 
+    private WorkFlowSource WorkFlowSource;  // ai
+    // 这个放在Awake？
+    //FlowSource.ToEnter<CardFlow_Create>().ToEnter<CardFlow_Run>().ToEnter<CardFlow_Finish>().ToRestart();
+
     public int seatPos = 1;
     public int interactNum = 2;
     public int myTeamNum = 3;
@@ -63,12 +67,6 @@ public class RoomEntity : Entity
         //}
         ResetSizeAndPos();
     }
- 
-    public void NextTurn()
-    {
-        print("下一回合");
-        // 获取可交互的
-    }
 
     #region 创建
     public void CreateTeam()
@@ -90,7 +88,6 @@ public class RoomEntity : Entity
             e.transform.localPosition = new Vector3(i * 1.5f, 0);
         }
 
-        ResetSizeAndPos();
         //var combatRoot = GameObject.Find("CombatRoot");
         //if (combatRoot == null)
         //{
@@ -132,21 +129,32 @@ public class RoomEntity : Entity
         entity.IsHero = false;
         MonsterEntities.Add(entity);
         linkedMonsterEntities.AddLast(entity);
+        //linkedMonsterEntities.Last.Next = linkedMonsterEntities.First;
+        //linkedMonsterEntities.First.Previous = linkedMonsterEntities.Last;
         entity.SeatNumber = seat;
         entity.OnSetText(seat.ToString());
         return entity;
     }
     #endregion
 
-    // 重新将字节点设置大小；
+    #region 刷新
+    // 重新将卡牌设置大小；
     public void ResetSizeAndPos()
     {
         int length = MonsterEntities.Count;
         bool allAct = interactNum >= length;
 
         // index即为环形链表应有的入口
-        int index = seatPos % linkedMonsterEntities.Count;
-        print($" index {index} seatPos {seatPos} Count {linkedMonsterEntities.Count}");
+        int index;
+        if (seatPos < 0)
+        {
+            // 假如是-1，长度是10，那么效果和转了9是一样的
+            index = (length * Mathf.Abs(seatPos % length) + seatPos) % length;
+        }
+        else
+        {
+            index = seatPos % length;
+        }
         int offset = (int)(interactNum / 2);
         // 获取当前卡牌
         var curNode = linkedMonsterEntities.First;
@@ -156,33 +164,32 @@ public class RoomEntity : Entity
         }
         enemyActIndex.Clear();
         enemyActIndex.Add(curNode.Value.SeatNumber, 0);
-        LinkedListNode<CardEntity> pre = curNode;
-        LinkedListNode<CardEntity> after = curNode;
+        var pre = curNode;
+        var after = curNode;
         for (int i = 1; i <= offset; i++)
         {
             pre = i == 1 ? curNode.Previous : pre.Previous;
+            pre = pre ?? linkedMonsterEntities.Last;     // 某种奇怪的语法糖 pre = pre == null ? xxx : pre; 
             after = i == 1 ? curNode.Next : after.Next;
+            after = after ?? linkedMonsterEntities.First;
 
-            enemyActIndex.Add(pre.Value.SeatNumber, i);
-            enemyActIndex.Add(after.Value.SeatNumber, -i);
+            if (!enemyActIndex.ContainsKey(pre.Value.SeatNumber))
+                enemyActIndex.Add(pre.Value.SeatNumber, i);
+            if (!enemyActIndex.ContainsKey(after.Value.SeatNumber))
+                enemyActIndex.Add(after.Value.SeatNumber, -i);
         }
-        //Angle = 360 / (length - enemyActIndex.Count);
-        //m_StartAngle = (length - enemyActIndex.Count) % 2 == 0 ? Angle / 2 : 0;
         Angle = (360 - actAngle) / length;
-        m_StartAngle = 0;
         for (int i = 0; i < length; i++)
         {
-            var curCard = MonsterEntities[i];
-            var tran = curCard.transform;
-            //print($"{length} {i.ToString()} {enemyActIndex.ContainsKey(curCard.SeatNumber)} seatPos:{seatPos}");
+            CardEntity curCard = MonsterEntities[i];
+            Transform tran = curCard.transform;
             if (enemyActIndex.ContainsKey(curCard.SeatNumber))
             {
-                tran.DOLocalMove(new Vector3(enemyActIndex[curCard.SeatNumber] * 0.5f, 0), 0.3f);
+                tran.DOLocalMove(new Vector3(enemyActIndex[curCard.SeatNumber] * -2f, 0, -4), 0.3f);
             }
             else
             {
-                var curPos = i - seatPos;
-                //print($" {curCard.SeatNumber} {i} {curPos}");
+                int curPos = i - seatPos;
                 tran.DOLocalMove(GerCurPosByIndex(curPos), 0.3f);
             }
             tran.rotation = Camera.main.transform.rotation;
@@ -190,19 +197,19 @@ public class RoomEntity : Entity
     }
 
     // 返回第几个子对象应该所在的相对位置；
-    public Vector3 GerCurPosByIndex(int index)
+    private Vector3 GerCurPosByIndex(int index)
     {
-        //print($"  1111111index {index} angle {index * Angle + m_StartAngle} {Angle} {m_StartAngle}");
         float a = (index * Angle + m_StartAngle) % 360;
         a = a >= 0 ? a + actAngle / 2 : a - actAngle / 2;
         //1、先计算间隔角度：(弧度制)
         float totalAngle = Mathf.Deg2Rad * a;
         //2、计算位置
         Vector3 Pos = new Vector3(Mathf.Sin(totalAngle) * Radius, 0, -1 * Radius * Mathf.Cos(totalAngle));
-        print(Pos);
         return Pos;
     }
+    #endregion
 
+    #region 获取
     public CardEntity GetHero(int seat)
     {
         return HeroEntities[seat];
@@ -212,6 +219,25 @@ public class RoomEntity : Entity
     {
         return MonsterEntities[seat];
     }
+    #endregion
+
+    #region input
+    public void NextTurn()
+    {
+        print("下一回合");
+        // 获取可交互的
+    }
+
+    public void TtyTurnLeft()
+    {
+        seatPos -= 1;
+    }
+
+    public void TtyTurnRight()
+    {
+        seatPos += 1;
+    }
+    #endregion
 
     public void OnCombatEntityDead(CardEntity combatEntity)
     {

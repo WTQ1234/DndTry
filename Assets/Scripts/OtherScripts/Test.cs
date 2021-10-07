@@ -75,8 +75,6 @@ public class Test : MonoBehaviour
         //}
         #endregion
 
-        print(-5 % 2);
-
         // 打印AttrConfig属性
         //var item = ConfigController.Instance.GetAll<AttrConfig>();
         //foreach (var kv in item)
@@ -97,5 +95,14 @@ public class Test : MonoBehaviour
         {
             RoomEntity.Instance.NextTurn();
         }
+    }
+
+    public void TtyTurnLeft()
+    {
+        RoomEntity.Instance.TtyTurnLeft();
+    }
+    public void TtyTurnRight()
+    {
+        RoomEntity.Instance.TtyTurnRight();
     }
 }
