@@ -27,10 +27,6 @@ public class RoomEntity : Entity
     public LinkedList<CardEntity> linkedMonsterEntities = new LinkedList<CardEntity>();
     private Dictionary<int, int> enemyActIndex = new Dictionary<int, int>();
 
-    private WorkFlowSource WorkFlowSource;  // ai
-    // 这个放在Awake？
-    //FlowSource.ToEnter<CardFlow_Create>().ToEnter<CardFlow_Run>().ToEnter<CardFlow_Finish>().ToRestart();
-
     public int seatPos = 1;
     public int interactNum = 2;
     public int myTeamNum = 3;
@@ -65,7 +61,7 @@ public class RoomEntity : Entity
         //{
         //    TurnRoundTimer.UpdateAsFinish(Time.deltaTime, StartCombat);
         //}
-        ResetSizeAndPos();
+        RefreshPos();
     }
 
     #region 创建
@@ -87,31 +83,8 @@ public class RoomEntity : Entity
             var e = AddMonsterEntity(i);
             e.transform.localPosition = new Vector3(i * 1.5f, 0);
         }
-
-        //var combatRoot = GameObject.Find("CombatRoot");
-        //if (combatRoot == null)
-        //{
-        //    combatRoot = GameObject.Instantiate(CombatRootClone);
-        //    combatRoot.name = "CombatRoot";
-        //    combatRoot.SetActive(true);
-        //}
-
-        //var heroRoot = GameObject.Find("CombatRoot/HeroRoot").transform;
-        //for (int i = 0; i < heroRoot.childCount; i++)
-        //{
-        //    var hero = heroRoot.GetChild(i);
-        //    var turnHero = hero.gameObject.AddComponent<TurnCombatObject>();
-        //    turnHero.Setup(i);
-        //    turnHero.CombatEntity.JumpToTime = GetParent<CombatFlow>().JumpToTime;
-        //}
-        //var monsterRoot = GameObject.Find("CombatRoot/MonsterRoot").transform;
-        //for (int i = 0; i < monsterRoot.childCount; i++)
-        //{
-        //    var hero = monsterRoot.GetChild(i);
-        //    var turnMonster = hero.gameObject.AddComponent<TurnCombatObject>();
-        //    turnMonster.Setup(i);
-        //    turnMonster.CombatEntity.JumpToTime = GetParent<CombatFlow>().JumpToTime;
-        //}
+        RefreshMonAct();
+        RefreshPos();
     }
 
     public CardEntity AddHeroEntity(int seat)
@@ -138,14 +111,10 @@ public class RoomEntity : Entity
     #endregion
 
     #region 刷新
-    // 重新将卡牌设置大小；
-    public void ResetSizeAndPos()
+    private void RefreshMonAct()
     {
         int length = MonsterEntities.Count;
-        bool allAct = interactNum >= length;
-
-        // index即为环形链表应有的入口
-        int index;
+        int index;  // index即为环形链表应有的入口
         if (seatPos < 0)
         {
             // 假如是-1，长度是10，那么效果和转了9是一样的
@@ -156,12 +125,7 @@ public class RoomEntity : Entity
             index = seatPos % length;
         }
         int offset = (int)(interactNum / 2);
-        // 获取当前卡牌
-        var curNode = linkedMonsterEntities.First;
-        for (int i = 0; i < index; i++)
-        {
-            curNode = curNode.Next;
-        }
+        var curNode = GetMonsterFromNode(index);
         enemyActIndex.Clear();
         enemyActIndex.Add(curNode.Value.SeatNumber, 0);
         var pre = curNode;
@@ -178,6 +142,12 @@ public class RoomEntity : Entity
             if (!enemyActIndex.ContainsKey(after.Value.SeatNumber))
                 enemyActIndex.Add(after.Value.SeatNumber, -i);
         }
+    }
+
+    // 重新将卡牌设置大小；
+    private void RefreshPos()
+    {
+        int length = MonsterEntities.Count;
         Angle = (360 - actAngle) / length;
         for (int i = 0; i < length; i++)
         {
@@ -218,6 +188,16 @@ public class RoomEntity : Entity
     public CardEntity GetMonster(int seat)
     {
         return MonsterEntities[seat];
+    }
+
+    public LinkedListNode<CardEntity> GetMonsterFromNode(int seat)
+    {
+        var curNode = linkedMonsterEntities.First;
+        for (int i = 0; i < seat; i++)
+        {
+            curNode = curNode.Next;
+        }
+        return curNode;
     }
     #endregion
 
@@ -278,18 +258,22 @@ public class RoomEntity : Entity
 
         foreach (var item in HeroEntities)
         {
-            //if (item.Value.TurnActionAbility.TryCreateAction(out var turnAction))
-            //{
-            //    if (MonsterEntities.ContainsKey(item.Key))
-            //    {
-            //        turnAction.Target = MonsterEntities[item.Key];
-            //    }
-            //    else
-            //    {
-            //        turnAction.Target = MonsterEntities.Values.ToArray().First();
-            //    }
-            //    TurnActions.Add(turnAction);
-            //}
+            TurnActionAbility TurnActionAbility = item.GetAbilityComponent<TurnActionAbility>();
+            if (TurnActionAbility != null)
+            {
+                if (TurnActionAbility.TryCreateAction(out var turnAction))
+                {
+                    //if (MonsterEntities.ContainsKey(item.Key))
+                    //{
+                    //    turnAction.Target = MonsterEntities[item.Key];
+                    //}
+                    //else
+                    //{
+                    //    turnAction.Target = MonsterEntities.ToArray().First();
+                    //}
+                    //TurnActions.Add(turnAction);
+                }
+            }
         }
         foreach (var item in MonsterEntities)
         {

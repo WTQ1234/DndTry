@@ -46,6 +46,8 @@ public class CardEntity : Entity
     private CardAttackActionAbility CardAttackActionAbility { get; set; }
     // 造成伤害
     private CardDamageActionAbility CardDamageActionAbility { get; set; }
+
+    private TurnActionAbility TurnActionAbility { get; set; }
     #endregion
 
     #region 初始化
@@ -110,6 +112,7 @@ public class CardEntity : Entity
         text.text = s;
     }
     #endregion
+
     public void onClickAttack()
     {
         if (!isMe)
