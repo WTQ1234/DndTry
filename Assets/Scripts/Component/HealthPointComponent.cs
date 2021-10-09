@@ -6,10 +6,10 @@ using EGamePlay.Combat;
 
 public class HealthPointComponent : EGamePlay.Component
 {
-    public int Value;
-    public int MaxValue;
+    public int Value = 10;
+    public int MaxValue = 10;
 
-
+    #region 设置
     public void Reset()
     {
         Value = MaxValue;
@@ -30,7 +30,9 @@ public class HealthPointComponent : EGamePlay.Component
     {
         Value = Mathf.Min(MaxValue, Value + value);
     }
+    #endregion
 
+    #region 获取
     public float Percent()
     {
         return (float)Value / MaxValue;
@@ -45,4 +47,5 @@ public class HealthPointComponent : EGamePlay.Component
     {
         return Value == MaxValue;
     }
+    #endregion
 }

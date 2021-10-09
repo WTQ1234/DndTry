@@ -29,7 +29,7 @@ public class ActionAbilityComponent<T> : AbilityComponent where T : CardActionEx
         return CreateExecution() as T;
     }
 
-    public bool TryCreateAction(out T abilityExecution)
+    public virtual bool TryCreateAction(out T abilityExecution)
     {
         if (!Enable)
             abilityExecution = null;

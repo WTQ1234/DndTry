@@ -31,6 +31,7 @@ public class CardEntity : Entity
     private Transform StatusParent;
 
     public Action Action_OnAttrChange;
+    public Action Action_OnTrunStart;
 
     #region 组件
     private HealthPointComponent healthPointComponent { get; set; }
@@ -46,7 +47,7 @@ public class CardEntity : Entity
     private CardAttackActionAbility CardAttackActionAbility { get; set; }
     // 造成伤害
     private CardDamageActionAbility CardDamageActionAbility { get; set; }
-
+    // 每轮行动
     private TurnActionAbility TurnActionAbility { get; set; }
     #endregion
 
@@ -111,33 +112,30 @@ public class CardEntity : Entity
     {
         text.text = s;
     }
+
+    public void refreshState()
+    {
+        OnSetText($"{SeatNumber} {healthPointComponent.Value}");
+    }
     #endregion
 
-    public void onClickAttack()
-    {
-        if (!isMe)
-        {
-            if (Player.CardAttackActionAbility.TryCreateAction(out var action))
-            {
-                //var monster = this;
-                //SpawnLineEffect(AttackPrefab, transform.position, monster.transform.position);
-                //SpawnHitEffect(transform.position, monster.transform.position);
-
-                // 设置一下攻击力
-                // Player.GetComponent<CardAttributeComponent>().SetBaseVale(AttrType.Atk_P, ET.RandomHelper.RandomNumber(600, 999));
-                action.OwnerEntity = Player;
-                action.Target = this;
-                action.BeginExecute();
-                Entity.Destroy(action);
-            }
-        }
-    }
-
+    #region 获取
     // 获取属性
     public float GetAttr(AttrType attrType)
     {
         return CardAttributeComponent.GetFloatValue(attrType);
     }
+    // 获取阵营
+    public (int, bool) GetTeam()
+    {
+        return (TurnActionAbility.team, TurnActionAbility.team > 0);
+    }
+    // todo 考虑做成其他形式 获取状态
+    public int GetMove()
+    {
+        return TurnActionAbility.move;
+    }
+    #endregion
 
     /// <summary>
     /// 创建行动
@@ -246,6 +244,7 @@ public class CardEntity : Entity
     {
         var damageAction = combatAction as CardDamageAction;
         healthPointComponent.Minus(damageAction.DamageValue);
+        refreshState();
     }
 
     public void ReceiveCure(CardActionExecution combatAction)
@@ -263,6 +262,11 @@ public class CardEntity : Entity
     {
         // 后续实现Effect等还需再添加一次
         Action_OnAttrChange?.Invoke();
+    }
+
+    public void OnTrunStart()
+    {
+        Action_OnTrunStart?.Invoke();
     }
 
     #region 回合制战斗
@@ -295,4 +299,24 @@ public class CardEntity : Entity
         }
     }
     #endregion
+
+    public void onClickAttack()
+    {
+        if (!isMe)
+        {
+            if (Player.CardAttackActionAbility.TryCreateAction(out var action))
+            {
+                //var monster = this;
+                //SpawnLineEffect(AttackPrefab, transform.position, monster.transform.position);
+                //SpawnHitEffect(transform.position, monster.transform.position);
+
+                // 设置一下攻击力
+                // Player.GetComponent<CardAttributeComponent>().SetBaseVale(AttrType.Atk_P, ET.RandomHelper.RandomNumber(600, 999));
+                action.OwnerEntity = Player;
+                action.Target = this;
+                action.BeginExecute();
+                Entity.Destroy(action);
+            }
+        }
+    }
 }

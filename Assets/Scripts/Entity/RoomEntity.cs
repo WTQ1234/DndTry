@@ -20,12 +20,15 @@ public class RoomEntity : Entity
     public Dictionary<GameObject, CardEntity> GameObject2Entitys { get; set; } = new Dictionary<GameObject, CardEntity>();
 
     //public GameTimer TurnRoundTimer { get; set; } = new GameTimer(2f);
-    public List<CardEntity> HeroEntities { get; set; } = new List<CardEntity>();
-    public List<TurnAction> TurnActions { get; set; } = new List<TurnAction>();
+    //public List<TurnAction> TurnActions { get; set; } = new List<TurnAction>();
 
+    public List<CardEntity> HeroEntities { get; set; } = new List<CardEntity>();
     public List<CardEntity> MonsterEntities { get; set; } = new List<CardEntity>();
     public LinkedList<CardEntity> linkedMonsterEntities = new LinkedList<CardEntity>();
-    private Dictionary<int, int> enemyActIndex = new Dictionary<int, int>();
+    private Dictionary<CardEntity, int> enemyActIndex = new Dictionary<CardEntity, int>();
+
+    private List<CardEntity> Cache_ActEntities = new List<CardEntity>();
+    private List<CardEntity> Cache_OtherEntities = new List<CardEntity>();
 
     public int seatPos = 1;
     public int interactNum = 2;
@@ -102,15 +105,55 @@ public class RoomEntity : Entity
         entity.IsHero = false;
         MonsterEntities.Add(entity);
         linkedMonsterEntities.AddLast(entity);
-        //linkedMonsterEntities.Last.Next = linkedMonsterEntities.First;
-        //linkedMonsterEntities.First.Previous = linkedMonsterEntities.Last;
         entity.SeatNumber = seat;
-        entity.OnSetText(seat.ToString());
+        entity.refreshState();
         return entity;
     }
     #endregion
 
     #region 刷新
+    // 回合开始时重置状态
+    private void RefreshCard()
+    {
+        foreach (var item in HeroEntities)
+        {
+            item.OnTrunStart();
+        }
+        foreach (var item in MonsterEntities)
+        {
+            item.OnTrunStart();
+        }
+    }
+    // 获取按当前速度排序序列，因可能改变速度，所以需要每次刷新
+    private void RefreshActions()
+    {
+        Cache_ActEntities.Clear();
+        Cache_OtherEntities.Clear();
+        foreach (var item in HeroEntities)
+        {
+            if (!item.isMe)
+                Cache_ActEntities.Add(item);
+        }
+        foreach (var item in MonsterEntities)
+        {
+            if (enemyActIndex.ContainsKey(item))
+                Cache_ActEntities.Add(item);
+            else
+                Cache_OtherEntities.Add(item);
+        }
+        // 按速度进行排序
+        Cache_ActEntities.Sort((x, y) => {
+            return (
+                x.GetAttr(AttrType.Speed) * x.GetMove()).CompareTo(
+                y.GetAttr(AttrType.Speed) * y.GetMove());
+        });
+        Cache_OtherEntities.Sort((x, y) => {
+            return (
+                x.GetAttr(AttrType.Speed) * x.GetMove()).CompareTo(
+                y.GetAttr(AttrType.Speed) * y.GetMove());
+        });
+    }
+    // 刷新当前可交互的地方卡牌
     private void RefreshMonAct()
     {
         int length = MonsterEntities.Count;
@@ -127,7 +170,7 @@ public class RoomEntity : Entity
         int offset = (int)(interactNum / 2);
         var curNode = GetMonsterFromNode(index);
         enemyActIndex.Clear();
-        enemyActIndex.Add(curNode.Value.SeatNumber, 0);
+        enemyActIndex.Add(curNode.Value, 0);
         var pre = curNode;
         var after = curNode;
         for (int i = 1; i <= offset; i++)
@@ -137,14 +180,13 @@ public class RoomEntity : Entity
             after = i == 1 ? curNode.Next : after.Next;
             after = after ?? linkedMonsterEntities.First;
 
-            if (!enemyActIndex.ContainsKey(pre.Value.SeatNumber))
-                enemyActIndex.Add(pre.Value.SeatNumber, i);
-            if (!enemyActIndex.ContainsKey(after.Value.SeatNumber))
-                enemyActIndex.Add(after.Value.SeatNumber, -i);
+            if (!enemyActIndex.ContainsKey(pre.Value))
+                enemyActIndex.Add(pre.Value, i);
+            if (!enemyActIndex.ContainsKey(after.Value))
+                enemyActIndex.Add(after.Value, -i);
         }
     }
-
-    // 重新将卡牌设置大小；
+    // 刷新卡牌位置
     private void RefreshPos()
     {
         int length = MonsterEntities.Count;
@@ -153,9 +195,9 @@ public class RoomEntity : Entity
         {
             CardEntity curCard = MonsterEntities[i];
             Transform tran = curCard.transform;
-            if (enemyActIndex.ContainsKey(curCard.SeatNumber))
+            if (enemyActIndex.ContainsKey(curCard))
             {
-                tran.DOLocalMove(new Vector3(enemyActIndex[curCard.SeatNumber] * -2f, 0, -4), 0.3f);
+                tran.DOLocalMove(new Vector3(enemyActIndex[curCard] * -2f, 0, -4), 0.3f);
             }
             else
             {
@@ -227,69 +269,54 @@ public class RoomEntity : Entity
 
     public async void StartCombat()
     {
+        RefreshCard();
+        // 在互动范围内的敌人的行动 近程怪暂时直接打
         RefreshActions();
-        foreach (var item in TurnActions)
+        for (int i = 0; i < Cache_ActEntities.Count; i++)
         {
-            if (item.Creator.CheckDead() || item.Target.CheckDead())
-            {
-                continue;
-            }
-            await item.ApplyTurn();
-        }
-        await TimerComponent.Instance.WaitAsync(1000);
-        if (HeroEntities.Count == 0 || MonsterEntities.Count == 0)
-        {
-            HeroEntities.Clear();
-            MonsterEntities.Clear();
-            await TimerComponent.Instance.WaitAsync(2000);
-            this.Publish(new CombatEndEvent());
-            return;
-        }
-        StartCombat();
-    }
-
-    public void RefreshActions()
-    {
-        foreach (var item in TurnActions)
-        {
-            Entity.Destroy(item);
-        }
-        TurnActions.Clear();
-
-        foreach (var item in HeroEntities)
-        {
-            TurnActionAbility TurnActionAbility = item.GetAbilityComponent<TurnActionAbility>();
+            CardEntity card = Cache_ActEntities[i];
+            TurnActionAbility TurnActionAbility = card.GetAbilityComponent<TurnActionAbility>();
             if (TurnActionAbility != null)
             {
                 if (TurnActionAbility.TryCreateAction(out var turnAction))
                 {
-                    //if (MonsterEntities.ContainsKey(item.Key))
-                    //{
-                    //    turnAction.Target = MonsterEntities[item.Key];
-                    //}
-                    //else
-                    //{
-                    //    turnAction.Target = MonsterEntities.ToArray().First();
-                    //}
-                    //TurnActions.Add(turnAction);
+                    // 判断AI是否战斗，这里先不做AI
+                    CardEntity enemy = GetEnemy(card, card.GetTeam());
+                    if (card.CheckDead() || enemy.CheckDead()) continue;
+                    turnAction.Target = enemy;
+                    await turnAction.ApplyTurn();
+                    // todo 换一种方式删除?
+                    Entity.Destroy(turnAction);
                 }
             }
+            await TimerComponent.Instance.WaitAsync(1000);
+            // 再次计算速度
+            RefreshActions();
         }
-        foreach (var item in MonsterEntities)
-        {
-            //if (item.Value.TurnActionAbility.TryCreateAction(out var turnAction))
-            //{
-            //    if (HeroEntities.ContainsKey(item.Key))
-            //    {
-            //        turnAction.Target = HeroEntities[item.Key];
-            //    }
-            //    else
-            //    {
-            //        turnAction.Target = HeroEntities.Values.ToArray().First();
-            //    }
-            //    TurnActions.Add(turnAction);
-            //}
-        }
+
+        // todo 不在互动范围内的其他敌人的行动 远程怪处理
+        //for (int i = 0; i < Cache_OtherEntities.Count; i++) {}
+
+        // 如果全死了
+        //if (HeroEntities.Count == 0 || MonsterEntities.Count == 0)
+        //{
+        //    HeroEntities.Clear();
+        //    MonsterEntities.Clear();
+        //    await TimerComponent.Instance.WaitAsync(2000);
+        //    this.Publish(new CombatEndEvent());
+        //    return;
+        //}
+
+        // 下一回合
+        await TimerComponent.Instance.WaitAsync(1000);
+        StartCombat();
+    }
+
+
+    // todo 根据team获取敌人
+    private CardEntity GetEnemy(CardEntity card, (int, bool) team)
+    {
+        return null;
     }
 }
 

@@ -12,8 +12,21 @@ using DG.Tweening;
 using ET;
 using GameUtils;
 
-// 用于创建 CardAttackAction
-public class TurnActionAbility : ActionAbilityComponent<TurnAction> { }
+// 用于创建 TurnAction
+public class TurnActionAbility : ActionAbilityComponent<TurnAction>
+{
+    public int team = 1;
+    public int move = 1;    // 每回合可行动次数
+
+    public override bool TryCreateAction(out TurnAction abilityExecution)
+    {
+        abilityExecution = null;
+        if (move <= 0) return false;
+        var res = base.TryCreateAction(out abilityExecution);
+        move -= 1;
+        return res;
+    }
+}
 
 /// 普攻行动
 public class TurnAction : CardActionExecution
