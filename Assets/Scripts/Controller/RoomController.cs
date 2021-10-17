@@ -20,4 +20,9 @@ public class RoomController : SingleTon<RoomController>
         //combatFlow.JumpToTime = JumpToTime;
         //combatFlow.Startup();
     }
+
+    public void StartCombat()
+    {
+        RoomEntity.Instance.StartCombat();
+    }
 }

@@ -17,20 +17,18 @@ using GameUtils;
 /// </summary>
 public abstract class AbilityComponent : EGamePlay.Component
 {
-    public CardEntity OwnerEntity;
     public object ConfigObject;
 
     public int Level = 1;
     public bool isAction = false;
 
-    public override void Setup(object initData = null, bool asGameObject = false)
+    public override void Setup(object initData = null)
     {
         ConfigObject = initData;
     }
 
     public void Setup(object initData, Entity Owner)
     {
-        OwnerEntity = Owner as CardEntity;
         ConfigObject = initData;
     }
 

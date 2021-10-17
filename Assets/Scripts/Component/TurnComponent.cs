@@ -18,6 +18,12 @@ public class TurnActionAbility : ActionAbilityComponent<TurnAction>
     public int team = 1;
     public int move = 1;    // 每回合可行动次数
 
+    //public override void Setup(object initData = null)
+    //{
+    //    base.Setup(initData);
+    //    team = (int)initData;
+    //}
+
     public override bool TryCreateAction(out TurnAction abilityExecution)
     {
         abilityExecution = null;
@@ -25,6 +31,11 @@ public class TurnActionAbility : ActionAbilityComponent<TurnAction>
         var res = base.TryCreateAction(out abilityExecution);
         move -= 1;
         return res;
+    }
+
+    public void SetTeam(int t)
+    {
+        team = t;
     }
 }
 

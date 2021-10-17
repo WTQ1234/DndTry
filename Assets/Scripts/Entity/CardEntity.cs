@@ -17,7 +17,8 @@ using UnityEngine.UI;
 public class CardEntity : Entity
 {
     public static CardEntity Player;
-    public bool isMe;       // 是否是玩家
+    private bool _isMe = false;
+    public bool isMe { get { return _isMe; } set { _isMe = value; if (value) Player = this; } }       // 是否是玩家
     public bool isCreature; // 是否是生物，若是，则生成CardEntity_Creature
     public bool isSpeak;    // 是否可交谈（呼出对话框），进而达成交谈、购买、抽奖等
     public bool isTool;      // 是否可交互
@@ -57,10 +58,11 @@ public class CardEntity : Entity
         base.Awake();
         Start_Test();
         StatusParent = transform.Find("StatusParent");
+        Init();
     }
 
     // 临时在Start里面创建
-    public override void Start()
+    public void Init()
     {
         // 根据配置表进行赋值，创建一张卡牌
         click2DComponent = AddComponent<Click2DComponent>();
@@ -69,6 +71,7 @@ public class CardEntity : Entity
 
         CardAttackActionAbility = AttachAbilityComponent<CardAttackActionAbility>(null);
         CardDamageActionAbility = AttachAbilityComponent<CardDamageActionAbility>(null);
+        TurnActionAbility = AttachAbilityComponent<TurnActionAbility>(null);
 
         click2DComponent.OnPointerClickCallBack = onClickAttack;
 
@@ -119,18 +122,22 @@ public class CardEntity : Entity
     }
     #endregion
 
-    #region 获取
+    #region GetSet
     // 获取属性
     public float GetAttr(AttrType attrType)
     {
         return CardAttributeComponent.GetFloatValue(attrType);
     }
-    // 获取阵营
+    // 阵营
+    public void SetTeam(int t)
+    {
+        TurnActionAbility.SetTeam(t);
+    }
     public (int, bool) GetTeam()
     {
         return (TurnActionAbility.team, TurnActionAbility.team > 0);
     }
-    // todo 考虑做成其他形式 获取状态
+    // 行动轮数 todo 考虑做成其他形式 获取状态
     public int GetMove()
     {
         return TurnActionAbility.move;
@@ -271,13 +278,10 @@ public class CardEntity : Entity
 
     #region 回合制战斗
     public int SeatNumber { get; set; }
-    public int JumpToTime { get; set; }
-    public bool IsHero { get; set; }
-    public bool IsMonster => IsHero == false;
 
     public CardEntity GetEnemy(int seat)
     {
-        if (IsHero)
+        if (GetTeam().Item2)
         {
             return RoomEntity.Instance.GetMonster(seat);
         }
@@ -289,7 +293,7 @@ public class CardEntity : Entity
 
     public CardEntity GetTeammate(int seat)
     {
-        if (IsHero)
+        if (GetTeam().Item2)
         {
             return RoomEntity.Instance.GetHero(seat);
         }
@@ -302,7 +306,7 @@ public class CardEntity : Entity
 
     public void onClickAttack()
     {
-        if (!isMe)
+        if (GetTeam().Item2 != Player.GetTeam().Item2)
         {
             if (Player.CardAttackActionAbility.TryCreateAction(out var action))
             {
@@ -316,6 +320,8 @@ public class CardEntity : Entity
                 action.Target = this;
                 action.BeginExecute();
                 Entity.Destroy(action);
+
+                RoomController.Instance.StartCombat();
             }
         }
     }

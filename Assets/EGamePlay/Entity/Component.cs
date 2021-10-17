@@ -22,7 +22,7 @@ namespace EGamePlay
 
         }
 
-        public virtual void Setup(object initData = null, bool asGameObject = false)
+        public virtual void Setup(object initData = null)
         {
 
         }

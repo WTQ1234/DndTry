@@ -15,15 +15,16 @@ public class InputController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector2 mousePos = Input.mousePosition;
-            Vector3 mousePos3d = new Vector3(mousePos.x, mousePos.y, camera_main.transform.position.z);
-            RaycastHit2D hit = Physics2D.Raycast(camera_main.ScreenToWorldPoint(mousePos3d), Vector2.zero);
-            if (hit.collider != null)
+            RaycastHit hit;
+            if (Physics.Raycast(camera_main.ScreenPointToRay(Input.mousePosition), out hit))
             {
-                Click2DComponent click2DComponent = hit.collider.GetComponent<Click2DComponent>();
-                if (click2DComponent != null)
+                if (hit.collider != null)
                 {
-                    click2DComponent.OnPointerClickCallBack?.Invoke();
+                    Click2DComponent click2DComponent = hit.collider.GetComponent<Click2DComponent>();
+                    if (click2DComponent != null)
+                    {
+                        click2DComponent.OnPointerClickCallBack?.Invoke();
+                    }
                 }
             }
 

@@ -342,7 +342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256810679}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: -1.83, y: -0.61, z: -6.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1015108569}
@@ -1843,10 +1843,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1135962800}
     m_Modifications:
-    - target: {fileID: 563988334496065319, guid: 83e88bee0f6c28b49809873551db75c8, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: edf81620f03f82a46944ba601d45df84, type: 2}
     - target: {fileID: 1004776118143983043, guid: 83e88bee0f6c28b49809873551db75c8, type: 3}
       propertyPath: m_Name
       value: CardBase_Down

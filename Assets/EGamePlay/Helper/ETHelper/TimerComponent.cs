@@ -16,7 +16,6 @@ namespace ET
 
         public override void Setup(object initData = null, bool asGameObject = false)
 		{
-			print(1);
 			Callback = initData as ETTaskCompletionSource<bool>;
 		}
 
@@ -265,8 +264,7 @@ namespace ET
 			long tillTime = TimeHelper.Now() + time;
 			ETTaskCompletionSource<bool> tcs = new ETTaskCompletionSource<bool>();
 			
-			OnceWaitTimer timer = null; 
-			//Entity.Create<OnceWaitTimer/*, ETTaskCompletionSource<bool>*/>(tcs, null, this);
+			OnceWaitTimer timer = Entity.Create<OnceWaitTimer/*, ETTaskCompletionSource<bool>*/>(tcs);
 			this.timers[timer.Id] = timer;
 			AddToTimeId(tillTime, timer.Id);
 			return await tcs.Task;

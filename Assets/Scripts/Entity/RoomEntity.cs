@@ -1,4 +1,4 @@
-﻿using EGamePlay.Combat.Ability;
+using EGamePlay.Combat.Ability;
 using EGamePlay.Combat.Status;
 using EGamePlay.Combat.Skill;
 using System;
@@ -24,9 +24,9 @@ public class RoomEntity : Entity
 
     public List<CardEntity> HeroEntities { get; set; } = new List<CardEntity>();
     public List<CardEntity> MonsterEntities { get; set; } = new List<CardEntity>();
-    public LinkedList<CardEntity> linkedMonsterEntities = new LinkedList<CardEntity>();
-    private Dictionary<CardEntity, int> enemyActIndex = new Dictionary<CardEntity, int>();
-
+    // seatNumber - 交互顺序
+    private Dictionary<int, int> enemyActIndex = new Dictionary<int, int>();
+    // 双方交互的卡牌
     private List<CardEntity> Cache_ActEntities = new List<CardEntity>();
     private List<CardEntity> Cache_OtherEntities = new List<CardEntity>();
 
@@ -64,6 +64,7 @@ public class RoomEntity : Entity
         //{
         //    TurnRoundTimer.UpdateAsFinish(Time.deltaTime, StartCombat);
         //}
+        RefreshMonAct();    // 这里正常只在移动时调用
         RefreshPos();
     }
 
@@ -74,9 +75,8 @@ public class RoomEntity : Entity
         for (int i = 1; i <= myTeamNum; i++)
         {
             var e = AddHeroEntity(i);
-            e.isMe = i == 2;
+            e.isMe = i == (int)(myTeamNum / 2);
             e.transform.localPosition = new Vector3(i * 1.5f, 0);
-            e.OnSetColor(Color.gray);
         }
         interactNum = 2 + myTeamNum - 1;
 
@@ -93,20 +93,20 @@ public class RoomEntity : Entity
     public CardEntity AddHeroEntity(int seat)
     {
         var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: HeroParent);
-        entity.IsHero = true;
         HeroEntities.Add(entity);
         entity.SeatNumber = seat;
+        entity.OnSetColor(Color.gray);
+        entity.SetTeam(1);
         return entity;
     }
 
     public CardEntity AddMonsterEntity(int seat)
     {
         var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: EnemyParent);
-        entity.IsHero = false;
         MonsterEntities.Add(entity);
-        linkedMonsterEntities.AddLast(entity);
         entity.SeatNumber = seat;
         entity.refreshState();
+        entity.SetTeam(-1);
         return entity;
     }
     #endregion
@@ -136,7 +136,7 @@ public class RoomEntity : Entity
         }
         foreach (var item in MonsterEntities)
         {
-            if (enemyActIndex.ContainsKey(item))
+            if (enemyActIndex.ContainsKey(item.SeatNumber))
                 Cache_ActEntities.Add(item);
             else
                 Cache_OtherEntities.Add(item);
@@ -157,7 +157,7 @@ public class RoomEntity : Entity
     private void RefreshMonAct()
     {
         int length = MonsterEntities.Count;
-        int index;  // index即为环形链表应有的入口
+        int index;  // index即为环形链表应有的入口 即现在是哪一个
         if (seatPos < 0)
         {
             // 假如是-1，长度是10，那么效果和转了9是一样的
@@ -168,22 +168,13 @@ public class RoomEntity : Entity
             index = seatPos % length;
         }
         int offset = (int)(interactNum / 2);
-        var curNode = GetMonsterFromNode(index);
         enemyActIndex.Clear();
-        enemyActIndex.Add(curNode.Value, 0);
-        var pre = curNode;
-        var after = curNode;
-        for (int i = 1; i <= offset; i++)
+        for (int i = -offset; i <= offset; i++)
         {
-            pre = i == 1 ? curNode.Previous : pre.Previous;
-            pre = pre ?? linkedMonsterEntities.Last;     // 某种奇怪的语法糖 pre = pre == null ? xxx : pre; 
-            after = i == 1 ? curNode.Next : after.Next;
-            after = after ?? linkedMonsterEntities.First;
-
-            if (!enemyActIndex.ContainsKey(pre.Value))
-                enemyActIndex.Add(pre.Value, i);
-            if (!enemyActIndex.ContainsKey(after.Value))
-                enemyActIndex.Add(after.Value, -i);
+            int id = i + index;
+            id = id < 0 ? id + length : id;
+            id = id >= length ? id - length : id;
+            enemyActIndex.Add(MonsterEntities[id].SeatNumber, i);
         }
     }
     // 刷新卡牌位置
@@ -195,9 +186,9 @@ public class RoomEntity : Entity
         {
             CardEntity curCard = MonsterEntities[i];
             Transform tran = curCard.transform;
-            if (enemyActIndex.ContainsKey(curCard))
+            if (enemyActIndex.ContainsKey(curCard.SeatNumber))
             {
-                tran.DOLocalMove(new Vector3(enemyActIndex[curCard] * -2f, 0, -4), 0.3f);
+                tran.DOLocalMove(new Vector3((enemyActIndex[curCard.SeatNumber]) * 2f, 0, -4), 0.3f);
             }
             else
             {
@@ -206,18 +197,6 @@ public class RoomEntity : Entity
             }
             tran.rotation = Camera.main.transform.rotation;
         }
-    }
-
-    // 返回第几个子对象应该所在的相对位置；
-    private Vector3 GerCurPosByIndex(int index)
-    {
-        float a = (index * Angle + m_StartAngle) % 360;
-        a = a >= 0 ? a + actAngle / 2 : a - actAngle / 2;
-        //1、先计算间隔角度：(弧度制)
-        float totalAngle = Mathf.Deg2Rad * a;
-        //2、计算位置
-        Vector3 Pos = new Vector3(Mathf.Sin(totalAngle) * Radius, 0, -1 * Radius * Mathf.Cos(totalAngle));
-        return Pos;
     }
     #endregion
 
@@ -231,15 +210,17 @@ public class RoomEntity : Entity
     {
         return MonsterEntities[seat];
     }
-
-    public LinkedListNode<CardEntity> GetMonsterFromNode(int seat)
+    
+    // 返回第几个子对象应该所在的相对位置；
+    private Vector3 GerCurPosByIndex(int index)
     {
-        var curNode = linkedMonsterEntities.First;
-        for (int i = 0; i < seat; i++)
-        {
-            curNode = curNode.Next;
-        }
-        return curNode;
+        float a = (index * Angle + m_StartAngle) % 360;
+        a = a >= 0 ? a + actAngle / 2 : a - actAngle / 2;
+        //1、先计算间隔角度：(弧度制)
+        float totalAngle = Mathf.Deg2Rad * a;
+        //2、计算位置
+        Vector3 Pos = new Vector3(Mathf.Sin(totalAngle) * Radius, 0, -1 * Radius * Mathf.Cos(totalAngle));
+        return Pos;
     }
     #endregion
 
@@ -263,7 +244,7 @@ public class RoomEntity : Entity
 
     public void OnCombatEntityDead(CardEntity combatEntity)
     {
-        if (combatEntity.IsHero) HeroEntities.RemoveAt(combatEntity.SeatNumber);
+        if (combatEntity.GetTeam().Item2) HeroEntities.RemoveAt(combatEntity.SeatNumber);
         else MonsterEntities.RemoveAt(combatEntity.SeatNumber);
     }
 
@@ -275,6 +256,7 @@ public class RoomEntity : Entity
         for (int i = 0; i < Cache_ActEntities.Count; i++)
         {
             CardEntity card = Cache_ActEntities[i];
+            if (card == null || card.isMe || card.CheckDead()) continue;
             TurnActionAbility TurnActionAbility = card.GetAbilityComponent<TurnActionAbility>();
             if (TurnActionAbility != null)
             {
@@ -282,7 +264,7 @@ public class RoomEntity : Entity
                 {
                     // 判断AI是否战斗，这里先不做AI
                     CardEntity enemy = GetEnemy(card, card.GetTeam());
-                    if (card.CheckDead() || enemy.CheckDead()) continue;
+                    if (enemy == null || enemy.CheckDead()) continue;
                     turnAction.Target = enemy;
                     await turnAction.ApplyTurn();
                     // todo 换一种方式删除?
@@ -312,11 +294,12 @@ public class RoomEntity : Entity
         StartCombat();
     }
 
-
     // todo 根据team获取敌人
     private CardEntity GetEnemy(CardEntity card, (int, bool) team)
     {
-        return null;
+        var list = team.Item2 ? MonsterEntities : HeroEntities;
+        int idx = team.Item2 ? card.SeatNumber : enemyActIndex[card.SeatNumber];
+        return list[idx];
     }
 }
 
