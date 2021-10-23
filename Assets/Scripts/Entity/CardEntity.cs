@@ -22,7 +22,8 @@ public class CardEntity : Entity
     public bool isCreature; // 是否是生物，若是，则生成CardEntity_Creature
     public bool isSpeak;    // 是否可交谈（呼出对话框），进而达成交谈、购买、抽奖等
     public bool isTool;      // 是否可交互
-
+    [SerializeField]
+    private int SeatNumber;  // 队列
     //public Dictionary<Type, AbilityComponent> TypeActions = new Dictionary<Type, AbilityComponent>();
     public Dictionary<Type, AbilityComponent> TypeAbility = new Dictionary<Type, AbilityComponent>();
     public Dictionary<string, List<StatusEntity>> TypeIdStatuses = new Dictionary<string, List<StatusEntity>>();
@@ -38,6 +39,7 @@ public class CardEntity : Entity
     private HealthPointComponent healthPointComponent { get; set; }
     private CardAttributeComponent CardAttributeComponent { get; set; }
 
+    private EventComponent EventComponent { get; set; }
     private CardShowComponent cardShowComponent { get; set; }
     private Click2DComponent click2DComponent { get; set; }
     private ConditionManageComponent ConditionManageComponent { get; set; }
@@ -59,15 +61,16 @@ public class CardEntity : Entity
         Start_Test();
         StatusParent = transform.Find("StatusParent");
         Init();
+        InitEvent();
     }
 
-    // 临时在Start里面创建
-    public void Init()
+    private void Init()
     {
         // 根据配置表进行赋值，创建一张卡牌
         click2DComponent = AddComponent<Click2DComponent>();
         cardShowComponent = AddComponent<CardShowComponent>();
         ConditionManageComponent = AddComponent<ConditionManageComponent>();
+        EventComponent = AddComponent<EventComponent>();
 
         CardAttackActionAbility = AttachAbilityComponent<CardAttackActionAbility>(null);
         CardDamageActionAbility = AttachAbilityComponent<CardDamageActionAbility>(null);
@@ -87,13 +90,18 @@ public class CardEntity : Entity
         }
 
         // 测试buff
-        var status = AttachStatusById(1);
-        status.Caster = this;
-        status.TryActivateAbility();
-        
+        //var status = AttachStatusById(1);
+        //status.Caster = this;
+        //status.TryActivateAbility();
+
         var status2 = AttachStatusById(2);
         status2.Caster = this;
         status2.TryActivateAbility();
+    }
+
+    private void InitEvent()
+    {
+        Subscribe<DeadEvent>(OnDead<DeadEvent>);
     }
     #endregion
 
@@ -136,6 +144,15 @@ public class CardEntity : Entity
     public (int, bool) GetTeam()
     {
         return (TurnActionAbility.team, TurnActionAbility.team > 0);
+    }
+    // 排序
+    public void SetSeatNumber(int s)
+    {
+        SeatNumber = s;
+    }
+    public int GetSeatNumber()
+    {
+        return SeatNumber;
     }
     // 行动轮数 todo 考虑做成其他形式 获取状态
     public int GetMove()
@@ -276,9 +293,6 @@ public class CardEntity : Entity
         Action_OnTrunStart?.Invoke();
     }
 
-    #region 回合制战斗
-    public int SeatNumber { get; set; }
-
     public CardEntity GetEnemy(int seat)
     {
         if (GetTeam().Item2)
@@ -302,27 +316,48 @@ public class CardEntity : Entity
             return RoomEntity.Instance.GetMonster(seat);
         }
     }
-    #endregion
+
+    private void OnDead<DeadEvent>(DeadEvent deadEvent)
+    {
+        RoomEntity.Instance.OnCombatEntityDead(this);
+        DestroyEntity();
+        print($"{SeatNumber} 死了！");
+    }
 
     public void onClickAttack()
     {
-        if (GetTeam().Item2 != Player.GetTeam().Item2)
+        if (RoomEntity.Instance.isActEnemy(SeatNumber, out int enemyIndex))
         {
-            if (Player.CardAttackActionAbility.TryCreateAction(out var action))
+            if (GetTeam().Item2 != Player.GetTeam().Item2)
             {
-                //var monster = this;
-                //SpawnLineEffect(AttackPrefab, transform.position, monster.transform.position);
-                //SpawnHitEffect(transform.position, monster.transform.position);
+                if (Player.CardAttackActionAbility.TryCreateAction(out var action))
+                {
+                    //var monster = this;
+                    //SpawnLineEffect(AttackPrefab, transform.position, monster.transform.position);
+                    //SpawnHitEffect(transform.position, monster.transform.position);
 
-                // 设置一下攻击力
-                // Player.GetComponent<CardAttributeComponent>().SetBaseVale(AttrType.Atk_P, ET.RandomHelper.RandomNumber(600, 999));
-                action.OwnerEntity = Player;
-                action.Target = this;
-                action.BeginExecute();
-                Entity.Destroy(action);
+                    // 设置一下攻击力
+                    // Player.GetComponent<CardAttributeComponent>().SetBaseVale(AttrType.Atk_P, ET.RandomHelper.RandomNumber(600, 999));
+                    action.OwnerEntity = Player;
+                    action.Target = this;
+                    action.BeginExecute();
+                    Entity.Destroy(action);
 
-                RoomController.Instance.StartCombat();
+                    RoomController.Instance.StartCombat();
+                }
             }
+        }
+    }
+
+    public void Attack(CardEntity enemy)
+    {
+        if (CardAttackActionAbility.TryCreateAction(out var action))
+        {
+            print($"{SeatNumber} 攻击了 {enemy.SeatNumber}");
+            action.OwnerEntity = this;
+            action.Target = enemy;
+            action.BeginExecute();
+            Entity.Destroy(action);
         }
     }
 }

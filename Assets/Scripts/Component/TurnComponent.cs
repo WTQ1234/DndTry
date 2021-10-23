@@ -18,11 +18,28 @@ public class TurnActionAbility : ActionAbilityComponent<TurnAction>
     public int team = 1;
     public int move = 1;    // 每回合可行动次数
 
-    //public override void Setup(object initData = null)
-    //{
-    //    base.Setup(initData);
-    //    team = (int)initData;
-    //}
+    protected override void Awake()
+    {
+        if (OwnerEntity.Action_OnTrunStart == null)
+        {
+            OwnerEntity.Action_OnTrunStart = OnTurnStart;
+        }
+        else
+        {
+            OwnerEntity.Action_OnTrunStart += OnTurnStart;
+        }
+    }
+
+    protected override void OnDestroy()
+    {
+        OwnerEntity.Action_OnTrunStart -= OnTurnStart;
+    }
+
+
+    private void OnTurnStart()
+    {
+        move = 1;
+    }
 
     public override bool TryCreateAction(out TurnAction abilityExecution)
     {
@@ -51,9 +68,12 @@ public class TurnAction : CardActionExecution
 
     }
 
-    public async ETTask ApplyTurn()
+    public void ApplyTurn()
+    //public async ETTask ApplyTurn()
     {
         PreProcess();
+
+        Creator.Attack(Target);
 
         //if (Creator.JumpToActionAbility.TryCreateAction(out var jumpToAction))
         //{

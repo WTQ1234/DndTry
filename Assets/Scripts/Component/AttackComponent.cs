@@ -63,7 +63,7 @@ public class CardAttackAction : CardActionExecution
             {
                 action.Target = Target;
                 action.DamageSource = DamageSource.Attack;
-                action.ApplyDamage();
+                action.BeginExecute();
             }
         }
         else

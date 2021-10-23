@@ -69,7 +69,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 55
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 61
     m_Alignment: 4
@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 11111111111111111111
+  m_Text: "\u7A7A"
 --- !u!114 &8783770151316630655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,8 +442,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec733308d8d1a94fb41409855cf362d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMe: 0
   isCreature: 1
   isSpeak: 0
   isTool: 0
+  SeatNumber: 0
   ActionControlType: 0

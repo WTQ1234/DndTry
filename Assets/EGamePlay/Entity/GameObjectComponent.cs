@@ -20,7 +20,7 @@ namespace EGamePlay
             Entity.OnRemoveChildAction = OnRemoveChild;
         }
 
-        public override void OnDestroy()
+        protected override void OnDestroy()
         {
             base.OnDestroy();
             UnityEngine.GameObject.Destroy(GameObject);

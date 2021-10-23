@@ -101,9 +101,9 @@ namespace EGamePlay
             }
         }
 
-        public static void Destroy(Entity entity)
+        public void DestroyEntity(float t = 0)
         {
-            entity.OnDestroy();
+            UnityEngine.Object.Destroy(gameObject, t);
             //entity.Dispose();
         }
         #endregion
@@ -149,7 +149,7 @@ namespace EGamePlay
             Parent?.RemoveChild(this);
             foreach (Component component in this.Components.Values)
             {
-                component.OnDestroy();
+                //component.OnDestroy();
                 component.Dispose();
             }
             this.Components.Clear();
@@ -201,7 +201,7 @@ namespace EGamePlay
         public void RemoveComponent<T>() where T : Component
         {
             var component = this.Components[typeof(T)];
-            component.OnDestroy();
+            //component.OnDestroy();
             component.Dispose();
             this.Components.Remove(typeof(T));
             OnRemoveComponentAction?.Invoke((component));

@@ -23,4 +23,11 @@ public static class Common
     //    }
     //    return regexNumber.IsMatch(input);
     //}
+
+    static public bool ContainsKey<T>(this List<T> input, int index)
+    {
+        if (index < 0) return false;
+        if (index >= input.Count) return false;
+        return true;
+    }
 }

@@ -38,10 +38,4 @@ public abstract class CardActionExecution : CardAbilityExecution
     public ActionType ActionType;
     public CardEntity Creator;
     public CardEntity Target;
-
-
-    public virtual void ApplyAction()
-    {
-        EndExecute();
-    }
 }

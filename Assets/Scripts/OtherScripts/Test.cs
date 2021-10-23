@@ -82,6 +82,7 @@ public class Test : MonoBehaviour
         //    print("==============================");
         //    print(kv.Value.testbool.ToString() + kv.Value.AttrType);
         //}
+
     }
 
     (int, T) a<T>() where T: Test

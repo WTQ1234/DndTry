@@ -46,6 +46,7 @@ public class CardDamageAction : CardActionExecution
     //前置处理
     private void PreProcess()
     {
+        // 计算伤害量
         if (DamageSource == DamageSource.Attack)
         {
             IsCritical = RandomHelper.RandomRate() < Creator.GetAttr(AttrType.Critical_P);
@@ -80,19 +81,7 @@ public class CardDamageAction : CardActionExecution
     //应用伤害
     public void ApplyDamage()
     {
-        PreProcess();
 
-        Target.ReceiveDamage(this);
-
-        PostProcess();
-
-        if (Target.CheckDead())
-        {
-            Target.Publish(new DeadEvent());
-            //CombatContext.Instance.OnCombatEntityDead(Target);
-        }
-
-        ApplyAction();
     }
 
     //后置处理
@@ -106,19 +95,16 @@ public class CardDamageAction : CardActionExecution
 
     public override void BeginExecute()
     {
-        CardDamageActionAbility CardDamageActionAbility = OwnerEntity.GetAbilityComponent<CardDamageActionAbility>();
-        if (CardDamageActionAbility != null)
+        PreProcess();
+
+        Target.ReceiveDamage(this);
+
+        PostProcess();
+
+        if (Target.CheckDead())
         {
-            if (CardDamageActionAbility.TryCreateAction(out var action))
-            {
-                action.Target = Target;
-                action.DamageSource = DamageSource.Attack;
-                action.ApplyDamage();
-            }
-        }
-        else
-        {
-            Log.Error("can not get CardDamageActionAbility");
+            Target.Publish(new DeadEvent());
+            //CombatContext.Instance.OnCombatEntityDead(Target);
         }
 
         this.EndExecute();
@@ -128,16 +114,4 @@ public class CardDamageAction : CardActionExecution
     {
         base.EndExecute();
     }
-}
-
-public class DeadEvent
-{
-
-}
-
-public enum DamageSource
-{
-    Attack,//普攻
-    Skill,//技能
-    Buff,//Buff
 }

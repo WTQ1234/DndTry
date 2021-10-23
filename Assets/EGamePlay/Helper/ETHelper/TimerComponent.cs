@@ -140,9 +140,10 @@ namespace ET
 			Instance = this;
         }
 
-        public void Update()
+        public override void Update()
 		{
-			return;
+			//return;
+			base.Update();
 			if (this.TimeId.Count == 0)
 			{
 				return;
@@ -264,7 +265,7 @@ namespace ET
 			long tillTime = TimeHelper.Now() + time;
 			ETTaskCompletionSource<bool> tcs = new ETTaskCompletionSource<bool>();
 			
-			OnceWaitTimer timer = Entity.Create<OnceWaitTimer/*, ETTaskCompletionSource<bool>*/>(tcs);
+			OnceWaitTimer timer = Entity.Create<OnceWaitTimer/*, ETTaskCompletionSource<bool>*/>(tcs, null, null, this);
 			this.timers[timer.Id] = timer;
 			AddToTimeId(tillTime, timer.Id);
 			return await tcs.Task;

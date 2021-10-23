@@ -5,7 +5,7 @@ namespace EGamePlay
 {
     public class Component : MonoBehaviour, IDisposable
     {
-        public CardEntity OwnerEntity { get => GetEntity<CardEntity>(); }
+        public CardEntity OwnerEntity { get => GetComponent<CardEntity>(); }
         public Entity Entity { get; set; }
         public bool IsDisposed { get; set; }
         public virtual bool Enable { get; set; } = true;
@@ -27,12 +27,17 @@ namespace EGamePlay
 
         }
 
+        protected virtual void Awake()
+        {
+
+        }
+
         public virtual void Update()
         {
 
         }
 
-        public virtual void OnDestroy()
+        protected virtual void OnDestroy()
         {
 
         }

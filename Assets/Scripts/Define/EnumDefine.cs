@@ -185,6 +185,14 @@ public enum DamageType
     Real = 2,
 }
 
+[LabelText("伤害来源")]
+public enum DamageSource
+{
+    Attack,//普攻
+    Skill,//技能
+    Buff,//Buff
+}
+
 //[LabelText("效果类型")]
 public enum SkillEffectType
 {

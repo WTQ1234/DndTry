@@ -72,7 +72,7 @@ public class RoomEntity : Entity
     public void CreateTeam()
     {
         // 创建一个主角和一个随从
-        for (int i = 1; i <= myTeamNum; i++)
+        for (int i = 0; i < myTeamNum; i++)
         {
             var e = AddHeroEntity(i);
             e.isMe = i == (int)(myTeamNum / 2);
@@ -81,7 +81,7 @@ public class RoomEntity : Entity
         interactNum = 2 + myTeamNum - 1;
 
         // 创建3个敌人
-        for (int i = 1; i <= enemyTeamNum; i++)
+        for (int i = 0; i < enemyTeamNum; i++)
         {
             var e = AddMonsterEntity(i);
             e.transform.localPosition = new Vector3(i * 1.5f, 0);
@@ -94,8 +94,9 @@ public class RoomEntity : Entity
     {
         var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: HeroParent);
         HeroEntities.Add(entity);
-        entity.SeatNumber = seat;
+        entity.SetSeatNumber(seat);
         entity.OnSetColor(Color.gray);
+        entity.refreshState();
         entity.SetTeam(1);
         return entity;
     }
@@ -104,7 +105,7 @@ public class RoomEntity : Entity
     {
         var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: EnemyParent);
         MonsterEntities.Add(entity);
-        entity.SeatNumber = seat;
+        entity.SetSeatNumber(seat);
         entity.refreshState();
         entity.SetTeam(-1);
         return entity;
@@ -136,7 +137,7 @@ public class RoomEntity : Entity
         }
         foreach (var item in MonsterEntities)
         {
-            if (enemyActIndex.ContainsKey(item.SeatNumber))
+            if (enemyActIndex.ContainsKey(item.GetSeatNumber()))
                 Cache_ActEntities.Add(item);
             else
                 Cache_OtherEntities.Add(item);
@@ -174,7 +175,7 @@ public class RoomEntity : Entity
             int id = i + index;
             id = id < 0 ? id + length : id;
             id = id >= length ? id - length : id;
-            enemyActIndex.Add(MonsterEntities[id].SeatNumber, i);
+            enemyActIndex.Add(MonsterEntities[id].GetSeatNumber(), i);
         }
     }
     // 刷新卡牌位置
@@ -186,9 +187,9 @@ public class RoomEntity : Entity
         {
             CardEntity curCard = MonsterEntities[i];
             Transform tran = curCard.transform;
-            if (enemyActIndex.ContainsKey(curCard.SeatNumber))
+            if (enemyActIndex.ContainsKey(curCard.GetSeatNumber()))
             {
-                tran.DOLocalMove(new Vector3((enemyActIndex[curCard.SeatNumber]) * 2f, 0, -4), 0.3f);
+                tran.DOLocalMove(new Vector3((enemyActIndex[curCard.GetSeatNumber()]) * 2f, 0, -4), 0.3f);
             }
             else
             {
@@ -211,6 +212,11 @@ public class RoomEntity : Entity
         return MonsterEntities[seat];
     }
     
+    public bool isActEnemy(int seat, out int EnemyIndex)
+    {
+        return enemyActIndex.TryGetValue(seat, out EnemyIndex);
+    }
+
     // 返回第几个子对象应该所在的相对位置；
     private Vector3 GerCurPosByIndex(int index)
     {
@@ -242,14 +248,30 @@ public class RoomEntity : Entity
     }
     #endregion
 
-    public void OnCombatEntityDead(CardEntity combatEntity)
+    public void OnCombatEntityDead(CardEntity cardEntity)
     {
-        if (combatEntity.GetTeam().Item2) HeroEntities.RemoveAt(combatEntity.SeatNumber);
-        else MonsterEntities.RemoveAt(combatEntity.SeatNumber);
+
+        if (cardEntity.GetTeam().Item2)
+        {
+            HeroEntities.RemoveAt(cardEntity.GetSeatNumber());
+            for(int i = 0; i < HeroEntities.Count; i++)
+            {
+                HeroEntities[i].SetSeatNumber(i);
+            }
+        }
+        else
+        {
+            MonsterEntities.RemoveAt(cardEntity.GetSeatNumber());
+            for (int i = 0; i < MonsterEntities.Count; i++)
+            {
+                MonsterEntities[i].SetSeatNumber(i);
+            }
+        }
     }
 
     public async void StartCombat()
     {
+        print("回合开始");
         RefreshCard();
         // 在互动范围内的敌人的行动 近程怪暂时直接打
         RefreshActions();
@@ -266,7 +288,8 @@ public class RoomEntity : Entity
                     CardEntity enemy = GetEnemy(card, card.GetTeam());
                     if (enemy == null || enemy.CheckDead()) continue;
                     turnAction.Target = enemy;
-                    await turnAction.ApplyTurn();
+                    //await turnAction.ApplyTurn();
+                    turnAction.ApplyTurn();
                     // todo 换一种方式删除?
                     Entity.Destroy(turnAction);
                 }
@@ -290,20 +313,57 @@ public class RoomEntity : Entity
         //}
 
         // 下一回合
-        await TimerComponent.Instance.WaitAsync(1000);
-        StartCombat();
+        print("回合结束");
+        //await TimerComponent.Instance.WaitAsync(1000);
+        //StartCombat();
     }
 
-    // todo 根据team获取敌人
     private CardEntity GetEnemy(CardEntity card, (int, bool) team)
     {
         var list = team.Item2 ? MonsterEntities : HeroEntities;
-        int idx = team.Item2 ? card.SeatNumber : enemyActIndex[card.SeatNumber];
-        return list[idx];
+        int idx = GlobalDefine.int_Empty;
+        if (team.Item2)
+        {
+            // 是玩家 找到玩家的交互顺序
+            int playerPos = HeroEntities.Count / 2;
+            int index = card.GetSeatNumber() - playerPos;
+            for (int i = index;;)
+            {
+                foreach (var item in enemyActIndex)
+                {
+                    if (item.Value == i)
+                    {
+                        idx = item.Key; // 即得到了想要的SeatNumber
+                    }
+                }
+                if (idx != GlobalDefine.int_Empty)
+                {
+                    break;
+                }
+                i = i + (i < 0 ? 1 : -1);
+            }
+        }
+        else
+        {
+            idx = enemyActIndex[card.GetSeatNumber()] + enemyActIndex.Count / 2;   // 怪物当前是哪个，然后去玩家卡里拿就可以了
+            for (int i = idx; ;)
+            {
+                if (i >= HeroEntities.Count)
+                {
+                    i -= 1;
+                }
+                else if (i < 0)
+                {
+                    i += 1;
+                }
+                else
+                {
+                    idx = i;
+                    break;
+                }
+            }
+        }
+        print($"{card.GetSeatNumber()} 阵营为 {team.Item1} {team.Item2}  找敌人,  找到了 {idx}");
+        return list.ContainsKey(idx) ? list[idx] : null;
     }
-}
-
-public class CombatEndEvent
-{
-
 }
