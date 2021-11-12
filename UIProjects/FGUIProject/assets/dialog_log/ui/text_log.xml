@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="136,40">
+  <displayList>
+    <richtext id="n1_l019" name="text_log" xy="0,0" size="136,40" fontSize="29" vAlign="middle" text="测试文本1">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
+  </displayList>
+  <relation target="n1_l019" sidePair="width-width,height-height"/>
+</component>

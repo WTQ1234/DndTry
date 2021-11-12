@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="bgoepfli">
+  <resources>
+    <component id="x3pr0" name="main.xml" path="/" exported="true"/>
+    <component id="l0191" name="text_log.xml" path="/ui/"/>
+    <component id="gx3z4" name="btn_turn.xml" path="/ui/"/>
+    <component id="gx3z6" name="mc_log.xml" path="/ui/"/>
+  </resources>
+  <publish name="dialog_log"/>
+</packageDescription>

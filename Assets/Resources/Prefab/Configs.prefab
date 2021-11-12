@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8957007620084665263}
   - component: {fileID: 8957007620084665262}
+  - component: {fileID: 1543256266}
   m_Layer: 0
   m_Name: Configs
   m_TagString: Untagged
@@ -46,11 +47,18 @@ MonoBehaviour:
   data:
   - key: AttrConfig
     gameObject: {fileID: 4900000, guid: 5cb75d605b265a84c9cb422b60fbc2b2, type: 3}
-  - key: EquipmentConfig
-    gameObject: {fileID: 4900000, guid: ebc2fb7ad39a09b4ab38c3af49f20ddd, type: 3}
-  - key: SkillConfig
-    gameObject: {fileID: 4900000, guid: 2db2860461abf8545833687a1d3e44f0, type: 3}
-  - key: SkillEffectsConfig
-    gameObject: {fileID: 4900000, guid: 44b249c50bf29d241b0a0523d995eb2b, type: 3}
-  - key: UnitConfig
-    gameObject: {fileID: 4900000, guid: 1eafb0a39812b6648b405be4ff8b0303, type: 3}
+  - key: StatusConfig
+    gameObject: {fileID: 4900000, guid: 67607761fcb6b3543aa97695d5e9783c, type: 3}
+--- !u!114 &1543256266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957007620084665256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea4e28c559bb3b742b096f336ccb939f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  str_Empty: 

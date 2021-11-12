@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1920,1080">
+  <displayList>
+    <component id="n0_l019" name="mc_log" src="gx3z6" fileName="ui/mc_log.xml" xy="0,700"/>
+    <component id="n3_gx3z" name="btn_turnLeft" src="gx3z4" fileName="ui/btn_turn.xml" xy="1,437"/>
+    <component id="n4_gx3z" name="btn_turnRight" src="gx3z4" fileName="ui/btn_turn.xml" xy="1818,431"/>
+  </displayList>
+  <transition name="alphaOn">
+    <item time="0" type="Alpha" target="n0_l019" value="1"/>
+    <item time="12" type="Alpha" target="n0_l019" tween="true" startValue="1" endValue="0.3" duration="12"/>
+  </transition>
+  <transition name="alphaOff">
+    <item time="0" type="Alpha" target="n0_l019" tween="true" startValue="0.3" endValue="1" duration="6"/>
+  </transition>
+</component>

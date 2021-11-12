@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="400,380">
+  <displayList>
+    <graph id="n1_gx3z" name="bg" xy="0,0" size="400,380" type="rect" lineSize="0" fillColor="#ff999999"/>
+    <list id="n0_l019" name="list_log" xy="0,0" pivot="0,1" size="400,380" overflow="scroll" defaultItem="ui://bgoepflil0191">
+      <relation target="" sidePair="bottomext-bottom,leftext-left%"/>
+      <item/>
+      <item/>
+    </list>
+  </displayList>
+</component>

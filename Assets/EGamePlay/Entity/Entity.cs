@@ -177,7 +177,7 @@ namespace EGamePlay
             component.IsDisposed = false;
             component.Enable = true;
             this.Components.Add(typeof(T), component);
-            Master.AllComponents.Add(component);
+            //Master.AllComponents.Add(component);
             if (Entity.EnableLog) Log.Debug($"{GetType().Name}->AddComponent, {typeof(T).Name}");
             component.Setup();
             OnAddComponentAction?.Invoke((component));

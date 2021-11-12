@@ -12,5 +12,6 @@ public class BasicController : MonoBehaviour
         gameObject.AddComponent<ConfigController>();
         gameObject.AddComponent<AttrController>();
         gameObject.AddComponent<RoomController>();
+        gameObject.AddComponent<UIController>();
     }
 }
