@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class UIBasic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Awake()
     {
-        
+        UIController.Instance.onSetUI(GetType().ToString(), this);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Start()
     {
-        
+
     }
 }

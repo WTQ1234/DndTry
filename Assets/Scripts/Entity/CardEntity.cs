@@ -353,7 +353,7 @@ public class CardEntity : Entity
     {
         if (CardAttackActionAbility.TryCreateAction(out var action))
         {
-            print($"{SeatNumber} 攻击了 {enemy.SeatNumber}");
+            RoomEntity.Instance.Log($"{SeatNumber} 攻击了 {enemy.SeatNumber}");
             action.OwnerEntity = this;
             action.Target = enemy;
             action.BeginExecute();

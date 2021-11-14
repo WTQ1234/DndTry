@@ -42,8 +42,8 @@ public class RoomEntity : Entity
 
     private Transform HeroParent;
     private Transform EnemyParent;
-
     private GameObject Prefab_Card;
+    private RoomUI roomUI;
 
     public override void Awake()
     {
@@ -56,6 +56,12 @@ public class RoomEntity : Entity
         EnemyParent = transform.Find("EnemyParent");
         Prefab_Card = Resources.Load<GameObject>("Prefab/Card");
         CreateTeam();
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        roomUI = UIController.Instance.onGetUI("RoomUI") as RoomUI;
     }
 
     public override void Update()
@@ -76,7 +82,6 @@ public class RoomEntity : Entity
         {
             var e = AddHeroEntity(i);
             e.isMe = i == (int)(myTeamNum / 2);
-            e.transform.localPosition = new Vector3(i * 1.5f, 0);
         }
         interactNum = 2 + myTeamNum - 1;
 
@@ -84,7 +89,6 @@ public class RoomEntity : Entity
         for (int i = 0; i < enemyTeamNum; i++)
         {
             var e = AddMonsterEntity(i);
-            e.transform.localPosition = new Vector3(i * 1.5f, 0);
         }
         RefreshMonAct();
         RefreshPos();
@@ -181,23 +185,50 @@ public class RoomEntity : Entity
     // 刷新卡牌位置
     private void RefreshPos()
     {
-        int length = MonsterEntities.Count;
-        Angle = (360 - actAngle) / length;
-        for (int i = 0; i < length; i++)
+        int length_mon = MonsterEntities.Count;
+        Angle = (360 - actAngle) / length_mon;
+        for (int i = 0; i < length_mon; i++)
         {
             CardEntity curCard = MonsterEntities[i];
             Transform tran = curCard.transform;
             if (enemyActIndex.ContainsKey(curCard.GetSeatNumber()))
             {
-                tran.DOLocalMove(new Vector3((enemyActIndex[curCard.GetSeatNumber()]) * 2f, 0, -4), 0.3f);
+                Vector3 targetPos = new Vector3((enemyActIndex[curCard.GetSeatNumber()]) * 2f, 0, -4);
+                float distance = Vector3.Distance(targetPos, tran.position);
+                if (distance < 1)
+                {
+                    tran.position = targetPos;
+                }
+                else
+                {
+                    tran.DOLocalMove(targetPos, 0.3f);
+                }                
             }
             else
             {
                 int curPos = i - seatPos;
-                tran.DOLocalMove(GerCurPosByIndex(curPos), 0.3f);
+                Vector3 targetPos = GerCurPosByIndex(curPos);
+                float distance = Vector3.Distance(targetPos, tran.position);
+                if (distance < 1)
+                {
+                    tran.position = targetPos;
+                }
+                else
+                {
+                    tran.DOLocalMove(targetPos, 0.3f);
+                }
             }
             tran.rotation = Camera.main.transform.rotation;
         }
+
+        int length_hero = HeroEntities.Count;
+        for (int i = 0; i < length_hero; i++)
+        {
+            CardEntity curCard = MonsterEntities[i];
+            Transform tran = curCard.transform;
+            tran.rotation = Camera.main.transform.rotation;
+        }
+
     }
     #endregion
 
@@ -271,7 +302,7 @@ public class RoomEntity : Entity
 
     public async void StartCombat()
     {
-        print("回合开始");
+        Log("======回合开始");
         RefreshCard();
         // 在互动范围内的敌人的行动 近程怪暂时直接打
         RefreshActions();
@@ -313,7 +344,7 @@ public class RoomEntity : Entity
         //}
 
         // 下一回合
-        print("回合结束");
+        Log("======回合结束");
         //await TimerComponent.Instance.WaitAsync(1000);
         //StartCombat();
     }
@@ -363,7 +394,12 @@ public class RoomEntity : Entity
                 }
             }
         }
-        print($"{card.GetSeatNumber()} 阵营为 {team.Item1} {team.Item2}  找敌人,  找到了 {idx}");
+        Log($"{card.GetSeatNumber()} 阵营为 {team.Item1} {team.Item2}  找敌人,  找到了 {idx}");
         return list.ContainsKey(idx) ? list[idx] : null;
+    }
+
+    public void Log(string msg)
+    {
+        roomUI.Log(msg);
     }
 }

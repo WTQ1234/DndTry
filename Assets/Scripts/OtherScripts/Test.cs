@@ -11,7 +11,7 @@ using ET;
 using LitJson;
 using RegexHelper;
 
-public class Test : MonoBehaviour
+public class Test : SingleTon<Test>
 {
     void Start()
     {
@@ -82,7 +82,6 @@ public class Test : MonoBehaviour
         //    print("==============================");
         //    print(kv.Value.testbool.ToString() + kv.Value.AttrType);
         //}
-
     }
 
     (int, T) a<T>() where T: Test

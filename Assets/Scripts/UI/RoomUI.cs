@@ -5,13 +5,18 @@ using FairyGUI;
 
 public class RoomUI : UIBasic
 {
-    public GComponent m_root;
-    public GButton btn_turnLeft;
-    public GButton btn_turnRight;
-    public UIPanel panel;
+    UIPanel panel;
+    GComponent ui;
+    GComponent mc_log;
+    GList list_log;
+    GButton btn_turnLeft;
+    GButton btn_turnRight;
 
-    private void Start()
+    private List<string> LogList = new List<string>();
+
+    protected override void Start()
     {
+        base.Start();
         //加载包
         //UIPackage.AddPackage("FairyGUI/common");
         //UIPackage.AddPackage("FairyGUI/dialog_log");
@@ -33,17 +38,41 @@ public class RoomUI : UIBasic
         //panel.CreateUI();
 
         //根据FairyGUI中设置的名称找到对应的组件
-        m_root = panel.ui;
-        btn_turnLeft = m_root.GetChild("btn_turnLeft").asButton;
-        btn_turnRight = m_root.GetChild("btn_turnRight").asButton;
+        ui = panel.ui;
+        mc_log = ui.GetChild("mc_log") as GComponent;
+        list_log = ui.GetChildByPath("mc_log.list_log").asList;
+        btn_turnLeft = ui.GetChild("btn_turnLeft").asButton;
+        btn_turnRight = ui.GetChild("btn_turnRight").asButton;
 
-        //添加点击事件
-        btn_turnLeft.onClick.Add(OnClickConfirm);
+        // 添加点击事件
+        btn_turnLeft.onClick.Add(Test.Instance.TtyTurnLeft);
+        btn_turnRight.onClick.Add(Test.Instance.TtyTurnRight);
+
+        // 渲染列表
+        list_log.itemRenderer = RenderListItem;
+        list_log.numItems = LogList.Count;
     }
 
-    void OnClickConfirm()
+    private void RenderListItem(int index, GObject obj)
     {
-        print(1);
-        //Debug.Log("account:" + m_inputAccount.text + "     pwd:" + m_inputPwd.text);
+        GComponent comp = obj as GComponent;
+        GObject text_log = comp.GetChild("text_log");
+        text_log.text = LogList[index];
+    }
+
+    public void Log(string msg)
+    {
+        if (IniController.Instance.Log)
+        {
+            print(msg);
+        }
+        LogList.Add(msg);
+        list_log.numItems = LogList.Count;
+        list_log.AddSelection(LogList.Count - 1, true);
+        if (mc_log.alpha <= 0.3f)
+        {
+            mc_log.alpha = 0.301f;
+            ui.GetTransition("alpha").Play();
+        }
     }
 }
