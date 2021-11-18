@@ -13,6 +13,9 @@ using RegexHelper;
 
 public class Test : SingleTon<Test>
 {
+
+    public List<CardEntity> HeroEntities1 { get; set; } = new List<CardEntity>();
+
     void Start()
     {
         #region 测试 解析战斗公式
@@ -93,7 +96,17 @@ public class Test : SingleTon<Test>
     {
         if (GUI.Button(new Rect(50, 50, 150, 35), "按钮"))
         {
-            RoomEntity.Instance.NextTurn();
+            //HeroEntities1.Add(new CardEntity());
+            //HeroEntities1.RemoveAt(0);
+            //Player
+            print(CardEntity.Player.GetSeatNumber());
+            RoomEntity.Instance.HeroEntities.RemoveAt(0);
+            print(RoomEntity.Instance.HeroEntities.Count);
+            //RoomEntity.Instance.OnCombatEntityDead(CardEntity.Player);
+
+            //CardEntity.Player.DestroyEntity();
+            //DestroyEntity
+            //RoomEntity.Instance.NextTurn();
         }
     }
 

@@ -5,8 +5,6 @@ using FairyGUI;
 
 public class RoomUI : UIBasic
 {
-    UIPanel panel;
-    GComponent ui;
     GComponent mc_log;
     GList list_log;
     GButton btn_turnLeft;
@@ -18,11 +16,9 @@ public class RoomUI : UIBasic
     {
         base.Start();
         //加载包
-        //UIPackage.AddPackage("FairyGUI/common");
         //UIPackage.AddPackage("FairyGUI/dialog_log");
 
         //创建UIPanel
-        panel = gameObject.GetComponent<UIPanel>();
         //panel.packageName = "dialog_log";
         //panel.componentName = "LogPanel";
         ////设置renderMode的方式
@@ -38,7 +34,6 @@ public class RoomUI : UIBasic
         //panel.CreateUI();
 
         //根据FairyGUI中设置的名称找到对应的组件
-        ui = panel.ui;
         mc_log = ui.GetChild("mc_log") as GComponent;
         list_log = ui.GetChildByPath("mc_log.list_log").asList;
         btn_turnLeft = ui.GetChild("btn_turnLeft").asButton;

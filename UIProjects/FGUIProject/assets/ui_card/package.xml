@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="sa4gna93">
+  <resources>
+    <component id="maxz0" name="main.xml" path="/" exported="true"/>
+    <component id="maxz1" name="bar_hp.xml" path="/"/>
+    <component id="maxz5" name="btn_show.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

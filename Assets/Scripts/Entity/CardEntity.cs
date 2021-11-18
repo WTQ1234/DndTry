@@ -267,6 +267,7 @@ public class CardEntity : Entity
     public void ReceiveDamage(CardActionExecution combatAction)
     {
         var damageAction = combatAction as CardDamageAction;
+        RoomEntity.Instance.Log($"造成伤害：{damageAction.DamageValue}");
         healthPointComponent.Minus(damageAction.DamageValue);
         refreshState();
     }
@@ -319,9 +320,14 @@ public class CardEntity : Entity
 
     private void OnDead<DeadEvent>(DeadEvent deadEvent)
     {
+        if (isMe)
+        {
+            Player = null;
+        }
+        RoomEntity.Instance.Log($"{SeatNumber} 死了！");
         RoomEntity.Instance.OnCombatEntityDead(this);
+        this.Dispose();
         DestroyEntity();
-        print($"{SeatNumber} 死了！");
     }
 
     public void onClickAttack()

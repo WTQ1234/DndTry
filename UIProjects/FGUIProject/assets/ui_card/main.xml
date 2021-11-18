@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="123,200">
+  <displayList>
+    <graph id="n0_maxz" name="bg" xy="0,0" size="123,200" type="rect" fillColor="#ff333333"/>
+    <loader id="n1_maxz" name="img_item" xy="1,17" size="121,182"/>
+    <component id="n2_maxz" name="bar_hp" src="maxz1" fileName="bar_hp.xml" xy="1,1" size="105,16">
+      <ProgressBar value="72" max="100"/>
+    </component>
+    <text id="n3_maxz" name="n3" xy="78,17" size="28,19" fontSize="12" color="#cccccc" align="center" vAlign="middle" text="4 / 4"/>
+    <component id="n4_maxz" name="n4" src="maxz5" fileName="btn_show.xml" xy="106,1" size="16,16" aspect="true"/>
+  </displayList>
+</component>

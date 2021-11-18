@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public static class Common
 {
@@ -30,4 +31,22 @@ public static class Common
         if (index >= input.Count) return false;
         return true;
     }
+
+    static public void DetectToMove_Local(this Transform transform, Vector3 targetPos, float distance = 1f, float time = 0.3f)
+    {
+        if (Vector3.Distance(targetPos, transform.position) < distance)
+        {
+            transform.localPosition = targetPos;
+        }
+        else
+        {
+            transform.DOLocalMove(targetPos, time);
+        }
+    }
+
+    //static public float Distance(this Vector3 position, float x, float y, float z)
+    //{
+    //    float distance = (x - position.x) * (x - position.x) + (y - position.y) * (y - position.y) + (z - position.z) * (z - position.z);
+    //    return distance;
+    //}
 }

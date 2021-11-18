@@ -274,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256810679}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.83, y: -0.61, z: -6.26}
+  m_LocalPosition: {x: 0, y: -0.61, z: -6.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1015108569}
@@ -358,6 +358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf0b4bb5a5fdc849be559bb6804b881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HeroEntities: []
+  MonsterEntities: []
   seatPos: 0
   interactNum: 2
   myTeamNum: 1
@@ -1001,13 +1003,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 419869716532705638, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+    - target: {fileID: 1766824978, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: Log
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8957007620084665256, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: m_Name
-      value: preItem
+      value: PreController
       objectReference: {fileID: 0}
     - target: {fileID: 8957007620084665263, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1053,7 +1055,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1766824979, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+    - {fileID: 1766824978, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+    - {fileID: 3070154449088442858, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+    - {fileID: 1153611884066131700, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
 --- !u!1 &1490458504
 GameObject:

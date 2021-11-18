@@ -20,8 +20,8 @@ public class GameController : SingleTon<GameController>
     private void Update()
     {
         ThreadSynchronizationContext.Instance.Update();
-        MasterEntity.Instance.Update();
-        TimerComponent.Instance.Update();
+        //MasterEntity.Instance.Update();
+        //TimerComponent.Instance.Update();
     }
 
     private void OnApplicationQuit()

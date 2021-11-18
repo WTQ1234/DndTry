@@ -103,8 +103,8 @@ namespace EGamePlay
 
         public void DestroyEntity(float t = 0)
         {
+            this.Dispose();
             UnityEngine.Object.Destroy(gameObject, t);
-            //entity.Dispose();
         }
         #endregion
 
@@ -117,6 +117,7 @@ namespace EGamePlay
         {
         }
 
+        // 需要考虑 UpdateComponent ，即是否可以Update，这个组件可能可以删掉
         public virtual void Update()
         {
         }

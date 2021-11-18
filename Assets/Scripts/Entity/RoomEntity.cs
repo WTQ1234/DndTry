@@ -22,8 +22,8 @@ public class RoomEntity : Entity
     //public GameTimer TurnRoundTimer { get; set; } = new GameTimer(2f);
     //public List<TurnAction> TurnActions { get; set; } = new List<TurnAction>();
 
-    public List<CardEntity> HeroEntities { get; set; } = new List<CardEntity>();
-    public List<CardEntity> MonsterEntities { get; set; } = new List<CardEntity>();
+    public List<CardEntity> HeroEntities = new List<CardEntity>();
+    public List<CardEntity> MonsterEntities = new List<CardEntity>();
     // seatNumber - 交互顺序
     private Dictionary<int, int> enemyActIndex = new Dictionary<int, int>();
     // 双方交互的卡牌
@@ -50,7 +50,7 @@ public class RoomEntity : Entity
         base.Awake();
         Instance = this;
         AddComponent<CombatActionManageComponent>();
-        AddComponent<UpdateComponent>();
+        //AddComponent<UpdateComponent>();      // 这里会导致二次调用
 
         HeroParent = transform.Find("HeroParent");
         EnemyParent = transform.Find("EnemyParent");
@@ -70,6 +70,7 @@ public class RoomEntity : Entity
         //{
         //    TurnRoundTimer.UpdateAsFinish(Time.deltaTime, StartCombat);
         //}
+        base.Update();
         RefreshMonAct();    // 这里正常只在移动时调用
         RefreshPos();
     }
@@ -185,6 +186,7 @@ public class RoomEntity : Entity
     // 刷新卡牌位置
     private void RefreshPos()
     {
+        Vector3 targetPos;
         int length_mon = MonsterEntities.Count;
         Angle = (360 - actAngle) / length_mon;
         for (int i = 0; i < length_mon; i++)
@@ -193,30 +195,15 @@ public class RoomEntity : Entity
             Transform tran = curCard.transform;
             if (enemyActIndex.ContainsKey(curCard.GetSeatNumber()))
             {
-                Vector3 targetPos = new Vector3((enemyActIndex[curCard.GetSeatNumber()]) * 2f, 0, -4);
-                float distance = Vector3.Distance(targetPos, tran.position);
-                if (distance < 1)
-                {
-                    tran.position = targetPos;
-                }
-                else
-                {
-                    tran.DOLocalMove(targetPos, 0.3f);
-                }                
+                targetPos.x = (enemyActIndex[curCard.GetSeatNumber()]) * 2f;
+                targetPos.y = 0;
+                targetPos.z = -4;
+                tran.DetectToMove_Local(targetPos);
             }
             else
             {
-                int curPos = i - seatPos;
-                Vector3 targetPos = GerCurPosByIndex(curPos);
-                float distance = Vector3.Distance(targetPos, tran.position);
-                if (distance < 1)
-                {
-                    tran.position = targetPos;
-                }
-                else
-                {
-                    tran.DOLocalMove(targetPos, 0.3f);
-                }
+                targetPos = GerCurPosByIndex(i - seatPos);
+                tran.DetectToMove_Local(targetPos);
             }
             tran.rotation = Camera.main.transform.rotation;
         }
@@ -224,11 +211,14 @@ public class RoomEntity : Entity
         int length_hero = HeroEntities.Count;
         for (int i = 0; i < length_hero; i++)
         {
-            CardEntity curCard = MonsterEntities[i];
+            CardEntity curCard = HeroEntities[i];
             Transform tran = curCard.transform;
+            targetPos.x = (i - length_hero / 2) * 1.5f;
+            targetPos.y = 0;
+            targetPos.z = 0;
+            tran.DetectToMove_Local(targetPos);
             tran.rotation = Camera.main.transform.rotation;
         }
-
     }
     #endregion
 
@@ -284,8 +274,9 @@ public class RoomEntity : Entity
 
         if (cardEntity.GetTeam().Item2)
         {
-            HeroEntities.RemoveAt(cardEntity.GetSeatNumber());
-            for(int i = 0; i < HeroEntities.Count; i++)
+            int seatNumber = cardEntity.GetSeatNumber();
+            HeroEntities.RemoveAt(seatNumber);
+            for (int i = 0; i < HeroEntities.Count; i++)
             {
                 HeroEntities[i].SetSeatNumber(i);
             }
@@ -313,7 +304,8 @@ public class RoomEntity : Entity
             TurnActionAbility TurnActionAbility = card.GetAbilityComponent<TurnActionAbility>();
             if (TurnActionAbility != null)
             {
-                if (TurnActionAbility.TryCreateAction(out var turnAction))
+                bool res = TurnActionAbility.TryCreateAction(out var turnAction);
+                if (res)
                 {
                     // 判断AI是否战斗，这里先不做AI
                     CardEntity enemy = GetEnemy(card, card.GetTeam());
@@ -322,7 +314,7 @@ public class RoomEntity : Entity
                     //await turnAction.ApplyTurn();
                     turnAction.ApplyTurn();
                     // todo 换一种方式删除?
-                    Entity.Destroy(turnAction);
+                    turnAction.Dispose();
                 }
             }
             await TimerComponent.Instance.WaitAsync(1000);
@@ -353,11 +345,16 @@ public class RoomEntity : Entity
     {
         var list = team.Item2 ? MonsterEntities : HeroEntities;
         int idx = GlobalDefine.int_Empty;
+
         if (team.Item2)
         {
             // 是玩家 找到玩家的交互顺序
             int playerPos = HeroEntities.Count / 2;
             int index = card.GetSeatNumber() - playerPos;
+            if (enemyActIndex.Count == 0)
+            {
+                return null;
+            }
             for (int i = index;;)
             {
                 foreach (var item in enemyActIndex)
@@ -377,6 +374,10 @@ public class RoomEntity : Entity
         else
         {
             idx = enemyActIndex[card.GetSeatNumber()] + enemyActIndex.Count / 2;   // 怪物当前是哪个，然后去玩家卡里拿就可以了
+            if (HeroEntities.Count == 0)
+            {
+                return null;
+            }
             for (int i = idx; ;)
             {
                 if (i >= HeroEntities.Count)
@@ -394,6 +395,7 @@ public class RoomEntity : Entity
                 }
             }
         }
+
         Log($"{card.GetSeatNumber()} 阵营为 {team.Item1} {team.Item2}  找敌人,  找到了 {idx}");
         return list.ContainsKey(idx) ? list[idx] : null;
     }

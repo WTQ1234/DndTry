@@ -14,4 +14,9 @@ public class UIController : SingleTon<UIController>
     {
         return dic_Name_UI[name];
     }
+
+    private void Awake()
+    {
+        UIPackage.AddPackage("FairyGUI/common");
+    }
 }
