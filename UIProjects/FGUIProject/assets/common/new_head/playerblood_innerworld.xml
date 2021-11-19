@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="248,42" overflow="hidden">
+  <displayList>
+    <component id="n2_pl5t" name="playerblood_innerworld_r" src="t8f3u9rns3" fileName="new_head/playerblood_innerworld_r.xml" xy="0,6" size="218,30"/>
+    <component id="n6_yzjp" name="playerblood_innerworld_y" src="t8f3u9rns4" fileName="new_head/playerblood_innerworld_y.xml" xy="194,6" size="54,30">
+      <relation target="n2_pl5t" sidePair="left-right"/>
+    </component>
+  </displayList>
+</component>

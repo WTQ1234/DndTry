@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1920,1080" extention="Button">
+  <displayList>
+    <image id="n239_tqe6" name="n239" src="mlvq9rnjv" fileName="new_images/img_mask.png" xy="0,0" size="1920,1080">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+  </displayList>
+  <Button sound="ui_common_02_id_tip_common_01"/>
+</component>

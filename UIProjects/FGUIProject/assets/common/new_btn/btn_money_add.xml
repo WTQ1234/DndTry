@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="135,50">
+  <displayList>
+    <loader id="n22_kks4" name="icon" xy="0,0" size="50,50" aspect="true" url="ui://0tjewqizyoxe6g" fill="scaleFree"/>
+    <image id="n23_kks4" name="btn_ty_hb" src="kks4n61" fileName="new_images/btn_ty_hb02.png" xy="32,32"/>
+    <richtext id="n24_kks4" name="ttf_name" xy="53,13" size="10,31" fontSize="26" color="#dadada" vAlign="middle" leading="0" text=""/>
+  </displayList>
+</component>

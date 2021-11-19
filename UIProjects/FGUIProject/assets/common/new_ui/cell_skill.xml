@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="100,100">
+  <displayList>
+    <image id="n34_htbb" name="line_ty_shuxing_01" src="htbbn1w" xy="1,1" size="100,100"/>
+    <loader id="n35_htbb" name="skill_icon" xy="7,7" size="88,88" align="center" vAlign="middle" fill="scaleFree"/>
+  </displayList>
+</component>

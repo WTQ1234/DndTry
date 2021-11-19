@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="554,52" overflow="hidden">
+  <displayList>
+    <image id="n1_sibe" name="n1" src="kks4n64" xy="0,0" size="554,52"/>
+    <image id="n0_sibe" name="n0" src="kks4n63" xy="13,9"/>
+    <component id="n2_sibe" name="mc_text" src="kks4n65" xy="70,0" size="470,52"/>
+  </displayList>
+  <transition name="t0">
+    <item time="0" type="XY" target="n0_sibe" tween="true" startValue="0,77" endValue="0,9" duration="9"/>
+    <item time="0" type="XY" target="n1_sibe" tween="true" startValue="63,68" endValue="63,0" duration="9"/>
+    <item time="0" type="XY" target="n2_sibe" tween="true" startValue="68,68" endValue="68,0" duration="9"/>
+  </transition>
+  <transition name="t1">
+    <item time="0" type="XY" target="n0_sibe" tween="true" startValue="0,9" endValue="0,77" duration="9"/>
+    <item time="0" type="XY" target="n1_sibe" tween="true" startValue="63,0" endValue="63,68" duration="9"/>
+    <item time="0" type="XY" target="n2_sibe" tween="true" startValue="68,0" endValue="68,68" duration="9"/>
+    <item time="9" type="XY" target="n2_sibe" tween="true" startValue="68,68"/>
+    <item time="9" type="XY" target="n1_sibe" tween="true" startValue="63,68"/>
+    <item time="9" type="XY" target="n0_sibe" tween="true" startValue="0,77"/>
+  </transition>
+</component>

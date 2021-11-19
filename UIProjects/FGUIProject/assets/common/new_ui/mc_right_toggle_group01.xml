@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="156,1080">
+  <displayList>
+    <image id="n232_p2rx" name="bg_ty_tog01" src="p2rxmo8" fileName="new_images/bg_ty_tog01.png" xy="0,0">
+      <relation target="" sidePair="topext-top,bottomext-bottom"/>
+    </image>
+    <list id="n231_ktel" name="list_btn" xy="0,131" size="156,949" overflow="scroll" lineGap="-7" defaultItem="ui://4djj2cw4p2rxmmt">
+      <relation target="" sidePair="topext-top,bottomext-bottom"/>
+    </list>
+  </displayList>
+  <transition name="t0" autoPlay="true">
+    <item time="0" type="Alpha" target="n231_ktel" tween="true" startValue="0.2" endValue="1" duration="5"/>
+    <item time="0" type="Alpha" target="n232_p2rx" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="XY" target="n231_ktel" tween="true" startValue="200,131" endValue="0,131" duration="7"/>
+    <item time="0" type="XY" target="n232_p2rx" tween="true" startValue="200,-" endValue="0,0" duration="7"/>
+  </transition>
+  <transition name="t1">
+    <item time="0" type="Alpha" target="n231_ktel" tween="true" startValue="1" endValue="0" duration="5"/>
+    <item time="0" type="Alpha" target="n232_p2rx" tween="true" startValue="1" endValue="0" duration="5"/>
+    <item time="0" type="XY" target="n231_ktel" tween="true" startValue="0,131" endValue="200,131" duration="7"/>
+    <item time="0" type="XY" target="n232_p2rx" tween="true" startValue="0,-" endValue="200,0" duration="7"/>
+  </transition>
+</component>

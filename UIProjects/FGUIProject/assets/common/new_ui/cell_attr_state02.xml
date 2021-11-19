@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="240,40">
+  <displayList>
+    <richtext id="n12_in4m" name="ttf_title" xy="0,0" size="10,40" fontSize="34" color="#8a8a8a" vAlign="middle" leading="0" text=""/>
+  </displayList>
+</component>

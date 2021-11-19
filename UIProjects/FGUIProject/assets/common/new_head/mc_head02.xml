@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="150,150">
+  <controller name="state" pages="0,have,1,none" selected="0"/>
+  <displayList>
+    <image id="n25_bm16" name="n25" src="bm169rnk7" fileName="new_images/img_tx_kuang.png" xy="8,8">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n24_if0o" name="bg" src="if0o9rneh" fileName="new_images/img_zudui_wuren.png" xy="8,13">
+      <gearDisplay controller="state" pages="1"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n18_jfgx" name="img_head" xy="0,-11" size="150,150" aspect="true" url="ui://4djj2cw4bm169rnk9" align="center" vAlign="bottom" fill="scaleFree">
+      <gearDisplay controller="state" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <loader id="n23_qzag" name="img_headbox" xy="-5,-5" size="160,160" url="ui://4djj2cw4bm169rnka" fill="scaleFree">
+      <gearDisplay controller="state" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+  </displayList>
+</component>

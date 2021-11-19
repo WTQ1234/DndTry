@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="286,42">
+  <displayList>
+    <image id="n12_oaqo" name="bg" src="r0zqrndb" xy="0,0" size="286,42">
+      <relation target="" sidePair="width-width"/>
+    </image>
+    <image id="n9_oklz" name="img_blood" src="r0zqrnda" xy="31,1" size="247,42">
+      <relation target="" sidePair="width-width"/>
+    </image>
+  </displayList>
+</component>

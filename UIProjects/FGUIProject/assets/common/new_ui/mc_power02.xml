@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="378,79" overflow="hidden" designImage="ui://3laqqfntc4nv5d" designImageOffsetX="-239" designImageOffsetY="-286" designImageAlpha="0">
+  <displayList>
+    <image id="n86_eh37" name="img_rty_zhanli_bg" src="p2rxmom" xy="36,7"/>
+    <richtext id="n87_eh37" name="num" xy="183,23" size="10,42" fontSize="38" color="#f4d1ac" align="center" vAlign="middle" italic="true" text="">
+      <relation target="n86_eh37" sidePair="center-center,middle-middle"/>
+    </richtext>
+  </displayList>
+</component>

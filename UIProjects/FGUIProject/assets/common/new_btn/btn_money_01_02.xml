@@ -1,0 +1,25 @@
+<?xml version="1.0" ?><component size="222,82" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n7_ctk2" name="n7" src="p2rxmzw" xy="0,0">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n8_ctk2" name="n8" src="p2rxmzw" xy="0,0">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <richtext id="n4_yixm" name="title_up" xy="89,15" size="107,52" fontSize="30" color="#fff1be" align="center" vAlign="middle" leading="0" autoSize="none" text="">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,middle-middle"/>
+    </richtext>
+    <richtext id="n5_sa9o" name="title_down" xy="89,15" size="107,52" fontSize="30" color="#fff1be" align="center" vAlign="middle" leading="0" autoSize="none" text="Text">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="width-width,middle-middle"/>
+    </richtext>
+    <loader id="n6_d4tt" name="img_icon" xy="28,12" size="60,60" touchable="false" fill="scaleFree">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </loader>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03" downEffect="scale" downEffectValue="0.80"/>
+</component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="130,130">
+  <displayList>
+    <loader id="n0_jdyb" name="img_icon_quality" xy="0,0" size="130,130" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <loader id="n1_jdyb" name="img_icon_equip" xy="0,0" size="130,130" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+  </displayList>
+</component>

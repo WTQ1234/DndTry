@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="554,200" designImageOffsetX="-684" designImageOffsetY="-864">
+  <displayList>
+    <image id="n2_e15c" name="n2" src="dcsmn8u" fileName="new_images/bg_main_chat.png" xy="64,78" size="490,122"/>
+    <component id="n3_e15c" name="chat_text" src="kks4n67" fileName="new_chat/chat_text.xml" xy="0,78"/>
+    <component id="n5_sibe" name="mc_radio_mini" src="kks4n62" fileName="new_chat/mc_radio_mini.xml" xy="0,25" size="554,52" touchable="false"/>
+  </displayList>
+  <transition name="t0">
+    <item time="0" type="Alpha" target="n2_e15c" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Alpha" target="n3_e15c" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Alpha" target="n5_sibe" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="XY" target="n2_e15c" tween="true" startValue="-,277" endValue="-,78" duration="7" ease="Back.Out"/>
+    <item time="0" type="XY" target="n3_e15c" tween="true" startValue="-,281" endValue="-,78" duration="7" ease="Back.Out"/>
+    <item time="0" type="XY" target="n5_sibe" tween="true" startValue="-,218" endValue="-,23" duration="7" ease="Back.Out"/>
+  </transition>
+  <transition name="close">
+    <item time="0" type="Alpha" target="n2_e15c" tween="true" startValue="1" endValue="0" duration="5"/>
+    <item time="0" type="Alpha" target="n3_e15c" tween="true" startValue="1" endValue="0" duration="5"/>
+    <item time="0" type="Alpha" target="n5_sibe" tween="true" startValue="1" endValue="0" duration="5"/>
+    <item time="0" type="XY" target="n2_e15c" tween="true" startValue="-,78" endValue="-,277" duration="7" ease="Back.Out"/>
+    <item time="0" type="XY" target="n3_e15c" tween="true" startValue="-,78" endValue="-,281" duration="7" ease="Back.Out"/>
+    <item time="0" type="XY" target="n5_sibe" tween="true" startValue="-,23" endValue="-,218" duration="7" ease="Back.Out"/>
+  </transition>
+</component>

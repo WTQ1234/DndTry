@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="72,72" extention="Button">
+  <displayList>
+    <image id="n124_gwfy" name="img_bg" src="qxxlu9rnq5" fileName="new_images/btn_suitsynthesis_gushi.png" xy="0,0"/>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03"/>
+</component>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="143,52" adaptationTest="FitSize">
+  <controller name="state" pages="0,,1,,2," selected="1"/>
+  <displayList>
+    <image id="n1_klg1" name="n1" src="eh37n3l" xy="-2,0">
+      <gearDisplay controller="state" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n0_klg1" name="n0" src="eh37n3m" xy="-2,0" aspect="true">
+      <gearDisplay controller="state" pages="1"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n3_r0zq" name="n3" src="eh37n3k" xy="-2,0" aspect="true">
+      <gearDisplay controller="state" pages="2"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <component id="n2_klg1" name="mc_text" src="mjlen2c" xy="12,6" pivot="0.5,0.5" size="101,40">
+      <relation target="" sidePair="center-center"/>
+    </component>
+  </displayList>
+</component>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="601,137">
+  <displayList>
+    <richtext id="n87_gsav" name="ttf_title" xy="0,4" size="10,38" fontSize="34" color="#8a8a8a" leading="0" text=""/>
+    <component id="n88_gsav" name="btn_tanhao" src="eh37n36" xy="20,0">
+      <relation target="n87_gsav" sidePair="left-right"/>
+    </component>
+    <list id="n89_gsav" name="list_attr" xy="1,53" size="600,83" layout="flow_hz" overflow="scroll" colGap="86" lineItemCount="2" defaultItem="ui://4djj2cw4gsav9rnfs" vAlign="middle"/>
+  </displayList>
+</component>

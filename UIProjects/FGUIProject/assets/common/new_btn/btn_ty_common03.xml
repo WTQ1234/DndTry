@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="128,128" pivot="0.5,0.5" extention="Button" designImageOffsetX="-1818" designImageOffsetY="-1100">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <loader id="n279_ktel" name="btn_ty_title_wenhao" xy="8,8" size="112,112" fill="scaleFree"/>
+    <richtext id="n280_htbb" name="ttf_name" xy="-31,96" size="190,36" fontSize="30" color="#cfb7a8" align="center" leading="0" autoSize="height" text="">
+      <relation target="n279_ktel" sidePair="center-center"/>
+    </richtext>
+    <component id="n281_o5ig" name="mc_jb" src="p2rxmon" fileName="new_ui/mc_redpoint.xml" xy="90,10" visible="false"/>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03" downEffect="scale" downEffectValue="0.80"/>
+</component>

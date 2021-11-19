@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="134,134">
+  <controller name="c1" pages="0,rise,1,drop,2,lock,3,none,4,new,5,empty" selected="4"/>
+  <displayList>
+    <image id="n282_ktel" name="img_ty_item_bg" src="p2rxn08" xy="0,0"/>
+    <component id="n303_p2rx" name="mc_equip" src="p2rxmos" xy="8,8" size="118,118">
+      <gearDisplay controller="c1" pages="0,1,2,3,4"/>
+    </component>
+    <loader id="n298_ktel" name="img_icon_equip" xy="9,9" size="118,118" aspect="true" fill="scaleFree">
+      <gearDisplay controller="c1" pages="5"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <component id="n299_ktel" name="mc_up" src="p2rxmo3" xy="100,12">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="" sidePair="right-right,bottom-bottom"/>
+    </component>
+    <component id="n300_ktel" name="img_drop" src="dpgsrndt" xy="100,12">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="" sidePair="right-right,top-top"/>
+    </component>
+    <image id="n301_ktel" name="img_lock" src="p2rxmo5" xy="9,86">
+      <gearDisplay controller="c1" pages="2"/>
+      <relation target="" sidePair="left-left,top-top"/>
+    </image>
+    <image id="n302_ktel" name="img_new" src="p2rxmo6" xy="10,10">
+      <gearDisplay controller="c1" pages="4"/>
+      <relation target="" sidePair="left-left,top-top"/>
+    </image>
+  </displayList>
+</component>

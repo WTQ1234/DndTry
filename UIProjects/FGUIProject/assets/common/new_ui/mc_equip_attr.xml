@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="524,272" overflow="scroll">
+  <displayList>
+    <richtext id="n8_yd1o" name="ttf_equip_attr" xy="0,0" size="524,272" fontSize="32" color="#8a8a8a" leading="6" autoSize="none" text="">
+      <relation target="" sidePair="width-width,top-top"/>
+    </richtext>
+  </displayList>
+</component>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="784,185" adaptationTest="FitSize">
+  <displayList>
+    <component id="n8_oklz" name="blood" src="k5ju9rnjk" xy="131,47">
+      <ProgressBar value="100" max="100"/>
+    </component>
+    <component id="n12_oklz" name="head" src="k52kn9b" xy="13,6">
+      <relation target="" sidePair="left-left"/>
+    </component>
+    <richtext id="n19_oklz" name="name" xy="170,11" size="10,34" fontSize="28" color="#cfb7a8" vAlign="middle" leading="0" text="">
+      <relation target="" sidePair="left-left"/>
+    </richtext>
+    <list id="n16_oklz" name="list_buff" xy="151,99" size="326,38" layout="row" overflow="scroll" colGap="8" defaultItem="ui://4djj2cw4ovq1m7m">
+      <relation target="" sidePair="left-left"/>
+    </list>
+  </displayList>
+</component>

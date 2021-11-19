@@ -1,0 +1,25 @@
+<?xml version="1.0" ?><component size="1344,888" opaque="false" designImageOffsetX="-302" designImageOffsetY="-92">
+  <displayList>
+    <image id="n16_p2rx" name="bg_ty_board_02" src="p2rxmzu" fileName="new_images/bg_ty_board_01.png" xy="0,0" size="1344,888">
+      <relation target="" sidePair="width-width"/>
+    </image>
+    <image id="n21_saiw" name="img_ty_closebg" src="p2rxn09" fileName="new_images/img_ty_closebg.png" xy="1125,7">
+      <relation target="n16_p2rx" sidePair="top-top,right-right"/>
+    </image>
+    <image id="n22_saiw" name="bg_title" src="p2rxn0a" fileName="new_images/img_ty_title_01.png" xy="-24,0">
+      <relation target="" sidePair="left-left,top-top"/>
+    </image>
+    <component id="n19_p2rx" name="btn_close" src="p2rxn0c" fileName="new_btn/btn_close02.xml" xy="1292,0">
+      <relation target="n16_p2rx" sidePair="top-top,right-right"/>
+    </component>
+    <richtext id="n18_p2rx" name="title" xy="51,16" size="10,38" fontSize="34" color="#d3b7a6" vAlign="middle" leading="0" italic="true" text="">
+      <relation target="n16_p2rx" sidePair="left-left,top-top"/>
+    </richtext>
+    <image id="n20_p2rx" name="line_ty_bg_down01" src="p2rxmoh" fileName="new_images/line_ty_bg_down01.png" xy="375,878">
+      <relation target="" sidePair="center-center"/>
+    </image>
+  </displayList>
+  <transition name="t0" autoPlay="true">
+    <item time="0" type="Sound" value="ui_common_01_id_ui_interfacein_01"/>
+  </transition>
+</component>

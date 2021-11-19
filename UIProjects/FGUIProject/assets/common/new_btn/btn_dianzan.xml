@@ -1,0 +1,6 @@
+<?xml version="1.0" ?><component size="64,64" extention="Button">
+  <displayList>
+    <image id="n271_ktel" name="btn_ty_hb" src="c2frn4o" xy="0,0"/>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03" downEffect="scale" downEffectValue="0.80"/>
+</component>

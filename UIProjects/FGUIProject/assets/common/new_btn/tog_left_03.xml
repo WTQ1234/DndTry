@@ -1,0 +1,19 @@
+<?xml version="1.0" ?><component size="328,88" extention="Button" designImageOffsetX="-44" designImageOffsetY="-406">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n11_dfs6" name="btn_01_normal" src="eh37n3x" xy="0,5" size="316,82">
+      <gearDisplay controller="button" pages="0"/>
+    </image>
+    <image id="n6_jldq" name="btn_01_select" src="eh37n3z" xy="0,5" size="316,82" aspect="true">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+    <richtext id="n5_jldq" name="title_up" xy="8,24" size="300,44" fontSize="34" color="#8a8a8a" align="center" vAlign="middle" leading="0" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="0"/>
+    </richtext>
+    <richtext id="n7_eh37" name="title_down" xy="8,24" size="300,44" fontSize="34" color="#dadada" align="center" vAlign="middle" leading="0" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="1"/>
+    </richtext>
+    <component id="n10_saiw" name="mc_jb" src="p2rxmon" xy="299,0" visible="false"/>
+  </displayList>
+  <Button mode="Radio" sound="ui_common_01_id_button_page_01"/>
+</component>

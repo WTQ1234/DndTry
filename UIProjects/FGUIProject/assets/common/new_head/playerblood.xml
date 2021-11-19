@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="286,42">
+  <displayList>
+    <component id="n9_oklz" name="mc_blood" src="ovq1m7k" xy="0,0" size="286,42">
+      <relation target="" sidePair="width-width"/>
+      <ProgressBar value="100" max="100"/>
+    </component>
+  </displayList>
+</component>

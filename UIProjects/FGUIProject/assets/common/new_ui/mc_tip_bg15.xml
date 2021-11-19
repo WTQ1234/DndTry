@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="768,844" designImageOffsetX="-720" designImageAlpha="100">
+  <displayList>
+    <image id="n82_f9sc" name="bg_ty_board_02" src="p2rxmzv" fileName="new_images/bg_ty_board_02.png" xy="0,0" size="768,844">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n83_f9sc" name="img_ty_title_02" src="p2rxn0b" fileName="new_images/img_ty_title_02.png" xy="83,5">
+      <relation target="n82_f9sc" sidePair="center-center,top-top"/>
+    </image>
+    <richtext id="n84_f9sc" name="title" xy="377,18" size="10,38" fontSize="34" color="#d3b7a6" align="center" vAlign="middle" leading="0" text="">
+      <relation target="n83_f9sc" sidePair="center-center,middle-middle"/>
+    </richtext>
+    <component id="n85_f9sc" name="btn_close" src="p2rxn0c" fileName="new_btn/btn_close02.xml" xy="711,-1">
+      <relation target="n82_f9sc" sidePair="right-right,top-top"/>
+    </component>
+    <image id="n80_nwgr" name="bg_list" src="htbbn1g" fileName="new_images/bg_ty_tog02.png" xy="582,69" size="179,767" alpha="0.5">
+      <relation target="n82_f9sc" sidePair="right-right,height-height"/>
+    </image>
+    <list id="n68_lo1v" name="list_btn" xy="583,141" size="179,678" overflow="scroll" lineGap="2" defaultItem="ui://4djj2cw4htbbn1r">
+      <relation target="n80_nwgr" sidePair="center-center,height-height"/>
+    </list>
+  </displayList>
+  <transition name="t0" autoPlay="true">
+    <item time="0" type="Sound" value="ui_common_01_id_ui_interfacein_01,100"/>
+  </transition>
+</component>

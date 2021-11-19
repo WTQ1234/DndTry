@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="150,150" extention="Button" designImageOffsetX="-238" designImageOffsetY="-295">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <component id="n3_ltdb" name="mc_equip" src="htbbn26" fileName="new_item/mc_item_kuang_130_un_mark.xml" xy="10,10" aspect="true">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <image id="n22_htbb" name="equip_select" src="htbbn1q" fileName="new_images/img_ty_pick.png" xy="0,0" size="150,150" aspect="true">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <richtext id="n23_fkso" name="ttf_num" xy="70,148" size="10,34" fontSize="30" color="#ffffff" align="center" text="">
+      <relation target="" sidePair="center-center"/>
+    </richtext>
+  </displayList>
+  <Button mode="Radio" sound="ui_common_01_id_button_click_03"/>
+</component>

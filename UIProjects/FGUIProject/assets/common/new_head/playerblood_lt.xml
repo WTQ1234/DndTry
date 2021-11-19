@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="280,43" extention="ProgressBar">
+  <displayList>
+    <image id="n4_pl5t" name="n4" src="pl5tu9rnrr" fileName="new_images/bg_hp_player_new.png" xy="0,0"/>
+    <loader id="n2_pl5t" name="bar" xy="25,6" size="248,30" url="ui://4djj2cw4pl5tu9rnrs" fill="scaleFree" fillMethod="hz"/>
+  </displayList>
+  <ProgressBar/>
+</component>

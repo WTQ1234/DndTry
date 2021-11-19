@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="316,86" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="1"/>
+  <displayList>
+    <image id="n1" name="n1" src="smnumk0" xy="0,0">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2" name="n2" src="smnumk1" xy="0,0">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <richtext id="n4_yixm" name="title_up" xy="0,17" size="316,52" fontSize="32" color="#ffffff" align="center" vAlign="middle" leading="0" autoSize="none" shadowColor="#000000" shadowOffset="1,1" text="没角标">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,middle-middle"/>
+    </richtext>
+    <richtext id="n5_sa9o" name="title_down" xy="0,17" size="316,52" fontSize="32" color="#ffffff" align="center" vAlign="middle" leading="0" autoSize="none" shadowColor="#000000" shadowOffset="1,1" text="没角标">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="width-width,middle-middle"/>
+    </richtext>
+  </displayList>
+  <Button/>
+</component>

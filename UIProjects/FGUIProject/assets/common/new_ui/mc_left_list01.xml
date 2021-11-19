@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="178,1080" designImageOffsetX="-210" designImageOffsetY="-258">
+  <displayList>
+    <graph id="n11_x20m" name="btn_maskclose" xy="-200,-1960" size="0,5000" alpha="0" type="rect" lineSize="0"/>
+    <image id="n2_htbb" name="list_bg01" src="htbbn1e" fileName="new_images/bg_ty_board_04.png" xy="0,0" size="178,1080">
+      <relation target="" sidePair="height-height"/>
+    </image>
+    <list id="n4_htbb" name="list_item" xy="14,120" size="150,924" overflow="scroll" lineGap="-16" defaultItem="ui://4djj2cw4vj8wu9rnr6">
+      <relation target="n2_htbb" sidePair="height-height"/>
+    </list>
+    <image id="n5_htbb" name="list_bg02" src="htbbn1g" fileName="new_images/bg_ty_tog02.png" xy="-179,0" size="179,1079" group="n7_htbb">
+      <relation target="" sidePair="height-height"/>
+    </image>
+    <list id="n6_htbb" name="list_toggle" xy="-179,120" size="176,924" group="n7_htbb" defaultItem="ui://4djj2cw4htbbn1r">
+      <relation target="n5_htbb" sidePair="height-height"/>
+    </list>
+    <group id="n7_htbb" name="toggle_group" xy="-179,0" size="179,1079" visible="false" advanced="true"/>
+    <list id="n10_htbb" name="grid_item" xy="200,120" size="0,924" layout="flow_hz" overflow="scroll" lineGap="-16" colGap="12" lineItemCount="4" defaultItem="ui://4djj2cw4vj8wu9rnr6">
+      <relation target="n2_htbb" sidePair="height-height"/>
+    </list>
+    <component id="n3_htbb" name="btn_list_arrow" src="htbbn1k" fileName="new_btn/btn_list_arrow01.xml" xy="169,448">
+      <relation target="" sidePair="middle-middle"/>
+    </component>
+  </displayList>
+  <transition name="open">
+    <item time="0" type="Alpha" target="n10_htbb" value="0"/>
+    <item time="0" type="Alpha" target="n4_htbb" tween="true" startValue="1" endValue="0" duration="1"/>
+    <item time="0" type="Alpha" target="n7_htbb" tween="true" startValue="0" endValue="1" duration="4"/>
+    <item time="0" type="Size" target="n10_htbb" value="0,959"/>
+    <item time="0" type="Size" target="n11_x20m" value="5000,5000"/>
+    <item time="0" type="Size" target="n2_htbb" tween="true" startValue="314.25,-" endValue="684,-" duration="10"/>
+    <item time="0" type="Transition" target="n3_htbb" value="open"/>
+    <item time="0" type="Visible" target="n7_htbb" value="true"/>
+    <item time="0" type="XY" target="n2_htbb" tween="true" startValue="-136.25,0" endValue="179,0" duration="10"/>
+    <item time="0" type="XY" target="n3_htbb" tween="true" startValue="172,-" endValue="857,-" duration="10"/>
+    <item time="0" type="XY" target="n7_htbb" tween="true" startValue="-179,0" endValue="0,0" duration="10"/>
+    <item time="9" type="Size" target="n10_htbb" value="0,959"/>
+    <item time="10" type="Alpha" target="n10_htbb" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="10" type="Size" target="n10_htbb" value="646,959"/>
+    <item time="15" type="Size" target="n10_htbb" value="646,959"/>
+  </transition>
+  <transition name="close">
+    <item time="0" type="Alpha" target="n10_htbb" tween="true" startValue="1" endValue="0" duration="1"/>
+    <item time="0" type="Alpha" target="n7_htbb" value="1"/>
+    <item time="0" type="Size" target="n10_htbb" value="646,959"/>
+    <item time="0" type="Size" target="n11_x20m" value="0,5000"/>
+    <item time="0" type="Size" target="n2_htbb" tween="true" startValue="684,-" endValue="178,-" duration="10"/>
+    <item time="0" type="Transition" target="n3_htbb" value="close"/>
+    <item time="0" type="Visible" target="n7_htbb" value="true"/>
+    <item time="0" type="XY" target="n2_htbb" tween="true" startValue="179,0" endValue="0,0" duration="10"/>
+    <item time="0" type="XY" target="n3_htbb" tween="true" startValue="857,-" endValue="172,-" duration="10"/>
+    <item time="0" type="XY" target="n7_htbb" tween="true" startValue="0,0" endValue="-179,0" duration="10"/>
+    <item time="1" type="Size" target="n10_htbb" value="0,959"/>
+    <item time="6" type="Alpha" target="n7_htbb" tween="true" startValue="1" endValue="0" duration="4"/>
+    <item time="9" type="Alpha" target="n4_htbb" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="10" type="Visible" target="n7_htbb" value="false"/>
+  </transition>
+</component>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="510,12" extention="ProgressBar">
+  <displayList>
+    <image id="n237_ktel" name="n237" src="kks4n6g" xy="0,0">
+      <relation target="" sidePair="width-width"/>
+    </image>
+    <image id="n236_ktel" name="bar" src="kks4n6h" xy="0,0">
+      <relation target="" sidePair="width-width"/>
+    </image>
+  </displayList>
+  <ProgressBar/>
+</component>

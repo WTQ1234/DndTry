@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="504,80" designImageOffsetX="-679" designImageOffsetY="-277" designImageLayer="1">
+  <displayList>
+    <richtext id="n1_f3v3" name="ttf_title" xy="0,21" size="504,38" fontSize="32" color="#898366" align="center" vAlign="middle" letterSpacing="2" autoSize="height" text="">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
+  </displayList>
+  <transition name="t0" autoPlay="true">
+    <item time="0" type="Alpha" target="n1_f3v3" value="0"/>
+    <item time="10" type="Alpha" target="n1_f3v3" value="0"/>
+    <item time="16" type="Alpha" target="n1_f3v3" tween="true" startValue="0" endValue="1" duration="7"/>
+  </transition>
+</component>

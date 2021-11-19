@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="729,100">
+  <displayList>
+    <component id="n284_p2rx" name="mc_title_back" src="htbbn0w" fileName="new_ui/mc_title_back.xml" xy="0,0"/>
+  </displayList>
+  <transition name="t0" autoPlay="true">
+    <item time="0" type="Alpha" target="n284_p2rx" tween="true" startValue="0.2" endValue="1" duration="5"/>
+    <item time="0" type="XY" target="n284_p2rx" tween="true" startValue="0,-200" endValue="0,0" duration="7"/>
+  </transition>
+  <transition name="t1">
+    <item time="0" type="Alpha" target="n284_p2rx" tween="true" startValue="1" endValue="0.2" duration="5"/>
+    <item time="0" type="XY" target="n284_p2rx" tween="true" startValue="0,0" endValue="0,-200" duration="7"/>
+  </transition>
+</component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1920,1080">
+  <displayList>
+    <loader id="n23_hlhp" name="scene" xy="0,0" size="1920,1080">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <loader id="n24_kzj2" name="img" xy="0,0" size="1920,1080" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+  </displayList>
+</component>

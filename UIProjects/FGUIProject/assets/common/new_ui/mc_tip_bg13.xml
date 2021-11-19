@@ -1,0 +1,16 @@
+<?xml version="1.0" ?><component size="615,440">
+  <displayList>
+    <image id="n4_p2rx" name="bg_ty_board_02" src="dpgsrndv" fileName="new_images/bg_role_info.png" xy="0,0" size="615,440">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n5_p2rx" name="img_ty_title_02" src="p2rxn0b" fileName="new_images/img_ty_title_02.png" xy="10,4">
+      <relation target="" sidePair="top-top,width-width"/>
+    </image>
+    <richtext id="n3_pcqb" name="title" xy="305,18" size="10,38" fontSize="34" color="#d3b7a6" align="center" vAlign="middle" leading="0" text="">
+      <relation target="" sidePair="center-center"/>
+    </richtext>
+  </displayList>
+  <transition name="t0" autoPlay="true">
+    <item time="0" type="Sound" value="ui_common_02_id_tip_common_01"/>
+  </transition>
+</component>

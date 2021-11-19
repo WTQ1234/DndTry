@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="933,66">
+  <displayList>
+    <component id="n272_ktel" name="mc_title_coins" src="htbbn0x" fileName="new_ui/mc_title_coins.xml" xy="0,0"/>
+  </displayList>
+  <transition name="t0" autoPlay="true">
+    <item time="0" type="Alpha" target="n272_ktel" tween="true" startValue="0.2" endValue="1" duration="5"/>
+    <item time="0" type="XY" target="n272_ktel" tween="true" startValue="0,-202" endValue="0,2" duration="7"/>
+  </transition>
+  <transition name="t1">
+    <item time="0" type="Alpha" target="n272_ktel" tween="true" startValue="1" endValue="0.2" duration="5"/>
+    <item time="0" type="XY" target="n272_ktel" tween="true" startValue="0,2" endValue="0,-202" duration="7"/>
+  </transition>
+  <transition name="t2" autoPlay="true">
+    <item time="0" type="Alpha" target="n272_ktel" tween="true" startValue="1" endValue="1" duration="9"/>
+    <item time="0" type="XY" target="n272_ktel" tween="true" startValue="0,2" endValue="0,0" duration="9"/>
+  </transition>
+</component>

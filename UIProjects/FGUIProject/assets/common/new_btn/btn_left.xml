@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="76,98" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="112p9rne8" fileName="new_images/btn_partner_arrow.png" xy="0,0">
+      <gearDisplay controller="button" pages="0,1"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <component id="n2_jbtp" name="mc_jb" src="p2rxmon" fileName="new_ui/mc_redpoint.xml" xy="3,7" visible="false"/>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03" downEffect="scale" downEffectValue="0.80"/>
+</component>

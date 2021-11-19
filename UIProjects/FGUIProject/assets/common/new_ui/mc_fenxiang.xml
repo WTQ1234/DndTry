@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="444,76">
+  <displayList>
+    <image id="n0_k8eo" name="n0" src="k8eo9rnk5" fileName="new_images/img_fenxiang_02.png" xy="0,0"/>
+    <richtext id="n1_k8eo" name="ttf_title" xy="371,10" pivot="1,0" size="10,40" fontSize="34" color="#e4d0a9" align="right" vAlign="middle" text=""/>
+  </displayList>
+</component>

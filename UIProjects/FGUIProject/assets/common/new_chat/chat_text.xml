@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="556,122" designImageOffsetX="-684" designImageOffsetY="-943">
+  <displayList>
+    <list id="n33_hrrh" name="mc_list" xy="69,7" size="482,112" overflow="scroll" lineGap="4" defaultItem="ui://4djj2cw4kks4n66">
+      <relation target="" sidePair="height-height"/>
+    </list>
+    <image id="n34_4y83" name="n34" src="4y83u9rnqk" fileName="new_images/btn_main_chat.png" xy="0,0"/>
+  </displayList>
+</component>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="560,38">
+  <displayList>
+    <richtext id="n32_ltdb" name="ttf_attr_name" xy="0,0" size="10,40" fontSize="34" color="#8a8a8a" vAlign="middle" leading="0" text=""/>
+    <richtext id="n33_ltdb" name="ttf_attr_num" xy="550,0" pivot="1,0" size="10,38" fontSize="34" color="#dadada" align="right" vAlign="middle" leading="0" text=""/>
+  </displayList>
+</component>

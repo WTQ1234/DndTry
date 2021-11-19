@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="200,200" extention="Button" mask="n26_10yq9" designImageOffsetX="-13" designImageOffsetY="-7">
+  <displayList>
+    <image id="n26_10yq9" name="mask" src="iotvu9rnqe" fileName="new_images/mask.png" xy="0,0" size="200,200" aspect="true" alpha="0.01">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n27_10yq9" name="img_icon" xy="0,0" size="200,200" aspect="true" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03"/>
+</component>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="180,240" extention="Button">
+  <controller name="c1" pages="0,rise,1,drop,2,lock,3,none,4,new,5,empty,7,add,6,sui" selected="0">
+    <action type="play_transition" fromPage="" toPage="7" transition="t0"/>
+    <action type="play_transition" fromPage="7" toPage="" transition="t1"/>
+  </controller>
+  <controller name="state" pages="0,none,1,have" selected="0"/>
+  <displayList>
+    <image id="n14_c4nv" name="bg" src="p2rxn07" fileName="new_images/img_ty_bg_item01.png" xy="25,10" size="130,130" aspect="true"/>
+    <loader id="n21_lhxj" name="img_icon_equip" xy="29,14" size="121,121" aspect="true" fill="scaleFree">
+      <gearDisplay controller="c1" pages="5"/>
+    </loader>
+    <component id="n3_ltdb" name="mc_equip" src="xpbau9rnqm" fileName="new_item/item_info_unlimited.xml" xy="26,11" size="128,128" aspect="true">
+      <gearDisplay controller="c1" pages="0,1,2,3,4,6"/>
+    </component>
+    <image id="n16_c4nv" name="img_lock" src="c4nvmco" fileName="new_images/icon_item_lock.png" xy="25,99">
+      <gearDisplay controller="c1" pages="2"/>
+    </image>
+    <component id="n17_c4nv" name="img_drop" src="dpgsrndt" fileName="new_item/item_ani_down.xml" xy="130,14">
+      <gearDisplay controller="c1" pages="1"/>
+    </component>
+    <component id="n19_c4nv" name="mc_up" src="p2rxmo3" fileName="new_item/item_ani_up.xml" xy="130,14">
+      <gearDisplay controller="c1" pages="0"/>
+    </component>
+    <image id="n22_kbin" name="img_sui" src="kbin9rnj8" fileName="new_images/corner_ty_sui.png" xy="17,78" size="74,74" aspect="true">
+      <gearDisplay controller="c1" pages="6"/>
+    </image>
+    <image id="n23_rvjv" name="bg_add" src="dpgsrndz" fileName="new_images/img_ty_add.png" xy="60,45">
+      <gearDisplay controller="c1" pages="7"/>
+    </image>
+    <component id="n24_vn40" name="mc_mark" src="mjlen2b" fileName="new_ui/mc_cornermark_left.xml" xy="20,6" scale="0.8,0.8">
+      <gearDisplay controller="state" pages="1"/>
+    </component>
+    <component id="n26_fcp3" name="mc_new" src="fcp3u9rnpx" fileName="new_ui/mc_corner_new.xml" xy="23,8" scale="0.76,0.76">
+      <gearDisplay controller="c1" pages="4"/>
+    </component>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03"/>
+  <transition name="t0">
+    <item time="0" type="ColorFilter" target="n3_ltdb" value="0.00,0.00,-1.00,0.00"/>
+  </transition>
+  <transition name="t1">
+    <item time="0" type="ColorFilter" target="n3_ltdb" value="0.00,0.00,0.00,0.00"/>
+  </transition>
+</component>

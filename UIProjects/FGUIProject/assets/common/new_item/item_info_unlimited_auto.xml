@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="128,128">
+  <displayList>
+    <loader id="n3_ltdb" name="img_item_quality" xy="0,0" pivot="0.5,0.5" size="128,128" url="ui://4djj2cw4j4dt9rniz" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <loader id="n7_ltdb" name="img_item_icon" xy="0,0" pivot="0.5,0.5" size="128,128" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <loader id="n13_w3mi" name="eff_item_quality" xy="0,0" pivot="0.5,0.5" size="128,128" blend="add" align="center" vAlign="middle" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <richtext id="n9_c0x8" name="ttf_smallname" xy="2,104" size="10,26" fontSize="22" color="#ffffff" vAlign="bottom" leading="0" ubb="true" singleLine="true" text="">
+      <relation target="" sidePair="left-left,bottom-bottom"/>
+    </richtext>
+    <richtext id="n10_c0x8" name="ttf_num" xy="119,103" size="10,27" fontSize="22" color="#ffffff" align="right" vAlign="bottom" leading="0" letterSpacing="2" ubb="true" text="">
+      <relation target="" sidePair="right-right,bottom-bottom"/>
+    </richtext>
+    <richtext id="n11_c0x8" name="ttf_name" xy="59,132" size="10,31" fontSize="26" color="#ffffff" align="center" leading="0" ubb="true" text="">
+      <relation target="" sidePair="center-center,top-bottom"/>
+    </richtext>
+    <image id="n23_p113" name="img_sui" src="kbin9rnj8" fileName="new_images/corner_ty_sui.png" xy="-7,84" size="53,53" aspect="true" visible="false">
+      <relation target="" sidePair="left-left,bottom-bottom"/>
+    </image>
+    <component id="n17_p2rx" name="mc_jb" src="p2rxmon" fileName="new_ui/mc_redpoint.xml" xy="105,-6" visible="false">
+      <relation target="" sidePair="top-top,right-right"/>
+    </component>
+    <component id="n24_thas" name="mc_eff" src="112p9rnea" fileName="new_ui/mc_eff.xml" xy="-1,-1" pivot="0.5,0.5" size="130,130"/>
+  </displayList>
+</component>

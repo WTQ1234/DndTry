@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="140,50" extention="Button">
+  <controller name="state" pages="0,,1," selected="0"/>
+  <displayList>
+    <image id="n7_ctk2" name="n7" src="p2rxmzy" fileName="new_images/btn_ty_03.png" xy="0,0" size="140,50">
+      <relation target="n4_yixm" sidePair="width-width,height-height"/>
+    </image>
+    <richtext id="n4_yixm" name="title_up" xy="5,7" size="130,36" restrictSize="130,0,36,0" fontSize="30" color="#f0ede0" align="center" vAlign="middle" leading="0" autoSize="shrink" singleLine="true" text=""/>
+    <component id="n8_sa55" name="mc_jb" src="p2rxmon" fileName="new_ui/mc_redpoint.xml" xy="120,-5" visible="false">
+      <relation target="" sidePair="top-top,right-right"/>
+    </component>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03" downEffect="scale" downEffectValue="0.80"/>
+  <relation target="n7_ctk2" sidePair="width-width,height-height"/>
+</component>

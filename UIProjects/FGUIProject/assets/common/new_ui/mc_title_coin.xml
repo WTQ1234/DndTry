@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="287,66">
+  <displayList>
+    <image id="n272_ktel" name="n272" src="p2rxmnq" fileName="new_images/img_ty_hb_bg.png" xy="37,14" size="222,38"/>
+    <loader id="n274_ktel" name="icon_coin" xy="0,0" size="66,66" align="center" vAlign="middle" fill="scaleFree"/>
+    <richtext id="n275_ktel" name="ttf_num" xy="60,14" size="168,38" fontSize="34" color="#dadada" align="right" vAlign="middle" autoSize="none" text=""/>
+    <graph id="n278_h6tb" name="btn_msak" xy="0,0" size="287,66" alpha="0" type="rect"/>
+    <component id="n277_p2rx" name="btn_add" src="p2rxmmn" fileName="new_btn/btn_add01.xml" xy="233,6"/>
+    <component id="n279_dekp" name="mc_eff" src="112p9rnea" fileName="new_eff/mc_eff.xml" xy="0,0" size="66,66"/>
+  </displayList>
+</component>

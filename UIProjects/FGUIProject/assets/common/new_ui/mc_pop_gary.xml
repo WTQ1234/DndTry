@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="108,82">
+  <displayList>
+    <component id="n139_tgbc" name="mc_pop_ani" src="xy0ou9rnrn" fileName="new_ui/mc_pop_gary_ani.xml" xy="0,0" pivot="0.24,0.93" alpha="0"/>
+  </displayList>
+  <transition name="open">
+    <item time="0" type="Alpha" target="n139_tgbc" tween="true" startValue="0" endValue="1" duration="6"/>
+    <item time="114" type="Alpha" target="n139_tgbc" tween="true" startValue="1" endValue="0" duration="6"/>
+  </transition>
+</component>

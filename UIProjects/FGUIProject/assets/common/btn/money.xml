@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="255,50" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0">
+    <action type="play_transition" fromPage="0" toPage="1" transition="t0"/>
+    <action type="play_transition" fromPage="1" toPage="0" transition="t1"/>
+  </controller>
+  <displayList>
+    <image id="n24_tb8p" name="n24" src="asydmlu" xy="-1,9" size="256,36"/>
+    <text id="n19_cs6e" name="money_num_1" xy="51,9" size="153,35" fontSize="28" color="#ffffff" align="right" vAlign="middle" leading="0" autoSize="none" text="88888888">
+      <relation target="" sidePair="right-right,top-top"/>
+    </text>
+    <loader id="n22_c4nv" name="img_icon_money" xy="-7,-8" size="66,66" fill="scaleFree">
+      <relation target="" sidePair="right-right,top-top"/>
+    </loader>
+    <image id="n23_tb8p" name="img_jiahao" src="asydmlv" xy="203,12"/>
+  </displayList>
+  <Button/>
+  <transition name="t0" options="4"/>
+  <transition name="t1" options="4"/>
+</component>

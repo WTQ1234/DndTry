@@ -1,0 +1,15 @@
+<?xml version="1.0" ?><component size="615,707" opaque="false" designImageOffsetX="-575" designImageOffsetY="-177" designImageAlpha="100">
+  <displayList>
+    <image id="n16_p2rx" name="bg_ty_board_02" src="p2rxmzv" fileName="new_images/bg_ty_board_02.png" xy="0,0" size="615,707"/>
+    <image id="n17_p2rx" name="img_ty_title_02" src="p2rxn0b" fileName="new_images/img_ty_title_02.png" xy="70,5"/>
+    <richtext id="n18_p2rx" name="title" xy="302,19" size="10,38" fontSize="34" color="#d3b7a6" align="center" vAlign="middle" leading="0" text="">
+      <relation target="" sidePair="center-center,top-top"/>
+    </richtext>
+    <component id="n19_p2rx" name="btn_close" src="p2rxn0c" fileName="new_btn/btn_close02.xml" xy="560,-1">
+      <relation target="n16_p2rx" sidePair="top-top,right-right"/>
+    </component>
+  </displayList>
+  <transition name="t0" autoPlay="true">
+    <item time="0" type="Sound" value="ui_common_02_id_tip_common_01"/>
+  </transition>
+</component>

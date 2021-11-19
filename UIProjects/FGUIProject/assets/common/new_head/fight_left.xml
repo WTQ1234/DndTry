@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="499,185" designImageOffsetX="3" designImageOffsetY="-10" designImageAlpha="100" adaptationTest="FitSize">
+  <controller name="state" pages="0,none,1,have" selected="0"/>
+  <displayList>
+    <richtext id="n19_oklz" name="name" xy="167,4" size="10,34" visible="false" fontSize="28" color="#cfb7a8" vAlign="middle" leading="0" text=""/>
+    <component id="n22_yzjp" name="fight_innerworld_progress_bg" src="cm4vu9rns7" fileName="new_head/fight_innerworld_progress_bg.xml" xy="139,42" group="n20_r0zq">
+      <gearDisplay controller="state" pages="1"/>
+    </component>
+    <component id="n21_pl5t" name="blood_new" src="pl5tu9rnrq" fileName="new_head/playerblood_lt.xml" xy="140,42" size="280,43" group="n20_r0zq">
+      <gearDisplay controller="state" pages="0"/>
+      <ProgressBar value="100" max="100"/>
+    </component>
+    <component id="n24_yzjp" name="blood_innerworld" src="yzjpu9rns2" fileName="new_head/playerblood_innerworld.xml" xy="165,42" group="n20_r0zq">
+      <gearDisplay controller="state" pages="1"/>
+    </component>
+    <component id="n8_oklz" name="blood" src="ovq1m7j" fileName="new_head/playerblood.xml" xy="131,47" group="n20_r0zq" hideByEditor="true" visible="false"/>
+    <component id="n25_t8f3" name="mc_eff" src="112p9rnea" fileName="new_ui/mc_eff.xml" xy="139,42" size="281,42" group="n20_r0zq"/>
+    <component id="n12_oklz" name="head" src="k52kn9b" fileName="new_head/btn_head_left.xml" xy="13,6" group="n20_r0zq"/>
+    <list id="n16_oklz" name="list_buff" xy="160,91" size="268,38" group="n20_r0zq" layout="row" overflow="scroll" scroll="horizontal" colGap="8" defaultItem="ui://4djj2cw4ovq1m7m"/>
+    <group id="n20_r0zq" name="head_group" xy="13,6" size="415,151" advanced="true"/>
+  </displayList>
+  <transition name="t0">
+    <item time="0" type="Alpha" target="n20_r0zq" tween="true" startValue="0" endValue="1" duration="8"/>
+    <item time="0" type="XY" target="n20_r0zq" tween="true" startValue="13,-200" endValue="13,-4" duration="8"/>
+  </transition>
+</component>

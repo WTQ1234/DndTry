@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="482,40">
+  <displayList>
+    <loader id="n0_hrrh" name="mc_img" xy="3,5" size="10,30" fill="scaleFree">
+      <relation target="n2_hrrh" sidePair="width-width,height-height"/>
+    </loader>
+    <richtext id="n1_hrrh" name="ttf_text" xy="14,5" size="467,33" fontSize="26" color="#dcdcdc" autoSize="height" singleLine="true" text="">
+      <relation target="n2_hrrh" sidePair="leftext-right"/>
+      <relation target="" sidePair="rightext-right"/>
+    </richtext>
+    <richtext id="n2_hrrh" name="ttf_ch" xy="3,5" size="10,30" fontSize="26" color="#ffffff" text=""/>
+  </displayList>
+</component>

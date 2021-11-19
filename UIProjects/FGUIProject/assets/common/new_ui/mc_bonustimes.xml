@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="111,82">
+  <displayList>
+    <image id="n0_mf4k" name="img_bg" src="mf4ku9rnkb" fileName="new_images/img_ty_fanbeijiangli.png" xy="0,0" size="111,82">
+      <relation target="n1_mf4k" sidePair="width-width"/>
+    </image>
+    <richtext id="n1_mf4k" name="ttf_bonus" xy="16,13" size="80,34" restrictSize="80,0,0,0" fontSize="28" color="#e4d0a9" align="center" vAlign="middle" text=""/>
+  </displayList>
+  <relation target="n0_mf4k" sidePair="width-width"/>
+</component>

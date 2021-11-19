@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="412,20" extention="Slider">
+  <displayList>
+    <image id="n1" name="n1" src="kks4n6x" xy="0,0" size="412,20">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2" name="bar" src="kks4n6r" xy="0,0" size="410,20"/>
+    <component id="n3" name="grip" src="ag85n8n" xy="397,-5">
+      <relation target="n2" sidePair="right-right"/>
+    </component>
+  </displayList>
+  <Slider/>
+</component>

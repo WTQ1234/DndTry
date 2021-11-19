@@ -1,0 +1,11 @@
+<?xml version="1.0" ?><component size="112,112" extention="Button" designImageOffsetX="-1818" designImageOffsetY="-1100">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <loader id="n279_ktel" name="btn_ty_title_wenhao" xy="-8,-8" size="128,128" url="ui://4djj2cw4ok9j9rnjr" fill="scaleFree"/>
+    <richtext id="n280_htbb" name="ttf_name" xy="51,80" size="10,32" fontSize="28" color="#e4d0a9" align="center" text="">
+      <relation target="n279_ktel" sidePair="center-center"/>
+    </richtext>
+    <component id="n281_o5ig" name="mc_jb" src="p2rxmon" xy="78,5" visible="false"/>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03" downEffect="scale" downEffectValue="0.80"/>
+</component>

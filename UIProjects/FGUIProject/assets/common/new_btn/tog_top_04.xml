@@ -1,0 +1,17 @@
+<?xml version="1.0" ?><component size="258,80" extention="Button" designImageOffsetX="-440" designImageOffsetY="-202">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n297_ktel" name="tog_ty_down04" src="dpgsrndk" xy="0,-1" pivot="0.5,0">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+    <image id="n308_dpgs" name="bg_line" src="lkunn5g" xy="253,9" size="6,70" flip="vt"/>
+    <richtext id="n305_ktel" name="ttf_title_up" xy="8,26" size="242,43" fontSize="34" color="#fff1be" align="center" vAlign="middle" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="1"/>
+    </richtext>
+    <richtext id="n306_ktel" name="ttf_title_down" xy="8,26" size="242,43" fontSize="34" color="#3f444b" align="center" vAlign="middle" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="0"/>
+    </richtext>
+    <component id="n307_fhfo" name="mc_jb" src="p2rxmon" xy="232,0" visible="false"/>
+  </displayList>
+  <Button mode="Radio" sound="ui_common_01_id_button_page_01"/>
+</component>

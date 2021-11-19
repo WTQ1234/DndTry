@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="170,98" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="l3dpmir" xy="0,0">
+      <gearDisplay controller="button" pages="0,2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2" name="n2" src="l3dpmiq" xy="0,0">
+      <gearDisplay controller="button" pages="1,3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n3_hvvs" name="n3" src="h5idmjp" xy="61,19" pivot="0.5,0.5">
+      <relation target="" sidePair="left-left,middle-middle"/>
+    </image>
+  </displayList>
+  <Button/>
+</component>

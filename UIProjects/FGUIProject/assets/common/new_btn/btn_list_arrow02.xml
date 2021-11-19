@@ -1,0 +1,16 @@
+<?xml version="1.0" ?><component size="68,68" extention="Button" designImageOffsetX="-381" designImageOffsetY="-253">
+  <displayList>
+    <image id="n7_kks4" name="open" src="bhx69rned" fileName="new_images/icon_main_right.png" xy="0,0" pivot="0.5,0.5"/>
+    <image id="n8_aqtr" name="close" src="bhx69rnec" fileName="new_images/icon_main_left.png" xy="0,0" pivot="0.5,0.5" visible="false"/>
+    <image id="n9_jlbf" name="mc_jb" src="p2rxmoo" fileName="new_images/point_ty.png" xy="43,-2" visible="false"/>
+  </displayList>
+  <Button sound="ui_main_id_button_switch_01" downEffect="scale" downEffectValue="0.80"/>
+  <transition name="open">
+    <item time="0" type="Visible" target="n7_kks4" value="false"/>
+    <item time="0" type="Visible" target="n8_aqtr" value="true"/>
+  </transition>
+  <transition name="close">
+    <item time="0" type="Visible" target="n7_kks4" value="true"/>
+    <item time="0" type="Visible" target="n8_aqtr" value="false"/>
+  </transition>
+</component>

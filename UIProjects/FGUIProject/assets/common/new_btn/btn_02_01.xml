@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="222,82" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n6_ctk2" name="btn_ty_01_up" src="p2rxmzx" fileName="new_images/btn_ty_02.png" xy="0,0">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n7_ctk2" name="btn_ty_01_down" src="p2rxmzx" fileName="new_images/btn_ty_02.png" xy="0,0">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <richtext id="n4_yixm" name="title_up" xy="23,22" size="176,40" fontSize="34" color="#bddeff" align="center" vAlign="middle" leading="0" autoSize="shrink" singleLine="true" text="">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
+    <richtext id="n5_sa9o" name="title_down" xy="23,22" size="176,40" fontSize="34" color="#bddeff" align="center" vAlign="middle" leading="0" autoSize="shrink" singleLine="true" text="">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
+    <component id="n9_hkem" name="mc_jb" src="p2rxmon" fileName="new_ui/mc_redpoint.xml" xy="196,2" visible="false">
+      <relation target="" sidePair="top-top,right-right"/>
+    </component>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03" downEffect="scale" downEffectValue="0.80"/>
+</component>

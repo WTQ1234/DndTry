@@ -1,0 +1,10 @@
+<?xml version="1.0" ?><component size="60,60" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n272_c2fr" name="input_bg" src="p2rxn05" fileName="new_images/img_ty_namebg.png" xy="14,11" size="32,70" scale="1,0.5"/>
+    <image id="n271_ktel" name="btn_ty_hb" src="c2frn4l" fileName="new_images/point_ty_selection.png" xy="21,18">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+  </displayList>
+  <Button mode="Check" sound="ui_common_01_id_button_click_01"/>
+</component>

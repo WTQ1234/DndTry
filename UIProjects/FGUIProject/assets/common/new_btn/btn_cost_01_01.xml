@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="300,82" extention="Button" designImageOffsetX="-638" designImageOffsetY="-816" designImageAlpha="100">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n8_ctk2" name="n8" src="p2rxmzw" fileName="new_images/btn_ty_01.png" xy="0,0" size="300,82">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n9_ctk2" name="n9" src="p2rxmzw" fileName="new_images/btn_ty_01.png" xy="0,0" size="300,82">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n5_s1ef" name="img_icon" xy="165,11" size="60,60" fill="scaleFree">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </loader>
+    <richtext id="n6_s1ef" name="ttf_num" xy="226,20" size="10,38" fontSize="34" color="#ffffff" align="center" vAlign="middle" leading="0" text="">
+      <gearDisplay controller="button" pages="0,1"/>
+      <relation target="" sidePair="width-width,middle-middle"/>
+    </richtext>
+    <richtext id="n4_s1ef" name="title_up" xy="20,19" size="144,40" fontSize="34" color="#ffffff" align="center" vAlign="middle" leading="0" autoSize="shrink" singleLine="true" text="">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="width-width,middle-middle"/>
+    </richtext>
+    <richtext id="n7_sa9o" name="title_down" xy="20,19" size="144,40" fontSize="34" color="#ffffff" align="center" vAlign="middle" leading="0" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="width-width,middle-middle"/>
+    </richtext>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03" downEffect="scale" downEffectValue="0.80"/>
+</component>

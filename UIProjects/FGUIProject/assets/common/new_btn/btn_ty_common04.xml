@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="132,132" extention="Button">
+  <displayList>
+    <loader id="n26_cafb" name="mc_icon" xy="2,2" pivot="0.5,0.5" size="128,128" fill="scaleFree"/>
+    <richtext id="n27_cafb" name="ttf_title" xy="60,91" size="10,34" fontSize="30" color="#e4d0a9" align="center" vAlign="middle" leading="0" text="">
+      <relation target="" sidePair="center-center"/>
+    </richtext>
+    <component id="n28_dkel" name="mc_jb" src="p2rxmon" xy="97,5" visible="false"/>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.90"/>
+</component>

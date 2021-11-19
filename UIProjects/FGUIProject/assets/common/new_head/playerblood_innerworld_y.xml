@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="54,30" overflow="hidden">
+  <displayList>
+    <image id="n6_yzjp" name="bar" src="yzjpu9rnrz" fileName="new_images/img_hp_player02.png" xy="0,0" size="54,30"/>
+  </displayList>
+  <relation target="n6_yzjp" sidePair="width-width"/>
+</component>

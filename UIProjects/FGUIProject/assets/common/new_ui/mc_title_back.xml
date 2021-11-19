@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="729,100">
+  <displayList>
+    <component id="n282_p2rx" name="btn_close" src="p2rxmmp" fileName="new_btn/btn_close01.xml" xy="21,16"/>
+    <component id="n283_p2rx" name="btn_wenhao" src="p2rxmmr" fileName="new_btn/btn_wenhao01.xml" xy="201,24">
+      <relation target="n281_ktel" sidePair="left-right,middle-middle"/>
+    </component>
+    <richtext id="n281_ktel" name="ttf_title" xy="171,31" size="10,53" fontSize="46" color="#cfb7a8" vAlign="middle" bold="true" italic="true" text=""/>
+  </displayList>
+</component>

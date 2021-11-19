@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="39,39" extention="Button">
+  <displayList>
+    <image id="n59_ikz9" name="n59" src="plainai" xy="0,0"/>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.90"/>
+</component>

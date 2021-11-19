@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="470,52" overflow="hidden">
+  <displayList>
+    <richtext id="n2_sibe" name="ttf_radio_text" xy="0,4" size="470,43" fontSize="26" color="#ffffff" vAlign="middle" leading="0" autoSize="none" text=""/>
+  </displayList>
+</component>

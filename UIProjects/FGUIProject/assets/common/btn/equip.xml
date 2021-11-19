@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="119,119">
+  <displayList>
+    <loader id="n3_ltdb" name="img_item_quality" xy="0,0" pivot="0.5,0.5" size="119,119" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <loader id="n7_ltdb" name="img_item_icon" xy="0,0" pivot="0.5,0.5" size="119,119" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <loader id="n13_w3mi" name="eff_item_quality" xy="0,0" pivot="0.5,0.5" size="119,119" blend="add" align="center" vAlign="middle" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <richtext id="n9_c0x8" name="ttf_smallname" xy="5,4" size="110,60" fontSize="22" color="#ffffff" leading="0" ubb="true" autoSize="shrink" singleLine="true" text="">
+      <relation target="" sidePair="left-left,top-top"/>
+    </richtext>
+    <richtext id="n10_c0x8" name="ttf_num" xy="9,4" size="106,34" fontSize="22" color="#ffffff" align="right" leading="0" ubb="true" autoSize="shrink" singleLine="true" text="">
+      <relation target="" sidePair="right-right,top-top"/>
+    </richtext>
+    <richtext id="n11_c0x8" name="ttf_name" xy="5,55" size="109,57" fontSize="22" color="#ffffff" vAlign="bottom" leading="0" ubb="true" autoSize="shrink" singleLine="true" text="">
+      <relation target="" sidePair="left-left,bottom-bottom"/>
+    </richtext>
+    <component id="n14_thb0" name="mc_jb" src="fqw7m68" xy="105,-10" visible="false">
+      <relation target="" sidePair="top-top,left-left"/>
+    </component>
+  </displayList>
+</component>

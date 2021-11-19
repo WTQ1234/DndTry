@@ -1,0 +1,26 @@
+<?xml version="1.0" ?><component size="379,103" extention="Button" designImageOffsetX="-44" designImageOffsetY="-406">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n11_w5va" name="btn_01_normal" src="eh37n3x" xy="0,5">
+      <gearDisplay controller="button" pages="0"/>
+    </image>
+    <image id="n6_jldq" name="btn_01_select" src="eh37n3z" xy="0,5">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+    <richtext id="n5_jldq" name="title_up" xy="5,25" size="359,44" touchable="false" fontSize="40" color="#81736a" align="center" vAlign="middle" leading="0" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="0"/>
+    </richtext>
+    <richtext id="n7_eh37" name="title_down" xy="5,25" size="359,44" touchable="false" fontSize="40" color="#f8dccb" align="center" vAlign="middle" leading="0" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="1"/>
+    </richtext>
+    <image id="n8_eh37" name="btn_01_selectarrow" src="p2rxmok" xy="0,95" size="370,8" aspect="true">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+    <list id="n9_eh37" name="small_list" xy="0,95" size="379,0" defaultItem="ui://4djj2cw4eh37n49">
+      <gearDisplay controller="button" pages="1"/>
+    </list>
+    <component id="n10_saiw" name="mc_jb" src="p2rxmon" xy="349,0" visible="false"/>
+  </displayList>
+  <Button mode="Radio" sound="ui_common_01_id_button_page_01"/>
+  <relation target="n9_eh37" sidePair="bottomext-bottom"/>
+</component>

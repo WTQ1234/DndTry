@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="150,151" designImage="ui://5ilpduskim4ii" designImageOffsetX="-10" designImageOffsetY="-15" designImageAlpha="100">
+  <displayList>
+    <component id="n23_qzag" name="mc_head" src="dcsmn8y" fileName="new_head/mc_head.xml" xy="0,0"/>
+    <image id="n22_oaqo" name="n22" src="kks4n5t" fileName="new_images/bg_ty_level.png" xy="111,33"/>
+    <richtext id="n21_jfgx" name="num_lv" xy="132,39" size="10,30" fontSize="26" color="#dadada" align="center" vAlign="middle" leading="0" text="">
+      <relation target="n22_oaqo" sidePair="center-center"/>
+    </richtext>
+  </displayList>
+</component>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="400,36">
+  <displayList>
+    <richtext id="n2_kifu" name="ttf_attr" xy="195,0" size="10,36" fontSize="30" color="#41a846" align="center" vAlign="middle" leading="0" ubb="true" singleLine="true" text="">
+      <relation target="" sidePair="center-center"/>
+    </richtext>
+  </displayList>
+</component>

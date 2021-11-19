@@ -1,0 +1,26 @@
+<?xml version="1.0" ?><component size="292,70" extention="Button" designImageOffsetX="-920" designImageOffsetY="-278">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n7_eh37" name="img_left" src="htbbn1n" xy="0,27">
+      <gearDisplay controller="button" pages="0,1"/>
+    </image>
+    <image id="n8_eh37" name="img_right" src="htbbn1n" xy="265,27">
+      <gearDisplay controller="button" pages="0,1"/>
+    </image>
+    <image id="n4_dxkd" name="tog_select" src="htbbn1o" xy="2,8" pivot="0.5,0.5" size="284,62">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+    <richtext id="n9_eh37" name="ttf_title_down" xy="30,18" size="236,42" fontSize="32" color="#fff1be" align="center" vAlign="middle" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
+    <richtext id="n5_dxkd" name="ttf_title_up" xy="30,18" size="236,42" fontSize="32" color="#5b616b" align="center" vAlign="middle" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
+    <component id="n6_k01p" name="mc_jb" src="p2rxmon" xy="244,0" visible="false">
+      <relation target="" sidePair="right-right,top-top"/>
+    </component>
+  </displayList>
+  <Button mode="Radio" sound="ui_common_01_id_button_page_01"/>
+</component>

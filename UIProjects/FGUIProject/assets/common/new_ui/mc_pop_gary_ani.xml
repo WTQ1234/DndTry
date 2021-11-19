@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="108,82">
+  <displayList>
+    <image id="n137_mk5w" name="n137" src="xy0ou9rnro" fileName="new_images/img_daily_qipao.png" xy="0,0" size="108,82" flip="hz">
+      <relation target="n138_mk5w" sidePair="width-width,height-height"/>
+      <relation target="" sidePair="bottom-bottom"/>
+    </image>
+    <richtext id="n138_mk5w" name="ttf_tips" xy="49,12" size="10,36" restrictSize="10,430,0,0" fontSize="30" color="#f0ede0" vAlign="middle" text="">
+      <relation target="" sidePair="bottom-bottom"/>
+    </richtext>
+  </displayList>
+</component>

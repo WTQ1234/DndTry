@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="304,18" extention="ProgressBar">
+  <displayList>
+    <image id="n1" name="n1" src="kks4n6x" xy="0,0" size="304,18">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2" name="bar" src="kks4n6r" xy="0,0">
+      <relation target="" sidePair="height-height,width-width"/>
+    </image>
+  </displayList>
+  <ProgressBar/>
+  <transition name="t0">
+    <item time="0" type="Size" target="n2" tween="true" startValue="0,16" endValue="403,16" duration="8" ease="Circ.InOut"/>
+    <item time="9" type="Size" target="n2" value="0,16"/>
+  </transition>
+</component>

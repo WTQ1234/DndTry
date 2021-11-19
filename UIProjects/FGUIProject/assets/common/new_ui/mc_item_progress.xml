@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="126,26" extention="ProgressBar">
+  <displayList>
+    <image id="n29_mv6a" name="n29" src="mv6au9rnrc" fileName="new_images/img_pet_jindu02.png" xy="0,0"/>
+    <image id="n31_hdye" name="bar" src="hdyeu9rnrg" fileName="new_images/img_pet_jindu03.png" xy="2,2"/>
+    <richtext id="n30_mv6a" name="title" xy="57,-1" size="10,31" fontSize="26" color="#dadada" align="center" vAlign="middle" leading="0" text="">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
+  </displayList>
+  <ProgressBar titleType="valueAndmax"/>
+</component>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="143,52">
+  <displayList>
+    <loader id="n0_gm46" name="bg" xy="0,0" size="143,52" aspect="true" fill="scaleFree"/>
+    <richtext id="n1_gm46" name="n1" xy="13,9" size="95,36" fontSize="30" color="#f0ede0" align="center" vAlign="middle" autoSize="shrink" text=""/>
+  </displayList>
+</component>

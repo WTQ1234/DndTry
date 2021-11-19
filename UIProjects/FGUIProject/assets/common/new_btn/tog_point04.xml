@@ -1,0 +1,14 @@
+<?xml version="1.0" ?><component size="60,60" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n272_c2fr" name="input_bg" src="p2rxn05" fileName="new_images/img_ty_namebg.png" xy="14,12" size="40,46" scale="0.8,0.8">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n273_dfs6" name="n273" src="d371rncd" fileName="new_images/open_duobao_donghua01.png" xy="8,5">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair=""/>
+    </image>
+    <richtext id="n274_htcp" name="ttf_title" xy="59,9" size="10,34" fontSize="30" color="#8a8a8a" leading="0" letterSpacing="2" text=""/>
+  </displayList>
+  <Button mode="Check" sound="ui_common_01_id_button_click_01"/>
+</component>

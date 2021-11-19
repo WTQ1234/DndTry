@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="425,150" opaque="false" designImageOffsetX="58" designImageOffsetY="20" adaptationTest="FitSize">
+  <displayList>
+    <image id="n17_9b0g" name="bg" src="kks4n5u" fileName="new_images/bg_ty_main_head.png" xy="71,19" group="n20_fbxh"/>
+    <component id="n9_e15c" name="btn_head" src="dcsmn8y" fileName="new_head/mc_head.xml" xy="-2,8" group="n20_fbxh"/>
+    <component id="n12_e15c" name="mc_power" src="kks4n5x" fileName="new_ui/mc_power04.xml" xy="145,60" group="n20_fbxh"/>
+    <component id="n24_gecq" name="mc_jb" src="p2rxmon" fileName="new_ui/mc_redpoint.xml" xy="102,28" group="n20_fbxh" visible="false"/>
+    <component id="n23_kks4" name="btn_point" src="kks4n60" fileName="new_btn/btn_money_add.xml" xy="140,97" group="n20_fbxh"/>
+    <richtext id="n26_yoxe" name="ttf_level" xy="145,22" size="10,36" group="n20_fbxh" fontSize="30" color="#dadada" text=""/>
+    <group id="n20_fbxh" name="player_info" xy="-2,8" size="427,150" advanced="true"/>
+    <list id="n27_qxxl" name="list_topleft" xy="388,0" size="0,106" layout="row" colGap="14" defaultItem="ui://0tjewqizsol655">
+      <relation target="n20_fbxh" sidePair="left-right"/>
+    </list>
+  </displayList>
+  <transition name="t0">
+    <item time="0" type="Alpha" target="n20_fbxh" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Alpha" target="n27_qxxl" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="XY" target="n20_fbxh" tween="true" startValue="-592,-1" endValue="0,0" duration="7" ease="Back.Out"/>
+  </transition>
+  <transition name="close">
+    <item time="0" type="Alpha" target="n20_fbxh" tween="true" startValue="1" endValue="0" duration="5"/>
+    <item time="0" type="Alpha" target="n27_qxxl" tween="true" startValue="1" endValue="0" duration="5"/>
+    <item time="0" type="XY" target="n20_fbxh" tween="true" startValue="0,0" endValue="-529,-1" duration="7" ease="Back.Out"/>
+  </transition>
+</component>

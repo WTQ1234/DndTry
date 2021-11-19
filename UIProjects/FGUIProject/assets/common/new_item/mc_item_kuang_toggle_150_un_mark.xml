@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="150,186" extention="Button" designImageOffsetX="-238" designImageOffsetY="-295">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <controller name="mark" pages="0,none,1,have" selected="0"/>
+  <displayList>
+    <image id="n14_c4nv" name="bg" src="p2rxn07" fileName="new_images/img_ty_bg_item01.png" xy="10,10" size="130,130" aspect="true"/>
+    <component id="n3_ltdb" name="mc_equip" src="p2rxmos" fileName="new_item/item_info_unlimited_auto.xml" xy="11,11" size="128,128" aspect="true"/>
+    <component id="n24_qa1w" name="mc_mark" src="mjlen2b" fileName="new_ui/mc_cornermark_left.xml" xy="5,6" scale="0.8,0.8">
+      <gearDisplay controller="mark" pages="1"/>
+    </component>
+    <image id="n22_htbb" name="select" src="htbbn1q" fileName="new_images/img_ty_pick.png" xy="0,0" size="150,150" aspect="true">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+    <component id="n23_htbb" name="mc_jb" src="p2rxmon" fileName="new_ui/mc_redpoint.xml" xy="114,4" visible="false"/>
+  </displayList>
+  <Button mode="Radio" sound="ui_common_01_id_button_click_03"/>
+</component>

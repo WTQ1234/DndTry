@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="20,25" pivot="0.5,0.5">
+  <displayList>
+    <image id="n4_qxxl" name="n4" src="qgnqu9rnqi" fileName="new_images/img_xiuluozhanchang_08.png" xy="0,0" size="20,25" flip="hz">
+      <relation target="" sidePair="width-width"/>
+    </image>
+  </displayList>
+</component>

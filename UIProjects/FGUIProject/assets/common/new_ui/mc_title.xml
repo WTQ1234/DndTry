@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="410,98">
+  <displayList>
+    <component id="n3_hwih" name="eff_title" src="112p9rnea" fileName="new_eff/mc_eff.xml" xy="0,0" pivot="0.5,0.5" size="410,98"/>
+    <richtext id="n2_ksyy" name="ttf_title" xy="0,0" pivot="0.5,0.5" size="410,98" alpha="0" fontSize="70" color="#fae7a6" align="center" vAlign="middle" leading="0" letterSpacing="2" autoSize="shrink" text="">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
+  </displayList>
+  <transition name="title">
+    <item time="0" type="Alpha" target="n2_ksyy" tween="true" startValue="0" endValue="1" duration="4"/>
+    <item time="0" type="Scale" target="n2_ksyy" tween="true" startValue="2,2" endValue="1,1" duration="6" ease="Back.Out"/>
+  </transition>
+</component>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="200,40">
+  <displayList>
+    <richtext id="n0_klg1" name="ttf_text" xy="0,3" size="10,34" fontSize="28" color="#f0ede0" vAlign="middle" text="">
+      <relation target="" sidePair="width-width"/>
+    </richtext>
+  </displayList>
+</component>

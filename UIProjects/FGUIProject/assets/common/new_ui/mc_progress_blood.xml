@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="428,20" extention="ProgressBar">
+  <displayList>
+    <image id="n67_psxz" name="n67" src="ba2orncf" fileName="new_images/img_guild_jindu.png" xy="0,0" size="428,20">
+      <relation target="" sidePair="width-width"/>
+    </image>
+    <image id="n66_psxz" name="bar" src="ba2orncg" fileName="new_images/img_guild_shilian04.png" xy="0,0" size="428,20">
+      <relation target="" sidePair="width-width"/>
+    </image>
+    <richtext id="n68_q5h2" name="title" xy="417,-5" size="10,30" fontSize="26" color="#dadada" align="right" leading="0" text="">
+      <relation target="" sidePair="right-right"/>
+    </richtext>
+  </displayList>
+  <ProgressBar/>
+</component>

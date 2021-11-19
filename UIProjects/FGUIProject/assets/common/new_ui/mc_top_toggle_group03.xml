@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="656,86">
+  <displayList>
+    <image id="n25_maoy" name="bg_ty_tog04" src="eh37n2t" xy="0,0"/>
+    <list id="n26_maoy" name="list_title" xy="22,0" size="614,86" layout="row" overflow="hidden" colGap="-15" defaultItem="ui://4djj2cw4maoyn8e">
+      <relation target="" sidePair="width-width"/>
+    </list>
+  </displayList>
+</component>

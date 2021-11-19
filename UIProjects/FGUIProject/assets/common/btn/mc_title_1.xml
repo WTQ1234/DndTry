@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1922,98" designImageOffsetX="-210" designImageOffsetY="-180" adaptationTest="FitSize">
+  <displayList>
+    <list id="n36_rw8b" name="list_money" xy="0,0" size="1920,69" layout="row" colGap="40" defaultItem="ui://4djj2cw4ovq1m7s" autoItemSize="false" align="center" vAlign="middle">
+      <relation target="" sidePair="width-width,top-top"/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <component id="n37_rw8b" name="btn_close" src="l3dpmis" xy="1752,0">
+      <relation target="" sidePair="top-top,right-right"/>
+      <relation target="" sidePair="width-width%,top-top"/>
+    </component>
+  </displayList>
+</component>

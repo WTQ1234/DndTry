@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="150,150" extention="Button">
+  <displayList>
+    <image id="n24_bm16" name="n24" src="bm169rnk7" fileName="new_images/img_tx_kuang.png" xy="8,8">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n18_jfgx" name="img_head" xy="0,-11" size="150,150" url="ui://4djj2cw4fh3h9rnk8" align="center" vAlign="middle" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <loader id="n23_qzag" name="img_headbox" xy="-5,-5" size="160,160" url="ui://4djj2cw4xnr5u9rnkd" align="center" vAlign="middle" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <richtext id="n25_qxxl" name="ttf_name" xy="70,154" size="10,36" fontSize="30" color="#dadada" align="center" vAlign="middle" text="">
+      <relation target="" sidePair="center-center"/>
+    </richtext>
+    <component id="n26_t8f3" name="mc_eff" src="112p9rnea" fileName="new_ui/mc_eff.xml" xy="70,70"/>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03"/>
+  <transition name="t0">
+    <item time="0" type="Alpha" target="n18_jfgx" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Alpha" target="n23_qzag" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="XY" target="n18_jfgx" tween="true" startValue="-,154" endValue="-,-11" duration="7" ease="Back.Out"/>
+    <item time="0" type="XY" target="n23_qzag" tween="true" startValue="-,173" endValue="-,-5" duration="7" ease="Back.Out"/>
+  </transition>
+</component>

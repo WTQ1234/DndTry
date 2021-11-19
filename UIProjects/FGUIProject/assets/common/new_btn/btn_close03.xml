@@ -1,0 +1,6 @@
+<?xml version="1.0" ?><component size="68,68" extention="Button">
+  <displayList>
+    <image id="n278_ktel" name="btn_ty_title_back" src="g7sqrnbf" fileName="new_images/btn_guild_close.png" xy="0,0"/>
+  </displayList>
+  <Button sound="ui_common_02_id_button_close_01" downEffect="scale" downEffectValue="0.80"/>
+</component>

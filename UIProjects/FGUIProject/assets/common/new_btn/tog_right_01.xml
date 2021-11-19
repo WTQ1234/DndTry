@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="156,160" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n223_ktel" name="line_ty_tog01" src="p2rxmmu" fileName="new_images/line_ty_tog01.png" xy="6,154" size="312,6"/>
+    <image id="n222_ktel" name="tog_ty_down01" src="p2rxmmv" fileName="new_images/tog_ty_down01.png" xy="0,-12">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+    <loader id="n227_ktel" name="img_icon_up" xy="51,22" size="64,64" url="ui://4djj2cw4p2rxmmw" align="center" vAlign="middle"/>
+    <richtext id="n228_ktel" name="title_down" xy="16,96" size="138,50" fontSize="26" color="#fff1c2" align="center" vAlign="middle" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="middle-middle"/>
+    </richtext>
+    <richtext id="n229_ktel" name="title_up" xy="16,96" size="138,50" fontSize="26" color="#b9b195" align="center" vAlign="middle" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="middle-middle"/>
+    </richtext>
+    <component id="n231_p2rx" name="mc_jb" src="p2rxmon" fileName="new_ui/mc_redpoint.xml" xy="127,4" visible="false"/>
+  </displayList>
+  <Button mode="Radio" sound="ui_common_01_id_button_page_01"/>
+</component>

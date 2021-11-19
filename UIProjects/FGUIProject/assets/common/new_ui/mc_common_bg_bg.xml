@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="695,947">
+  <displayList>
+    <image id="n262_q7b4" name="n262" src="p2rxmnv" xy="26,24" size="655,912">
+      <relation target="" sidePair="height-height,width-width"/>
+    </image>
+  </displayList>
+  <relation target="" sidePair="width-width,height-height"/>
+</component>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1750,68" designImageOffsetX="-234" designImageOffsetY="-276">
+  <displayList>
+    <image id="n240_ofnl" name="bg" src="htbbn1p" xy="0,0" size="1750,68">
+      <relation target="" sidePair="width-width,topext-top"/>
+    </image>
+    <list id="n212_ofnl" name="list_btn" xy="-2,-3" size="1750,68" layout="row" scroll="horizontal" colGap="-26" defaultItem="ui://4djj2cw4dpgsrnds">
+      <relation target="" sidePair="width-width"/>
+    </list>
+  </displayList>
+  <transition name="t0" autoPlay="true">
+    <item time="0" type="Alpha" target="n212_ofnl" tween="true" startValue="0" endValue="1" duration="10"/>
+    <item time="0" type="Alpha" target="n240_ofnl" tween="true" startValue="0" endValue="1" duration="10"/>
+  </transition>
+</component>

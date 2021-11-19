@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="108,82">
+  <displayList>
+    <image id="n137_mk5w" name="n137" src="mf4ku9rnkb" fileName="new_images/img_ty_fanbeijiangli.png" xy="0,0" size="108,82">
+      <relation target="n138_mk5w" sidePair="width-width"/>
+    </image>
+    <richtext id="n138_mk5w" name="ttf_tips" xy="49,12" size="10,36" fontSize="30" color="#f0ede0" vAlign="middle" text=""/>
+  </displayList>
+</component>

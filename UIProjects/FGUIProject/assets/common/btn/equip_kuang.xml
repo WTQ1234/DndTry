@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="119,119" extention="Button">
+  <controller name="c1" pages="0,rise,1,drop,2,lock,3,none,4,new,5,empty" selected="0"/>
+  <displayList>
+    <image id="n14_c4nv" name="bg" src="c4nvmbv" xy="0,0" size="119,119" aspect="true">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n21_lhxj" name="img_icon_equip" xy="4,4" size="110,110" aspect="true" fill="scaleFree">
+      <gearDisplay controller="c1" pages="5"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <component id="n3_ltdb" name="mc_equip" src="c4nvmcm" xy="0,1" size="119,119" aspect="true">
+      <gearDisplay controller="c1" pages="0,1,2,3,4"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <image id="n16_c4nv" name="img_lock" src="c4nvmco" xy="0,23">
+      <gearDisplay controller="c1" pages="2"/>
+      <relation target="" sidePair="left-left,top-top"/>
+    </image>
+    <image id="n17_c4nv" name="img_drop" src="c4nvmcn" xy="88,65">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="" sidePair="right-right,top-top"/>
+    </image>
+    <component id="n19_c4nv" name="mc_up" src="p2rxmo3" xy="88,65">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="" sidePair="right-right,bottom-bottom"/>
+    </component>
+    <image id="n20_x8d1" name="img_new" src="x8d1mky" xy="4,5">
+      <gearDisplay controller="c1" pages="4"/>
+      <relation target="" sidePair="left-left,top-top"/>
+    </image>
+  </displayList>
+  <Button/>
+</component>

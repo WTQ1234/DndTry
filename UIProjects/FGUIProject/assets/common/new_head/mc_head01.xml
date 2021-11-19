@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="150,154">
+  <displayList>
+    <image id="n26_fh3h" name="n26" src="bm169rnk7" fileName="new_images/img_tx_kuang.png" xy="8,8">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n27_fh3h" name="img_head" xy="0,-11" size="150,150" aspect="true" url="ui://4djj2cw4bm169rnk9" align="center" vAlign="bottom" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <loader id="n28_fh3h" name="img_headbox" xy="-5,-5" size="160,160" url="ui://4djj2cw4bm169rnk8" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+  </displayList>
+</component>

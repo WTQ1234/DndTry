@@ -1,0 +1,18 @@
+<?xml version="1.0" ?><component size="214,86" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n297_ktel" name="tog_ty_down04" src="eh37n2u" xy="0,0">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+    <richtext id="n305_ktel" name="ttf_title_up" xy="39,13" size="136,39" fontSize="34" color="#fff1be" align="center" vAlign="middle" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="1"/>
+      <relation target="" sidePair="center-center"/>
+    </richtext>
+    <richtext id="n306_ktel" name="ttf_title_down" xy="39,13" size="136,38" fontSize="34" color="#3f444b" align="center" vAlign="middle" autoSize="shrink" text="">
+      <gearDisplay controller="button" pages="0"/>
+      <relation target="" sidePair="center-center"/>
+    </richtext>
+    <component id="n307_fhfo" name="mc_jb" src="p2rxmon" xy="177,0" visible="false"/>
+  </displayList>
+  <Button mode="Radio" sound="ui_common_01_id_button_page_01"/>
+</component>

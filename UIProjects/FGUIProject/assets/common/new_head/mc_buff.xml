@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="38,38">
+  <controller name="state" pages="0,fang,1,liuleng" selected="1"/>
+  <displayList>
+    <loader id="n17_oklz" name="img_buff" xy="0,0" size="38,38" fill="scaleFree"/>
+    <image id="n21_mlvq" name="img_mask" src="mlvq9rnjv" fileName="new_images/img_mask.png" xy="0,0" fillMethod="radial360" fillClockwise="false" fillAmount="0">
+      <gearDisplay controller="state" pages="0"/>
+    </image>
+    <image id="n23_qrcr" name="img_mask_leng" src="qrcru9rnkn" fileName="new_images/img_skill_buff_zhezhao.png" xy="0,0" size="38,38" fillMethod="radial360" fillClockwise="false">
+      <gearDisplay controller="state" pages="1"/>
+    </image>
+    <richtext id="n19_oklz" name="ttf_buff" xy="30,20" pivot="1,0" size="10,21" fontSize="16" color="#dadada" align="right" vAlign="middle" leading="0" text=""/>
+    <richtext id="n20_ecxn" name="ttf_stack" xy="30,20" pivot="1,0" size="10,21" fontSize="16" color="#dadada" align="right" vAlign="middle" leading="0" text=""/>
+    <richtext id="n22_7z3l" name="ttf_time" xy="14,9" pivot="0.5,0.5" size="10,25" fontSize="20" color="#dadada" align="center" vAlign="middle" leading="0" text="">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
+  </displayList>
+  <transition name="t0" autoPlayRepeat="-1">
+    <item time="0" type="Alpha" target="n17_oklz" tween="true" startValue="1" endValue="0" duration="9"/>
+    <item time="0" type="Alpha" target="n19_oklz" tween="true" startValue="1" endValue="0" duration="9"/>
+    <item time="0" type="Alpha" target="n21_mlvq" tween="true" startValue="1" endValue="0" duration="9"/>
+    <item time="0" type="Alpha" target="n22_7z3l" tween="true" startValue="1" endValue="0" duration="9"/>
+    <item time="0" type="Alpha" target="n23_qrcr" tween="true" startValue="1" endValue="0" duration="9"/>
+    <item time="9" type="Alpha" target="n17_oklz" tween="true" startValue="0" endValue="1" duration="9"/>
+    <item time="9" type="Alpha" target="n19_oklz" tween="true" startValue="0" endValue="1" duration="9"/>
+    <item time="9" type="Alpha" target="n21_mlvq" tween="true" startValue="0" endValue="1" duration="9"/>
+    <item time="9" type="Alpha" target="n22_7z3l" tween="true" startValue="0" endValue="1" duration="9"/>
+    <item time="9" type="Alpha" target="n23_qrcr" tween="true" startValue="0" endValue="1" duration="9"/>
+    <item time="18" type="Alpha" target="n19_oklz" tween="true" startValue="1"/>
+    <item time="18" type="Alpha" target="n21_mlvq" tween="true" startValue="1"/>
+    <item time="18" type="Alpha" target="n22_7z3l" tween="true" startValue="1"/>
+  </transition>
+</component>

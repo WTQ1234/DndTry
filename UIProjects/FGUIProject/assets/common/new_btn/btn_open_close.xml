@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="128,68" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0">
+    <action type="play_transition" fromPage="" toPage="1" transition="t1"/>
+    <action type="play_transition" fromPage="" toPage="0" transition="t0"/>
+  </controller>
+  <displayList>
+    <image id="n33_k662" name="n33" src="if0o9rnej" xy="0,0">
+      <gearDisplay controller="button" pages="0"/>
+    </image>
+    <image id="n34_k662" name="n34" src="if0o9rnei" xy="0,0">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+  </displayList>
+  <Button mode="Check"/>
+  <transition name="t0">
+    <item time="0" type="XY" target="n34_k662" tween="true" startValue="-,-" endValue="-,-" duration="6"/>
+  </transition>
+  <transition name="t1">
+    <item time="0" type="XY" target="n34_k662" tween="true" startValue="-,-" endValue="-,-" duration="6"/>
+    <item time="6" type="XY" target="n34_k662" tween="true" startValue="-,-"/>
+  </transition>
+</component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?><component size="125,203" extention="Button" designImageOffsetX="-381" designImageOffsetY="-253">
+  <controller name="button" pages="" selected="-1"/>
+  <displayList>
+    <image id="n7_kks4" name="bg03" src="kks4n6n" fileName="new_images/btn_ty_arrow_bg02.png" xy="0,0"/>
+    <image id="n5_htbb" name="arrow" src="htbbn1c" fileName="new_images/btn_ty_arrow_bg_close.png" xy="14,50" pivot="0.5,0.5" scale="-1,1"/>
+  </displayList>
+  <Button sound="ui_main_id_button_switch_01" downEffect="dark" downEffectValue="0.80"/>
+  <transition name="open">
+    <item time="0" type="Scale" target="n5_htbb" value="1,1"/>
+  </transition>
+  <transition name="close">
+    <item time="0" type="Scale" target="n5_htbb" value="-1,1"/>
+  </transition>
+</component>

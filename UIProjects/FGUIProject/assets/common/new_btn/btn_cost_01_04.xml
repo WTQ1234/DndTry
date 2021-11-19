@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="300,82" pivot="0.5,0.5" extention="Button" designImageOffsetX="-768" designImageOffsetY="-916" designImageAlpha="100">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n8_ctk2" name="n8" src="p2rxmzw" fileName="new_images/btn_ty_01.png" xy="0,0" size="300,82">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n5_s1ef" name="img_icon" xy="110,11" size="60,60" fill="scaleFree">
+      <relation target="" sidePair="left-left,middle-middle"/>
+    </loader>
+    <richtext id="n6_s1ef" name="ttf_num" xy="168,19" size="10,38" fontSize="34" color="#ffffff" align="center" vAlign="middle" leading="0" text=""/>
+    <richtext id="n9_htyf" name="title" xy="145,22" size="10,38" visible="false" alpha="0" fontSize="34" color="#ffffff" align="center" vAlign="middle" leading="0" text=""/>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03" downEffect="scale" downEffectValue="0.80"/>
+</component>

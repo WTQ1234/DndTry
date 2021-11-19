@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="125,203" extention="Button" hitTest="n7_kks4" designImageOffsetX="-381" designImageOffsetY="-253">
+  <controller name="button" pages="" selected="-1"/>
+  <displayList>
+    <loader id="n6_kks4" name="bg02" xy="0,-410" size="125,1027" touchable="false" url="ui://4djj2cw4kks4n6o" fill="scaleFree" playing="false"/>
+    <image id="n7_kks4" name="bg03" src="kks4n6n" fileName="new_images/btn_ty_arrow_bg02.png" xy="9,1"/>
+    <image id="n5_htbb" name="arrow" src="htbbn1c" fileName="new_images/btn_ty_arrow_bg_close.png" xy="21,51" pivot="0.5,0.5" scale="-1,1"/>
+  </displayList>
+  <Button sound="ui_main_id_button_switch_01" downEffect="dark" downEffectValue="0.80"/>
+  <transition name="open">
+    <item time="0" type="Scale" target="n5_htbb" value="1,1"/>
+    <item time="0" type="Visible" target="n5_htbb" value="true"/>
+  </transition>
+  <transition name="close">
+    <item time="0" type="Scale" target="n5_htbb" value="-1,1"/>
+  </transition>
+</component>

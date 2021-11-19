@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="150,151" designImageOffsetX="-13" designImageOffsetY="-7">
+  <displayList>
+    <component id="n23_qzag" name="mc_head" src="dcsmn8y" xy="0,0"/>
+    <image id="n22_oaqo" name="n22" src="kks4n5t" xy="-13,41"/>
+    <richtext id="n21_jfgx" name="num_lv" xy="6,47" size="10,30" fontSize="26" color="#dadada" align="center" vAlign="middle" leading="0" text="">
+      <relation target="n22_oaqo" sidePair="center-center"/>
+    </richtext>
+  </displayList>
+</component>

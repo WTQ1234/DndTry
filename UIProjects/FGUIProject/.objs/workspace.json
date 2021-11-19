@@ -1,27 +1,45 @@
 {
-  "libview.firstColumnWidth": 313,
-  "libview.iconScale": 0,
-  "backgroundColor": 6710886,
-  "auxline1": true,
-  "canvasColor": 10066329,
-  "auxline2": true,
-  "doc.activeDoc": "ui://sa4gna93maxz0",
-  "libview.twoColumn": false,
-  "libview.expandedNodes": [
-    "bcy20prw",
-    "/",
-    "bgoepfli",
-    "/",
-    "sa4gna93",
-    "/"
-  ],
-  "doc.openedDocs": [
-    "ui://sa4gna93maxz0",
-    "ui://sa4gna93maxz5",
-    "ui://sa4gna93maxz1"
-  ],
-  "snapToGrid": true,
-  "gridColor": 80,
-  "libview.currentGroup": "",
-  "gridSize": 30
+	"hidden_packages": [],
+	"active_doc": [
+		"4djj2cw4",
+		"ag85n8m"
+	],
+	"expanded_nodes": [
+		"4djj2cw4",
+		"/"
+	],
+	"docs": [
+		"4djj2cw4",
+		"ltdb1f",
+		"4djj2cw4",
+		"fqw7m68",
+		"4djj2cw4",
+		"c4nvmcg",
+		"4djj2cw4",
+		"ovq1m7s",
+		"4djj2cw4",
+		"p2rxn0d",
+		"4djj2cw4",
+		"qd46n5d",
+		"4djj2cw4",
+		"fmn2u9rnkd",
+		"4djj2cw4",
+		"hpb69rnj7",
+		"4djj2cw4",
+		"k5ju9rnjj",
+		"4djj2cw4",
+		"ovq1m7m",
+		"4djj2cw4",
+		"htbbn1x",
+		"4djj2cw4",
+		"htbbn1y",
+		"4djj2cw4",
+		"eh37n2o",
+		"4djj2cw4",
+		"qxxlu9rnq6",
+		"4djj2cw4",
+		"dwrf9rnfe",
+		"4djj2cw4",
+		"ag85n8m"
+	]
 }

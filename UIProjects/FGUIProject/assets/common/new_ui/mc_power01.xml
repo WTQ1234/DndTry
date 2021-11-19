@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="312,72">
+  <displayList>
+    <image id="n296_p2rx" name="img_rty_zhanli_bg" src="p2rxmom" xy="0,0"/>
+    <richtext id="n281_ktel" name="num" xy="151,12" size="10,42" fontSize="38" color="#f4d1ac" align="center" vAlign="middle" italic="true" text="">
+      <relation target="n296_p2rx" sidePair="center-center"/>
+    </richtext>
+  </displayList>
+</component>

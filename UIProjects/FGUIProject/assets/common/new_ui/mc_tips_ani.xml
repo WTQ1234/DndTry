@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1547,576" designImageOffsetX="-186" designImageOffsetY="-312">
+  <displayList>
+    <image id="n43_hwih" name="bg01" src="ef3j9rnf4" fileName="new_images/img_upgrade_bg.png" xy="0,0" size="1547,576">
+      <relation target="" sidePair="middle-middle"/>
+    </image>
+    <component id="n30_jlbf" name="mc_title_ani" src="hwih9rnjg" fileName="new_ui/mc_title_ani.xml" xy="384,-106">
+      <relation target="n43_hwih" sidePair="center-center,top-top"/>
+    </component>
+  </displayList>
+  <transition name="normal">
+    <item time="0" type="Alpha" target="n30_jlbf" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Alpha" target="n43_hwih" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Size" value="1547,576"/>
+    <item time="0" type="Size" target="n43_hwih" tween="true" startValue="1547,0" endValue="1547,576" duration="8"/>
+    <item time="5" type="Transition" target="n30_jlbf" value="open"/>
+  </transition>
+  <transition name="normal_810">
+    <item time="0" type="Alpha" target="n30_jlbf" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Alpha" target="n43_hwih" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Size" value="1547,810"/>
+    <item time="0" type="Size" target="n43_hwih" tween="true" startValue="1547,0" endValue="1547,810" duration="8"/>
+    <item time="8" type="Transition" target="n30_jlbf" value="open"/>
+  </transition>
+  <transition name="normal_394">
+    <item time="0" type="Alpha" target="n30_jlbf" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Alpha" target="n43_hwih" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Size" value="1547,394"/>
+    <item time="0" type="Size" target="n43_hwih" tween="true" startValue="1547,0" endValue="1547,394" duration="8"/>
+    <item time="5" type="Transition" target="n30_jlbf" value="open"/>
+  </transition>
+  <transition name="t3" autoPlay="true">
+    <item time="0" type="Sound" value="ui_common_02_id_tip_award_01,100"/>
+  </transition>
+  <transition name="normal_640">
+    <item time="0" type="Alpha" target="n30_jlbf" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Alpha" target="n43_hwih" tween="true" startValue="0" endValue="1" duration="5"/>
+    <item time="0" type="Size" value="1547,640"/>
+    <item time="0" type="Size" target="n43_hwih" tween="true" startValue="1547,0" endValue="1547,640" duration="8"/>
+    <item time="8" type="Transition" target="n30_jlbf" value="open"/>
+  </transition>
+</component>

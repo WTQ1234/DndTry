@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="130,130" extention="Button">
+  <displayList>
+    <image id="n14_c4nv" name="bg" src="p2rxn07" xy="0,0" aspect="true">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <component id="n22_dmq1" name="mc_item" src="dmq19rnf9" xy="1,1"/>
+  </displayList>
+  <Button/>
+</component>

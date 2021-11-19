@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="778,160" designImageOffsetX="-571" designImageOffsetY="-205">
+  <displayList>
+    <image id="n30_jlbf" name="bg_mask" src="ef3j9rnf6" fileName="new_images/img_upgrade_title.png" xy="48,112" alpha="0">
+      <relation target="" sidePair="center-center,top-top"/>
+    </image>
+    <component id="n43_l99r" name="mc_eff" src="112p9rnea" fileName="new_eff/mc_eff.xml" xy="27,-37" size="724,235">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </component>
+    <image id="n40_ef3j" name="bg_title_mask" src="ef3j9rnf5" fileName="new_images/img_upgrade_bg2.png" xy="6,-32" alpha="0">
+      <relation target="" sidePair="center-center,top-top"/>
+    </image>
+    <image id="n29_jlbf" name="bg_title2" src="ef3j9rnf3" fileName="new_images/img_upgrade_title2.png" xy="524,0" pivot="0.13,0.85" rotation="24" flip="hz">
+      <relation target="" sidePair="top-top"/>
+    </image>
+    <image id="n42_hwih" name="bg_title1" src="ef3j9rnf3" fileName="new_images/img_upgrade_title2.png" xy="0,3" pivot="0.87,0.85" rotation="-24">
+      <relation target="" sidePair="top-top"/>
+    </image>
+  </displayList>
+  <transition name="open">
+    <item time="0" type="Alpha" target="n30_jlbf" tween="true" startValue="0" endValue="0" duration="7"/>
+    <item time="0" type="Alpha" target="n40_ef3j" tween="true" startValue="0.5" endValue="1" duration="7"/>
+    <item time="0" type="ColorFilter" target="n40_ef3j" tween="true" startValue="0.00,0.00,0.00,0.00" endValue="0.30,0.00,0.00,0.00" duration="7"/>
+    <item time="0" type="Rotation" target="n29_jlbf" tween="true" startValue="24" endValue="0" duration="7" ease="Back.Out"/>
+    <item time="0" type="Rotation" target="n42_hwih" tween="true" startValue="-24" endValue="0" duration="7" ease="Back.Out"/>
+    <item time="7" type="ColorFilter" target="n40_ef3j" tween="true" startValue="0.30,0.00,0.00,0.00" endValue="0.00,0.00,0.00,0.00" duration="5"/>
+  </transition>
+</component>

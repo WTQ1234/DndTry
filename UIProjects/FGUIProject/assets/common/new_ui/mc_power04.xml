@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="280,36" designImage="ui://0i94iqtk8z2u5g" designImageAlpha="0">
+  <displayList>
+    <richtext id="n16_jfgx" name="ttf_power" xy="28,0" size="10,37" fontSize="32" color="#f4d1ac" leading="0" text="">
+      <relation target="n22_kks4" sidePair="left-right"/>
+    </richtext>
+    <richtext id="n22_kks4" name="ttf_name" xy="0,0" size="10,38" fontSize="32" color="#f4d1ac" leading="0" text=""/>
+  </displayList>
+</component>

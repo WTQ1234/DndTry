@@ -1,0 +1,6 @@
+<?xml version="1.0" ?><component size="70,70" pivot="0.5,0.5" extention="Button">
+  <displayList>
+    <image id="n279_ktel" name="btn_ty_title_wenhao" src="p2rxmms" xy="8,8"/>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03" downEffect="scale" downEffectValue="0.80"/>
+</component>

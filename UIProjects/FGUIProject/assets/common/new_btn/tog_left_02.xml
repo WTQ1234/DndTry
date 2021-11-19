@@ -1,0 +1,13 @@
+<?xml version="1.0" ?><component size="379,95" extention="Button" designImageOffsetX="-44" designImageOffsetY="-406">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n8_eh37" name="bg" src="htbbn1s" xy="97,90"/>
+    <image id="n6_jldq" name="btn_01_select" src="eh37n48" xy="0,6" size="370,90">
+      <gearDisplay controller="button" pages="1"/>
+    </image>
+    <richtext id="n5_jldq" name="ttf_huodong_jiangli" xy="5,26" size="359,44" fontSize="34" color="#7d6f67" align="center" vAlign="middle" leading="0" autoSize="shrink" text=""/>
+    <richtext id="n7_eh37" name="ttf_huodong_jiangli_select" xy="5,26" size="359,44" fontSize="34" color="#f8dccb" align="center" vAlign="middle" leading="0" autoSize="shrink" text=""/>
+    <component id="n9_saiw" name="mc_jb" src="p2rxmon" xy="349,0" visible="false"/>
+  </displayList>
+  <Button mode="Radio" sound="ui_common_01_id_button_page_01"/>
+</component>

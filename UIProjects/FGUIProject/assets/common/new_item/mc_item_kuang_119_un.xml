@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="119,119" extention="Button">
+  <controller name="c1" pages="0,rise,1,drop,2,lock,3,none,4,new,5,empty,7,add,6,sui" selected="0"/>
+  <controller name="state" pages="0,none,1,have" selected="0"/>
+  <displayList>
+    <image id="n14_c4nv" name="bg" src="p2rxn07" fileName="new_images/img_ty_bg_item01.png" xy="0,0" size="119,119" aspect="true">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n21_lhxj" name="img_icon_equip" xy="4,4" size="110,110" aspect="true" fill="scaleFree">
+      <gearDisplay controller="c1" pages="5"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <component id="n3_ltdb" name="mc_equip" src="p2rxmos" fileName="new_item/item_info_unlimited_auto.xml" xy="1,1" size="117,117" aspect="true">
+      <gearDisplay controller="c1" pages="0,1,2,3,4,6"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <image id="n16_c4nv" name="img_lock" src="c4nvmco" fileName="new_images/icon_item_lock.png" xy="0,77">
+      <gearDisplay controller="c1" pages="2"/>
+      <relation target="" sidePair="left-left,top-top"/>
+    </image>
+    <component id="n17_c4nv" name="img_drop" src="dpgsrndt" fileName="new_item/item_ani_down.xml" xy="94,4">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="" sidePair="right-right,top-top"/>
+    </component>
+    <component id="n19_c4nv" name="mc_up" src="p2rxmo3" fileName="new_item/item_ani_up.xml" xy="94,4">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="" sidePair="right-right,top-top"/>
+    </component>
+    <image id="n22_kbin" name="img_sui" src="kbin9rnj8" fileName="new_images/corner_ty_sui.png" xy="-6,77" size="50,50" aspect="true">
+      <gearDisplay controller="c1" pages="6"/>
+      <relation target="" sidePair="left-left,bottom-bottom"/>
+    </image>
+    <image id="n23_rvjv" name="bg_add" src="dpgsrndz" fileName="new_images/img_ty_add.png" xy="30,30">
+      <gearDisplay controller="c1" pages="7"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <component id="n24_g3e6" name="mc_mark" src="mjlen2b" fileName="new_ui/mc_cornermark_left.xml" xy="-5,-4" scale="0.8,0.8">
+      <gearDisplay controller="state" pages="1"/>
+    </component>
+    <component id="n25_fcp3" name="mc_new" src="fcp3u9rnpx" fileName="new_ui/mc_corner_new.xml" xy="-2,-2" scale="0.76,0.76">
+      <gearDisplay controller="c1" pages="4"/>
+    </component>
+  </displayList>
+  <Button sound="ui_common_01_id_button_click_03"/>
+</component>

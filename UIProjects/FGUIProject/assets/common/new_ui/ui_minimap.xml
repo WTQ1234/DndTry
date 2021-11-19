@@ -1,0 +1,6 @@
+<?xml version="1.0" ?><component size="308,286" overflow="scroll" scroll="both" scrollBarFlags="32" extention="Button">
+  <displayList>
+    <component id="n0_tkgf" name="mc_minimap" src="kks4n69" fileName="new_ui/mc_minimap.xml" xy="-101,-112" touchable="false"/>
+  </displayList>
+  <Button sound="ui_map_id_ui_map_openct"/>
+</component>

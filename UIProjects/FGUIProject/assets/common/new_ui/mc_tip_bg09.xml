@@ -1,0 +1,20 @@
+<?xml version="1.0" ?><component size="1585,888">
+  <displayList>
+    <image id="n73_nwgr" name="bg_ty_board_02" src="p2rxmzu" fileName="new_images/bg_ty_board_01.png" xy="0,0" size="1585,888"/>
+    <image id="n74_nwgr" name="img_ty_closebg" src="p2rxn09" fileName="new_images/img_ty_closebg.png" xy="1365,7"/>
+    <image id="n75_nwgr" name="bg_title" src="p2rxn0a" fileName="new_images/img_ty_title_01.png" xy="-24,0"/>
+    <image id="n78_nwgr" name="line_ty_bg_down01" src="p2rxmoh" fileName="new_images/line_ty_bg_down01.png" xy="495,878"/>
+    <image id="n80_nwgr" name="bg_list" src="htbbn1g" fileName="new_images/bg_ty_tog02.png" xy="1398,74" size="179,804" alpha="0.5"/>
+    <component id="n76_nwgr" name="btn_close" src="p2rxn0c" fileName="new_btn/btn_close02.xml" xy="1532,0"/>
+    <richtext id="n77_nwgr" name="title" xy="51,16" size="10,38" fontSize="34" color="#d3b7a6" vAlign="middle" leading="0" italic="true" text="">
+      <relation target="" sidePair="top-top,left-left"/>
+    </richtext>
+    <list id="n68_lo1v" name="list_btn" xy="1399,146" size="179,678" overflow="scroll" lineGap="2" defaultItem="ui://4djj2cw4htbbn1r"/>
+    <component id="n81_kzje" name="btn_wenhao" src="p2rxmmr" fileName="new_btn/btn_wenhao01.xml" xy="67,1" visible="false">
+      <relation target="n77_nwgr" sidePair="left-right"/>
+    </component>
+  </displayList>
+  <transition name="t0" autoPlay="true">
+    <item time="0" type="Sound" value="ui_common_01_id_ui_interfacein_01"/>
+  </transition>
+</component>

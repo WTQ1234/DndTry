@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="222,82" designImageOffsetX="-1332" designImageOffsetY="-966">
+  <displayList>
+    <loader id="n8_kks4" name="img_icon" xy="95,-59" size="60,60" fill="scaleFree">
+      <relation target="n9_kks4" sidePair="left-right"/>
+    </loader>
+    <richtext id="n9_kks4" name="ttf_num" xy="80,-44" size="10,40" fontSize="34" color="#a8a8a8" align="right" vAlign="middle" leading="0" text="">
+      <relation target="" sidePair="center-center"/>
+    </richtext>
+    <component id="n10_tz4l" name="btn" src="p2rxn0d" fileName="new_btn/btn_01_01.xml" xy="12,4" size="198,73" aspect="true"/>
+  </displayList>
+</component>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1756,1018">
+  <displayList>
+    <image id="n64_ipmq" name="n64" src="ipmqmi6" xy="64,134" size="1624,812"/>
+    <loader id="n66_ipmq" name="img_title" xy="69,30" pivot="0,0.5" size="285,102" vAlign="middle" autoSize="true"/>
+    <component id="n67_ipmq" name="btn_close" src="jn8km97" xy="1589,26"/>
+  </displayList>
+</component>

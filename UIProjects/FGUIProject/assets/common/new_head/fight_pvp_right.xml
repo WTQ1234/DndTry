@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="784,173" designImage="ui://4djj2cw4ovq1m7i" designImageOffsetX="-210" designImageOffsetY="-180">
+  <displayList>
+    <component id="n8_oklz" name="blood" src="l99r9rnjn" xy="82,47">
+      <ProgressBar value="100" max="100"/>
+    </component>
+    <list id="n16_oklz" name="list_buff" xy="304,99" size="326,38" layout="row" overflow="scroll" colGap="9" defaultItem="ui://4djj2cw4ovq1m7m" align="right">
+      <relation target="" sidePair="right-right"/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <richtext id="n19_oklz" name="name" xy="601,11" size="10,34" fontSize="28" color="#cfb7a8" align="right" vAlign="middle" leading="0" text="">
+      <relation target="" sidePair="right-right"/>
+    </richtext>
+    <component id="n12_oklz" name="head" src="hpb69rnj7" xy="621,6">
+      <relation target="" sidePair="right-right"/>
+    </component>
+  </displayList>
+</component>
