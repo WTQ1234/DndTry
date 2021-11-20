@@ -110,18 +110,18 @@ public class CardEntity : Entity
     private Text text;
     private void Start_Test()
     {
-        text = Transform.FindObjectOfType<Text>();
-        sr = GetComponent<SpriteRenderer>();
+        //text = Transform.FindObjectOfType<Text>();
+        //sr = GetComponent<SpriteRenderer>();
     }
 
     public void OnSetColor(Color c)
     {
-        sr.color = c;
+        //sr.color = c;
     }
 
     public void OnSetText(string s)
     {
-        text.text = s;
+        //text.text = s;
     }
 
     public void refreshState()

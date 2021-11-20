@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="312,72">
+<component size="300,70">
   <displayList>
-    <image id="n296_p2rx" name="img_rty_zhanli_bg" src="p2rxmom" xy="0,0"/>
-    <richtext id="n281_ktel" name="num" xy="151,12" size="10,42" fontSize="38" color="#f4d1ac" align="center" vAlign="middle" italic="true" text="">
+    <image id="n296_p2rx" name="img_rty_zhanli_bg" src="p2rxmom" fileName="new_images/img_ty_zhanli_bg.png" xy="0,0" size="300,70">
+      <relation target="" sidePair="width-width,height-height,center-center,middle-middle"/>
+    </image>
+    <richtext id="n281_ktel" name="num" xy="69,10" size="154,52" fontSize="38" color="#f4d1ac" align="center" vAlign="middle" text="怪物名称">
       <relation target="n296_p2rx" sidePair="center-center"/>
     </richtext>
   </displayList>

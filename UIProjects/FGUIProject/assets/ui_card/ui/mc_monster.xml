@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="300,450">
+  <displayList>
+    <loader id="n1_rn97" name="img_item" xy="0,50" size="298,399" url="ui://sa4gna93rn979" fill="scaleFree"/>
+    <component id="n2_rn97" name="bar_hp" src="maxz1" fileName="ui/bar_hp.xml" xy="0,0" size="250,50">
+      <ProgressBar value="72" max="100"/>
+    </component>
+    <text id="n3_rn97" name="text_hp" xy="182,50" size="68,45" fontSize="33" color="#cccccc" align="center" vAlign="middle" text="4 / 4"/>
+    <component id="n4_rn97" name="btn_show" src="rn976" fileName="ui/btn_search.xml" xy="250,0" size="50,50"/>
+    <component id="n5_rn97" name="mc_name" src="rn978" fileName="ui/mc_name.xml" xy="0,380"/>
+  </displayList>
+</component>

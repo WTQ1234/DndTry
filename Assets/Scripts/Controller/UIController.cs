@@ -19,4 +19,11 @@ public class UIController : SingleTon<UIController>
     {
         UIPackage.AddPackage("FairyGUI/common");
     }
+
+    public UIBasic CreateUI<T>(GameObject obj, string name = null) where T : UIBasic
+    {
+        var ui = obj.AddComponent<T>();
+        ui.Init(new UIParamBasic(_UIName: name));
+        return ui;
+    }
 }
