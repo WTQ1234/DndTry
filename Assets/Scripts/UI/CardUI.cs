@@ -5,26 +5,24 @@ using FairyGUI;
 
 public class CardUI : UIBasic
 {
-    [SerializeField]
-    GameObject worldPos;//3D物体（人物）
-    //[SerializeField]
-    //RectTransform rectTrans;//UI元素（如：血条等）
-    public Vector2 offset;//偏移量
+    GComponent mc_monster;
+    GObject text_hp;
 
-    protected override void Awake()
+    public override void Awake()
     {
         base.Awake();
-        Init();
+
+        mc_monster = ui.GetChild("mc_monster") as GComponent;
+        text_hp = mc_monster.GetChild("text_hp");
+        text_hp.text = "11111";
     }
 
-    protected override void Start()
+    public void SetCardUIParam(int sort = -1)
     {
-        base.Start();
-    }
-
-    void Update()
-    {
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(worldPos.transform.position);
-        transform.position = screenPos + offset;
+        if (sort != -1)
+        {
+            panel.sortingOrder = sort;
+            text_hp.text = sort.ToString();
+        }
     }
 }

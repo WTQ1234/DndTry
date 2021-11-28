@@ -35,6 +35,9 @@ public class RoomEntity : Entity
     public int myTeamNum = 3;
     public int enemyTeamNum = 10;
 
+    private int curCardId = 0;
+
+    // 显示
     public float Radius = 5;
     public float actAngle = 30;
     private float Angle = 1;
@@ -71,8 +74,6 @@ public class RoomEntity : Entity
         //    TurnRoundTimer.UpdateAsFinish(Time.deltaTime, StartCombat);
         //}
         base.Update();
-        RefreshMonAct();    // 这里正常只在移动时调用
-        RefreshPos();
     }
 
     #region 创建
@@ -85,19 +86,17 @@ public class RoomEntity : Entity
             e.isMe = i == (int)(myTeamNum / 2);
         }
         interactNum = 2 + myTeamNum - 1;
-
         // 创建3个敌人
         for (int i = 0; i < enemyTeamNum; i++)
         {
             var e = AddMonsterEntity(i);
         }
-        RefreshMonAct();
-        RefreshPos();
+        OnCardAdd();
     }
 
     public CardEntity AddHeroEntity(int seat)
     {
-        var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: HeroParent);
+        var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: HeroParent, Name: $"CardEntity_{GetNewCardId()}");
         HeroEntities.Add(entity);
         entity.SetSeatNumber(seat);
         entity.OnSetColor(Color.gray);
@@ -108,12 +107,18 @@ public class RoomEntity : Entity
 
     public CardEntity AddMonsterEntity(int seat)
     {
-        var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: EnemyParent);
+        var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: EnemyParent, Name: $"CardEntity_{GetNewCardId()}");
         MonsterEntities.Add(entity);
         entity.SetSeatNumber(seat);
         entity.refreshState();
         entity.SetTeam(-1);
         return entity;
+    }
+
+    private int GetNewCardId()
+    {
+        curCardId++;
+        return curCardId;
     }
     #endregion
 
@@ -159,7 +164,7 @@ public class RoomEntity : Entity
                 y.GetAttr(AttrType.Speed) * y.GetMove());
         });
     }
-    // 刷新当前可交互的地方卡牌
+    // 刷新当前可交互的地方卡牌  // todo 有怪物死亡的时候也应该调用一次
     private void RefreshMonAct()
     {
         int length = MonsterEntities.Count;
@@ -220,6 +225,29 @@ public class RoomEntity : Entity
             tran.rotation = Camera.main.transform.rotation;
         }
     }
+    // 刷新卡牌UI显示的优先级sortorder
+    private void RefreshUISort()
+    {
+        print(seatPos);
+        for (int i = 0; i < MonsterEntities.Count; i++)
+        {
+            CardEntity curCard = MonsterEntities[i];
+            if (enemyActIndex.ContainsKey(curCard.GetSeatNumber()))
+            {
+                // 设置sort为最优先
+                curCard.SetCardUIParam(999);
+            }
+            else
+            {
+                // 设置sort递减  这里算得不对
+                //curCard.SetCardUIParam(Mathf.Abs(seatPos - i));
+                curCard.SetCardUIParam((int)(100 + 100 * Mathf.Cos((i - seatPos + 1) * 45 % 360 * Mathf.Deg2Rad)));
+
+                //targetPos = GerCurPosByIndex(i - seatPos);
+                //tran.DetectToMove_Local(targetPos);
+            }
+        }
+    }
     #endregion
 
     #region 获取
@@ -261,17 +289,18 @@ public class RoomEntity : Entity
     public void TtyTurnLeft()
     {
         seatPos -= 1;
+        OnPlayerMove();
     }
 
     public void TtyTurnRight()
     {
         seatPos += 1;
+        OnPlayerMove();
     }
     #endregion
 
     public void OnCombatEntityDead(CardEntity cardEntity)
     {
-
         if (cardEntity.GetTeam().Item2)
         {
             int seatNumber = cardEntity.GetSeatNumber();
@@ -289,6 +318,7 @@ public class RoomEntity : Entity
                 MonsterEntities[i].SetSeatNumber(i);
             }
         }
+        OnCardRemove();
     }
 
     public async void StartCombat()
@@ -398,6 +428,25 @@ public class RoomEntity : Entity
 
         Log($"{card.GetSeatNumber()} 阵营为 {team.Item1} {team.Item2}  找敌人,  找到了 {idx}");
         return list.ContainsKey(idx) ? list[idx] : null;
+    }
+
+    private void OnCardAdd()
+    {
+        RefreshMonAct();
+        RefreshPos();
+        RefreshUISort();
+    }
+    private void OnCardRemove()
+    {
+        RefreshMonAct();
+        RefreshPos();
+        RefreshUISort();
+    }
+    private void OnPlayerMove()
+    {
+        RefreshMonAct();
+        RefreshPos();
+        RefreshUISort();
     }
 
     public void Log(string msg)

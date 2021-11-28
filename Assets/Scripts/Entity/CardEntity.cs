@@ -12,6 +12,7 @@ using DG.Tweening;
 using ET;
 using GameUtils;
 using UnityEngine.UI;
+using FairyGUI;
 
 // 卡牌的基类 考虑拆分成 Logic和Show
 public class CardEntity : Entity
@@ -31,6 +32,8 @@ public class CardEntity : Entity
     public ActionControlType ActionControlType;
 
     private Transform StatusParent;
+    private Transform uiPanel;
+    private CardUI cardUI;
 
     public Action Action_OnAttrChange;
     public Action Action_OnTrunStart;
@@ -58,10 +61,19 @@ public class CardEntity : Entity
     public override void Awake()
     {
         base.Awake();
-        Start_Test();
+
         StatusParent = transform.Find("StatusParent");
+        uiPanel = transform.Find("UIPanel");
+    }
+
+    public override void Setup(object initData = null, bool asGameObject = false)
+    {
+        base.Setup(initData, asGameObject);
+
+        Start_Test();
         Init();
         InitEvent();
+        InitShow();
     }
 
     private void Init()
@@ -102,6 +114,12 @@ public class CardEntity : Entity
     private void InitEvent()
     {
         Subscribe<DeadEvent>(OnDead<DeadEvent>);
+    }
+
+    private void InitShow()
+    {
+        cardUI = uiPanel.gameObject.AddComponent<CardUI>();
+        cardUI.Init(new UIParamBasic(Name));
     }
     #endregion
 
@@ -158,6 +176,11 @@ public class CardEntity : Entity
     public int GetMove()
     {
         return TurnActionAbility.move;
+    }
+    // 设置UI
+    public void SetCardUIParam(int sort = -1)
+    {
+        cardUI.SetCardUIParam(sort);
     }
     #endregion
 

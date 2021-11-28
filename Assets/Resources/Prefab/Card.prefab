@@ -173,7 +173,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5926806329543375322}
   - component: {fileID: 5907959516752938716}
-  - component: {fileID: 2600460828002314985}
   m_Layer: 0
   m_Name: UIPanel
   m_TagString: Untagged
@@ -222,17 +221,3 @@ MonoBehaviour:
   cachedUISize: {x: 300, y: 450}
   hitTestMode: 0
   setNativeChildrenOrder: 0
---- !u!114 &2600460828002314985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8184334190478263423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c8238dc729d62c49b1208df6b4c06fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  worldPos: {fileID: 6035950528623654619}
-  offset: {x: 0, y: 0}

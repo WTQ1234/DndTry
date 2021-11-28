@@ -12,13 +12,13 @@ public class RoomUI : UIBasic
 
     private List<string> LogList = new List<string>();
 
-    protected override void Awake()
+    public override void Awake()
     {
         base.Awake();
         Init();
     }
 
-    protected override void Start()
+    public override void Start()
     {
         base.Start();
         //加载包

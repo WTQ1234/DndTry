@@ -43,15 +43,19 @@ namespace EGamePlay
         public Action<Entity> OnRemoveChildAction { get; set; }
 
         #region 创建与销毁
-        public static T Create<T>(object initData = null, GameObject owner = null, GameObject prefab = null, Entity parent = null, Transform ownerParent = null) where T : Entity
+        public static T Create<T>(
+            object initData = null, GameObject owner = null, 
+            GameObject prefab = null, Entity parent = null, Transform ownerParent = null, string Name = null) where T : Entity
         {
             Type type = typeof(T);
-            return _Create(type, initData, owner, prefab, parent, ownerParent) as T;
+            return _Create(type, initData, owner, prefab, parent, ownerParent, Name) as T;
         }
 
-        public static Entity Create(Type type = null, object initData = null, GameObject owner = null, GameObject prefab = null, Entity parent = null, Transform ownerParent = null)
+        public static Entity Create(
+            Type type = null, object initData = null, GameObject owner = null, 
+            GameObject prefab = null, Entity parent = null, Transform ownerParent = null, string Name = null)
         {
-            return _Create(type, initData, owner, prefab, parent, ownerParent);
+            return _Create(type, initData, owner, prefab, parent, ownerParent, Name);
         }
 
         /// <summary>
@@ -64,14 +68,15 @@ namespace EGamePlay
         /// <param name="parent">Entity指定Parent</param>
         /// <param name="ownerParent">Transform指定Parent</param>
         /// <returns></returns>
-        private static Entity _Create( Type type = null, object initData = null, GameObject owner = null, GameObject prefab = null, Entity parent = null, Transform ownerParent = null)
+        private static Entity _Create(
+            Type type = null, object initData = null, GameObject owner = null, 
+            GameObject prefab = null, Entity parent = null, Transform ownerParent = null, string Name = null)
         {
             bool needObj = owner == null;
             if (needObj) owner = prefab ? Instantiate(prefab) : new GameObject();
             var component = owner.GetComponent(type);
             var entity = (component != null ? component : owner.AddComponent(type)) as Entity;
 
-            entity.Setup(initData, needObj);
             Master.AddEntity(type, entity);
             (parent == null ? Master : parent).AddChild(entity);
 
@@ -79,7 +84,9 @@ namespace EGamePlay
 
             long id = IdFactory.NewInstanceId();
             entity.InstanceId = entity.Id = id;
-            entity.Name = type.ToString();
+            entity.Name = Name != null ? Name : type.ToString();
+            
+            entity.Setup(initData, needObj);
 
             if (EnableLog) Log.Debug($"Entity->Create, {type.Name}={entity.InstanceId}");
 
@@ -109,6 +116,7 @@ namespace EGamePlay
         #endregion
 
         #region 生命周期
+        // todo 啥时候给改一下改成protected
         public virtual void Awake()
         {
         }

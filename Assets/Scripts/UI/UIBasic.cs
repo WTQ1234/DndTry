@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FairyGUI;
 using Polyglot;
+using EGamePlay;
 
 public class UIParamBasic
 {
@@ -19,20 +20,21 @@ public class TextParam
     public List<object> param;
 }
 
-public class UIBasic : MonoBehaviour
+public class UIBasic : Entity
 {
     protected UIPanel panel;
     protected GComponent ui;
     protected bool isInited = false;
 
-    protected virtual void Awake()
+    public override void Awake()
     {
-    }
-
-    protected virtual void Start()
-    {
+        base.Awake();
         panel = gameObject.GetComponent<UIPanel>();
         ui = panel.ui;
+    }
+
+    public override void Start()
+    {
         if (!isInited)
         {
             Debug.LogError($"no inited! {GetType().ToString()}");
@@ -42,6 +44,7 @@ public class UIBasic : MonoBehaviour
     // 初始化
     public virtual void Init(UIParamBasic param = null)
     {
+        if (isInited) return;
         UIController.Instance.onSetUI(param != null ? param.UIName : GetType().ToString(), this);
         isInited = true;
     }
