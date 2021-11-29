@@ -203,12 +203,12 @@ public class RoomEntity : Entity
                 targetPos.x = (enemyActIndex[curCard.GetSeatNumber()]) * 2f;
                 targetPos.y = 0;
                 targetPos.z = -4;
-                tran.DetectToMove_Local(targetPos);
+                curCard.OnCardPosMove(targetPos);
             }
             else
             {
                 targetPos = GerCurPosByIndex(i - seatPos);
-                tran.DetectToMove_Local(targetPos);
+                curCard.OnCardPosMove(targetPos);
             }
             tran.rotation = Camera.main.transform.rotation;
         }
@@ -228,7 +228,6 @@ public class RoomEntity : Entity
     // 刷新卡牌UI显示的优先级sortorder
     private void RefreshUISort()
     {
-        print(seatPos);
         for (int i = 0; i < MonsterEntities.Count; i++)
         {
             CardEntity curCard = MonsterEntities[i];
@@ -239,12 +238,8 @@ public class RoomEntity : Entity
             }
             else
             {
-                // 设置sort递减  这里算得不对
-                //curCard.SetCardUIParam(Mathf.Abs(seatPos - i));
-                curCard.SetCardUIParam((int)(100 + 100 * Mathf.Cos((i - seatPos + 1) * 45 % 360 * Mathf.Deg2Rad)));
-
-                //targetPos = GerCurPosByIndex(i - seatPos);
-                //tran.DetectToMove_Local(targetPos);
+                // 设置sort递减
+                curCard.SetCardUIParam(500 - (int)curCard.targetPos.z * 10);
             }
         }
     }

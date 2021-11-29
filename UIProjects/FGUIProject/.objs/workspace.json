@@ -17,7 +17,9 @@
   "libview.twoColumn": false,
   "libview.expandedNodes": [
     "sa4gna93",
-    "/"
+    "/",
+    "sa4gna93",
+    "/ui/"
   ],
   "snapToGrid": true,
   "backgroundColor": 6710886,

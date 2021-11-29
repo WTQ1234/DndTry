@@ -1,6 +1,17 @@
 ﻿using System;
 using Sirenix.OdinInspector;
 
+[LabelText("卡牌类型")]
+public enum CardType
+{
+    [LabelText("空")]
+    None = 0,
+    [LabelText("怪物")]
+    Monster = 1,
+    [LabelText("物品")]
+    Item = 2,
+}
+
 [LabelText("属性类型")]
 [LabelWidth(50)]
 public enum AttrType

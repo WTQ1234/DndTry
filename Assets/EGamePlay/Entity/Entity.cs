@@ -318,6 +318,16 @@ namespace EGamePlay
             return evnt;
         }
 
+        public void Subscribe(string key, Action action)
+        {
+            var eventComponent = GetEntityComponent<EventComponent>();
+            if (eventComponent == null)
+            {
+                eventComponent = AddComponent<EventComponent>();
+            }
+            eventComponent.Subscribe(key, action);
+        }
+
         public void Subscribe<T>(Action<T> action) where T : class
         {
             var eventComponent = GetEntityComponent<EventComponent>();

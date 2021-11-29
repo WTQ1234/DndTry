@@ -14,12 +14,19 @@ using GameUtils;
 using UnityEngine.UI;
 using FairyGUI;
 
+// 后续考虑这种params是做成对象池，还是做成唯一的静态变量
+public class CardEntityParams
+{
+    public CardType cardType = CardType.Monster;
+}
+
 // 卡牌的基类 考虑拆分成 Logic和Show
 public class CardEntity : Entity
 {
     public static CardEntity Player;
     private bool _isMe = false;
     public bool isMe { get { return _isMe; } set { _isMe = value; if (value) Player = this; } }       // 是否是玩家
+    public CardType cardType;
     public bool isCreature; // 是否是生物，若是，则生成CardEntity_Creature
     public bool isSpeak;    // 是否可交谈（呼出对话框），进而达成交谈、购买、抽奖等
     public bool isTool;      // 是否可交互
@@ -37,6 +44,8 @@ public class CardEntity : Entity
 
     public Action Action_OnAttrChange;
     public Action Action_OnTrunStart;
+
+    public Vector3 targetPos;  // 卡牌tween移动的目标位置
 
     #region 组件
     private HealthPointComponent healthPointComponent { get; set; }
@@ -70,10 +79,12 @@ public class CardEntity : Entity
     {
         base.Setup(initData, asGameObject);
 
+        CardEntityParams cardEntityParams = initData as CardEntityParams;
+
         Start_Test();
         Init();
         InitEvent();
-        InitShow();
+        InitShow(cardEntityParams);
     }
 
     private void Init()
@@ -116,9 +127,17 @@ public class CardEntity : Entity
         Subscribe<DeadEvent>(OnDead<DeadEvent>);
     }
 
-    private void InitShow()
+    private void InitShow(CardEntityParams cardEntityParams)
     {
-        cardUI = uiPanel.gameObject.AddComponent<CardUI>();
+        switch(cardEntityParams.cardType)
+        {
+            case CardType.Monster:
+                cardUI = uiPanel.gameObject.AddComponent<CardUI_Monster>();
+                break;
+            default:
+                cardUI = uiPanel.gameObject.AddComponent<CardUI>();
+                break;
+        }
         cardUI.Init(new UIParamBasic(Name));
     }
     #endregion
@@ -315,6 +334,14 @@ public class CardEntity : Entity
     public void OnTrunStart()
     {
         Action_OnTrunStart?.Invoke();
+    }
+
+    public void OnCardPosMove(Vector3 _targetPos)
+    {
+        targetPos.x = _targetPos.x;
+        targetPos.y = _targetPos.y;
+        targetPos.z = _targetPos.z;
+        transform.DetectToMove_Local(targetPos);
     }
 
     public CardEntity GetEnemy(int seat)

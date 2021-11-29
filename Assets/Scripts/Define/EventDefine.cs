@@ -13,6 +13,12 @@ public class DeadEvent
     public DamageSource damageSource;  // 伤害来源
 }
 
+public class HpEvent
+{
+    public int hpValue = 1;
+    public int hpMaxValue = 1;
+}
+
 public class CombatEndEvent
 {
 

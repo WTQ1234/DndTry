@@ -10,6 +10,7 @@ namespace EGamePlay
         private Dictionary<Type, List<object>> Event2ActionLists = new Dictionary<Type, List<object>>();
         public static bool DebugLog { get; set; } = false;
 
+        private Dictionary<string, List<object>> EventActionLists = new Dictionary<string, List<object>>();
 
         public new T Publish<T>(T TEvent) where T : class
         {
@@ -21,6 +22,15 @@ namespace EGamePlay
                 }
             }
             return TEvent;
+        }
+
+        public void Subscribe(string key, Action action)
+        {
+            if (!EventActionLists.ContainsKey(key))
+            {
+                EventActionLists.Add(key, new List<object>());
+            }
+            EventActionLists[key].Add(action);
         }
 
         public new void Subscribe<T>(Action<T> action) where T : class
