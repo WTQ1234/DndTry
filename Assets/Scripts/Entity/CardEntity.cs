@@ -26,7 +26,7 @@ public class CardEntity : Entity
     public static CardEntity Player;
     private bool _isMe = false;
     public bool isMe { get { return _isMe; } set { _isMe = value; if (value) Player = this; } }       // 是否是玩家
-    public CardType cardType;
+    public CardType cardType = CardType.Monster;
     public bool isCreature; // 是否是生物，若是，则生成CardEntity_Creature
     public bool isSpeak;    // 是否可交谈（呼出对话框），进而达成交谈、购买、抽奖等
     public bool isTool;      // 是否可交互
@@ -138,32 +138,18 @@ public class CardEntity : Entity
                 cardUI = uiPanel.gameObject.AddComponent<CardUI>();
                 break;
         }
-        cardUI.Init(new UIParamBasic(Name));
+        cardUI.Init(new UIParamBasic(Name, this));
+        cardUI.Publish("SetHp", new HpEvent()
+        {
+            hpValue = healthPointComponent.Value,
+            hpMaxValue = healthPointComponent.MaxValue,
+        });
     }
     #endregion
 
     #region 测试用
-    private SpriteRenderer sr;
-    private Text text;
     private void Start_Test()
     {
-        //text = Transform.FindObjectOfType<Text>();
-        //sr = GetComponent<SpriteRenderer>();
-    }
-
-    public void OnSetColor(Color c)
-    {
-        //sr.color = c;
-    }
-
-    public void OnSetText(string s)
-    {
-        //text.text = s;
-    }
-
-    public void refreshState()
-    {
-        OnSetText($"{SeatNumber} {healthPointComponent.Value}");
     }
     #endregion
 
@@ -311,7 +297,11 @@ public class CardEntity : Entity
         var damageAction = combatAction as CardDamageAction;
         RoomEntity.Instance.Log($"造成伤害：{damageAction.DamageValue}");
         healthPointComponent.Minus(damageAction.DamageValue);
-        refreshState();
+        cardUI.Publish("SetHp", new HpEvent()
+        {
+            hpValue = healthPointComponent.Value,
+            hpMaxValue = healthPointComponent.MaxValue,
+        });
     }
 
     public void ReceiveCure(CardActionExecution combatAction)

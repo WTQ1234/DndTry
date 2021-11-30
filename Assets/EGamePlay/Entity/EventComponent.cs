@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace EGamePlay
 {
+    public delegate void EventDelegate(EventParams eventParams);
+
     public sealed class EventComponent : Component
     {
         public override bool Enable { get; set; } = true;
         private Dictionary<Type, List<object>> Event2ActionLists = new Dictionary<Type, List<object>>();
         public static bool DebugLog { get; set; } = false;
-
-        private Dictionary<string, List<object>> EventActionLists = new Dictionary<string, List<object>>();
 
         public new T Publish<T>(T TEvent) where T : class
         {
@@ -18,20 +18,38 @@ namespace EGamePlay
             {
                 foreach (Action<T> action in actionList)
                 {
+
                     action.Invoke(TEvent);
                 }
             }
             return TEvent;
         }
 
-        public void Subscribe(string key, Action action)
+        private Dictionary<string, EventDelegate> EventActionLists = new Dictionary<string, EventDelegate>();
+        public new void Subscribe(string key, EventDelegate action)
         {
             if (!EventActionLists.ContainsKey(key))
             {
-                EventActionLists.Add(key, new List<object>());
+                EventActionLists.Add(key, action);
             }
-            EventActionLists[key].Add(action);
+            EventActionLists[key] += action;
         }
+        public new void UnSubscribe(string key, EventDelegate action)
+        {
+            if (EventActionLists.ContainsKey(key))
+            {
+                EventActionLists[key] -= action;
+            }
+        }
+        public new void Publish(string key, EventParams eventParams)
+        {
+            if (EventActionLists.TryGetValue(key, out var action))
+            {
+                action(eventParams);
+                // action.Invoke(eventParams);
+            }
+        }
+
 
         public new void Subscribe<T>(Action<T> action) where T : class
         {

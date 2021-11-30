@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FairyGUI;
+using EGamePlay;
 
 public class UIController : SingleTon<UIController>
 {
@@ -20,10 +21,11 @@ public class UIController : SingleTon<UIController>
         UIPackage.AddPackage("FairyGUI/common");
     }
 
-    public UIBasic CreateUI<T>(GameObject obj, string name = null) where T : UIBasic
+    public UIBasic CreateUI<T>(Entity owner, string name = null) where T : UIBasic
     {
-        var ui = obj.AddComponent<T>();
-        ui.Init(new UIParamBasic(_UIName: name));
+        print("todo addcomponent");
+        var ui = owner.gameObject.AddComponent<T>();  // 临时 owner这里不能传组件
+        ui.Init(new UIParamBasic(name, owner));
         return ui;
     }
 }

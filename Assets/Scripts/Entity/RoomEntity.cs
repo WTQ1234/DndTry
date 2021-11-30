@@ -19,9 +19,6 @@ public class RoomEntity : Entity
     public static RoomEntity Instance { get; private set; }
     public Dictionary<GameObject, CardEntity> GameObject2Entitys { get; set; } = new Dictionary<GameObject, CardEntity>();
 
-    //public GameTimer TurnRoundTimer { get; set; } = new GameTimer(2f);
-    //public List<TurnAction> TurnActions { get; set; } = new List<TurnAction>();
-
     public List<CardEntity> HeroEntities = new List<CardEntity>();
     public List<CardEntity> MonsterEntities = new List<CardEntity>();
     // seatNumber - 交互顺序
@@ -67,15 +64,6 @@ public class RoomEntity : Entity
         roomUI = UIController.Instance.onGetUI("RoomUI") as RoomUI;
     }
 
-    public override void Update()
-    {
-        //if (TurnRoundTimer.IsRunning)
-        //{
-        //    TurnRoundTimer.UpdateAsFinish(Time.deltaTime, StartCombat);
-        //}
-        base.Update();
-    }
-
     #region 创建
     public void CreateTeam()
     {
@@ -96,21 +84,19 @@ public class RoomEntity : Entity
 
     public CardEntity AddHeroEntity(int seat)
     {
-        var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: HeroParent, Name: $"CardEntity_{GetNewCardId()}");
+        var entity = Create<CardEntity>(initData: new CardEntityParams(){cardType = CardType.Monster}, prefab: Prefab_Card, parent: this, ownerParent: HeroParent, Name: $"CardEntity_{GetNewCardId()}");
         HeroEntities.Add(entity);
         entity.SetSeatNumber(seat);
-        entity.OnSetColor(Color.gray);
-        entity.refreshState();
         entity.SetTeam(1);
+        entity.SetCardUIParam(1000);
         return entity;
     }
 
     public CardEntity AddMonsterEntity(int seat)
     {
-        var entity = Create<CardEntity>(prefab: Prefab_Card, parent: this, ownerParent: EnemyParent, Name: $"CardEntity_{GetNewCardId()}");
+        var entity = Create<CardEntity>(initData: new CardEntityParams(){cardType = CardType.Monster}, prefab: Prefab_Card, parent: this, ownerParent: EnemyParent, Name: $"CardEntity_{GetNewCardId()}");
         MonsterEntities.Add(entity);
         entity.SetSeatNumber(seat);
-        entity.refreshState();
         entity.SetTeam(-1);
         return entity;
     }
@@ -164,7 +150,7 @@ public class RoomEntity : Entity
                 y.GetAttr(AttrType.Speed) * y.GetMove());
         });
     }
-    // 刷新当前可交互的地方卡牌  // todo 有怪物死亡的时候也应该调用一次
+    // 刷新当前可交互的地方卡牌
     private void RefreshMonAct()
     {
         int length = MonsterEntities.Count;
@@ -316,9 +302,11 @@ public class RoomEntity : Entity
         OnCardRemove();
     }
 
+    // 回合开始
     public async void StartCombat()
     {
         Log("======回合开始");
+        await TimerComponent.Instance.WaitAsync(1000);  // 因为先打了一次，所以需要先等1秒
         RefreshCard();
         // 在互动范围内的敌人的行动 近程怪暂时直接打
         RefreshActions();

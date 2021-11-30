@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadEvent
+// todo 如果同样类比较类似，考虑是否定义几个模板，比如2个int
+public class EventParams
+{
+
+}
+
+public class DeadEvent : EventParams
 {
     public CardEntity killer;          // 杀手
     public CardEntity victim;          // 死者
@@ -13,10 +19,10 @@ public class DeadEvent
     public DamageSource damageSource;  // 伤害来源
 }
 
-public class HpEvent
+public class HpEvent : EventParams
 {
-    public int hpValue = 1;
-    public int hpMaxValue = 1;
+    public int hpValue = -1;
+    public int hpMaxValue = -1;
 }
 
 public class CombatEndEvent

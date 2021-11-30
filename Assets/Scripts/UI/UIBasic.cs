@@ -8,9 +8,11 @@ using EGamePlay;
 public class UIParamBasic
 {
     public string UIName = null;
-    public UIParamBasic(string _UIName)
+    public Entity owner = null;
+    public UIParamBasic(string _UIName, Entity _owner)
     {
         UIName = _UIName;
+        owner = _owner;
     }
 }
 
@@ -22,6 +24,7 @@ public class TextParam
 
 public class UIBasic : Entity
 {
+    protected Entity owner;
     protected UIPanel panel;
     protected GComponent ui;
     protected bool isInited = false;
@@ -41,12 +44,14 @@ public class UIBasic : Entity
         }
     }
 
-    // 初始化
-    public virtual void Init(UIParamBasic param = null)
+    // 初始化 因为是这里记录的owner，所以事件最好在这里注册
+    public virtual bool Init(UIParamBasic param = null)
     {
-        if (isInited) return;
+        if (isInited) return false;
+        owner = param != null ? param.owner : null;
         UIController.Instance.onSetUI(param != null ? param.UIName : GetType().ToString(), this);
         isInited = true;
+        return true;
     }
 
     // 下面多语言处理有个问题，就是List存了10个列表，释放的时间没法控制，可能会有内存泄漏，包括被删掉的ui在这里没法清除 

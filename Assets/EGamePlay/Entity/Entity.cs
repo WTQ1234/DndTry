@@ -136,6 +136,34 @@ namespace EGamePlay
         }
         #endregion
 
+        #region 事件
+        public void Subscribe(string key, EventDelegate action)
+        {
+            var eventComponent = GetEntityComponent<EventComponent>();
+            if (eventComponent == null)
+            {
+                eventComponent = AddComponent<EventComponent>();
+            }
+            eventComponent.Subscribe(key, action);
+        }
+        public void UnSubscribe(string key, EventDelegate action)
+        {
+            var eventComponent = GetEntityComponent<EventComponent>();
+            if (eventComponent != null)
+            {
+                eventComponent.UnSubscribe(key, action);
+            }
+        }
+        public void Publish(string key, EventParams eventParams)
+        {
+            var eventComponent = GetEntityComponent<EventComponent>();
+            if (eventComponent != null)
+            {
+                eventComponent.Publish(key, eventParams);
+            }
+        }
+        #endregion
+
         public void Dispose()
         {
             if (Entity.EnableLog) Log.Debug($"{GetType().Name}->Dispose");
@@ -307,27 +335,6 @@ namespace EGamePlay
             return TEvent;
         }
 
-        public TEvent Publish<TEvent, TParam>(TEvent evnt, TParam param) where TEvent : class
-        {
-            var eventComponent = GetEntityComponent<EventComponent>();
-            if (eventComponent == null)
-            {
-                return evnt;
-            }
-            eventComponent.Publish(evnt);
-            return evnt;
-        }
-
-        public void Subscribe(string key, Action action)
-        {
-            var eventComponent = GetEntityComponent<EventComponent>();
-            if (eventComponent == null)
-            {
-                eventComponent = AddComponent<EventComponent>();
-            }
-            eventComponent.Subscribe(key, action);
-        }
-
         public void Subscribe<T>(Action<T> action) where T : class
         {
             var eventComponent = GetEntityComponent<EventComponent>();
@@ -345,11 +352,6 @@ namespace EGamePlay
             {
                 eventComponent.UnSubscribe(action);
             }
-        }
-
-        public void Fire(string signal)
-        {
-
         }
     }
 
