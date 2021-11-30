@@ -1,5 +1,4 @@
 {
-	"hidden_packages": [],
 	"active_doc": [
 		"sa4gna93",
 		"rn97d"
@@ -15,5 +14,6 @@
 		"maxz0",
 		"sa4gna93",
 		"rn97d"
-	]
+	],
+	"hidden_packages": []
 }
