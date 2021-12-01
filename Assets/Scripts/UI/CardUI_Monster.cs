@@ -25,6 +25,8 @@ public class CardUI_Monster : CardUI
     {
         if (!base.Init(param)) return false;
         Subscribe("SetHp", SetHp);
+        owner.Subscribe("onActExe_Atk", onActExe_Atk);
+        owner.Subscribe("onActExe_Def", onActExe_Def);
         return true;
     }
 
@@ -51,5 +53,18 @@ public class CardUI_Monster : CardUI
             bar_hp.TweenValue(hpValue, 0.2f);
             text_hp.text = $"{hpValue}/{hpMaxValue}";
         }
+    }
+
+    public void onActExe_Atk(EventParams _atkEvent)
+    {
+        AtkEvent atkEvent = _atkEvent as AtkEvent;
+        Transition transition = ui.GetTransition("atk");
+        transition.Play();
+    }
+    public void onActExe_Def(EventParams _defEvent)
+    {
+        DefEvent defEvent = _defEvent as DefEvent;
+        Transition transition = ui.GetTransition(defEvent.DamageValue > 0 ? "def_shake" : "def");
+        transition.Play();
     }
 }

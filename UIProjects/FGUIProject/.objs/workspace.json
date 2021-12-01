@@ -1,19 +1,28 @@
 {
-	"active_doc": [
-		"sa4gna93",
-		"rn97d"
-	],
-	"expanded_nodes": [
-		"4djj2cw4",
-		"/",
-		"sa4gna93",
-		"/"
-	],
-	"docs": [
-		"sa4gna93",
-		"maxz0",
-		"sa4gna93",
-		"rn97d"
-	],
-	"hidden_packages": []
+  "libview.firstColumnWidth": 293,
+  "expanded_nodes": [
+    "4djj2cw4",
+    "/",
+    "sa4gna93",
+    "/"
+  ],
+  "libview.iconScale": 0,
+  "doc.openedDocs": [
+    "ui://sa4gna93maxz0"
+  ],
+  "auxline1": true,
+  "canvasColor": 10066329,
+  "auxline2": true,
+  "doc.activeDoc": "ui://sa4gna93maxz0",
+  "libview.twoColumn": false,
+  "libview.expandedNodes": [
+    "sa4gna93",
+    "/"
+  ],
+  "snapToGrid": true,
+  "backgroundColor": 6710886,
+  "libview.currentGroup": "",
+  "hidden_packages": [],
+  "gridSize": 30,
+  "gridColor": 80
 }

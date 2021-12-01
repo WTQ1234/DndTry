@@ -19,6 +19,19 @@ public class DeadEvent : EventParams
     public DamageSource damageSource;  // 伤害来源
 }
 
+public class AtkEvent : EventParams
+{
+    public CardEntity Creator;         // 发起人
+    public CardEntity Target;          // 目标
+}
+public class DefEvent : EventParams
+{
+    public CardEntity Creator;         // 发起人
+    public CardEntity Target;          // 目标
+    public int DamageValue;
+    public bool IsCritical;
+}
+
 public class HpEvent : EventParams
 {
     public int hpValue = -1;

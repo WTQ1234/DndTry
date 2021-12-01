@@ -22,7 +22,7 @@ public class CardDamageAction : CardActionExecution
     //伤害来源
     public DamageSource DamageSource;
     //伤害数值
-    public int DamageValue;
+    public int DamageValue = 0;
     //是否是暴击
     public bool IsCritical;
 
@@ -78,12 +78,6 @@ public class CardDamageAction : CardActionExecution
         }
     }
 
-    //应用伤害
-    public void ApplyDamage()
-    {
-
-    }
-
     //后置处理
     private void PostProcess()
     {
@@ -97,6 +91,7 @@ public class CardDamageAction : CardActionExecution
     {
         PreProcess();
 
+        Target.Publish("onActExe_Def", new DefEvent(){Creator = Creator, Target = Target, DamageValue = DamageValue});
         Target.ReceiveDamage(this);
 
         PostProcess();

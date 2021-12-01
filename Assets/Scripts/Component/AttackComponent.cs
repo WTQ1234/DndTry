@@ -54,8 +54,10 @@ public class CardAttackAction : CardActionExecution
         Target.TriggerActionPoint(ActionPointType.PostReceiveAttack, this);
     }
 
+    // 正式攻击
     public override void BeginExecute()
     {
+        Creator.Publish("onActExe_Atk", new AtkEvent(){Creator = Creator, Target = Target});
         CardDamageActionAbility CardDamageActionAbility = OwnerEntity.GetAbilityComponent<CardDamageActionAbility>();
         if (CardDamageActionAbility != null)
         {

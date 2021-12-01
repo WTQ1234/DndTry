@@ -379,18 +379,13 @@ public class CardEntity : Entity
                 if (Player.CardAttackActionAbility.TryCreateAction(out var action))
                 {
                     //var monster = this;
-                    //SpawnLineEffect(AttackPrefab, transform.position, monster.transform.position);
-                    //SpawnHitEffect(transform.position, monster.transform.position);
 
-                    // 设置一下攻击力
-                    // Player.GetComponent<CardAttributeComponent>().SetBaseVale(AttrType.Atk_P, ET.RandomHelper.RandomNumber(600, 999));
                     action.OwnerEntity = Player;
                     action.Target = this;
                     action.BeginExecute();
                     Entity.Destroy(action);
-
-                    RoomController.Instance.StartCombat();
                 }
+                RoomController.Instance.StartCombat();
             }
         }
     }
@@ -399,6 +394,8 @@ public class CardEntity : Entity
     {
         if (CardAttackActionAbility.TryCreateAction(out var action))
         {
+            // 设置一下攻击力
+            // Player.GetComponent<CardAttributeComponent>().SetBaseVale(AttrType.Atk_P, ET.RandomHelper.RandomNumber(600, 999));
             RoomEntity.Instance.Log($"{SeatNumber} 攻击了 {enemy.SeatNumber}");
             action.OwnerEntity = this;
             action.Target = enemy;
