@@ -12,7 +12,7 @@ public class ConfigController : SingleTon<ConfigController>
         public void Awake()
         {
             Instance = this;
-            var assembly = Assembly.GetAssembly(typeof(TimerComponent));
+            var assembly = Assembly.GetAssembly(typeof(ConfigController));
             var referenceCollector = ReferenceCollector.Instance;
             if (referenceCollector == null)
             {
@@ -24,8 +24,10 @@ public class ConfigController : SingleTon<ConfigController>
                 var configType = assembly.GetType(configTypeName);
                 var typeName = $"ET.{item.gameObject.name}Category";
                 var configCategoryType = assembly.GetType(typeName);
+                // 对未知类型T进行实例化
                 var configCategory = Activator.CreateInstance(configCategoryType) as ACategory;
                 configCategory.ConfigText = (item.gameObject as TextAsset).text;
+                // 根据 ConfigText 进行该实例的初始化
                 configCategory.BeginInit();
                 TypeConfigCategarys.Add(configType, configCategory);
             }

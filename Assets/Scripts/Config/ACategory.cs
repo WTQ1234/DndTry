@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,12 +10,9 @@ namespace ET
 	{
 		public abstract Type ConfigType { get; }
 		public string ConfigText { get; set; }
-
-
 		public virtual void BeginInit()
         {
         }
-
         public virtual void EndInit()
         {
         }
@@ -38,12 +36,18 @@ namespace ET
 
 			try
 			{
-                var dit = JsonHelper.FromJson<Dictionary<string, T>>(configStr);
-				dict.Clear();
-				foreach (var item in dit)
-                {
-					dict.Add(int.Parse(item.Key), item.Value);
-				}
+				// var dit = LitJson.JsonMapper.ToObject<Dictionary<string, T>>(configStr);
+                // // var dit = JsonHelper.FromJson<Dictionary<string, T>>(configStr);
+				// dict.Clear();
+				// foreach (var item in dit)
+                // {
+				// 	// 约定 $ 开头的json题头为注释
+				// 	if (!item.Key.StartsWith("$"))
+				// 	{
+				// 		dict.Add(int.Parse(item.Key), item.Value);
+				// 	}
+				// }
+				
 				//if (typeName == nameof(StatusConfig))
 				//{
 				//	nameDict = new Dictionary<string, T>();
@@ -56,7 +60,6 @@ namespace ET
 			}
 			catch (Exception e)
 			{
-				Log.Error(e);
 				throw new Exception($"parser json fail: {configStr}", e);
 			}
 		}

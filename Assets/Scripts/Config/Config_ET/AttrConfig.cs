@@ -1,6 +1,5 @@
 namespace ET
 {
-	[Config]
 	public partial class AttrConfigCategory : ACategory<AttrConfig>
 	{
 		public static AttrConfigCategory Instance;

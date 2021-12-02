@@ -10,6 +10,7 @@ using GameUtils;
 using ET;
 using LitJson;
 using RegexHelper;
+using System.Reflection;
 
 public class Test : SingleTon<Test>
 {

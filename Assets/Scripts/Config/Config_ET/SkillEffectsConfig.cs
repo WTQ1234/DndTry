@@ -1,6 +1,5 @@
 namespace ET
 {
-	[Config]
 	public partial class SkillEffectsConfigCategory : ACategory<SkillEffectsConfig>
 	{
 		public static SkillEffectsConfigCategory Instance;

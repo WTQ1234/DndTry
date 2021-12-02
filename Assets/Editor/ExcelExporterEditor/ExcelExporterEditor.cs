@@ -47,25 +47,28 @@ namespace ET
         }
 
         private string ExcelPath = "/Other/Excel";
+        private string clientPath = "./Assets/Resources/Config";
+        private string clientClassPath = @"./Assets/Scripts/Config/Config_ET";
 
         private bool isClient;
 
         private ExcelMD5Info md5Info;
 
-        // Update is called once per frame
         private void OnGUI()
         {
             try
             {
-                const string clientPath = "./Assets/Resources/Config";
-
                 if (GUILayout.Button("导出客户端配置"))
                 {
                     this.isClient = true;
                     Log.Debug($"{ExcelPath}");
-                    ExportAll(clientPath);
 
-                    ExportAllClass(@"./Assets/Scripts/Config/Config_ET", "namespace ET\n{\n");//using MongoDB.Bson.Serialization.Attributes;\n\n
+                    // 删除类下的文件
+                    DeleteDir(clientPath);
+                    DeleteDir(clientClassPath);
+
+                    ExportAll(clientPath);
+                    ExportAllClass(clientClassPath, "namespace ET\n{\n");//using MongoDB.Bson.Serialization.Attributes;\n\n
 
                     Log.Info($"导出客户端配置完成!");
                 }
@@ -76,6 +79,7 @@ namespace ET
             }
         }
 
+        // 导出所有类
         private void ExportAllClass(string exportDir, string csHead)
         {
             foreach (string filePath in Directory.GetFiles(ExcelPath))
@@ -96,7 +100,7 @@ namespace ET
 
             AssetDatabase.Refresh();
         }
-
+        // 导出单个类
         private void ExportClass(string fileName, string exportDir, string csHead)
         {
             XSSFWorkbook xssfWorkbook;
@@ -112,10 +116,11 @@ namespace ET
             using (StreamWriter sw = new StreamWriter(txt))
             {
                 StringBuilder sb = new StringBuilder();
+                // todo 以 # 打头的sheet才导出
                 ISheet sheet = xssfWorkbook.GetSheetAt(0);
                 sb.Append(csHead);
 
-                sb.Append($"\t[Config]\n");
+                // sb.Append($"\t[Config]\n");  // 属性禁用
                 sb.Append($"\tpublic partial class {protoName}Category : ACategory<{protoName}>\n");
                 sb.Append("\t{\n");
                 sb.Append($"\t\tpublic static {protoName}Category Instance;\n");
@@ -178,7 +183,7 @@ namespace ET
             }
             Debug.Log(fileName + protoName);
         }
-
+        // 导出所有json
         private void ExportAll(string exportDir)
         {
             string md5File = Path.Combine(ExcelPath, "md5.txt");
@@ -190,7 +195,6 @@ namespace ET
             {
                 this.md5Info = JsonHelper.FromJson<ExcelMD5Info>(File.ReadAllText(md5File));
             }
-            Debug.Log(111);
             Debug.Log(ExcelPath);
             foreach (string filePath in Directory.GetFiles(ExcelPath))
             {
@@ -233,22 +237,29 @@ namespace ET
 
             string protoName = Path.GetFileNameWithoutExtension(fileName);
             Log.Info($"{protoName}导表开始");
-            string exportPath = Path.Combine(exportDir, $"{protoName}.txt");
-            using (FileStream txt = new FileStream(exportPath, FileMode.Create))
-            using (StreamWriter sw = new StreamWriter(txt))
+            for (int i = 0; i < xssfWorkbook.NumberOfSheets; ++i)
             {
-                sw.WriteLine("{");
-                for (int i = 0; i < xssfWorkbook.NumberOfSheets; ++i)
+                ISheet sheet = xssfWorkbook.GetSheetAt(i);
+                // 以 # 打头的sheet才导出     
+                if (sheet.SheetName.StartsWith("#"))
                 {
-                    ISheet sheet = xssfWorkbook.GetSheetAt(i);
-                    ExportSheet(sheet, sw);
+                    string exportPath = Path.Combine(exportDir, $"{protoName}_{sheet.SheetName}.json");
+                    using (FileStream txt = new FileStream(exportPath, FileMode.Create))
+                    using (StreamWriter sw = new StreamWriter(txt))
+                    {
+                        sw.WriteLine("{");
+                        // todo 加json注释
+                        ExportSheet(sheet, sw);
+                        sw.WriteLine("}");
+                    }
                 }
-                sw.WriteLine("}");
             }
+
 
             Log.Info($"{protoName}导表完成");
         }
 
+        // todo 考虑把不同页签分别存放，定义一个题头来判断是否要输出新类   var configType = assembly.GetType(configTypeName);
         private void ExportSheet(ISheet sheet, StreamWriter sw)
         {
             int cellCount = sheet.GetRow(3).LastCellNum;
@@ -399,6 +410,32 @@ namespace ET
                 }
             }
             return "";
+        }
+    
+        // 删除文件夹下所有文件
+        private void DeleteDir(string dirPath)
+        {
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(dirPath);
+                FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+                foreach (FileSystemInfo i in fileinfo)
+                {
+                    if (i is DirectoryInfo)            //判断是否文件夹
+                    {
+                        DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                        subdir.Delete(true);          //删除子目录和文件
+                    } 
+                    else
+                    {
+                        File.Delete(i.FullName);      //删除指定文件
+                    }
+                }                
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
 namespace ET
 {
-	[Config]
 	public partial class StatusConfigCategory : ACategory<StatusConfig>
 	{
 		public static StatusConfigCategory Instance;
