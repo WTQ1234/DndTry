@@ -8,6 +8,32 @@ using UnityEngine;
 
 namespace EGamePlay.Combat.Skill
 {
+    public partial class SkillConfigCategory : ACategory<SkillConfig>
+    {
+        public static SkillConfigCategory Instance;
+        public SkillConfigCategory()
+        {
+            Instance = this;
+        }
+    }
+
+    public partial class SkillConfig : IConfig
+    {
+        public int Id { get; set; }
+        public string Name;
+        public string Type;
+        public string TargetSelect;
+        public float Cooldown;
+        public string Description;
+        public string Effect1;
+        public string Effect2;
+        public string Effect3;
+        public string DamageTarget;
+        public string Probability;
+        public string DamageType;
+        public string ValueFormula;
+    }
+
     public class SkillAbility : AbilityEntity
     {
 #if EGAMEPLAY_EXCEL

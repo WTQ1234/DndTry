@@ -1,22 +1,22 @@
-namespace ET
-{
-	public partial class AttrConfigCategory : ACategory<AttrConfig>
-	{
-		public static AttrConfigCategory Instance;
-		public AttrConfigCategory()
-		{
-			Instance = this;
-		}
-	}
+// 自动导出 F:/1desktop/DndTry/DndTry/Assets/Other/Excel F:/1desktop/DndTry/DndTry/Assets/Other/Excel\AttrConfig.xlsx
+using ET;
 
-	public partial class AttrConfig: IConfig
+public partial class AttrDataCategory : ACategory<AttrData>
+{
+	public static AttrDataCategory Instance;
+	public AttrDataCategory()
 	{
-		public int Id { get; set; }
-		public AttrType AttrType;
-		public string EnumName;
-		public float DefalutValue;
-		public string AttrFormula;
-		public int FormulaLevel;
-		public string Description;
+		Instance = this;
 	}
+}
+
+public partial class AttrData: IConfig
+{
+	public int Id { get; set; }
+	public AttrType AttrType;
+	public string EnumName;
+	public float DefalutValue;
+	public string AttrFormula;
+	public int FormulaLevel;
+	public string Description;
 }

@@ -16,21 +16,21 @@ using ExpressionParserHelper;
 // 控制并提供属性值，包括默认值，根据不同层数和难度得动态值以及随机生成怪物，以及根据当前状态计算当前强化后得数值
 public class AttrController : SingleTon<AttrController>
 {
-    Dictionary<int, AttrConfig> dict_ID;
-    Dictionary<AttrType, AttrConfig> dict_Type;
+    Dictionary<int, AttrData> dict_ID;
+    Dictionary<AttrType, AttrData> dict_Type;
 
     private void Awake()
     {
-        dict_ID = ConfigController.Instance.GetAll<AttrConfig>();
+        dict_ID = ConfigController.Instance.GetAll<AttrData>();
 
-        dict_Type = new Dictionary<AttrType, AttrConfig>();
+        dict_Type = new Dictionary<AttrType, AttrData>();
         foreach (var item in dict_ID)
         {
             dict_Type.Add(item.Value.AttrType, item.Value);
         }
     }
 
-    public AttrConfig GetConfigByType(AttrType AttrType)
+    public AttrData GetConfigByType(AttrType AttrType)
     {
         if (dict_Type.ContainsKey(AttrType))
         {                

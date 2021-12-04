@@ -1,19 +1,2 @@
-namespace ET
-{
-	public partial class EquipmentConfigCategory : ACategory<EquipmentConfig>
-	{
-		public static EquipmentConfigCategory Instance;
-		public EquipmentConfigCategory()
-		{
-			Instance = this;
-		}
-	}
-
-	public partial class EquipmentConfig: IConfig
-	{
-		public int Id { get; set; }
-		public string Name;
-		public string Attribute;
-		public float Value;
-	}
-}
+// 自动导出 F:/1desktop/DndTry/DndTry/Assets/Other/Excel F:/1desktop/DndTry/DndTry/Assets/Other/Excel\EquipmentConfig.xlsx
+using ET;

@@ -1,17 +1,2 @@
-namespace ET
-{
-	public partial class UnitConfigCategory : ACategory<UnitConfig>
-	{
-		public static UnitConfigCategory Instance;
-		public UnitConfigCategory()
-		{
-			Instance = this;
-		}
-	}
-
-	public partial class UnitConfig: IConfig
-	{
-		public int Id { get; set; }
-		public string Name;
-	}
-}
+// 自动导出 F:/1desktop/DndTry/DndTry/Assets/Other/Excel F:/1desktop/DndTry/DndTry/Assets/Other/Excel\UnitConfig.xlsx
+using ET;

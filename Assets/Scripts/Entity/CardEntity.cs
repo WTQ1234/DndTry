@@ -256,7 +256,7 @@ public class CardEntity : Entity
     // 后续要获取子类的话，只需要在GetComponent就可以了, 但是还是不能强制转换，最多as成StatusEntity这个基类
     public StatusEntity AttachStatusById(int id)
     {
-        var config = ConfigController.Instance.Get<StatusConfig>(id);
+        var config = ConfigController.Instance.Get<StatusData>(id);
         Type type = string.IsNullOrEmpty(config.CName) ? typeof(StatusEntity) : Type.GetType(config.CName);
         var status = Create(type, config, StatusParent.gameObject, null, this) as StatusEntity;
         if (!TypeIdStatuses.ContainsKey(status.StatusConfig.ID))

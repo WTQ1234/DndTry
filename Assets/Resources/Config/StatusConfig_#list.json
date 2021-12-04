@@ -1,4 +1,5 @@
 {
+"$_Note":{"path":"路径 StatusConfig.xlsx #list"},
 "1":{"Id":1,"ID":"Tenacity","CName":"Status_Tenacity","Name":"强韧","StatusType":"Buff","Duration":0,"ShowInSlots":true,"MaxStack":2,"AttrModifyFormula":"Power_Add_Power*1.2+1;Physique_Add_Physique*1.2+1"},
 "2":{"Id":2,"ID":"Violent","Name":"沉默","StatusType":"Debuff","Duration":0,"ShowInSlots":true,"MaxStack":2,"ActionControlType":"SkillForbid"}
 }

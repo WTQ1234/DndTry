@@ -68,7 +68,7 @@ namespace ET
                     DeleteDir(clientClassPath);
 
                     ExportAll(clientPath);
-                    ExportAllClass(clientClassPath, "namespace ET\n{\n");//using MongoDB.Bson.Serialization.Attributes;\n\n
+                    ExportAllClass(clientClassPath);//using MongoDB.Bson.Serialization.Attributes;\n\n
 
                     Log.Info($"导出客户端配置完成!");
                 }
@@ -80,7 +80,7 @@ namespace ET
         }
 
         // 导出所有类
-        private void ExportAllClass(string exportDir, string csHead)
+        private void ExportAllClass(string exportDir)
         {
             foreach (string filePath in Directory.GetFiles(ExcelPath))
             {
@@ -94,14 +94,13 @@ namespace ET
                     continue;
                 }
 
-                ExportClass(filePath, exportDir, csHead);
-                Log.Info($"生成{Path.GetFileName(filePath)}类");
+                ExportClass(filePath, exportDir);
             }
 
             AssetDatabase.Refresh();
         }
         // 导出单个类
-        private void ExportClass(string fileName, string exportDir, string csHead)
+        private void ExportClass(string fileName, string exportDir)
         {
             XSSFWorkbook xssfWorkbook;
             using (FileStream file = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
@@ -110,78 +109,88 @@ namespace ET
             }
 
             string protoName = Path.GetFileNameWithoutExtension(fileName);
-
             string exportPath = Path.Combine(exportDir, $"{protoName}.cs");
             using (FileStream txt = new FileStream(exportPath, FileMode.Create))
             using (StreamWriter sw = new StreamWriter(txt))
             {
                 StringBuilder sb = new StringBuilder();
-                // todo 以 # 打头的sheet才导出
-                ISheet sheet = xssfWorkbook.GetSheetAt(0);
-                sb.Append(csHead);
-
-                // sb.Append($"\t[Config]\n");  // 属性禁用
-                sb.Append($"\tpublic partial class {protoName}Category : ACategory<{protoName}>\n");
-                sb.Append("\t{\n");
-                sb.Append($"\t\tpublic static {protoName}Category Instance;\n");
-                sb.Append($"\t\tpublic {protoName}Category()\n");
-                sb.Append("\t\t{\n");
-                sb.Append($"\t\t\tInstance = this;\n");
-                sb.Append("\t\t}\n");
-                sb.Append("\t}\n\n");
-
-                sb.Append($"\tpublic partial class {protoName}: IConfig\n");
-                sb.Append("\t{\n");
-                //sb.Append("\t\t[BsonId]\n");
-                sb.Append("\t\tpublic int Id { get; set; }\n");
-
-                int cellCount = sheet.GetRow(3).LastCellNum;
-
-                for (int i = 2; i < cellCount; i++)
+                sb.Append($"// 自动导出 {ExcelPath} {fileName}\n");
+                sb.Append("using ET;\n");
+                for (int sheetNum = 0; sheetNum < xssfWorkbook.NumberOfSheets; ++sheetNum)
                 {
-                    string fieldDesc = GetCellString(sheet, 2, i);
+                    ISheet sheet = xssfWorkbook.GetSheetAt(sheetNum);
+                    // 以 # 打头的sheet  且  第二行有 ExportClass 标识的才导出     
+                    if (sheet.SheetName.StartsWith("#"))
+                    {
+                        IRow row = sheet.GetRow(1);
+                        string isExportClass = GetCellString(row.GetCell(0));
+                        if (isExportClass == "ExportClass")
+                        {
+                            string ClassName = GetCellString(row.GetCell(1));
+                            sb.Append("\n");
+                            // sb.Append($"\t[Config]\n");  // 属性禁用
+                            sb.Append($"public partial class {ClassName}Category : ACategory<{ClassName}>\n");
+                            sb.Append("{\n");
+                            sb.Append($"\tpublic static {ClassName}Category Instance;\n");
+                            sb.Append($"\tpublic {ClassName}Category()\n");
+                            sb.Append("\t{\n");
+                            sb.Append($"\t\tInstance = this;\n");
+                            sb.Append("\t}\n");
+                            sb.Append("}\n\n");
+                            sb.Append($"public partial class {ClassName}: IConfig\n");
+                            sb.Append("{\n");
+                            //sb.Append("\t\t[BsonId]\n");  // 属性禁用
+                            sb.Append("\tpublic int Id { get; set; }\n");
+                            int cellCount = sheet.GetRow(3).LastCellNum;
 
-                    if (fieldDesc.StartsWith("#"))
-                    {
-                        continue;
+                            for (int i = 2; i < cellCount; i++)
+                            {
+                                string fieldDesc = GetCellString(sheet, 2, i);
+                                if (fieldDesc.StartsWith("#"))
+                                {
+                                    continue;
+                                }
+                                // s开头表示这个字段是服务端专用
+                                if (fieldDesc.StartsWith("s") && this.isClient)
+                                {
+                                    continue;
+                                }
+                                string fieldName = GetCellString(sheet, 3, i);
+                                // todo 后面添加KEY的时候，应该也是这样略过
+                                if (fieldName == "Id" || fieldName == "_id")
+                                {
+                                    continue;
+                                }
+                                string fieldType = GetCellString(sheet, 4, i);
+                                if (fieldType == GlobalDefine.str_Empty || fieldName == GlobalDefine.str_Empty)
+                                {
+                                    continue;
+                                }
+                                if (RegexHelper.RegexHelper.RegexIsOK("enum_.*", fieldType))
+                                {
+                                    fieldType = RegexHelper.RegexHelper.RegexReplace("enum_", fieldType, GlobalDefine.str_Empty);
+                                }
+                                if (fieldType == "stringArray")
+                                {
+                                    fieldType = "string";
+                                }
+                                sb.Append($"\tpublic {fieldType} {fieldName};\n");
+                            }
+                            sb.Append("}\n");
+                        }
+                        else
+                        {
+                            Debug.LogError($"No ExportClass Found! in {fileName} —— {isExportClass}");
+                        }
                     }
-
-                    // s开头表示这个字段是服务端专用
-                    if (fieldDesc.StartsWith("s") && this.isClient)
+                    else
                     {
-                        continue;
+                        Debug.LogWarning($"No # in Sheet! in {fileName} —— {sheet.SheetName}");
                     }
-
-                    string fieldName = GetCellString(sheet, 3, i);
-
-                    if (fieldName == "Id" || fieldName == "_id")
-                    {
-                        continue;
-                    }
-
-                    string fieldType = GetCellString(sheet, 4, i);
-                    if (fieldType == GlobalDefine.str_Empty || fieldName == GlobalDefine.str_Empty)
-                    {
-                        continue;
-                    }
-                    if (RegexHelper.RegexHelper.RegexIsOK("enum_.*", fieldType))
-                    {
-                        fieldType = RegexHelper.RegexHelper.RegexReplace("enum_", fieldType, GlobalDefine.str_Empty);
-                    }
-                    if (fieldType == "stringArray")
-                    {
-                        fieldType = "string";
-                    }
-                    Debug.Log($"\t\tpublic {fieldType} {fieldName};\n");
-                    sb.Append($"\t\tpublic {fieldType} {fieldName};\n");
                 }
-
-                sb.Append("\t}\n");
-                sb.Append("}\n");
-
                 sw.Write(sb.ToString());
             }
-            Debug.Log(fileName + protoName);
+            Debug.Log($"导出类文件 {fileName} - {protoName}");
         }
         // 导出所有json
         private void ExportAll(string exportDir)
@@ -195,19 +204,16 @@ namespace ET
             {
                 this.md5Info = JsonHelper.FromJson<ExcelMD5Info>(File.ReadAllText(md5File));
             }
-            Debug.Log(ExcelPath);
             foreach (string filePath in Directory.GetFiles(ExcelPath))
             {
                 if (Path.GetExtension(filePath) != ".xlsx")
                 {
                     continue;
                 }
-
                 if (Path.GetFileName(filePath).StartsWith("~"))
                 {
                     continue;
                 }
-
                 string fileName = Path.GetFileName(filePath);
                 string oldMD5 = this.md5Info.Get(fileName);
                 string md5 = MD5Helper.FileMD5(filePath);
@@ -216,7 +222,6 @@ namespace ET
                 // {
                 // 	continue;
                 // }
-
                 Export(filePath, exportDir);
             }
 
@@ -236,7 +241,6 @@ namespace ET
             }
 
             string protoName = Path.GetFileNameWithoutExtension(fileName);
-            Log.Info($"{protoName}导表开始");
             for (int i = 0; i < xssfWorkbook.NumberOfSheets; ++i)
             {
                 ISheet sheet = xssfWorkbook.GetSheetAt(i);
@@ -248,7 +252,8 @@ namespace ET
                     using (StreamWriter sw = new StreamWriter(txt))
                     {
                         sw.WriteLine("{");
-                        // todo 加json注释
+                        // 添加json注释, 约定 $ 开头的json题头为注释  ACategory.cs
+                        sw.WriteLine($"\"$_Note\":{{\"path\":\"路径 {protoName}.xlsx {sheet.SheetName}\"}},");
                         ExportSheet(sheet, sw);
                         sw.WriteLine("}");
                     }

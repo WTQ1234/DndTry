@@ -36,25 +36,26 @@ namespace ET
 
 			try
 			{
-				// var dit = LitJson.JsonMapper.ToObject<Dictionary<string, T>>(configStr);
-                // // var dit = JsonHelper.FromJson<Dictionary<string, T>>(configStr);
-				// dict.Clear();
-				// foreach (var item in dit)
-                // {
-				// 	// 约定 $ 开头的json题头为注释
-				// 	if (!item.Key.StartsWith("$"))
-				// 	{
-				// 		dict.Add(int.Parse(item.Key), item.Value);
-				// 	}
-				// }
-				
-				//if (typeName == nameof(StatusConfig))
+				var dit = LitJson.JsonMapper.ToObject<Dictionary<string, T>>(configStr);
+				// var dit = JsonHelper.FromJson<Dictionary<string, T>>(configStr);
+				dict.Clear();
+				foreach (var item in dit)
+				{
+					// 约定 $ 开头的json题头为注释
+					if (!item.Key.StartsWith("$"))
+					{
+						dict.Add(int.Parse(item.Key), item.Value);
+					}
+				}
+
+				//if (typeName == nameof(StatusData))
 				//{
 				//	nameDict = new Dictionary<string, T>();
 				//	foreach (var item in dit)
 				//	{
-				//		var statusConfig = item.Value as StatusConfig;
-				//		nameDict.Add(statusConfig.StatusID, statusConfig as T);
+				//		var statusConfig = item.Value as StatusData;
+				//		// 这里的id 后面尝试改成Key
+				//		nameDict.Add(statusConfig.ID, statusConfig as T);
 				//	}
 				//}
 			}

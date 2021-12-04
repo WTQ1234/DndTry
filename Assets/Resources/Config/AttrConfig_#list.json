@@ -1,4 +1,5 @@
 {
+"$_Note":{"path":"路径 AttrConfig.xlsx #list"},
 "1":{"Id":1,"AttrType":"Sanity","EnumName":"理智","DefalutValue":10},
 "2":{"Id":2,"AttrType":"Power","EnumName":"力量","DefalutValue":5},
 "3":{"Id":3,"AttrType":"Psionic","EnumName":"灵能","DefalutValue":5},

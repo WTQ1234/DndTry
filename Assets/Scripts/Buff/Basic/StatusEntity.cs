@@ -22,7 +22,7 @@ public class StatusEntity : Entity
 
     //投放者、施术者
     public CardEntity Caster;
-    public StatusConfig StatusConfig;
+    public StatusData StatusConfig;
     public FloatModifier NumericModifier;
     public bool IsChildStatus;
     public ChildStatus ChildStatusData;
@@ -33,7 +33,7 @@ public class StatusEntity : Entity
     public override void Setup(object initData, bool asGameObject)
     {
         base.Setup(initData);
-        StatusConfig = initData as StatusConfig;
+        StatusConfig = initData as StatusData;
         Name = StatusConfig.ID;
     }
 
