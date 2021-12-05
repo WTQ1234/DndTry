@@ -150,6 +150,10 @@ namespace ET
                                 {
                                     continue;
                                 }
+                                if (fieldDesc == "break")
+                                {
+                                    break;
+                                }
                                 // s开头表示这个字段是服务端专用
                                 if (fieldDesc.StartsWith("s") && this.isClient)
                                 {
@@ -264,7 +268,6 @@ namespace ET
             Log.Info($"{protoName}导表完成");
         }
 
-        // todo 考虑把不同页签分别存放，定义一个题头来判断是否要输出新类   var configType = assembly.GetType(configTypeName);
         private void ExportSheet(ISheet sheet, StreamWriter sw)
         {
             int cellCount = sheet.GetRow(3).LastCellNum;
@@ -291,6 +294,10 @@ namespace ET
                 for (int j = 2; j < cellCount; ++j)
                 {
                     string desc = cellInfos[j].Desc.ToLower();
+                    if (desc == "break")
+                    {
+                        break;
+                    }
                     if (desc.StartsWith("#"))
                     {
                         continue;
