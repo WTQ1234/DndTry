@@ -48,18 +48,18 @@ namespace EGamePlay
             IsDisposed = true;
         }
 
-        public T Publish<T>(T TEvent) where T : class
+        public virtual T Publish<T>(T TEvent) where T : class
         {
             Entity.Publish(TEvent);
             return TEvent;
         }
 
-        public void Subscribe<T>(Action<T> action) where T : class
+        public virtual void Subscribe<T>(Action<T> action) where T : class
         {
             Entity.Subscribe(action);
         }
 
-        public void UnSubscribe<T>(Action<T> action) where T : class
+        public virtual void UnSubscribe<T>(Action<T> action) where T : class
         {
             Entity.UnSubscribe(action);
         }

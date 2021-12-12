@@ -25,8 +25,10 @@ namespace EGamePlay
             return TEvent;
         }
 
+
+        // todo 这里函数里本来有new，被注释掉了
         private Dictionary<string, EventDelegate> EventActionLists = new Dictionary<string, EventDelegate>();
-        public new void Subscribe(string key, EventDelegate action)
+        public void Subscribe(string key, EventDelegate action)
         {
             if (!EventActionLists.ContainsKey(key))
             {
@@ -34,14 +36,14 @@ namespace EGamePlay
             }
             EventActionLists[key] += action;
         }
-        public new void UnSubscribe(string key, EventDelegate action)
+        public void UnSubscribe(string key, EventDelegate action)
         {
             if (EventActionLists.ContainsKey(key))
             {
                 EventActionLists[key] -= action;
             }
         }
-        public new void Publish(string key, EventParams eventParams)
+        public void Publish(string key, EventParams eventParams)
         {
             if (EventActionLists.TryGetValue(key, out var action))
             {
@@ -51,22 +53,22 @@ namespace EGamePlay
         }
 
 
-        public new void Subscribe<T>(Action<T> action) where T : class
-        {
-            if (Event2ActionLists.ContainsKey(typeof(T)) == false)
-            {
-                Event2ActionLists.Add(typeof(T), new List<object>());
-            }
-            Event2ActionLists[typeof(T)].Add(action);
-        }
+        //public new void Subscribe<T>(Action<T> action) where T : class
+        //{
+        //    if (Event2ActionLists.ContainsKey(typeof(T)) == false)
+        //    {
+        //        Event2ActionLists.Add(typeof(T), new List<object>());
+        //    }
+        //    Event2ActionLists[typeof(T)].Add(action);
+        //}
 
-        public new void UnSubscribe<T>(Action<T> action) where T : class
-        {
-            if (Event2ActionLists.TryGetValue(typeof(T), out var actionList))
-            {
-                actionList.Remove(action);
-            }
-        }
+        //public new void UnSubscribe<T>(Action<T> action) where T : class
+        //{
+        //    if (Event2ActionLists.TryGetValue(typeof(T), out var actionList))
+        //    {
+        //        actionList.Remove(action);
+        //    }
+        //}
     }
 }
 

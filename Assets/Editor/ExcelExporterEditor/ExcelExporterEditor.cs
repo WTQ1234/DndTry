@@ -49,6 +49,7 @@ namespace ET
         private string ExcelPath = "/Other/Excel";
         private string clientPath = "./Assets/Resources/Config";
         private string clientClassPath = @"./Assets/Scripts/Config/Config_ET";
+        private string clientEnumPath = @"./Assets/Scripts/Config";
 
         private bool isClient;
 
@@ -61,16 +62,37 @@ namespace ET
                 if (GUILayout.Button("导出客户端配置"))
                 {
                     this.isClient = true;
-                    Log.Debug($"{ExcelPath}");
-
-                    // 删除类下的文件
                     DeleteDir(clientPath);
-                    DeleteDir(clientClassPath);
-
                     ExportAll(clientPath);
-                    ExportAllClass(clientClassPath);//using MongoDB.Bson.Serialization.Attributes;\n\n
-
                     Log.Info($"导出客户端配置完成!");
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+            }
+            try
+            {
+                if (GUILayout.Button("导出类"))
+                {
+                    this.isClient = true;
+                    // 删除类下的文件
+                    DeleteDir(clientClassPath);
+                    ExportAllClass(clientClassPath);//using MongoDB.Bson.Serialization.Attributes;\n\n
+                    Log.Info($"导出类完成!");
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+            }
+            try
+            {
+                if (GUILayout.Button("导出枚举"))
+                {
+                    this.isClient = true;
+                    ExportAllEnum(clientEnumPath);
+                    Log.Info($"导出枚举完成!");
                 }
             }
             catch (Exception e)
@@ -88,18 +110,10 @@ namespace ET
                 {
                     continue;
                 }
-
-                if (Path.GetFileName(filePath).StartsWith("~"))
-                {
-                    continue;
-                }
-
                 ExportClass(filePath, exportDir);
             }
-
             AssetDatabase.Refresh();
         }
-        // 导出单个类
         private void ExportClass(string fileName, string exportDir)
         {
             XSSFWorkbook xssfWorkbook;
@@ -196,6 +210,7 @@ namespace ET
             }
             Debug.Log($"导出类文件 {fileName} - {protoName}");
         }
+
         // 导出所有json
         private void ExportAll(string exportDir)
         {
@@ -211,10 +226,6 @@ namespace ET
             foreach (string filePath in Directory.GetFiles(ExcelPath))
             {
                 if (Path.GetExtension(filePath) != ".xlsx")
-                {
-                    continue;
-                }
-                if (Path.GetFileName(filePath).StartsWith("~"))
                 {
                     continue;
                 }
@@ -234,7 +245,6 @@ namespace ET
             Log.Info("所有表导表完成");
             AssetDatabase.Refresh();
         }
-
         private void Export(string fileName, string exportDir)
         {
             Log.Debug($"Export {fileName}");
@@ -267,7 +277,6 @@ namespace ET
 
             Log.Info($"{protoName}导表完成");
         }
-
         private void ExportSheet(ISheet sheet, StreamWriter sw)
         {
             int cellCount = sheet.GetRow(3).LastCellNum;
@@ -342,6 +351,88 @@ namespace ET
                 else sb.Append("}");
                 sw.WriteLine(sb.ToString());
             }
+        }
+
+        // 导出所有枚举
+        private void ExportAllEnum(string exportDir)
+        {
+            //string fileName = "EnumDefine_Config.cs";
+            //string protoName = Path.GetFileNameWithoutExtension(fileName);
+
+
+            string exportPath = Path.Combine(exportDir, $"EnumDefine_Config1.cs");
+            using (FileStream txt = new FileStream(exportPath, FileMode.Create))
+            using (StreamWriter sw = new StreamWriter(txt))
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append($"// 自动导出枚举 {ExcelPath}\n");
+                sb.Append("using ET;\n");
+                sb.Append("using System;\n");
+                sb.Append("using Sirenix.OdinInspector;\n");
+
+                foreach (string filePath in Directory.GetFiles(ExcelPath))
+                {
+                    if (Path.GetExtension(filePath) != ".xlsx")
+                    {
+                        continue;
+                    }
+                    XSSFWorkbook xssfWorkbook;
+                    using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    {
+                        xssfWorkbook = new XSSFWorkbook(file);
+                    }
+                    for (int sheetNum = 0; sheetNum < xssfWorkbook.NumberOfSheets; ++sheetNum)
+                    {
+                        ISheet sheet = xssfWorkbook.GetSheetAt(sheetNum);
+                        // 以 & 打头的sheet  且  第二行有 ExportEnum 标识的才导出     
+                        if (sheet.SheetName.StartsWith("&"))
+                        {
+                            IRow row = sheet.GetRow(1);
+                            string isExportEnum = GetCellString(row.GetCell(0));
+                            if (isExportEnum == "ExportEnum")
+                            {
+                                string EnumName = GetCellString(row.GetCell(1));
+                                string EnumDesc = GetCellString(row.GetCell(2));
+                                sb.Append("\n");
+                                sb.Append($"[LabelText(\"{EnumDesc}\")]\n");
+                                sb.Append($"public enum {EnumName}\n");
+                                sb.Append($"{{\n");
+
+                                //    // 由等级决定
+                                //    [LabelText("理智")]
+                                //    Sanity = 1000,
+
+                                for (int i = 3; i <= sheet.LastRowNum; i++)
+                                {
+                                    string id = GetCellString(sheet, i, 2);
+                                    string key = GetCellString(sheet, i, 3);
+                                    string name = GetCellString(sheet, i, 4);
+                                    string desc = GetCellString(sheet, i, 5);
+                                    sb.Append($"\t[LabelText(\"{name}\")]\n");
+                                    sb.Append($"\t{key} = {id},\n");
+                                    if (desc != null && desc != "")
+                                    {
+                                        sb.Append($"\n");
+                                        sb.Append($"\t//{desc}\n");
+                                    }
+                                }
+                                sb.Append($"}}\n");
+                            }
+                            else
+                            {
+                                //Debug.LogError($"No ExportClass Found! in {fileName} —— {isExportClass}");
+                            }
+                        }
+                        else
+                        {
+                            //Debug.LogWarning($"No # in Sheet! in {fileName} —— {sheet.SheetName}");
+                        }
+                    }
+                }
+                sw.Write(sb.ToString());
+            }
+            //Debug.Log($"导出类文件 {fileName} - {protoName}");
+            AssetDatabase.Refresh();
         }
 
         private static string Convert(string type, string value)

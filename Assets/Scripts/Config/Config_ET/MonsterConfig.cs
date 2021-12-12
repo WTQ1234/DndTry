@@ -14,5 +14,11 @@ public partial class MonsterData: IConfig
 {
 	public int Id { get; set; }
 	public CreatureRaceType CreatureRaceType;
-	public string AttrFormula;
+	public string RaceName;
+	public string Name;
+	public int Level;
+	public int[] RandomAttr;
+	public string FormulaLevel;
+	public int[] States;
+	public string Description;
 }

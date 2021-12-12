@@ -331,7 +331,7 @@ namespace EGamePlay
             {
                 return TEvent;
             }
-            eventComponent.Publish(TEvent);
+            //eventComponent.Publish(TEvent);
             return TEvent;
         }
 
@@ -342,7 +342,7 @@ namespace EGamePlay
             {
                 eventComponent = AddComponent<EventComponent>();
             }
-            eventComponent.Subscribe(action);
+            //eventComponent.Subscribe(action);
         }
 
         public void UnSubscribe<T>(Action<T> action) where T : class
@@ -350,7 +350,7 @@ namespace EGamePlay
             var eventComponent = GetEntityComponent<EventComponent>();
             if (eventComponent != null)
             {
-                eventComponent.UnSubscribe(action);
+                //eventComponent.UnSubscribe(action);
             }
         }
     }

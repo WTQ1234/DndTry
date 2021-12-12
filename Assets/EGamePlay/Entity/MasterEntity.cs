@@ -7,9 +7,10 @@ namespace EGamePlay
     public sealed class MasterEntity : Entity
     {
         public Dictionary<Type, List<Entity>> Entities { get; private set; } = new Dictionary<Type, List<Entity>>();
-        public List<Component> AllComponents { get; private set; } = new List<Component>();
-        public List<UpdateComponent> UpdateComponents { get; private set; } = new List<UpdateComponent>();
         public static MasterEntity Instance { get; private set; }
+
+        // todo 这里应该也可以注释掉
+        public List<Component> AllComponents { get; private set; } = new List<Component>();
 
         public override void Awake()
         {
