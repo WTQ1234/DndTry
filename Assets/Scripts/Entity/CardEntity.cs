@@ -18,6 +18,7 @@ using FairyGUI;
 public class CardEntityParams
 {
     public CardType cardType = CardType.Monster;
+    public MonsterData monsterData = null;
 }
 
 // 卡牌的基类 考虑拆分成 Logic和Show
@@ -129,16 +130,8 @@ public class CardEntity : Entity
 
     private void InitShow(CardEntityParams cardEntityParams)
     {
-        switch(cardEntityParams.cardType)
-        {
-            case CardType.Monster:
-                cardUI = uiPanel.gameObject.AddComponent<CardUI_Monster>();
-                break;
-            default:
-                cardUI = uiPanel.gameObject.AddComponent<CardUI>();
-                break;
-        }
-        cardUI.Init(new UIParamBasic(Name, this));
+        cardUI = uiPanel.gameObject.AddComponent<CardUI>();
+        cardUI.Init(new UIParamBasic(Name, this, _enumCaty: (int)cardEntityParams.cardType));
         cardUI.Publish("SetHp", new HpEvent()
         {
             hpValue = healthPointComponent.Value,

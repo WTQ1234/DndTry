@@ -1,5 +1,5 @@
 {
-  "libview.firstColumnWidth": 293,
+  "libview.firstColumnWidth": 313,
   "expanded_nodes": [
     "4djj2cw4",
     "/",
@@ -8,12 +8,14 @@
   ],
   "libview.iconScale": 0,
   "doc.openedDocs": [
-    "ui://sa4gna93maxz0"
+    "ui://sa4gna93maxz0",
+    "ui://sa4gna93rn97d",
+    "ui://sa4gna93rn978"
   ],
   "auxline1": true,
   "canvasColor": 10066329,
   "auxline2": true,
-  "doc.activeDoc": "ui://sa4gna93maxz0",
+  "doc.activeDoc": "ui://sa4gna93rn978",
   "libview.twoColumn": false,
   "libview.expandedNodes": [
     "sa4gna93",

@@ -13,8 +13,9 @@ public partial class MonsterDataCategory : ACategory<MonsterData>
 public partial class MonsterData: IConfig
 {
 	public int Id { get; set; }
-	public CreatureRaceType CreatureRaceType;
+	public int id;
 	public string RaceName;
+	public CreatureRaceType CreatureRaceType;
 	public string Name;
 	public int Level;
 	public int[] RandomAttr;

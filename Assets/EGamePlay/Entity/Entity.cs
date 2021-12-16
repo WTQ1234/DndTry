@@ -229,7 +229,7 @@ namespace EGamePlay
             component.Enable = true;
             this.Components.Add(typeof(T), component);
             Master.AllComponents.Add(component);
-            if (Entity.EnableLog) Log.Debug($"{GetType().Name}->AddComponent, {typeof(T).Name} initData={initData}");
+            if (Entity.EnableLog) Log.Debug($"{GetType().Name}->AddComponent, {typeof(T).Name} initData={initData.ToString()}");
             component.Setup(initData);
             OnAddComponentAction?.Invoke((component));
             return component;

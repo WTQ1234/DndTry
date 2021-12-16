@@ -466,13 +466,13 @@ namespace LitJson
                 }
 
                 try {
-                    //Log.Debug("======================================");
-                    //Log.Debug(current_symbol.ToString() + " " + ((ParserToken)current_symbol).ToString() + " " + current_input.ToString());
-                    //Log.Debug(parse_table[current_symbol].ToString());
-                    //foreach(var item in parse_table[current_symbol])
-                    //{
-                    //    Log.Print(item.Key, item.Value);
-                    //}
+                    UnityEngine.Debug.Log("======================================");
+                    UnityEngine.Debug.Log(current_symbol.ToString() + " " + ((ParserToken)current_symbol).ToString() + " " + current_input.ToString());
+                    UnityEngine.Debug.Log(parse_table[current_symbol].ToString());
+                    foreach (var item in parse_table[current_symbol])
+                    {
+                        UnityEngine.Debug.Log($"{item.Key} {item.Value}");
+                    }
                     entry_symbols =
                         parse_table[current_symbol][current_input];
 

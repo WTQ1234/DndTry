@@ -21,11 +21,13 @@ public class UIController : SingleTon<UIController>
         UIPackage.AddPackage("FairyGUI/common");
     }
 
-    public UIBasic CreateUI<T>(Entity owner, string name = null) where T : UIBasic
+    public UIBasic CreateUI<T>(UIParamBasic param) where T : UIBasic
     {
-        print("todo addcomponent");
+        Entity owner = param.owner;
+        string name = param.UIName;
+        print($"todo addcomponent {name}");
         var ui = owner.gameObject.AddComponent<T>();  // 临时 owner这里不能传组件
-        ui.Init(new UIParamBasic(name, owner));
+        ui.Init(param);
         return ui;
     }
 }

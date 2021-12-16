@@ -12,4 +12,23 @@ public class CardUI : UIBasic
             panel.SetSortingOrder(sort, true);
         }
     }
+
+    // 不做继承，以组件的形式，将数据传入
+    // 若卡牌切换种类，则可直接禁用组件，启用另一UI逻辑组件，不必重新创建卡牌
+    public override bool Init(UIParamBasic param = null)
+    {
+        base.Init(param);
+
+        CardType cardType = (CardType)param.enumCaty;
+        switch(cardType)
+        {
+            case CardType.Monster:
+                var monsterLogic = AddComponent<CardUI_Monster>(this);
+                monsterLogic.Init(param);
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
 }

@@ -113,6 +113,7 @@ public class ReferenceCollector : SingleTon<ReferenceCollector>, ISerializationC
 	{
 		foreach(var item in data)
 		{
+			print(item.key);
 			item.key = item.gameObject.name;
 		}
 		SerializedObject serializedObject = new SerializedObject(this);

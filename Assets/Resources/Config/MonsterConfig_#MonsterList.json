@@ -1,8 +1,8 @@
 {
 "$_Note":{"path":"路径 MonsterConfig.xlsx #MonsterList"},
-"1":{"Id":1,"CreatureRaceType":"Beast","RaceName":"狂犬","Name":"幼犬","Level":2,"RandomAttr":[1,70,2,30],"FormulaLevel":"Power_Set_2"},
-"2":{"Id":2,"CreatureRaceType":"Beast","RaceName":"狂犬","Name":"离群野犬","Level":4,"RandomAttr":[1,70,2,30],"FormulaLevel":"Power_Set_2"},
-"3":{"Id":3,"CreatureRaceType":"Beast","RaceName":"狂犬","Name":"野犬猎手","Level":5,"RandomAttr":[1,70,2,30],"FormulaLevel":"Power_Set_2"},
-"4":{"Id":4,"CreatureRaceType":"Beast","RaceName":"狂犬","Name":"野犬王者","Level":7,"RandomAttr":[1,70,2,30],"FormulaLevel":"Power_Set_2"},
-"5":{"Id":5,"CreatureRaceType":"Beast","RaceName":"狂犬","Name":"护崽母犬","Level":6,"RandomAttr":[1,70,2,30],"FormulaLevel":"Power_Set_2"},
+"1":{"Id":1,"id":1,"RaceName":"野兽","CreatureRaceType":"Beast","Name":"幼犬","Level":2,"RandomAttr":[1,70,2,30],"FormulaLevel":"Power_Set_2"},
+"2":{"Id":2,"id":1,"RaceName":"野兽","CreatureRaceType":"Beast","Name":"离群野犬","Level":4,"RandomAttr":[1,70,2,30],"FormulaLevel":"Power_Set_2"},
+"3":{"Id":3,"id":1,"RaceName":"野兽","CreatureRaceType":"Beast","Name":"野犬猎手","Level":5,"RandomAttr":[1,70,2,30],"FormulaLevel":"Power_Set_2"},
+"4":{"Id":4,"id":1,"RaceName":"野兽","CreatureRaceType":"Beast","Name":"野犬王者","Level":7,"RandomAttr":[1,70,2,30],"FormulaLevel":"Power_Set_2"},
+"5":{"Id":5,"id":1,"RaceName":"野兽","CreatureRaceType":"Beast","Name":"护崽母犬","Level":6,"RandomAttr":[1,70,2,30],"FormulaLevel":"Power_Set_2"},
 }

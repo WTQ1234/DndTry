@@ -27,6 +27,7 @@ public class ConfigController : SingleTon<ConfigController>
             var configCategory = Activator.CreateInstance(configCategoryType) as ACategory;
             configCategory.ConfigText = (item.gameObject as TextAsset).text;
             // 根据 ConfigText 进行该实例的初始化
+            print(configType.ToString() + "-----------------------------");
             configCategory.BeginInit();
             TypeConfigCategarys.Add(configType, configCategory);
         }

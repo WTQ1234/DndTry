@@ -943,23 +943,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: data.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: data.Array.data[0].gameObject
       value: 
-      objectReference: {fileID: 4900000, guid: c15fe540686671a4d9a6f4fa3a5d127c, type: 3}
+      objectReference: {fileID: 4900000, guid: 22d930064d210b046a963b73ecee4e0d, type: 3}
     - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: data.Array.data[1].gameObject
       value: 
-      objectReference: {fileID: 4900000, guid: 22d930064d210b046a963b73ecee4e0d, type: 3}
+      objectReference: {fileID: 4900000, guid: b32ccb2a717757348a1ad5f4a2665fa4, type: 3}
     - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: data.Array.data[1].key
-      value: AttrData
+      value: MonsterData
       objectReference: {fileID: 0}
     - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: data.Array.data[0].key
+      value: AttrData
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+      propertyPath: data.Array.data[2].key
+      value: RoomData
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+      propertyPath: data.Array.data[2].gameObject
+      value: 
+      objectReference: {fileID: 4900000, guid: 739f161b9058c6844a98562536a1951b, type: 3}
+    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+      propertyPath: data.Array.data[3].key
       value: StatusData
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+      propertyPath: data.Array.data[3].gameObject
+      value: 
+      objectReference: {fileID: 4900000, guid: c15fe540686671a4d9a6f4fa3a5d127c, type: 3}
+    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+      propertyPath: data.Array.data[4].key
+      value: -1884472961
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+      propertyPath: data.Array.data[5].key
+      value: -1428344949
       objectReference: {fileID: 0}
     - target: {fileID: 8957007620084665263, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1200,6 +1224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef8f510cd1ad364e8850b6f93ec7282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  panel: {fileID: 0}
+  isInited: 0
 --- !u!1001 &1674812820
 PrefabInstance:
   m_ObjectHideFlags: 0

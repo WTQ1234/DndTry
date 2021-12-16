@@ -45,6 +45,8 @@ public class RoomEntity : Entity
     private GameObject Prefab_Card;
     private RoomUI roomUI;
 
+    RoomData roomDataConfig;
+
     public override void Awake()
     {
         base.Awake();
@@ -55,6 +57,9 @@ public class RoomEntity : Entity
         HeroParent = transform.Find("HeroParent");
         EnemyParent = transform.Find("EnemyParent");
         Prefab_Card = Resources.Load<GameObject>("Prefab/Card");
+
+        roomDataConfig = ConfigController.Instance.Get<RoomData>(1);
+
         CreateTeam();
     }
 

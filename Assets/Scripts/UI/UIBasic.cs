@@ -9,10 +9,13 @@ public class UIParamBasic
 {
     public string UIName = null;
     public Entity owner = null;
-    public UIParamBasic(string _UIName, Entity _owner)
+    public int enumCaty = 0;
+
+    public UIParamBasic(string _UIName, Entity _owner, int _enumCaty)
     {
         UIName = _UIName;
         owner = _owner;
+        enumCaty = _enumCaty;
     }
 }
 
@@ -24,10 +27,10 @@ public class TextParam
 
 public class UIBasic : Entity
 {
-    protected Entity owner;
-    protected UIPanel panel;
-    protected GComponent ui;
-    protected bool isInited = false;
+    public Entity owner;
+    public UIPanel panel;
+    public GComponent ui;
+    public bool isInited = false;
 
     public override void Awake()
     {
