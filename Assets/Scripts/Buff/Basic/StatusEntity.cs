@@ -25,7 +25,7 @@ public class StatusEntity : Entity
     public StatusData StatusConfig;
     public FloatModifier NumericModifier;
     public bool IsChildStatus;
-    public ChildStatus ChildStatusData;
+    //public ChildStatus ChildStatusData;
     private List<StatusEntity> ChildrenStatuses = new List<StatusEntity>();
 
     private Dictionary<AttrType, Dictionary<AddNumericType, List<FloatModifier>>> Dic_AttrModifier = new Dictionary<AttrType, Dictionary<AddNumericType, List<FloatModifier>>>();

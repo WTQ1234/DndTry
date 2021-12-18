@@ -297,6 +297,10 @@ namespace ET
                 {
                     continue;
                 }
+                if (GetCellString(sheet, i, 2) == "end")
+                {
+                    break;
+                }
 
                 StringBuilder sb = new StringBuilder();
                 IRow row = sheet.GetRow(i);
@@ -325,6 +329,7 @@ namespace ET
                     }
 
                     string fieldValue = GetCellString(row, j);
+                    Debug.Log(fieldValue);
                     if (fieldValue == "")
                     {
                         continue;
@@ -346,9 +351,8 @@ namespace ET
                     string fieldType = cellInfos[j].Type;
                     sb.Append($"\"{fieldName}\":{Convert(fieldType, fieldValue)}");
                 }
-
-                if (i < sheet.LastRowNum) sb.Append("},");
-                else sb.Append("}");
+                bool isLastRowNum = (i >= sheet.LastRowNum) || (GetCellString(sheet, i + 1, 2) == "end");
+                sb.Append(isLastRowNum ? "}" : "},");
                 sw.WriteLine(sb.ToString());
             }
         }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="300,450">
   <displayList>
+    <graph id="n6_jiey" name="n6" xy="0,50" size="300,400" type="rect" lineSize="0" fillColor="#ff2b2b2b"/>
     <loader id="n1_rn97" name="img_item" xy="0,50" size="298,399" url="ui://sa4gna93rn979" fill="scaleFree"/>
     <component id="n2_rn97" name="bar_hp" src="maxz1" fileName="ui/bar_hp.xml" xy="0,0" size="250,50">
       <ProgressBar value="72" max="100"/>

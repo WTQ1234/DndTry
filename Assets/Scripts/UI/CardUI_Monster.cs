@@ -13,6 +13,7 @@ public class CardUI_Monster : EGamePlay.Component
 
     CardUI cardUI;
 
+    private MonsterData monsterData;
     private int hpValue;
     private int hpMaxValue;
 
@@ -24,14 +25,32 @@ public class CardUI_Monster : EGamePlay.Component
         text_hp = mc_monster.GetChild("text_hp");
         text_name = (mc_monster.GetChild("mc_name") as GComponent).GetChild("text_name");
         bar_hp = mc_monster.GetChild("bar_hp") as GProgressBar;
+
+
+        // Object prefab = Resources.Load("Role/npc");Rikr_Root
+        Object prefab = Resources.Load("Prefab/Rikr_Root");
+
+        GameObject go = (GameObject)Object.Instantiate(prefab);
+        // go.transform.localPosition = new Vector3(61, -89, 1000); //set z to far from UICamera is important!
+        // go.transform.localScale = new Vector3(180, 180, 180);
+        // go.transform.localEulerAngles = new Vector3(0, 100, 0);
+        mc_monster.GetChild("n6").asGraph.SetNativeObject(new GoWrapper(go));
     }
 
     public bool Init(UIParamBasic param = null)
     {
         cardUI.Subscribe("SetHp", SetHp);
+        cardUI.Subscribe("SetConfig_Monster", SetConfig);
         cardUI.owner.Subscribe("onActExe_Atk", onActExe_Atk);
         cardUI.owner.Subscribe("onActExe_Def", onActExe_Def);
         return true;
+    }
+
+    public void SetConfig(EventParams _configEvent)
+    {
+        ConfigEvent configEvent = _configEvent as ConfigEvent;
+        monsterData = configEvent.config as MonsterData;
+        SetName(monsterData.Name);
     }
 
     public void SetHp(EventParams _hpEvent)

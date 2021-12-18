@@ -132,6 +132,13 @@ public class CardEntity : Entity
     {
         cardUI = uiPanel.gameObject.AddComponent<CardUI>();
         cardUI.Init(new UIParamBasic(Name, this, _enumCaty: (int)cardEntityParams.cardType));
+        if (cardEntityParams.monsterData != null)
+        {
+            cardUI.Publish("SetConfig_Monster", new ConfigEvent()
+            {
+                config = cardEntityParams.monsterData,
+            });
+        }
         cardUI.Publish("SetHp", new HpEvent()
         {
             hpValue = healthPointComponent.Value,

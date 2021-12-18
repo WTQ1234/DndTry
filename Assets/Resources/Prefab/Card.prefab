@@ -158,11 +158,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec733308d8d1a94fb41409855cf362d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardType: 1
   isCreature: 1
   isSpeak: 0
   isTool: 0
   SeatNumber: 0
   ActionControlType: 0
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!1 &8184334190478263423
 GameObject:
   m_ObjectHideFlags: 0

@@ -89,7 +89,10 @@ public class RoomEntity : Entity
 
     public CardEntity AddHeroEntity(int seat)
     {
-        var entity = Create<CardEntity>(initData: new CardEntityParams(){cardType = CardType.Monster}, prefab: Prefab_Card, parent: this, ownerParent: HeroParent, Name: $"CardEntity_{GetNewCardId()}");
+        MonsterData monsterData = ConfigController.Instance.Get<MonsterData>(1);    // 主角暂时读取固定为1的monster配置
+        var entity = Create<CardEntity>(
+            initData: new CardEntityParams(){cardType = CardType.Monster, monsterData = monsterData}, 
+            prefab: Prefab_Card, parent: this, ownerParent: HeroParent, Name: $"CardEntity_{GetNewCardId()}");
         HeroEntities.Add(entity);
         entity.SetSeatNumber(seat);
         entity.SetTeam(1);
@@ -99,7 +102,12 @@ public class RoomEntity : Entity
 
     public CardEntity AddMonsterEntity(int seat)
     {
-        var entity = Create<CardEntity>(initData: new CardEntityParams(){cardType = CardType.Monster}, prefab: Prefab_Card, parent: this, ownerParent: EnemyParent, Name: $"CardEntity_{GetNewCardId()}");
+        // 根据roomConfig 随机一个怪物id
+        //roomDataConfig.MonsterIds()
+        MonsterData monsterData = ConfigController.Instance.Get<MonsterData>(1);
+        var entity = Create<CardEntity>(
+            initData: new CardEntityParams(){cardType = CardType.Monster, monsterData = monsterData}, 
+            prefab: Prefab_Card, parent: this, ownerParent: EnemyParent, Name: $"CardEntity_{GetNewCardId()}");
         MonsterEntities.Add(entity);
         entity.SetSeatNumber(seat);
         entity.SetTeam(-1);

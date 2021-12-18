@@ -2,6 +2,8 @@
 <component size="300,70">
   <displayList>
     <image id="n297_rn97" name="img" src="rn97a" fileName="img/img_background.png" xy="0,0" size="300,70" color="#ff6600"/>
-    <richtext id="n281_ktel" name="text_name" xy="69,10" size="154,51" fontSize="38" color="#f4d1ac" align="center" vAlign="middle" text="怪物名称"/>
+    <richtext id="n281_ktel" name="text_name" xy="69,10" size="154,52" fontSize="38" color="#f4d1ac" align="center" vAlign="middle" text="怪物名称">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
   </displayList>
 </component>

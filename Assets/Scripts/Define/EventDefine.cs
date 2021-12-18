@@ -38,6 +38,12 @@ public class HpEvent : EventParams
     public int hpMaxValue = -1;
 }
 
+public class ConfigEvent : EventParams
+{
+    public IConfig config = null;
+}
+
+
 public class CombatEndEvent
 {
 
