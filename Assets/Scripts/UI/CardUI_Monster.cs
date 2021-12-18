@@ -31,10 +31,12 @@ public class CardUI_Monster : EGamePlay.Component
         Object prefab = Resources.Load("Prefab/Rikr_Root");
 
         GameObject go = (GameObject)Object.Instantiate(prefab);
-        // go.transform.localPosition = new Vector3(61, -89, 1000); //set z to far from UICamera is important!
-        // go.transform.localScale = new Vector3(180, 180, 180);
+        go.transform.localPosition = new Vector3(0, 0, 1); //set z to far from UICamera is important!
+        go.transform.localScale = new Vector3(7, 7, 7);
         // go.transform.localEulerAngles = new Vector3(0, 100, 0);
-        mc_monster.GetChild("n6").asGraph.SetNativeObject(new GoWrapper(go));
+        GoWrapper goWrapper = new GoWrapper(go);
+        // goWrapper.sort
+        mc_monster.GetChild("n6").asGraph.SetNativeObject(goWrapper);
     }
 
     public bool Init(UIParamBasic param = null)
