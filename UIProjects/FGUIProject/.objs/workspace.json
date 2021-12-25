@@ -9,19 +9,21 @@
   "libview.iconScale": 0,
   "doc.openedDocs": [
     "ui://sa4gna93maxz0",
+    "ui://bgoepflix3pr0",
+    "ui://sa4gna93r9x3e",
     "ui://sa4gna93rn97d",
     "ui://sa4gna93rn978"
   ],
   "auxline1": true,
   "canvasColor": 10066329,
   "auxline2": true,
-  "doc.activeDoc": "ui://sa4gna93rn97d",
+  "doc.activeDoc": "ui://bgoepflix3pr0",
   "libview.twoColumn": false,
   "libview.expandedNodes": [
-    "sa4gna93",
+    "bgoepfli",
     "/",
     "sa4gna93",
-    "/ui/"
+    "/"
   ],
   "snapToGrid": true,
   "backgroundColor": 6710886,

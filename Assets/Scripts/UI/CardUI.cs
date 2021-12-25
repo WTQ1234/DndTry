@@ -19,6 +19,10 @@ public class CardUI : UIBasic
     {
         base.Init(param);
 
+        ui.GetChild("ClickArea").onTouchBegin.Add(() => {
+            print("111");
+            // Publish("onClickCardUI");
+             });
         CardType cardType = (CardType)param.enumCaty;
         switch(cardType)
         {

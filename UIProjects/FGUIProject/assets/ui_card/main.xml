@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="300,450">
-  <controller name="state" pages="1,monster,0,hide,2,item,3,treasure" selected="1">
+  <controller name="state" pages="1,monster,0,hide,2,item,3,treasure" selected="0">
     <remark page="1" value="未揭露"/>
   </controller>
   <displayList>
@@ -12,6 +12,12 @@
     </component>
     <component id="n15_rn97" name="mc_monster" src="rn97d" fileName="ui/mc_monster.xml" xy="0,0" pivot="0.5,0.5">
       <gearDisplay controller="state" pages="1"/>
+    </component>
+    <graph id="n17_r9x3" name="ClickArea" xy="0,0" size="300,450" alpha="0" type="rect">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <component id="n18_r9x3" name="n18" src="r9x3e" fileName="ClickArea.xml" xy="0,0" size="300,450" visible="false">
+      <relation target="" sidePair="width-width,height-height"/>
     </component>
   </displayList>
   <transition name="atk" frameRate="30">
