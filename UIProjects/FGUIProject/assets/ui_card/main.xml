@@ -13,12 +13,7 @@
     <component id="n15_rn97" name="mc_monster" src="rn97d" fileName="ui/mc_monster.xml" xy="0,0" pivot="0.5,0.5">
       <gearDisplay controller="state" pages="1"/>
     </component>
-    <graph id="n17_r9x3" name="ClickArea" xy="0,0" size="300,450" alpha="0" type="rect">
-      <relation target="" sidePair="width-width,height-height"/>
-    </graph>
-    <component id="n18_r9x3" name="n18" src="r9x3e" fileName="ClickArea.xml" xy="0,0" size="300,450" visible="false">
-      <relation target="" sidePair="width-width,height-height"/>
-    </component>
+    <component id="n19_nqny" name="ClickArea" src="nqnyf" fileName="ClickArea.xml" xy="146,208" pivot="0.5,0.5" anchor="true" size="600,291"/>
   </displayList>
   <transition name="atk" frameRate="30">
     <item time="0" type="Scale" target="n15_rn97" tween="true" startValue="1,1" endValue="1.3,1.3" duration="5"/>

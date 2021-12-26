@@ -29,14 +29,13 @@ public class UIBasic : Entity
 {
     public Entity owner;
     public UIPanel panel;
-    public GComponent ui;
+    public GComponent ui{get {return panel.ui;}}
     public bool isInited = false;
 
     public override void Awake()
     {
         base.Awake();
         panel = gameObject.GetComponent<UIPanel>();
-        ui = panel.ui;
     }
 
     public override void Start()

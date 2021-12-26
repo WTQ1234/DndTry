@@ -13,7 +13,8 @@ public class UIController : SingleTon<UIController>
     }
     public UIBasic onGetUI(string name)
     {
-        return dic_Name_UI[name];
+        dic_Name_UI.TryGetValue(name, out var ui);
+        return ui;
     }
 
     private void Awake()

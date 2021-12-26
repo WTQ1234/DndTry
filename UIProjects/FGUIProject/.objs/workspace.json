@@ -1,5 +1,6 @@
 {
   "libview.firstColumnWidth": 313,
+  "test.device": "Huawei Mate20 Pro",
   "expanded_nodes": [
     "4djj2cw4",
     "/",
@@ -9,23 +10,31 @@
   "libview.iconScale": 0,
   "doc.openedDocs": [
     "ui://sa4gna93maxz0",
-    "ui://bgoepflix3pr0",
-    "ui://sa4gna93r9x3e",
+    "ui://sa4gna93nqnyf",
     "ui://sa4gna93rn97d",
-    "ui://sa4gna93rn978"
+    "ui://sa4gna93rn976"
   ],
   "auxline1": true,
   "canvasColor": 10066329,
   "auxline2": true,
-  "doc.activeDoc": "ui://bgoepflix3pr0",
+  "doc.activeDoc": "ui://sa4gna93maxz0",
   "libview.twoColumn": false,
   "libview.expandedNodes": [
+    "4djj2cw4",
+    "/",
+    "4djj2cw4",
+    "/images/",
+    "4djj2cw4",
+    "/new_images/",
+    "bcy20prw",
+    "/",
     "bgoepfli",
     "/",
     "sa4gna93",
     "/"
   ],
   "snapToGrid": true,
+  "test.orientation": "landscape",
   "backgroundColor": 6710886,
   "libview.currentGroup": "",
   "hidden_packages": [],

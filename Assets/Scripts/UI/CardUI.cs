@@ -35,4 +35,21 @@ public class CardUI : UIBasic
         }
         return true;
     }
+
+    public override void Start()
+    {
+        UIPackage.AddPackage("FairyGUI/common");
+        print("kkkkkkkkkkkkkk");
+        ui.GetChild("ClickArea").onTouchBegin.Add(() => {
+            print("111");
+            var btn = ui.GetChild("ClickArea");
+
+            print($"{btn.enabled} {btn.visible}, {btn.alpha}");
+            // Publish("onClickCardUI");
+        });
+        ui.GetChild("ClickArea").onClick.Add(() => {
+            print("222");
+            // Publish("onClickCardUI");
+        });
+    }
 }

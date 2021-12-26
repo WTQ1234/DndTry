@@ -11,13 +11,15 @@ public class CameraController : SingleTon<CameraController>
     public float cameraRadius_Y = 1;
 
     private Camera MainCamera;
+    private Camera StageCamera;
     private Vector3 curCameraPos;
     private float halfScreenWidth;
     private float halfScreenHeight;
 
     private void Awake()
     {
-        MainCamera = Camera.main;
+        MainCamera = GameObject.Find("Cameras/Stage Camera").GetComponent<Camera>();
+        StageCamera = GameObject.Find("Cameras/Stage Camera").GetComponent<Camera>();
         halfScreenWidth = Screen.width / 2;
         halfScreenHeight = Screen.height / 2;
         curCameraPos = MainCamera.transform.position;
@@ -26,6 +28,7 @@ public class CameraController : SingleTon<CameraController>
     public void Move()
     {
         MainCamera.transform.DOLocalMove(cameraOriginPos, 2);
+        // StageCamera.transform.DOLocalMove(cameraOriginPos, 2);
         curCameraPos = cameraOriginPos;
     }
 
@@ -36,5 +39,6 @@ public class CameraController : SingleTon<CameraController>
         float Y = moveRate * cameraRadius_Y * Mathf.Clamp((input.y - halfScreenHeight) / halfScreenHeight, -1f, 1f);
         Vector3 tranPos = new Vector3(X, Y, 0);
         MainCamera.transform.DOLocalMove(curCameraPos + tranPos, 0.5f);
+        // StageCamera.transform.DOLocalMove(curCameraPos + tranPos, 0.5f);
     }
 }

@@ -11,7 +11,7 @@
     <image id="rn97b" name="QQ图片20211120230124.png" path="/img/"/>
     <component id="rn97c" name="mc_hide.xml" path="/ui/"/>
     <component id="rn97d" name="mc_monster.xml" path="/ui/"/>
-    <component id="r9x3e" name="ClickArea.xml" path="/"/>
+    <component id="nqnyf" name="ClickArea.xml" path="/"/>
   </resources>
   <publish name=""/>
 </packageDescription>
