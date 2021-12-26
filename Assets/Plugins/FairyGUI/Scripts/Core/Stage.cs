@@ -59,7 +59,8 @@ namespace FairyGUI
         string _currentCursor;
 
         static bool _touchScreen;
-        internal static int _clickTestThreshold;
+        // todo 记得改回internal
+        public static int _clickTestThreshold;
 #pragma warning disable 0649
         static IKeyboard _keyboard;
 #pragma warning restore 0649
@@ -119,7 +120,8 @@ namespace FairyGUI
                     _keyboard = null;
                     keyboardInput = false;
                     Stage.inst.ResetInputState();
-                    _clickTestThreshold = 10;
+                    // todo 记得改回10
+                    _clickTestThreshold = 1000;
                 }
             }
         }
@@ -767,7 +769,8 @@ namespace FairyGUI
                 return;
 
             _frameGotHitTarget = Time.frameCount;
-
+            Debug.Log(_customInput);
+            Debug.Log(touchScreen);
             if (_customInput)
             {
                 Vector2 pos = _customInputPos;
@@ -824,7 +827,9 @@ namespace FairyGUI
                 pos.y = Screen.height - pos.y;
                 TouchInfo touch = _touches[0];
                 if (pos.x < 0 || pos.y < 0) //outside of the window
-                    _touchTarget = this;
+                    {
+                        Debug.Log("outside");
+                        _touchTarget = this;}
                 else
                     _touchTarget = HitTest(pos, true);
                 touch.target = _touchTarget;
@@ -1060,6 +1065,7 @@ namespace FairyGUI
                     touch.End();
 
                     DisplayObject clickTarget = touch.ClickTest();
+                    Debug.Log(clickTarget);
                     if (clickTarget != null)
                     {
                         touch.UpdateEvent();
@@ -1627,13 +1633,17 @@ namespace FairyGUI
 
         public DisplayObject ClickTest()
         {
+            Debug.Log(clickCancelled);
             if (clickCancelled)
             {
                 downTargets.Clear();
                 return null;
             }
-
             DisplayObject obj = downTargets[0];
+            if (obj is Container)
+            {
+                Debug.Log((obj as Container).gameObject.name);
+            }
             if (obj.stage != null) //依然派发到原来的downTarget，虽然可能它已经偏离当前位置，主要是为了正确处理点击缩放的效果
             {
                 downTargets.Clear();

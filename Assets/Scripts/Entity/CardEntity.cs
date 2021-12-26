@@ -74,7 +74,6 @@ public class CardEntity : Entity
         // uiPanel = transform.Find("UIPanel");
         uiPanel = transform;
         transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
-        print(transform.localScale);
     }
 
     public override void Setup(object initData = null, bool asGameObject = false)
@@ -128,9 +127,7 @@ public class CardEntity : Entity
 
     private void InitShow(CardEntityParams cardEntityParams)
     {
-                print(transform.localScale);
         cardUI = uiPanel.gameObject.AddComponent<CardUI>();
-                print(transform.localScale);
         cardUI.Init(new UIParamBasic(Name, this, _enumCaty: (int)cardEntityParams.cardType));
         cardUI.Subscribe("onClickCardUI", onClickCardUI);
         if (cardEntityParams.monsterData != null)
@@ -173,6 +170,7 @@ public class CardEntity : Entity
     public void SetSeatNumber(int s)
     {
         SeatNumber = s;
+        gameObject.name = $"Card_{s}_{TurnActionAbility.team}";
     }
     public int GetSeatNumber()
     {

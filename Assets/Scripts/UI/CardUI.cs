@@ -20,9 +20,8 @@ public class CardUI : UIBasic
         base.Init(param);
 
         ui.GetChild("ClickArea").onTouchBegin.Add(() => {
-            print("111");
             // Publish("onClickCardUI");
-             });
+        });
         CardType cardType = (CardType)param.enumCaty;
         switch(cardType)
         {
@@ -39,16 +38,11 @@ public class CardUI : UIBasic
     public override void Start()
     {
         UIPackage.AddPackage("FairyGUI/common");
-        print("kkkkkkkkkkkkkk");
         ui.GetChild("ClickArea").onTouchBegin.Add(() => {
-            print("111");
             var btn = ui.GetChild("ClickArea");
-
-            print($"{btn.enabled} {btn.visible}, {btn.alpha}");
             // Publish("onClickCardUI");
         });
         ui.GetChild("ClickArea").onClick.Add(() => {
-            print("222");
             // Publish("onClickCardUI");
         });
     }

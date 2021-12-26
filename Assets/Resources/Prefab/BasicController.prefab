@@ -56,7 +56,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d49341d52a44d4fbb1d8d70adb0ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraOriginPos: {x: 0, y: 0, z: 0}
   moveRate: 0.7
-  cameraRadius_X: 1.5
+  cameraRadius_X: 1
   cameraRadius_Y: 1
