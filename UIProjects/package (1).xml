@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="sa4gna93">
+  <resources>
+    <component id="maxz0" name="main.xml" path="/" exported="true"/>
+    <component id="maxz1" name="bar_hp.xml" path="/ui/"/>
+    <component id="maxz5" name="btn_show.xml" path="/ui/"/>
+    <component id="rn976" name="btn_search.xml" path="/ui/"/>
+    <component id="rn978" name="mc_name.xml" path="/ui/"/>
+    <image id="rn979" name="img_card.png" path="/img/"/>
+    <image id="rn97a" name="img_background.png" path="/img/"/>
+    <image id="rn97b" name="QQ图片20211120230124.png" path="/img/"/>
+    <component id="rn97c" name="mc_hide.xml" path="/ui/"/>
+    <component id="rn97d" name="mc_monster.xml" path="/ui/"/>
+    <component id="nqnyf" name="ClickArea.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

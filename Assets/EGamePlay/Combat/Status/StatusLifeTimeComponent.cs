@@ -17,8 +17,8 @@ namespace EGamePlay.Combat.Status
         public override void Setup()
         {
             var status = Entity as StatusAbility;
-            var lifeTime = status.StatusConfigObject.Duration / 1000f;
-            LifeTimer = new GameTimer(lifeTime);
+            // var lifeTime = status.StatusConfigObject.Duration / 1000f;
+            LifeTimer = new GameTimer(1);
         }
 
         public override void Update()

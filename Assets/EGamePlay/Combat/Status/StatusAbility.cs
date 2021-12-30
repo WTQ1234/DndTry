@@ -8,18 +8,18 @@ namespace EGamePlay.Combat.Status
     {
         //投放者、施术者
         public CombatEntity Caster { get; set; }
-        public StatusConfigObject StatusConfigObject { get; set; }
+        // public StatusConfigObject StatusConfigObject { get; set; }
         public FloatModifier NumericModifier { get; set; }
         public bool IsChildStatus { get; set; }
-        public ChildStatus ChildStatusData { get; set; }
+        // public ChildStatus ChildStatusData { get; set; }
         private List<StatusAbility> ChildrenStatuses { get; set; } = new List<StatusAbility>();
 
 
         public override void Setup(object initData = null, bool asGameObject = false)
         {
             base.Setup(initData);
-            StatusConfigObject = initData as StatusConfigObject;
-            Name = StatusConfigObject.ID;
+            // StatusConfigObject = initData as StatusConfigObject;
+            // Name = StatusConfigObject.ID;
         }
 
         //激活
@@ -27,60 +27,60 @@ namespace EGamePlay.Combat.Status
         {
             base.ActivateAbility();
 
-            //子状态效果
-            if (StatusConfigObject.EnableChildrenStatuses)
-            {
-                foreach (var item in StatusConfigObject.ChildrenStatuses)
-                {
-                    var status = OwnerEntity.AttachStatus<StatusAbility>(item.StatusConfigObject);
-                    status.Caster = Caster;
-                    status.IsChildStatus = true;
-                    status.ChildStatusData = item;
-                    status.TryActivateAbility();
-                    ChildrenStatuses.Add(status);
-                }
-            }
-            //行为禁制
-            if (StatusConfigObject.EnabledStateModify)
-            {
-                OwnerEntity.ActionControlType = OwnerEntity.ActionControlType | StatusConfigObject.ActionControlType;
-                //Log.Debug($"{OwnerEntity.ActionControlType}");
-                if (OwnerEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid))
-                {
-                    OwnerEntity.GetComponent<MotionComponent>().Enable = false;
-                }
-            }
-            //属性修饰
-            if (StatusConfigObject.EnabledAttributeModify)
-            {
-                if (StatusConfigObject.AttributeType != AttributeType.None && StatusConfigObject.NumericValue != "")
-                {
-                    var numericValue = StatusConfigObject.NumericValue;
-                    if (IsChildStatus)
-                    {
-                        foreach (var paramItem in ChildStatusData.Params)
-                        {
-                            numericValue = numericValue.Replace(paramItem.Key, paramItem.Value);
-                        }
-                    }
-                    numericValue = numericValue.Replace("%", "");
-                    var expression = ExpressionHelper.ExpressionParser.EvaluateExpression(numericValue);
-                    var value = (float)expression.Value;
-                    NumericModifier = new FloatModifier() { Value = value };
+            // //子状态效果
+            // if (StatusConfigObject.EnableChildrenStatuses)
+            // {
+            //     foreach (var item in StatusConfigObject.ChildrenStatuses)
+            //     {
+            //         var status = OwnerEntity.AttachStatus<StatusAbility>(item.StatusConfigObject);
+            //         status.Caster = Caster;
+            //         status.IsChildStatus = true;
+            //         status.ChildStatusData = item;
+            //         status.TryActivateAbility();
+            //         ChildrenStatuses.Add(status);
+            //     }
+            // }
+            // //行为禁制
+            // if (StatusConfigObject.EnabledStateModify)
+            // {
+            //     OwnerEntity.ActionControlType = OwnerEntity.ActionControlType | StatusConfigObject.ActionControlType;
+            //     //Log.Debug($"{OwnerEntity.ActionControlType}");
+            //     if (OwnerEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid))
+            //     {
+            //         OwnerEntity.GetComponent<MotionComponent>().Enable = false;
+            //     }
+            // }
+            // //属性修饰
+            // if (StatusConfigObject.EnabledAttributeModify)
+            // {
+            //     if (StatusConfigObject.AttributeType != AttributeType.None && StatusConfigObject.NumericValue != "")
+            //     {
+            //         var numericValue = StatusConfigObject.NumericValue;
+            //         if (IsChildStatus)
+            //         {
+            //             foreach (var paramItem in ChildStatusData.Params)
+            //             {
+            //                 numericValue = numericValue.Replace(paramItem.Key, paramItem.Value);
+            //             }
+            //         }
+            //         numericValue = numericValue.Replace("%", "");
+            //         var expression = ExpressionHelper.ExpressionParser.EvaluateExpression(numericValue);
+            //         var value = (float)expression.Value;
+            //         NumericModifier = new FloatModifier() { Value = value };
 
-                    var attributeType = StatusConfigObject.AttributeType.ToString();
-                    if (StatusConfigObject.ModifyType == ModifyType.Add)
-                    {
-                        OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalAddModifier(NumericModifier);
-                    }
-                    if (StatusConfigObject.ModifyType == ModifyType.PercentAdd)
-                    {
-                        OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalPctAddModifier(NumericModifier);
-                    }
-                }
-            }
-            //逻辑触发
-            if (StatusConfigObject.EnabledLogicTrigger)
+            //         var attributeType = StatusConfigObject.AttributeType.ToString();
+            //         if (StatusConfigObject.ModifyType == ModifyType.Add)
+            //         {
+            //             OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalAddModifier(NumericModifier);
+            //         }
+            //         if (StatusConfigObject.ModifyType == ModifyType.PercentAdd)
+            //         {
+            //             OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).AddFinalPctAddModifier(NumericModifier);
+            //         }
+            //     }
+            // }
+            // //逻辑触发
+            // if (StatusConfigObject.EnabledLogicTrigger)
             {
                 //foreach (var effectItem in StatusConfigObject.Effects)
                 //{
@@ -144,49 +144,49 @@ namespace EGamePlay.Combat.Status
         //结束
         public override void EndAbility()
         {
-            //子状态效果
-            if (StatusConfigObject.EnableChildrenStatuses)
-            {
-                foreach (var item in ChildrenStatuses)
-                {
-                    item.EndAbility();
-                }
-                ChildrenStatuses.Clear();
-            }
-            //行为禁制
-            if (StatusConfigObject.EnabledStateModify)
-            {
-                OwnerEntity.ActionControlType = OwnerEntity.ActionControlType & (~StatusConfigObject.ActionControlType);
-                //Log.Debug($"{OwnerEntity.ActionControlType}");
-                if (OwnerEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid) == false)
-                {
-                    OwnerEntity.GetComponent<MotionComponent>().Enable = true;
-                }
-            }
-            //属性修饰
-            if (StatusConfigObject.EnabledAttributeModify)
-            {
-                if (StatusConfigObject.AttributeType != AttributeType.None && StatusConfigObject.NumericValue != "")
-                {
-                    var attributeType = StatusConfigObject.AttributeType.ToString();
-                    if (StatusConfigObject.ModifyType == ModifyType.Add)
-                    {
-                        OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalAddModifier(NumericModifier);
-                    }
-                    if (StatusConfigObject.ModifyType == ModifyType.PercentAdd)
-                    {
-                        OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalPctAddModifier(NumericModifier);
-                    }
-                }
-            }
-            //逻辑触发
-            if (StatusConfigObject.EnabledLogicTrigger)
-            {
+            // //子状态效果
+            // if (StatusConfigObject.EnableChildrenStatuses)
+            // {
+            //     foreach (var item in ChildrenStatuses)
+            //     {
+            //         item.EndAbility();
+            //     }
+            //     ChildrenStatuses.Clear();
+            // }
+            // //行为禁制
+            // if (StatusConfigObject.EnabledStateModify)
+            // {
+            //     OwnerEntity.ActionControlType = OwnerEntity.ActionControlType & (~StatusConfigObject.ActionControlType);
+            //     //Log.Debug($"{OwnerEntity.ActionControlType}");
+            //     if (OwnerEntity.ActionControlType.HasFlag(ActionControlType.MoveForbid) == false)
+            //     {
+            //         OwnerEntity.GetComponent<MotionComponent>().Enable = true;
+            //     }
+            // }
+            // //属性修饰
+            // if (StatusConfigObject.EnabledAttributeModify)
+            // {
+            //     if (StatusConfigObject.AttributeType != AttributeType.None && StatusConfigObject.NumericValue != "")
+            //     {
+            //         var attributeType = StatusConfigObject.AttributeType.ToString();
+            //         if (StatusConfigObject.ModifyType == ModifyType.Add)
+            //         {
+            //             OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalAddModifier(NumericModifier);
+            //         }
+            //         if (StatusConfigObject.ModifyType == ModifyType.PercentAdd)
+            //         {
+            //             OwnerEntity.GetComponent<AttributeComponent>().GetNumeric(attributeType).RemoveFinalPctAddModifier(NumericModifier);
+            //         }
+            //     }
+            // }
+            // //逻辑触发
+            // if (StatusConfigObject.EnabledLogicTrigger)
+            // {
 
-            }
+            // }
 
-            NumericModifier = null;
-            OwnerEntity.OnStatusRemove(this);
+            // NumericModifier = null;
+            // OwnerEntity.OnStatusRemove(this);
             base.EndAbility();
         }
 
@@ -194,10 +194,10 @@ namespace EGamePlay.Combat.Status
         public override void ApplyAbilityEffectsTo(CombatEntity targetEntity)
         {
             List<Effect> Effects = null;
-            if (StatusConfigObject.EnabledLogicTrigger)
-            {
-                Effects = StatusConfigObject.Effects;
-            }
+            // if (StatusConfigObject.EnabledLogicTrigger)
+            // {
+            //     Effects = StatusConfigObject.Effects;
+            // }
             if (Effects == null)
             {
                 return;

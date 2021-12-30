@@ -12,17 +12,17 @@ namespace EGamePlay.Combat
         {
             get
             {
-                if (this.AddStatus != null)
-                {
-                    return $"施加 [ {this.AddStatus.Name} ] 状态效果";
-                }
+                // if (this.AddStatus != null)
+                // {
+                //     return $"施加 [ {this.AddStatus.Name} ] 状态效果";
+                // }
                 return "施加状态效果";
             }
         }
 
-        [ToggleGroup("Enabled")]
-        [LabelText("状态配置")]
-        public StatusConfigObject AddStatus;
+        // [ToggleGroup("Enabled")]
+        // [LabelText("状态配置")]
+        // public StatusConfigObject AddStatus;
 
         [ToggleGroup("Enabled"), LabelText("持续时间"), SuffixLabel("毫秒", true)]
         public uint Duration;

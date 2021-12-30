@@ -139,21 +139,21 @@ namespace EGamePlay.Combat
         public T AttachStatus<T>(object configObject) where T : StatusAbility
         {
             var status = AttachAbility<T>(configObject);
-            if (!TypeIdStatuses.ContainsKey(status.StatusConfigObject.ID))
-            {
-                TypeIdStatuses.Add(status.StatusConfigObject.ID, new List<StatusAbility>());
-            }
-            TypeIdStatuses[status.StatusConfigObject.ID].Add(status);
+            // if (!TypeIdStatuses.ContainsKey(status.StatusConfigObject.ID))
+            // {
+            //     TypeIdStatuses.Add(status.StatusConfigObject.ID, new List<StatusAbility>());
+            // }
+            // TypeIdStatuses[status.StatusConfigObject.ID].Add(status);
             return status;
         }
 
         public void OnStatusRemove(StatusAbility statusAbility)
         {
-            TypeIdStatuses[statusAbility.StatusConfigObject.ID].Remove(statusAbility);
-            if (TypeIdStatuses[statusAbility.StatusConfigObject.ID].Count == 0)
-            {
-                TypeIdStatuses.Remove(statusAbility.StatusConfigObject.ID);
-            }
+            // TypeIdStatuses[statusAbility.StatusConfigObject.ID].Remove(statusAbility);
+            // if (TypeIdStatuses[statusAbility.StatusConfigObject.ID].Count == 0)
+            // {
+            //     TypeIdStatuses.Remove(statusAbility.StatusConfigObject.ID);
+            // }
             this.Publish(new RemoveStatusEvent() { CombatEntity = this, Status = statusAbility, StatusId = statusAbility.Id });
         }
 

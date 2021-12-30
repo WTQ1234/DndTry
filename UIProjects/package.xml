@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="4djj2cw4">
+  <resources>
+    <component id="ltdbm" name="equip_kuang.xml" path="/btn/" exported="true"/>
+    <component id="ltdb1f" name="btn_1_1.xml" path="/btn/" exported="true"/>
+    <image id="uv31m1p" name="btn_cyan_pressed.png" path="/images/"/>
+    <component id="z20fm1w" name="btn_duigou_1.xml" path="/new_btn/" exported="true"/>
+    <component id="dxalm2h" name="mc_notouch.xml" path="/new_ui/" exported="true"/>
+    <component id="e15cm3z" name="chat.xml" path="/new_chat/" exported="true"/>
+    <component id="gci7m4k" name="3d_scenemc.xml" path="/btn/" exported="true"/>
+    <component id="yd1om58" name="btn_1_2.xml" path="/btn/" exported="true"/>
+    <component id="fqw7m68" name="mc_jb.xml" path="/btn/" exported="true"/>
+    <component id="onqtm6p" name="menulist.xml" path="/new_ui/" exported="true"/>
+    <image id="onqtm6w" name="icon_mail_warn_1.png" path="/images/" exported="true"/>
+    <component id="s1efm6y" name="btn_cost_01_01.xml" path="/new_btn/" exported="true"/>
+    <image id="n9tmm72" name="jiahao_down.png" path="/images/"/>
+    <image id="n9tmm73" name="jiahao_up.png" path="/images/"/>
+    <component id="n9tmm74" name="btn_add_3.xml" path="/btn/" exported="true"/>
+    <component id="bxb7m78" name="btn_out.xml" path="/new_btn/" exported="true"/>
+    <component id="ovq1m7f" name="fight_pvp_right.xml" path="/new_head/" exported="true"/>
+    <component id="ovq1m7j" name="playerblood.xml" path="/new_head/" exported="true"/>
+    <component id="ovq1m7k" name="playerblood_jd.xml" path="/new_head/" exported="true"/>
+    <component id="ovq1m7m" name="mc_buff.xml" path="/new_head/" exported="true"/>
+    <component id="ovq1m7n" name="fight_left.xml" path="/new_head/" exported="true"/>
+    <component id="ovq1m7s" name="money.xml" path="/btn/" exported="true"/>
+    <component id="ovq1m7t" name="btn_search.xml" path="/new_btn/" exported="true"/>
+    <image id="ovq1m7v" name="img_80%black.png" path="/images/" exported="true"/>
+    <component id="inkkm8a" name="mc_attr_broad.xml" path="/btn/" exported="true"/>
+    <image id="inkkm8b" name="title_gongneng.png" path="/images/" exported="true" scale="9grid" scale9grid="78,10,4,19"/>
+    <component id="jn8km8e" name="btn_keyboard_1.xml" path="/btn/" exported="true"/>
+    <image id="jn8km8f" name="btn_keyboard_up_1.png" path="/images/"/>
+    <image id="jn8km8g" name="btn_keyboard_down_1.png" path="/images/"/>
+    <component id="jn8km8h" name="btn_keyboard_2.xml" path="/btn/" exported="true"/>
+    <image id="jn8km8i" name="btn_keyboard_up_2.png" path="/images/"/>
+    <image id="jn8km8j" name="btn_keyboard_down_2.png" path="/images/"/>
+    <component id="jn8km8k" name="btn_minus_3.xml" path="/btn/" exported="true"/>
+    <image id="jn8km8l" name="equip_jianhao_up.png" path="/images/"/>
+    <image id="jn8km8m" name="equip_jianhao_down.png" path="/images/"/>
+    <component id="jn8km97" name="btn_close2.xml" path="/btn/" exported="true"/>
+    <image id="c4nvmbv" name="item_bg_0.png" path="/images/" exported="true"/>
+    <component id="c4nvmcg" name="mc_title_1.xml" path="/btn/" exported="true"/>
+    <component id="c4nvmcm" name="equip.xml" path="/btn/" exported="true"/>
+    <image id="c4nvmcn" name="icon_item_drop.png" path="/images/"/>
+    <image id="c4nvmco" name="icon_item_lock.png" path="/new_images/" exported="true"/>
+    <image id="c4nvmcs" name="img_info_bg_1.png" path="/images/" scale="9grid" scale9grid="138,173,297,21"/>
+    <component id="cafbmg7" name="btn_tongyong_130.xml" path="/btn/" exported="true"/>
+    <image id="cafbmg9" name="btn_title_wenhao_up.png" path="/images/"/>
+    <component id="cafbmga" name="btn_wenhao3.xml" path="/btn/" exported="true"/>
+    <image id="ipmqmi6" name="img_tip_board_tongyong02.png" path="/images/" scale="9grid" scale9grid="120,139,56,78"/>
+    <component id="v30tmie" name="mc_tip_big2.xml" path="/btn/" exported="true"/>
+    <image id="l3dpmiq" name="btn_close_1_down.png" path="/images/"/>
+    <image id="l3dpmir" name="btn_close_1_up.png" path="/images/"/>
+    <component id="l3dpmis" name="btn_close1.xml" path="/btn/" exported="true"/>
+    <image id="l3dpmiv" name="equip_Pattern_2.png" path="/images/" exported="true" scale="9grid" scale9grid="114,14,30,28"/>
+    <component id="jdybmj8" name="equip_circle.xml" path="/btn/" exported="true"/>
+    <image id="h5idmjo" name="btn_close_3_down.png" path="/images/"/>
+    <image id="h5idmjp" name="btn_close_3_up.png" path="/images/"/>
+    <image id="xiozmjr" name="btn_7_1_down.png" path="/images/" exported="true"/>
+    <image id="xiozmjs" name="btn_7_1_up.png" path="/images/" exported="true"/>
+    <component id="smnumjv" name="btn_4_3.xml" path="/btn/" exported="true"/>
+    <image id="smnumjy" name="btn_8_1_down.png" path="/images/"/>
+    <image id="smnumjz" name="btn_8_1_up.png" path="/images/"/>
+    <image id="smnumk0" name="btn_8_down.png" path="/images/"/>
+    <image id="smnumk1" name="btn_8_up.png" path="/images/"/>
+    <image id="x8d1mky" name="img_item_new.png" path="/new_images/" exported="true"/>
+    <image id="gnmimlk" name="img_tip_board_4.png" path="/images/" scale="9grid" scale9grid="173,89,346,178"/>
+    <image id="asydmlu" name="huobi_bg_2.png" path="/images/" exported="true"/>
+    <image id="asydmlv" name="btn_huobi_2.png" path="/images/" exported="true"/>
+    <component id="p2rxmmn" name="btn_add01.xml" path="/new_btn/" exported="true"/>
+    <image id="p2rxmmo" name="btn_ty_hb01.png" path="/new_images/" exported="true"/>
+    <component id="p2rxmmp" name="btn_close01.xml" path="/new_btn/" exported="true"/>
+    <image id="p2rxmmq" name="btn_ty_title_back.png" path="/new_images/" exported="true"/>
+    <component id="p2rxmmr" name="btn_wenhao01.xml" path="/new_btn/" exported="true"/>
+    <image id="p2rxmms" name="btn_ty_title_wenhao.png" path="/new_images/" exported="true"/>
+    <component id="p2rxmmt" name="tog_right_01.xml" path="/new_btn/" exported="true"/>
+    <image id="p2rxmmu" name="line_ty_tog01.png" path="/new_images/" exported="true" scale="9grid" scale9grid="144,2,4,4"/>
+    <image id="p2rxmmv" name="tog_ty_down01.png" path="/new_images/" exported="true"/>
+    <component id="p2rxmnp" name="mc_title_coin.xml" path="/new_ui/" exported="true"/>
+    <image id="p2rxmnq" name="img_ty_hb_bg.png" path="/new_images/" exported="true"/>
+    <component id="p2rxmnt" name="mc_title_coins_ani.xml" path="/new_ui/" exported="true"/>
+    <image id="p2rxmnv" name="bg_ty_board_03.png" path="/new_images/" exported="true" scale="9grid" scale9grid="114,369,27,17"/>
+    <component id="p2rxmo1" name="mc_equip_modle.xml" path="/new_item/" exported="true"/>
+    <component id="p2rxmo3" name="item_ani_up.xml" path="/new_item/" exported="true"/>
+    <image id="p2rxmo4" name="arrow_ty_down.png" path="/new_images/" exported="true"/>
+    <image id="p2rxmo5" name="img_ty_lock.png" path="/new_images/" exported="true"/>
+    <image id="p2rxmo6" name="img_ty_title_new.png" path="/new_images/" exported="true"/>
+    <component id="p2rxmo7" name="mc_right_toggle_group01.xml" path="/new_ui/" exported="true"/>
+    <image id="p2rxmo8" name="bg_ty_tog01.png" path="/new_images/" exported="true" scale="9grid" scale9grid="39,270,78,540"/>
+    <component id="p2rxmo9" name="mc_title_back_ani.xml" path="/new_ui/" exported="true"/>
+    <component id="p2rxmof" name="mc_power01.xml" path="/new_ui/" exported="true"/>
+    <image id="p2rxmoh" name="line_ty_bg_down01.png" path="/new_images/" exported="true"/>
+    <image id="p2rxmoi" name="line_ty_bg_top01.png" path="/new_images/" exported="true"/>
+    <image id="p2rxmoj" name="line_ty_bg_top02.png" path="/new_images/" exported="true" scale="9grid" scale9grid="325,0,1,40"/>
+    <image id="p2rxmok" name="line_ty_shuxing_01.png" path="/new_images/" exported="true"/>
+    <image id="p2rxmol" name="img_ty_title_bg.png" path="/new_images/" exported="true"/>
+    <image id="p2rxmom" name="img_ty_zhanli_bg.png" path="/new_images/" exported="true"/>
+    <component id="p2rxmon" name="mc_redpoint.xml" path="/new_ui/" exported="true"/>
+    <image id="p2rxmoo" name="point_ty.png" path="/new_images/" exported="true"/>
+    <component id="p2rxmop" name="3d_scenemc.xml" path="/new_ui/" exported="true"/>
+    <image id="p2rxmoq" name="arrow_ty_up.png" path="/new_images/" exported="true"/>
+    <component id="p2rxmos" name="item_info_unlimited_auto.xml" path="/new_item/" exported="true"/>
+    <component id="p2rxmzs" name="cell_attr_change.xml" path="/new_ui/" exported="true"/>
+    <image id="p2rxmzu" name="bg_ty_board_01.png" path="/new_images/" exported="true" scale="9grid" scale9grid="46,112,41,741"/>
+    <image id="p2rxmzv" name="bg_ty_board_02.png" path="/new_images/" exported="true" scale="9grid" scale9grid="60,210,8,20"/>
+    <image id="p2rxmzw" name="btn_ty_01.png" path="/new_images/" exported="true" scale="9grid" scale9grid="110,0,2,82" gridTile="16"/>
+    <image id="p2rxmzx" name="btn_ty_02.png" path="/new_images/" exported="true" scale="9grid" scale9grid="110,0,2,82" gridTile="16"/>
+    <image id="p2rxmzy" name="btn_ty_03.png" path="/new_images/" exported="true" scale="9grid" scale9grid="10,29,176,10"/>
+    <image id="p2rxmzz" name="btn_ty_04.png" path="/new_images/" exported="true" scale="9grid" scale9grid="10,29,176,10"/>
+    <image id="p2rxn00" name="btn_ty_close.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn01" name="btn_ty_paihang.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn02" name="btn_ty_shangcheng.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn03" name="btn_ty_tanhao.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn04" name="btn_ty_rename.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn05" name="img_ty_namebg.png" path="/new_images/" exported="true" scale="9grid" scale9grid="18,18,36,36"/>
+    <image id="p2rxn07" name="img_ty_bg_item01.png" path="/new_images/" exported="true" scale="9grid" scale9grid="33,33,66,66"/>
+    <image id="p2rxn08" name="img_ty_bg_item02.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn09" name="img_ty_closebg.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn0a" name="img_ty_title_01.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn0b" name="img_ty_title_02.png" path="/new_images/" exported="true"/>
+    <component id="p2rxn0c" name="btn_close02.xml" path="/new_btn/" exported="true"/>
+    <component id="p2rxn0d" name="btn_01_01.xml" path="/new_btn/" exported="true"/>
+    <component id="p2rxn0e" name="mc_tip_bg01.xml" path="/new_ui/" exported="true"/>
+    <component id="p2rxn0g" name="btn_closemask.xml" path="/new_btn/" exported="true"/>
+    <component id="p2rxn0h" name="mc_tip_bg02.xml" path="/new_ui/" exported="true"/>
+    <image id="p2rxn0k" name="btn_ty_05.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn0m" name="line_ty_01.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn0n" name="corner_ty_e.png" path="/new_images/" exported="true"/>
+    <image id="p2rxn0r" name="img_ty_tips_light.png" path="/new_images/" exported="true"/>
+    <component id="p2rxn0s" name="mc_tip_bg03.xml" path="/new_ui/" exported="true"/>
+    <component id="p2rxn0v" name="mc_equip_attr.xml" path="/new_ui/" exported="true"/>
+    <component id="htbbn0w" name="mc_title_back.xml" path="/new_ui/" exported="true"/>
+    <component id="htbbn0x" name="mc_title_coins.xml" path="/new_ui/" exported="true"/>
+    <image id="htbbn0y" name="btn_ty_yulan.png" path="/new_images/" exported="true"/>
+    <image id="htbbn0z" name="btn_ty_gushi.png" path="/new_images/" exported="true"/>
+    <image id="htbbn10" name="btn_ty_jihuo.png" path="/new_images/" exported="true"/>
+    <image id="htbbn12" name="btn_ty_peiyang.png" path="/new_images/" exported="true"/>
+    <component id="htbbn14" name="placeholder.xml" path="/new_ui/" exported="true"/>
+    <image id="htbbn1c" name="btn_ty_arrow_bg_close.png" path="/new_images/" exported="true"/>
+    <image id="htbbn1d" name="img_ty_arrow_levelup.png" path="/new_images/" exported="true"/>
+    <image id="htbbn1e" name="bg_ty_board_04.png" path="/new_images/" exported="true" scale="9grid" scale9grid="45,251,90,502"/>
+    <image id="htbbn1f" name="bg_ty_board_05.png" path="/new_images/" exported="true" scale="9grid" scale9grid="8,253,16,506" gridTile="2"/>
+    <image id="htbbn1g" name="bg_ty_tog02.png" path="/new_images/" exported="true"/>
+    <image id="htbbn1i" name="tog_ty_down02.png" path="/new_images/" exported="true"/>
+    <component id="htbbn1j" name="mc_left_list01.xml" path="/new_ui/" exported="true"/>
+    <component id="htbbn1k" name="btn_list_arrow01.xml" path="/new_btn/" exported="true"/>
+    <component id="htbbn1m" name="mc_item_kuang_toggle_150_un_mark.xml" path="/new_item/" exported="true"/>
+    <image id="htbbn1n" name="img_ty_tog02.png" path="/new_images/" exported="true"/>
+    <image id="htbbn1o" name="tog_ty_down03.png" path="/new_images/" exported="true" scale="9grid" scale9grid="86,16,75,32"/>
+    <image id="htbbn1p" name="bg_ty_tog03.png" path="/new_images/" exported="true" scale="9grid" scale9grid="148,17,12,34"/>
+    <image id="htbbn1q" name="img_ty_pick.png" path="/new_images/" exported="true" scale="9grid" scale9grid="37,37,74,74"/>
+    <component id="htbbn1r" name="tog_right_02.xml" path="/new_btn/" exported="true"/>
+    <image id="htbbn1s" name="line_ty_tog03.png" path="/new_images/" exported="true"/>
+    <image id="htbbn1w" name="img_ty_skill_bg.png" path="/new_images/" exported="true"/>
+    <component id="htbbn1x" name="cell_attr.xml" path="/new_ui/" exported="true"/>
+    <component id="htbbn1y" name="cell_skill.xml" path="/new_ui/" exported="true"/>
+    <component id="htbbn20" name="mc_item_kuang_toggle_150_01.xml" path="/new_item/" exported="true"/>
+    <image id="htbbn22" name="img_ty_dian.png" path="/new_images/" exported="true"/>
+    <component id="htbbn23" name="btn_02_01.xml" path="/new_btn/" exported="true"/>
+    <component id="htbbn26" name="mc_item_kuang_130_un_mark.xml" path="/new_item/" exported="true"/>
+    <component id="htbbn2a" name="btn_rp_01_01.xml" path="/new_btn/" exported="true"/>
+    <component id="mjlen2b" name="mc_cornermark_left.xml" path="/new_ui/" exported="true"/>
+    <component id="mjlen2c" name="mc_text.xml" path="/new_ui/" exported="true"/>
+    <component id="eh37n2m" name="mc_common_bg_bg.xml" path="/new_ui/" exported="true"/>
+    <component id="eh37n2o" name="mc_common_bg_downline.xml" path="/new_ui/" exported="true"/>
+    <component id="eh37n2q" name="mc_common_bg_topline.xml" path="/new_ui/" exported="true"/>
+    <image id="eh37n2t" name="bg_ty_tog04.png" path="/new_images/" exported="true" scale="9grid" scale9grid="164,19,328,38"/>
+    <image id="eh37n2u" name="tog_ty_down04.png" path="/new_images/" exported="true"/>
+    <image id="eh37n2v" name="bg_ty_board_06.png" path="/new_images/" exported="true"/>
+    <component id="eh37n34" name="btn_rename.xml" path="/new_btn/" exported="true"/>
+    <component id="eh37n36" name="btn_tanhao.xml" path="/new_btn/" exported="true"/>
+    <component id="eh37n3g" name="mc_top_toggle_group01.xml" path="/new_ui/" exported="true"/>
+    <component id="eh37n3j" name="tog_top_01.xml" path="/new_btn/" exported="true"/>
+    <image id="eh37n3k" name="corner_ty_yiguoqi.png" path="/new_images/" exported="true"/>
+    <image id="eh37n3l" name="corner_ty_kejiesuo.png" path="/new_images/" exported="true" scale="9grid" scale9grid="15,16,10,32"/>
+    <image id="eh37n3m" name="corner_ty_shiyongzhong.png" path="/new_images/" exported="true"/>
+    <image id="eh37n3o" name="img_talk_bg_1.png" path="/new_images/" exported="true" scale="9grid" scale9grid="18,32,36,3"/>
+    <image id="eh37n3p" name="img_talk_bg_2.png" path="/new_images/" exported="true" scale="9grid" scale9grid="18,32,36,3"/>
+    <image id="eh37n3q" name="img_talk_bg_3.png" path="/new_images/" exported="true" scale="9grid" scale9grid="18,32,36,3"/>
+    <component id="eh37n3s" name="mc_power02.xml" path="/new_ui/" exported="true"/>
+    <image id="eh37n3t" name="icon_ty_suo.png" path="/new_images/" exported="true"/>
+    <component id="eh37n3u" name="mc_none01.xml" path="/new_ui/" exported="true"/>
+    <image id="eh37n3v" name="img_ty_none_bg02.png" path="/new_images/" exported="true"/>
+    <image id="eh37n3w" name="img_ty_none_bg01.png" path="/new_images/" exported="true"/>
+    <image id="eh37n3x" name="tog_ty_up05.png" path="/new_images/" exported="true"/>
+    <image id="eh37n3z" name="tog_ty_down05.png" path="/new_images/" exported="true"/>
+    <image id="eh37n40" name="bg_ty_board_07.png" path="/new_images/" exported="true" scale="9grid" scale9grid="18,18,92,148"/>
+    <image id="eh37n41" name="bg_ty_board_08.png" path="/new_images/" exported="true" scale="9grid" scale9grid="32,32,64,64"/>
+    <component id="eh37n42" name="tog_left_01.xml" path="/new_btn/" exported="true"/>
+    <image id="eh37n48" name="tog_ty_down06.png" path="/new_images/" exported="true"/>
+    <component id="eh37n49" name="tog_left_02.xml" path="/new_btn/" exported="true"/>
+    <component id="saiwn4e" name="mc_tip_bg04.xml" path="/new_ui/" exported="true"/>
+    <image id="saiwn4f" name="bg_ty_board_10.png" path="/new_images/" exported="true"/>
+    <image id="saiwn4g" name="bg_ty_board_09.png" path="/new_images/" exported="true" scale="9grid" scale9grid="10,0,20,624"/>
+    <component id="c2frn4i" name="btn_less01.xml" path="/new_btn/" exported="true"/>
+    <component id="c2frn4j" name="tog_point01.xml" path="/new_btn/" exported="true"/>
+    <image id="c2frn4k" name="btn_ty_jh.png" path="/new_images/" exported="true"/>
+    <image id="c2frn4l" name="point_ty_selection.png" path="/new_images/" exported="true"/>
+    <image id="c2frn4m" name="btn_ty_check.png" path="/new_images/" exported="true"/>
+    <component id="c2frn4n" name="btn_dianzan.xml" path="/new_btn/" exported="true"/>
+    <image id="c2frn4o" name="btn_ty_title_zan.png" path="/new_images/" exported="true"/>
+    <image id="c2frn4p" name="bg_ty_rank01.png" path="/new_images/" exported="true" scale="9grid" scale9grid="17,17,34,34"/>
+    <image id="c2frn4q" name="bg_ty_rank02.png" path="/new_images/" exported="true" scale="9grid" scale9grid="17,17,34,34"/>
+    <image id="c2frn4r" name="bg_ty_rank03.png" path="/new_images/" exported="true" scale="9grid" scale9grid="17,17,34,34"/>
+    <image id="c2frn4s" name="bg_ty_rank04.png" path="/new_images/" exported="true" scale="9grid" scale9grid="17,17,34,34"/>
+    <image id="c2frn4t" name="bg_ty_rankme.png" path="/new_images/" exported="true" scale="9grid" scale9grid="17,17,34,34"/>
+    <component id="c2frn4u" name="btn_01_02.xml" path="/new_btn/" exported="true"/>
+    <image id="c2frn4v" name="btn_ty_06.png" path="/new_images/" exported="true"/>
+    <component id="c2frn4x" name="mc_tip_bg06.xml" path="/new_ui/" exported="true"/>
+    <component id="gfkrn4y" name="btn_money_02_01.xml" path="/new_btn/" exported="true"/>
+    <component id="gfkrn4z" name="btn_money_01_01.xml" path="/new_btn/" exported="true"/>
+    <component id="gfkrn50" name="btn_money_01_02.xml" path="/new_btn/" exported="true"/>
+    <component id="gfkrn51" name="btn_money_02_02.xml" path="/new_btn/" exported="true"/>
+    <component id="qd46n5d" name="btn_01_03.xml" path="/new_btn/" exported="true"/>
+    <component id="ruoxn5e" name="mc_tip_bg08.xml" path="/new_ui/" exported="true"/>
+    <image id="lkunn5f" name="bg_ty_board_11.png" path="/new_images/" exported="true" scale="9grid" scale9grid="21,222,42,444"/>
+    <image id="lkunn5g" name="line_ty_03.png" path="/new_images/" exported="true"/>
+    <image id="lkunn5h" name="line_ty_04.png" path="/new_images/" exported="true"/>
+    <image id="lkunn5i" name="line_ty_05.png" path="/new_images/" exported="true"/>
+    <image id="lkunn5j" name="line_ty_02.png" path="/new_images/" exported="true"/>
+    <image id="lkunn5l" name="line_ty_06.png" path="/new_images/" exported="true" scale="9grid" scale9grid="76,4,14,8"/>
+    <image id="lkunn5m" name="img_star_01.png" path="/new_images/" exported="true"/>
+    <component id="lkunn5n" name="mc_head01.xml" path="/new_head/" exported="true"/>
+    <component id="lkunn5o" name="btn_02_02.xml" path="/new_btn/" exported="true"/>
+    <component id="kks4n5q" name="head_peace.xml" path="/new_head/" exported="true"/>
+    <image id="kks4n5t" name="bg_ty_level.png" path="/new_images/" exported="true"/>
+    <image id="kks4n5u" name="bg_ty_main_head.png" path="/new_images/" exported="true"/>
+    <component id="kks4n5x" name="mc_power04.xml" path="/new_ui/" exported="true"/>
+    <image id="kks4n5z" name="btn_ty_vip.png" path="/new_images/" exported="true"/>
+    <component id="kks4n60" name="btn_money_add.xml" path="/new_btn/" exported="true"/>
+    <image id="kks4n61" name="btn_ty_hb02.png" path="/new_images/" exported="true"/>
+    <component id="kks4n62" name="mc_radio_mini.xml" path="/new_chat/" exported="true"/>
+    <image id="kks4n63" name="img_ty_laba.png" path="/new_images/" exported="true"/>
+    <image id="kks4n64" name="bg_ty_board_12.png" path="/new_images/" exported="true" scale="9grid" scale9grid="113,13,226,26"/>
+    <component id="kks4n65" name="mc_text_mask.xml" path="/new_chat/" exported="true"/>
+    <component id="kks4n66" name="chat_cell.xml" path="/new_chat/" exported="true"/>
+    <component id="kks4n67" name="chat_text.xml" path="/new_chat/" exported="true"/>
+    <component id="kks4n68" name="ui_minimap.xml" path="/new_ui/" exported="true"/>
+    <component id="kks4n69" name="mc_minimap.xml" path="/new_ui/" exported="true"/>
+    <component id="kks4n6a" name="mc_top_toggle_group02.xml" path="/new_ui/" exported="true"/>
+    <component id="kks4n6b" name="tog_top_02.xml" path="/new_btn/" exported="true"/>
+    <component id="kks4n6f" name="mc_progress_exp.xml" path="/new_ui/" exported="true"/>
+    <image id="kks4n6g" name="progress_ty_bg01.png" path="/new_images/" exported="true"/>
+    <image id="kks4n6h" name="progress_ty_fill01.png" path="/new_images/" exported="true"/>
+    <component id="kks4n6i" name="btn_cost_01_02.xml" path="/new_btn/" exported="true"/>
+    <component id="kks4n6m" name="mc_none02.xml" path="/new_ui/" exported="true"/>
+    <image id="kks4n6n" name="btn_ty_arrow_bg02.png" path="/new_images/" exported="true"/>
+    <image id="kks4n6o" name="btn_ty_arrow_bg01.png" path="/new_images/" exported="true"/>
+    <component id="kks4n6p" name="btn_list_arrow02.xml" path="/new_btn/" exported="true"/>
+    <image id="kks4n6r" name="progress_ty_fill02.png" path="/new_images/" exported="true" scale="9grid" scale9grid="3,5,296,10"/>
+    <image id="kks4n6s" name="tog_ty_down07.png" path="/new_images/" exported="true"/>
+    <image id="kks4n6t" name="tog_ty_up07.png" path="/new_images/" exported="true"/>
+    <image id="kks4n6u" name="img_ty_arrow_add.png" path="/new_images/" exported="true"/>
+    <image id="kks4n6v" name="img_ty_arrow_less.png" path="/new_images/" exported="true"/>
+    <image id="kks4n6x" name="progress_ty_bg02.png" path="/new_images/" exported="true" scale="9grid" scale9grid="76,5,152,10"/>
+    <component id="kks4n6y" name="btn_tog_left.xml" path="/new_btn/" exported="true"/>
+    <component id="kks4n6z" name="btn_tog_right.xml" path="/new_btn/" exported="true"/>
+    <component id="kks4n72" name="btn_rp_02_01.xml" path="/new_btn/" exported="true"/>
+    <component id="kks4n73" name="mc_progress_attr.xml" path="/new_ui/" exported="true"/>
+    <component id="nwgrn74" name="mc_tip_bg09.xml" path="/new_ui/" exported="true"/>
+    <image id="nwgrn75" name="bg_ty_board_13.png" path="/new_images/" exported="true" scale="9grid" scale9grid="4,80,8,160"/>
+    <component id="nwgrn77" name="mc_none03.xml" path="/new_ui/" exported="true"/>
+    <image id="nwgrn79" name="img_ty_none_bg03.png" path="/new_images/" exported="true"/>
+    <image id="nwgrn7d" name="tog_ty_down08.png" path="/new_images/" exported="true"/>
+    <image id="nwgrn7f" name="btn_ty_arrow_bg03.png" path="/new_images/" exported="true"/>
+    <image id="kfzhn7t" name="progress_role_exp_bg.png" path="/new_images/" exported="true"/>
+    <image id="kfzhn7u" name="progress_role_exp_fill.png" path="/new_images/" exported="true"/>
+    <component id="swimn81" name="mc_tip_bg10.xml" path="/new_ui/" exported="true"/>
+    <component id="nh4pn83" name="mc_progress_num.xml" path="/new_ui/" exported="true"/>
+    <component id="mgvcn85" name="btn_less02.xml" path="/new_btn/" exported="true"/>
+    <component id="mgvcn86" name="btn_add02.xml" path="/new_btn/" exported="true"/>
+    <image id="mgvcn87" name="btn_ty_jian01.png" path="/new_images/" exported="true"/>
+    <image id="mgvcn88" name="btn_ty_jia01.png" path="/new_images/" exported="true"/>
+    <component id="maoyn8b" name="mc_top_toggle_group03.xml" path="/new_ui/" exported="true"/>
+    <component id="maoyn8e" name="tog_top_03.xml" path="/new_btn/" exported="true"/>
+    <component id="maoyn8f" name="mc_tip_bg07.xml" path="/new_ui/" exported="true"/>
+    <component id="ag85n8g" name="mc_tip_bg11.xml" path="/new_ui/" exported="true"/>
+    <image id="ag85n8h" name="bg_equip_02.png" path="/new_images/" exported="true" scale="9grid" scale9grid="20,20,393,200"/>
+    <component id="ag85n8i" name="tog_point02.xml" path="/new_btn/" exported="true"/>
+    <component id="ag85n8l" name="btn_02_03.xml" path="/new_btn/" exported="true"/>
+    <component id="ag85n8m" name="num_slider.xml" path="/new_ui/" exported="true"/>
+    <component id="ag85n8n" name="num_slider_grip.xml" path="/new_ui/" exported="true"/>
+    <image id="ag85n8r" name="img_main_vip.png" path="/new_images/" exported="true"/>
+    <image id="dcsmn8u" name="bg_main_chat.png" path="/new_images/" exported="true" scale="9grid" scale9grid="10,10,74,102"/>
+    <image id="dcsmn8w" name="img_guide_03.png" path="/new_images/" exported="true"/>
+    <image id="dcsmn8x" name="img_guide_02.png" path="/new_images/" exported="true"/>
+    <component id="dcsmn8y" name="mc_head.xml" path="/new_head/" exported="true"/>
+    <component id="gecqn93" name="btn_cost_01_03.xml" path="/new_btn/" exported="true"/>
+    <image id="gecqn95" name="btn_partner_overview.png" path="/new_images/" exported="true"/>
+    <component id="gecqn96" name="mc_head_quality.xml" path="/new_head/" exported="true"/>
+    <component id="pu0hn97" name="mc_tip_bg12.xml" path="/new_ui/" exported="true"/>
+    <component id="k52kn9b" name="btn_head_left.xml" path="/new_head/" exported="true"/>
+    <component id="k52kn9c" name="mc_equip_round.xml" path="/new_item/" exported="true"/>
+    <image id="gm46n9g" name="tog_ty_up09.png" path="/new_images/" exported="true" scale="9grid" scale9grid="41,18,82,36"/>
+    <image id="gm46n9h" name="tog_ty_down09.png" path="/new_images/" exported="true" scale="9grid" scale9grid="10,18,144,36"/>
+    <component id="gm46n9k" name="btn_01_04.xml" path="/new_btn/" exported="true"/>
+    <component id="gm46n9l" name="mc_none04.xml" path="/new_ui/" exported="true"/>
+    <component id="gm46n9m" name="mc_corner.xml" path="/new_ui/" exported="true"/>
+    <image id="plaina2" name="btn_ty_chazhao.png" path="/new_images/" exported="true"/>
+    <component id="plaina3" name="mc_none05.xml" path="/new_ui/" exported="true"/>
+    <component id="plaina4" name="btn_refuse01.xml" path="/new_btn/" exported="true"/>
+    <image id="plainai" name="btn_ty_delete.png" path="/new_images/" exported="true"/>
+    <image id="o3g8nak" name="btn_daily_rili.png" path="/new_images/" exported="true"/>
+    <image id="o3g8nal" name="btn_daily_zhaohui.png" path="/new_images/" exported="true"/>
+    <image id="11njrnaq" name="btn_ty_rongjie.png" path="/new_images/" exported="true"/>
+    <image id="11njrnar" name="btn_ty_hecheng.png" path="/new_images/" exported="true"/>
+    <component id="ioetrnb7" name="btn_02_04.xml" path="/new_btn/" exported="true"/>
+    <component id="g7sqrnbe" name="btn_close03.xml" path="/new_btn/" exported="true"/>
+    <image id="g7sqrnbf" name="btn_guild_close.png" path="/new_images/" exported="true"/>
+    <image id="kqllrnbh" name="line_ty_07.png" path="/new_images/" exported="true"/>
+    <component id="r4tjrnbi" name="btn_ty_common01.xml" path="/new_btn/" exported="true"/>
+    <image id="hgkgrnbl" name="img_point_fang.png" path="/new_images/" exported="true"/>
+    <component id="qqnnrnc2" name="btn_refuse02.xml" path="/new_btn/" exported="true"/>
+    <component id="qqnnrnc3" name="btn_agree02.xml" path="/new_btn/" exported="true"/>
+    <image id="qqnnrnc4" name="btn_guild_join02.png" path="/new_images/" exported="true"/>
+    <image id="qqnnrnc5" name="btn_guild_join01.png" path="/new_images/" exported="true"/>
+    <image id="d371rncd" name="open_duobao_donghua01.png" path="/new_images/" exported="true"/>
+    <image id="d371rnce" name="open_duobao_donghua02.png" path="/new_images/" exported="true"/>
+    <image id="ba2orncf" name="img_guild_jindu.png" path="/new_images/" exported="true" scale="9grid" scale9grid="55,5,110,10"/>
+    <image id="ba2orncg" name="img_guild_shilian04.png" path="/new_images/" exported="true" scale="9grid" scale9grid="5,5,210,10"/>
+    <image id="ba2ornch" name="img_guild_tishi.png" path="/new_images/" exported="true"/>
+    <image id="ba2ornci" name="img_main_time.png" path="/new_images/" exported="true" scale="9grid" scale9grid="74,10,22,32"/>
+    <image id="ba2orncj" name="line_ty_08.png" path="/new_images/" exported="true"/>
+    <image id="ba2ornck" name="bg_main_task01.png" path="/new_images/" exported="true" scale="9grid" scale9grid="40,54,251,31"/>
+    <image id="ba2orncl" name="bg_main_time.png" path="/new_images/" exported="true"/>
+    <image id="ba2orncm" name="btn_ty_out.png" path="/new_images/" exported="true"/>
+    <image id="ba2orncn" name="img_guild_jiaoshu04.png" path="/new_images/" exported="true"/>
+    <component id="oyadrnd5" name="btn_small_01_01.xml" path="/new_btn/" exported="true"/>
+    <image id="r0zqrnda" name="img_hp_player.png" path="/new_images/" exported="true" scale="9grid" scale9grid="212,11,19,22"/>
+    <image id="r0zqrndb" name="bg_hp_player.png" path="/new_images/" exported="true" scale="9grid" scale9grid="229,11,39,22"/>
+    <component id="qh4qrnde" name="btn_ty_common02.xml" path="/new_btn/" exported="true"/>
+    <component id="dpgsrndi" name="tog_top_04.xml" path="/new_btn/" exported="true"/>
+    <image id="dpgsrndk" name="btn_ty_tips_second.png" path="/new_images/" exported="true"/>
+    <image id="dpgsrndl" name="btn_ty_refresh.png" path="/new_images/" exported="true"/>
+    <image id="dpgsrndm" name="btn_social_jiahaoyou.png" path="/new_images/" exported="true"/>
+    <component id="dpgsrndn" name="btn_refresh.xml" path="/new_btn/" exported="true"/>
+    <component id="dpgsrndo" name="btn_max02.xml" path="/new_btn/" exported="true"/>
+    <image id="dpgsrndp" name="btn_ty_max.png" path="/new_images/" exported="true"/>
+    <component id="dpgsrndr" name="mc_top_toggle_group04.xml" path="/new_ui/" exported="true"/>
+    <component id="dpgsrnds" name="tog_top_05.xml" path="/new_btn/" exported="true"/>
+    <component id="dpgsrndt" name="item_ani_down.xml" path="/new_item/" exported="true"/>
+    <image id="dpgsrndu" name="btn_ty_copy.png" path="/new_images/" exported="true"/>
+    <image id="dpgsrndv" name="bg_role_info.png" path="/new_images/" exported="true" scale="9grid" scale9grid="63,63,126,126"/>
+    <component id="dpgsrndw" name="btn_copy.xml" path="/new_btn/" exported="true"/>
+    <component id="dpgsrndx" name="btn_01_05.xml" path="/new_btn/" exported="true"/>
+    <image id="dpgsrndy" name="btn_ty_07.png" path="/new_images/" exported="true"/>
+    <image id="dpgsrndz" name="img_ty_add.png" path="/new_images/" exported="true"/>
+    <image id="112p9rne8" name="btn_partner_arrow.png" path="/new_images/" exported="true"/>
+    <component id="112p9rnea" name="mc_eff.xml" path="/new_ui/" exported="true"/>
+    <image id="bhx69rnec" name="icon_main_left.png" path="/new_images/" exported="true"/>
+    <image id="bhx69rned" name="icon_main_right.png" path="/new_images/" exported="true"/>
+    <image id="if0o9rnef" name="img_zudui_yidacheng.png" path="/new_images/" exported="true"/>
+    <image id="if0o9rneg" name="img_zudui_weidacheng.png" path="/new_images/" exported="true"/>
+    <image id="if0o9rneh" name="img_zudui_wuren.png" path="/new_images/" exported="true"/>
+    <image id="if0o9rnei" name="btn_chat_lock.png" path="/new_images/" exported="true"/>
+    <image id="if0o9rnej" name="btn_chat_unlock.png" path="/new_images/" exported="true"/>
+    <component id="if0o9rnek" name="btn_open_close.xml" path="/new_btn/" exported="true"/>
+    <component id="if0o9rneo" name="mc_head02.xml" path="/new_head/" exported="true"/>
+    <image id="p1q39rnep" name="bg_social_mail.png" path="/new_images/" exported="true" scale="9grid" scale9grid="15,13,30,26"/>
+    <image id="qa1w9rnes" name="corner_look.png" path="/new_images/" exported="true"/>
+    <component id="dfs69rneu" name="mc_power05.xml" path="/new_ui/" exported="true"/>
+    <image id="dfs69rnev" name="progress_tujian_fill01.png" path="/new_images/" exported="true"/>
+    <image id="dfs69rnew" name="progress_tujian_bg01.png" path="/new_images/" exported="true"/>
+    <component id="dfs69rnez" name="tog_point03.xml" path="/new_btn/" exported="true"/>
+    <component id="o1qw9rnf2" name="btn_ty_common03.xml" path="/new_btn/" exported="true"/>
+    <image id="ef3j9rnf3" name="img_upgrade_title2.png" path="/new_images/" exported="true"/>
+    <image id="ef3j9rnf4" name="img_upgrade_bg.png" path="/new_images/" exported="true" scale="9grid" scale9grid="0,261,1547,168"/>
+    <image id="ef3j9rnf5" name="img_upgrade_bg2.png" path="/new_images/" exported="true" scale="9grid" scale9grid="265,77,242,67"/>
+    <image id="ef3j9rnf6" name="img_upgrade_title.png" path="/new_images/" exported="true"/>
+    <component id="fkso9rnf8" name="mc_item_kuang_150_un.xml" path="/new_item/" exported="true"/>
+    <component id="dmq19rnf9" name="mc_item_bag_128_un.xml" path="/new_item/" exported="true"/>
+    <component id="dmq19rnfa" name="mc_item_bag.xml" path="/new_item/" exported="true"/>
+    <image id="w3k89rnfb" name="img_title_explain.png" path="/new_images/" exported="true"/>
+    <component id="w3k89rnfc" name="tog_left_03.xml" path="/new_btn/" exported="true"/>
+    <component id="dwrf9rnfe" name="mc_progress_blood.xml" path="/new_ui/" exported="true"/>
+    <image id="jwqp9rnff" name="icon_rank_3rd.png" path="/new_images/" exported="true"/>
+    <image id="jwqp9rnfg" name="icon_rank_1st.png" path="/new_images/" exported="true"/>
+    <image id="jwqp9rnfh" name="icon_rank_2nd.png" path="/new_images/" exported="true"/>
+    <image id="bgxg9rnfj" name="img_awardpreview_up.png" path="/new_images/" exported="true"/>
+    <component id="85tu9rnfk" name="mc_tip_bg13.xml" path="/new_ui/" exported="true"/>
+    <image id="85tu9rnfl" name="img_yugao_list.png" path="/new_images/" exported="true" scale="9grid" scale9grid="8,8,16,16"/>
+    <image id="85tu9rnfm" name="img_xiaoxi_01.png" path="/new_images/" exported="true"/>
+    <component id="fl7e9rnfn" name="mc_item_kuang_toggle_150_02.xml" path="/new_item/" exported="true"/>
+    <image id="nmdn9rnfo" name="line_ty_09.png" path="/new_images/" exported="true"/>
+    <component id="nmdn9rnfp" name="btn_list_arrow.xml" path="/new_btn/" exported="true"/>
+    <image id="nmdn9rnfq" name="icon_main_navigation01.png" path="/new_images/" exported="true"/>
+    <image id="nmdn9rnfr" name="icon_main_navigation04.png" path="/new_images/" exported="true" scale="9grid" scale9grid="79,13,158,26"/>
+    <component id="gsav9rnfs" name="cell_attr_state.xml" path="/new_ui/" exported="true"/>
+    <component id="gsav9rnft" name="mc_state_attr.xml" path="/new_ui/" exported="true"/>
+    <component id="htcp9rnfu" name="btn_cost_01_04.xml" path="/new_btn/" exported="true"/>
+    <image id="htcp9rnfv" name="icon_squad_05.png" path="/new_images/" exported="true"/>
+    <component id="htcp9rnfw" name="btn_change.xml" path="/new_btn/" exported="true"/>
+    <component id="eo3s9rnfx" name="btn_02_05.xml" path="/new_btn/" exported="true"/>
+    <component id="eo3s9rnfy" name="tog_point04.xml" path="/new_btn/" exported="true"/>
+    <component id="eo3s9rng0" name="btn_list_arrow03.xml" path="/new_btn/" exported="true"/>
+    <component id="u37h9rng2" name="mc_item_kuang_104_un.xml" path="/new_item/" exported="true"/>
+    <image id="u37h9rng3" name="img_ty_input.png" path="/new_images/" exported="true" scale="9grid" scale9grid="8,8,16,16"/>
+    <image id="u37h9rng4" name="btn_ty_jia02.png" path="/new_images/" exported="true"/>
+    <image id="u37h9rng5" name="btn_ty_jian02.png" path="/new_images/" exported="true"/>
+    <component id="u37h9rng6" name="btn_add03.xml" path="/new_btn/" exported="true"/>
+    <component id="u37h9rng7" name="btn_less03.xml" path="/new_btn/" exported="true"/>
+    <component id="h2v99rng8" name="btn_mask.xml" path="/new_btn/" exported="true"/>
+    <image id="ibe79rnga" name="corner_shop_discount.png" path="/new_images/" exported="true"/>
+    <image id="ste09rngc" name="img_squad_08.png" path="/new_images/" exported="true"/>
+    <component id="erd39rngd" name="mc_item_kuang_092_un.xml" path="/new_item/" exported="true"/>
+    <component id="q5lw9rnie" name="mc_item_kuang_119_un.xml" path="/new_item/" exported="true"/>
+    <image id="q5lw9rnif" name="img_crystal_01.png" path="/new_images/" exported="true" scale="9grid" scale9grid="25,25,50,50"/>
+    <image id="q5lw9rnig" name="img_crystal_06.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rnih" name="img_crystal_07.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rnii" name="img_crystal_defeat.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rnij" name="img_crystal_dianzan.png" path="/new_images/" exported="true" scale="9grid" scale9grid="89,16,178,32"/>
+    <image id="q5lw9rnik" name="img_crystal_inform_01.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rnil" name="img_crystal_inform_02.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rnim" name="img_crystal_inform_03.png" path="/new_images/" exported="true" scale="9grid" scale9grid="211,12,422,24"/>
+    <image id="q5lw9rnin" name="img_crystal_inform_04.png" path="/new_images/" exported="true" scale="9grid" scale9grid="211,12,422,24"/>
+    <image id="q5lw9rnio" name="img_crystal_jifen.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rnip" name="img_crystal_jisha.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rniq" name="img_crystal_mvp01.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rnir" name="img_crystal_mvp02.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rnis" name="img_crystal_siwang.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rnit" name="img_crystal_victory.png" path="/new_images/" exported="true"/>
+    <image id="q5lw9rniu" name="img_crystal_zhugong.png" path="/new_images/" exported="true"/>
+    <component id="q51g9rniv" name="btn_tanhao02.xml" path="/new_btn/" exported="true"/>
+    <image id="j3av9rniw" name="bg_ty_board_14.png" path="/new_images/" exported="true" scale="9grid" scale9grid="13,13,26,26"/>
+    <image id="zdx69rnix" name="icon_ty_suo2.png" path="/new_images/" exported="true"/>
+    <image id="iawc9rnj4" name="bg_ty_board_15.png" path="/new_images/" exported="true" scale="9grid" scale9grid="60,110,7,220"/>
+    <component id="hpb69rnj7" name="btn_head_right.xml" path="/new_head/" exported="true"/>
+    <image id="kbin9rnj8" name="corner_ty_sui.png" path="/new_images/" exported="true"/>
+    <component id="amha9rnj9" name="btn_yuyan01.xml" path="/new_btn/" exported="true"/>
+    <image id="amha9rnja" name="btn_guild_diqu.png" path="/new_images/" exported="true"/>
+    <component id="li0n9rnjb" name="mc_item_kuang_070_un.xml" path="/new_item/" exported="true"/>
+    <component id="hwih9rnjc" name="mc_title.xml" path="/new_ui/" exported="true"/>
+    <component id="hwih9rnjd" name="mc_tips_ani.xml" path="/new_ui/" exported="true"/>
+    <image id="hwih9rnje" name="img_upgrade_title3.png" path="/new_images/" exported="true"/>
+    <component id="hwih9rnjg" name="mc_title_ani.xml" path="/new_ui/"/>
+    <component id="xuy69rnjh" name="mc_state_attr02.xml" path="/new_ui/" exported="true"/>
+    <component id="xuy69rnji" name="cell_attr_state02.xml" path="/new_ui/" exported="true"/>
+    <component id="k5ju9rnjj" name="fight_pvp_left.xml" path="/new_head/" exported="true"/>
+    <component id="k5ju9rnjk" name="playerblood_pvpleft.xml" path="/new_head/" exported="true"/>
+    <image id="vkp79rnjm" name="corner_ty_red.png" path="/new_images/" exported="true" scale="9grid" scale9grid="17,16,8,32"/>
+    <component id="l99r9rnjn" name="playerblood_pvpright.xml" path="/new_head/" exported="true"/>
+    <image id="sntu9rnjo" name="icon_main_shezhi_02.png" path="/new_images/" exported="true"/>
+    <component id="hdda9rnjq" name="btn_01_06.xml" path="/new_btn/" exported="true"/>
+    <component id="o1ll9rnjr" name="btn_less_10.xml" path="/new_btn/" exported="true"/>
+    <component id="o1ll9rnjs" name="btn_add_10.xml" path="/new_btn/" exported="true"/>
+    <component id="if859rnjt" name="btn_yuyan02.xml" path="/new_btn/" exported="true"/>
+    <image id="if859rnju" name="btn_guild_diqu02.png" path="/new_images/" exported="true" scale="9grid" scale9grid="5,16,3,32"/>
+    <image id="mlvq9rnjv" name="img_mask.png" path="/new_images/" exported="true"/>
+    <component id="gard9rnjw" name="btn_ty_common04.xml" path="/new_btn/" exported="true"/>
+    <image id="jtdu9rnjz" name="line_ty_tips_second.png" path="/new_images/" exported="true"/>
+    <component id="cd8z9rnk0" name="mc_progress_blood02.xml" path="/new_ui/" exported="true"/>
+    <component id="uko09rnk1" name="mc_item_kuang_130_un_name.xml" path="/new_item/" exported="true"/>
+    <component id="quse9rnk2" name="mc_item_kuang_toggle_150_02_name.xml" path="/new_item/" exported="true"/>
+    <component id="mhu39rnk3" name="mc_none06.xml" path="/new_ui/" exported="true"/>
+    <component id="mon89rnk4" name="mc_item_kuang_toggle_130_01_name.xml" path="/new_item/" exported="true"/>
+    <image id="k8eo9rnk5" name="img_fenxiang_02.png" path="/new_images/" exported="true"/>
+    <component id="k8eo9rnk6" name="mc_fenxiang.xml" path="/new_ui/" exported="true"/>
+    <image id="bm169rnk7" name="img_tx_kuang.png" path="/new_images/" exported="true"/>
+    <image id="10hxu9rnka" name="img_upgrade_bg3.png" path="/new_images/" exported="true" scale="9grid" scale9grid="80,27,160,54"/>
+    <image id="mf4ku9rnkb" name="img_ty_fanbeijiangli.png" path="/new_images/" exported="true" scale="9grid" scale9grid="70,21,11,15"/>
+    <component id="mf4ku9rnkc" name="mc_bonustimes.xml" path="/new_ui/" exported="true"/>
+    <component id="fmn2u9rnkd" name="btn_01_07.xml" path="/new_btn/" exported="true"/>
+    <image id="kofdu9rnke" name="img_awardpreview_down.png" path="/new_images/" exported="true"/>
+    <image id="kofdu9rnkf" name="img_awardpreview_title.png" path="/new_images/" exported="true"/>
+    <image id="kofdu9rnkh" name="img_awardpreview_max.png" path="/new_images/" exported="true"/>
+    <component id="kofdu9rnkj" name="btn_max03.xml" path="/new_btn/" exported="true"/>
+    <image id="csvcu9rnkk" name="btn_suitsynthesis_jiantou.png" path="/new_images/" exported="true"/>
+    <component id="csvcu9rnkl" name="btn_left02.xml" path="/new_btn/" exported="true"/>
+    <component id="csvcu9rnkm" name="btn_right02.xml" path="/new_btn/" exported="true"/>
+    <image id="qrcru9rnkn" name="img_skill_buff_zhezhao.png" path="/new_images/" exported="true"/>
+    <image id="pvibu9rnko" name="img_equip_12.png" path="/new_images/" exported="true" scale="9grid" scale9grid="5,5,10,10"/>
+    <component id="pvibu9rnkp" name="mc_power06.xml" path="/new_ui/" exported="true"/>
+    <image id="f4eau9rnkq" name="img_suitsynthesis_board02.png" path="/new_images/" exported="true" scale="9grid" scale9grid="15,100,30,200"/>
+    <image id="f4eau9rnkr" name="tog_ty_down10.png" path="/new_images/" exported="true" scale="9grid" scale9grid="62,31,124,62"/>
+    <image id="f4eau9rnks" name="tog_ty_up10.png" path="/new_images/" exported="true" scale="9grid" scale9grid="62,31,124,62"/>
+    <image id="f4eau9rnkt" name="img_suitsynthesis_board01.png" path="/new_images/" exported="true" scale="9grid" scale9grid="17,77,34,154"/>
+    <image id="fcp3u9rnpu" name="img_xiuluozhanchang_suoquan.png" path="/new_images/" exported="true"/>
+    <component id="fcp3u9rnpv" name="mc_map_mask.xml" path="/new_ui/" exported="true"/>
+    <component id="fcp3u9rnpx" name="mc_corner_new.xml" path="/new_ui/" exported="true"/>
+    <image id="fcp3u9rnpy" name="corner_clothes_new.png" path="/new_images/" exported="true"/>
+    <component id="fcp3u9rnq1" name="mc_corner_tj.xml" path="/new_ui/" exported="true"/>
+    <image id="fcp3u9rnq2" name="img_worldboss_05.png" path="/new_images/" exported="true"/>
+    <component id="fcp3u9rnq3" name="mc_map_mask2.xml" path="/new_ui/" exported="true"/>
+    <component id="qxxlu9rnq4" name="btn_story.xml" path="/new_btn/" exported="true"/>
+    <image id="qxxlu9rnq5" name="btn_suitsynthesis_gushi.png" path="/new_images/" exported="true"/>
+    <component id="qxxlu9rnq6" name="mc_icon_way_xiuluo.xml" path="/new_ui/" exported="true"/>
+    <component id="dekpu9rnq7" name="mc_tip_bg14.xml" path="/new_ui/" exported="true"/>
+    <component id="uwf6u9rnq8" name="mc_head_guild.xml" path="/new_head/" exported="true"/>
+    <component id="f9scu9rnqa" name="mc_tip_bg15.xml" path="/new_ui/" exported="true"/>
+    <image id="qhfju9rnqb" name="btn_ty_jian10.png" path="/new_images/" exported="true"/>
+    <image id="qhfju9rnqc" name="btn_ty_jia10.png" path="/new_images/" exported="true"/>
+    <image id="iotvu9rnqe" name="mask.png" path="/new_images/" exported="true"/>
+    <image id="i0lcu9rnqg" name="img_xiuluozhanchang_07.png" path="/new_images/" exported="true"/>
+    <image id="qgnqu9rnqi" name="img_xiuluozhanchang_08.png" path="/new_images/" scale="tile"/>
+    <component id="qgnqu9rnqj" name="mc_icon_way_point.xml" path="/new_ui/" exported="true"/>
+    <image id="4y83u9rnqk" name="btn_main_chat.png" path="/new_images/" exported="true"/>
+    <component id="lmeeu9rnql" name="chat_text_nc.xml" path="/new_chat/" exported="true"/>
+    <component id="xpbau9rnqm" name="item_info_unlimited.xml" path="/new_item/" exported="true"/>
+    <component id="xpbau9rnqn" name="mc_item_kuang_130_01_mark.xml" path="/new_item/" exported="true"/>
+    <component id="fllyu9rnqu" name="btn_left.xml" path="/new_btn/"/>
+    <component id="fllyu9rnqw" name="mc_none07.xml" path="/new_ui/" exported="true"/>
+    <component id="vxhtu9rnqz" name="mc_icon_npc.xml" path="/new_ui/" exported="true"/>
+    <component id="vxhtu9rnr1" name="img_point.xml" path="/new_ui/" exported="true"/>
+    <component id="htyfu9rnr2" name="tog_point05.xml" path="/new_btn/" exported="true"/>
+    <image id="bnq6u9rnr3" name="icon_main_time.png" path="/new_images/" exported="true"/>
+    <component id="vj8wu9rnr5" name="cell_item_stage.xml" path="/new_ui/" exported="true"/>
+    <component id="vj8wu9rnr6" name="mc_item_kuang_toggle_150_stage.xml" path="/new_item/" exported="true"/>
+    <image id="vj8wu9rnr7" name="img_pet_list_grade.png" path="/new_images/" exported="true" scale="9grid" scale9grid="10,8,2,16"/>
+    <component id="kzj2u9rnr9" name="3d_scenemc02.xml" path="/new_ui/" exported="true"/>
+    <component id="mv6au9rnra" name="mc_item_progress.xml" path="/new_ui/" exported="true"/>
+    <image id="mv6au9rnrb" name="img_pet_jindu01.png" path="/new_images/" exported="true"/>
+    <image id="mv6au9rnrc" name="img_pet_jindu02.png" path="/new_images/" exported="true"/>
+    <component id="dg7vu9rnrd" name="mc_eff_move.xml" path="/new_ui/" exported="true"/>
+    <image id="hdyeu9rnrg" name="img_pet_jindu03.png" path="/new_images/" exported="true"/>
+    <component id="hdyeu9rnrh" name="mc_item_progress_max.xml" path="/new_ui/" exported="true"/>
+    <image id="gyrtu9rnri" name="img_f_mask.png" path="/new_images/" exported="true" scale="9grid" scale9grid="3,3,5,5"/>
+    <component id="tgbcu9rnrk" name="mc_pop_yellow.xml" path="/new_ui/" exported="true"/>
+    <component id="tgbcu9rnrl" name="mc_pop_yellow_ani.xml" path="/new_ui/" exported="true"/>
+    <component id="xy0ou9rnrm" name="mc_pop_gary.xml" path="/new_ui/" exported="true"/>
+    <component id="xy0ou9rnrn" name="mc_pop_gary_ani.xml" path="/new_ui/" exported="true"/>
+    <image id="xy0ou9rnro" name="img_daily_qipao.png" path="/new_images/" exported="true" scale="9grid" scale9grid="7,18,197,33"/>
+    <component id="djfzu9rnrp" name="tog_point06.xml" path="/new_btn/" exported="true"/>
+    <component id="pl5tu9rnrq" name="playerblood_lt.xml" path="/new_head/" exported="true"/>
+    <image id="pl5tu9rnrr" name="bg_hp_player_new.png" path="/new_images/" exported="true" scale="9grid" scale9grid="39,11,208,22" gridTile="16"/>
+    <image id="pl5tu9rnrs" name="img_hp_player_new.png" path="/new_images/" exported="true" scale="9grid" scale9grid="16,8,201,16"/>
+    <component id="im4iu9rnru" name="mc_head_cost.xml" path="/new_head/" exported="true"/>
+    <component id="a25du9rnrw" name="tog_point07.xml" path="/new_btn/" exported="true"/>
+    <image id="twq0u9rnrx" name="btn_ty_maxbg.png" path="/new_images/" exported="true"/>
+    <image id="yzjpu9rnry" name="img_hp_player03.png" path="/new_images/" exported="true" scale="9grid" scale9grid="34,11,1,22"/>
+    <image id="yzjpu9rnrz" name="img_hp_player02.png" path="/new_images/" exported="true" scale="9grid" scale9grid="25,8,1,16"/>
+    <component id="yzjpu9rns1" name="fight_left_innerworld.xml" path="/new_head/" exported="true"/>
+    <component id="yzjpu9rns2" name="playerblood_innerworld.xml" path="/new_head/" exported="true"/>
+    <component id="t8f3u9rns3" name="playerblood_innerworld_r.xml" path="/new_head/" exported="true"/>
+    <component id="t8f3u9rns4" name="playerblood_innerworld_y.xml" path="/new_head/" exported="true"/>
+    <image id="t8f3u9rns5" name="img_crystal_pingfen.png" path="/new_images/" exported="true"/>
+    <image id="t8f3u9rns6" name="img_crystal_zhandoujifen.png" path="/new_images/" exported="true"/>
+    <component id="cm4vu9rns7" name="fight_innerworld_progress_bg.xml" path="/new_head/"/>
+    <image id="r1fnu9rns8" name="img_taozhuang_jiaobiao.png" path="/new_images/" exported="true"/>
+    <component id="6w05u9rns9" name="mc_item_kuang_toggle_150_03.xml" path="/new_item/" exported="true"/>
+    <image id="ltv6u9rnsb" name="img_map_fanwei.png" path="/new_images/" exported="true"/>
+  </resources>
+  <publish name="common"/>
+</packageDescription>

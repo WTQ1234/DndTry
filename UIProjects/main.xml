@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="300,450">
+  <controller name="state" pages="1,monster,0,hide,2,item,3,treasure" selected="0">
+    <remark page="1" value="未揭露"/>
+  </controller>
+  <displayList>
+    <graph id="n0_maxz" name="bg" xy="0,0" size="300,450" type="rect" lineSize="0" fillColor="#ff333333">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <component id="n16_rn97" name="mc_hide" src="rn97c" fileName="ui/mc_hide.xml" xy="0,0">
+      <gearDisplay controller="state" pages="0"/>
+    </component>
+    <component id="n15_rn97" name="mc_monster" src="rn97d" fileName="ui/mc_monster.xml" xy="0,0" pivot="0.5,0.5">
+      <gearDisplay controller="state" pages="1"/>
+    </component>
+    <component id="n19_nqny" name="ClickArea" src="nqnyf" fileName="ClickArea.xml" xy="146,208" pivot="0.5,0.5" anchor="true" size="600,291"/>
+  </displayList>
+  <transition name="atk" frameRate="30">
+    <item time="0" type="Scale" target="n15_rn97" tween="true" startValue="1,1" endValue="1.3,1.3" duration="5"/>
+    <item time="5" type="Scale" target="n15_rn97" tween="true" startValue="1.3,1.3" endValue="1.3,1.3" duration="2"/>
+    <item time="7" type="Scale" target="n15_rn97" tween="true" startValue="1.3,1.3" endValue="1,1" duration="2"/>
+  </transition>
+  <transition name="def" frameRate="30">
+    <item time="0" type="Scale" target="n15_rn97" tween="true" startValue="1,1" endValue="0.8,0.8" duration="5"/>
+    <item time="5" type="Scale" target="n15_rn97" tween="true" startValue="0.8,0.8" endValue="0.8,0.8" duration="2"/>
+    <item time="7" type="Scale" target="n15_rn97" tween="true" startValue="0.8,0.8" endValue="1,1" duration="2"/>
+  </transition>
+  <transition name="def_shake" frameRate="30">
+    <item time="0" type="Scale" target="n15_rn97" tween="true" startValue="1,1" endValue="0.8,0.8" duration="5"/>
+    <item time="0" type="Shake" target="n15_rn97" value="10,0.2"/>
+    <item time="5" type="Scale" target="n15_rn97" tween="true" startValue="0.8,0.8" endValue="0.8,0.8" duration="2"/>
+    <item time="7" type="Scale" target="n15_rn97" tween="true" startValue="0.8,0.8" endValue="1,1" duration="2"/>
+  </transition>
+</component>

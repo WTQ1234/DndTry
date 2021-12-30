@@ -14,17 +14,17 @@ namespace EGamePlay.Combat
     }
 
     /// <summary>
-    /// ¸³¸øÐ§¹ûÐÐ¶¯
+    /// ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ð¶ï¿½
     /// </summary>
     public class AssignEffectAction : ActionExecution<AssignEffectActionAbility>
     {
-        //´´½¨Õâ¸ö¸³¸øÐ§¹ûÐÐ¶¯µÄÔ´ÄÜÁ¦
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½
         public AbilityEntity SourceAbility { get; set; }
         public Effect Effect { get; set; }
         public StatusAbility Status { get; set; }
 
 
-        //Ç°ÖÃ´¦Àí
+        //Ç°ï¿½Ã´ï¿½ï¿½ï¿½
         private void PreProcess()
         {
 
@@ -39,30 +39,30 @@ namespace EGamePlay.Combat
             }
             if (Effect is AddStatusEffect addStatusEffect)
             {
-                var statusConfig = addStatusEffect.AddStatus;
-                if (statusConfig.CanStack == false)
-                {
-                    if (Target.HasStatus(statusConfig.ID))
-                    {
-                        var status = Target.GetStatus(statusConfig.ID);
-                        var statusLifeTimer = status.GetComponent<StatusLifeTimeComponent>().LifeTimer;
-                        statusLifeTimer.MaxTime = addStatusEffect.Duration / 1000f;
-                        statusLifeTimer.Reset();
-                        return;
-                    }
-                }
-                Status = Target.AttachStatus<StatusAbility>(statusConfig);
-                Status.Caster = Creator;
-                Status.Level = SourceAbility.Level;
-                Status.AddComponent<StatusLifeTimeComponent>();
-                Status.TryActivateAbility();
+                // var statusConfig = addStatusEffect.AddStatus;
+                // if (statusConfig.CanStack == false)
+                // {
+                //     if (Target.HasStatus(statusConfig.ID))
+                //     {
+                //         var status = Target.GetStatus(statusConfig.ID);
+                //         var statusLifeTimer = status.GetComponent<StatusLifeTimeComponent>().LifeTimer;
+                //         statusLifeTimer.MaxTime = addStatusEffect.Duration / 1000f;
+                //         statusLifeTimer.Reset();
+                //         return;
+                //     }
+                // }
+                // Status = Target.AttachStatus<StatusAbility>(statusConfig);
+                // Status.Caster = Creator;
+                // Status.Level = SourceAbility.Level;
+                // Status.AddComponent<StatusLifeTimeComponent>();
+                // Status.TryActivateAbility();
             }
             PostProcess();
 
             ApplyAction();
         }
 
-        //ºóÖÃ´¦Àí
+        //ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½
         private void PostProcess()
         {
             if (Effect is AddStatusEffect addStatusEffect)
