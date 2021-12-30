@@ -87,7 +87,15 @@ public class Test : SingleTon<Test>
         //    print("==============================");
         //    print(kv.Value.testbool.ToString() + kv.Value.AttrType);
         //}
-        print( Stage._clickTestThreshold);
+        // print( Stage._clickTestThreshold);
+
+        // Vector3 screenPos1 = CameraController.Instance.MainCamera.WorldToScreenPoint(Vector3.one);
+        // Vector3 screenPos2 = CameraController.Instance.StageCamera.WorldToScreenPoint(Vector3.one);
+        // Vector3 screenPos3 = CameraController.Instance.NormalUICamera.WorldToScreenPoint(Vector3.one);
+        // print("==================================");
+        // print(screenPos1);
+        // print(screenPos2);
+        // print(screenPos3);
     }
 
     (int, T) a<T>() where T: Test

@@ -12,6 +12,7 @@ using DG.Tweening;
 using ET;
 using GameUtils;
 using System.Linq;
+using FairyGUI;
 
 public class RoomEntity : Entity
 {
@@ -201,14 +202,13 @@ public class RoomEntity : Entity
                 targetPos.x = (enemyActIndex[curCard.GetSeatNumber()]) * 2f;
                 targetPos.y = 0;
                 targetPos.z = -4;
-                curCard.OnCardPosMove(targetPos);
+                curCard.SetPos(targetPos);
             }
             else
             {
                 targetPos = GerCurPosByIndex(i - seatPos);
-                curCard.OnCardPosMove(targetPos);
+                curCard.SetPos(targetPos);
             }
-            // tran.rotation = Camera.main.transform.rotation;
         }
 
         int length_hero = HeroEntities.Count;
@@ -219,8 +219,7 @@ public class RoomEntity : Entity
             targetPos.x = (i - length_hero / 2) * 1.5f;
             targetPos.y = 0;
             targetPos.z = 0;
-            tran.DetectToMove_Local(targetPos);
-            // tran.rotation = Camera.main.transform.rotation;
+            curCard.SetPos(targetPos);
         }
     }
     // 刷新卡牌UI显示的优先级sortorder

@@ -769,8 +769,8 @@ namespace FairyGUI
                 return;
 
             _frameGotHitTarget = Time.frameCount;
-            Debug.Log(_customInput);
-            Debug.Log(touchScreen);
+            // Debug.Log(_customInput);
+            // Debug.Log(touchScreen);
             if (_customInput)
             {
                 Vector2 pos = _customInputPos;
@@ -828,7 +828,7 @@ namespace FairyGUI
                 TouchInfo touch = _touches[0];
                 if (pos.x < 0 || pos.y < 0) //outside of the window
                     {
-                        Debug.Log("outside");
+                        // Debug.Log("outside");
                         _touchTarget = this;}
                 else
                     _touchTarget = HitTest(pos, true);
@@ -1065,7 +1065,7 @@ namespace FairyGUI
                     touch.End();
 
                     DisplayObject clickTarget = touch.ClickTest();
-                    Debug.Log(clickTarget);
+                    // Debug.Log(clickTarget);
                     if (clickTarget != null)
                     {
                         touch.UpdateEvent();
@@ -1633,7 +1633,7 @@ namespace FairyGUI
 
         public DisplayObject ClickTest()
         {
-            Debug.Log(clickCancelled);
+            // Debug.Log(clickCancelled);
             if (clickCancelled)
             {
                 downTargets.Clear();
@@ -1642,7 +1642,7 @@ namespace FairyGUI
             DisplayObject obj = downTargets[0];
             if (obj is Container)
             {
-                Debug.Log((obj as Container).gameObject.name);
+                // Debug.Log((obj as Container).gameObject.name);
             }
             if (obj.stage != null) //依然派发到原来的downTarget，虽然可能它已经偏离当前位置，主要是为了正确处理点击缩放的效果
             {

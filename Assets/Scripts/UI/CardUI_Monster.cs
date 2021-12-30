@@ -40,13 +40,13 @@ public class CardUI_Monster : EGamePlay.Component
         // mc_monster.GetChild("empty_center").asGraph.SetNativeObject(goWrapper);
 
 
-        // GameObject go = (GameObject)Object.Instantiate(prefab);
-        // go.transform.localPosition = new Vector3(0, 0, 1); //set z to far from UICamera is important!
-        // go.transform.localScale = new Vector3(10, 10, 10);
-        // // go.transform.localEulerAngles = new Vector3(0, 100, 0);
-        // GoWrapper goWrapper = new GoWrapper(go);
-        // // goWrapper.sort
-        // mc_monster.GetChild("empty_center").asGraph.SetNativeObject(goWrapper);
+        GameObject go = (GameObject)Object.Instantiate(prefab);
+        go.transform.localPosition = new Vector3(0, -1, 1); //set z to far from UICamera is important!
+        go.transform.localScale = new Vector3(20, 20, 20);
+        // go.transform.localEulerAngles = new Vector3(0, 100, 0);
+        GoWrapper goWrapper = new GoWrapper(go);
+        // goWrapper.sort
+        mc_monster.GetChild("empty_center").asGraph.SetNativeObject(goWrapper);
     }
 
     public bool Init(UIParamBasic param = null)

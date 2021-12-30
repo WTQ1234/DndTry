@@ -186,6 +186,15 @@ public class CardEntity : Entity
     {
         cardUI.SetCardUIParam(sort);
     }
+    // 设置位置
+    public void SetPos(Vector3 pos)
+    {
+        if (CameraController.Instance.MainCamera == null) {return;}
+        Vector3 screenPos = CameraController.Instance.MainCamera.WorldToScreenPoint(pos + transform.parent.position);
+        screenPos.y = Screen.height - screenPos.y;
+        Vector2 pt = GRoot.inst.GlobalToLocal(screenPos);
+        cardUI.ui.position = screenPos;
+    }
     #endregion
 
     /// <summary>
@@ -323,14 +332,6 @@ public class CardEntity : Entity
     public void OnTrunStart()
     {
         Action_OnTrunStart?.Invoke();
-    }
-
-    public void OnCardPosMove(Vector3 _targetPos)
-    {
-        targetPos.x = _targetPos.x;
-        targetPos.y = _targetPos.y;
-        targetPos.z = _targetPos.z;
-        transform.DetectToMove_Local(targetPos);
     }
 
     public CardEntity GetEnemy(int seat)

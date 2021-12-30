@@ -1,4 +1,9 @@
 {
+  "objectStatus": {
+    "n19_nqny": {
+      "hidden": true
+    }
+  },
   "designImages": [
     "ui://sa4gna93rn977"
   ]

@@ -10,8 +10,10 @@ public class CameraController : SingleTon<CameraController>
     public float cameraRadius_X = 1;
     public float cameraRadius_Y = 1;
 
-    private Camera MainCamera;
-    private Camera StageCamera;
+    public Camera MainCamera;
+    public Camera StageCamera;
+    public Camera NormalUICamera;
+
     private Vector3 curCameraPos_Main;
     private Vector3 curCameraPos_Stage;
     private Vector3 cacheTranPos;
@@ -23,6 +25,7 @@ public class CameraController : SingleTon<CameraController>
     {
         MainCamera = GameObject.Find("Cameras/Main Camera").GetComponent<Camera>();
         StageCamera = GameObject.Find("Cameras/Stage Camera").GetComponent<Camera>();
+        NormalUICamera = GameObject.Find("Cameras/NormalUI Camera").GetComponent<Camera>();
         halfScreenWidth = Screen.width / 2;
         halfScreenHeight = Screen.height / 2;
         cacheTranPos = new Vector3();

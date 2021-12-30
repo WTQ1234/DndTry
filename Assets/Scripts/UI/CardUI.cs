@@ -47,18 +47,16 @@ public class CardUI : UIBasic
     {
         base.Init(param);
 
-        ui.GetChild("n17").asButton.onClick.Add(() => {
-            print("click click click222222");
-        });
+        // ui.GetChild("ClickArea").asButton.onClick.Add(() => {
+        //     print("click click click222222");
+        //     Publish("onClickCardUI");
+
+        // });
 
         ui.onClick.Add(() => {
-            print("click click click");
+            Publish("onClickCardUI", new EventParams());
         });
-        print($"{ui.touchable} {ui.enabled} {ui.visible}");
 
-        ui.GetChild("ClickArea").onTouchBegin.Add(() => {
-            // Publish("onClickCardUI");
-        });
         CardType cardType = (CardType)param.enumCaty;
         switch(cardType)
         {

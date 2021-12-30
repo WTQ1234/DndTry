@@ -39,10 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6035950528623654622}
-<<<<<<< HEAD
-=======
   - component: {fileID: 428658515442550257}
->>>>>>> 47cbb6def7b65bf6812a35ccd260c28fc3961a27
   - component: {fileID: 6035950528623654618}
   m_Layer: 8
   m_Name: Card
@@ -66,11 +63,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!114 &6035950528623654618
-=======
 --- !u!114 &428658515442550257
->>>>>>> 47cbb6def7b65bf6812a35ccd260c28fc3961a27
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
