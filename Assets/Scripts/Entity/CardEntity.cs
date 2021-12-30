@@ -11,7 +11,6 @@ using UnityEngine.UIElements;
 using DG.Tweening;
 using ET;
 using GameUtils;
-using UnityEngine.UI;
 using FairyGUI;
 
 // 后续考虑这种params是做成对象池，还是做成唯一的静态变量
@@ -54,7 +53,6 @@ public class CardEntity : Entity
 
     private EventComponent EventComponent { get; set; }
     private CardShowComponent cardShowComponent { get; set; }
-    private Click2DComponent click2DComponent { get; set; }
     private ConditionManageComponent ConditionManageComponent { get; set; }
     #endregion
 
@@ -73,7 +71,9 @@ public class CardEntity : Entity
         base.Awake();
 
         StatusParent = transform.Find("StatusParent");
-        uiPanel = transform.Find("UIPanel");
+        // uiPanel = transform.Find("UIPanel");
+        uiPanel = transform;
+        transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
     }
 
     public override void Setup(object initData = null, bool asGameObject = false)
@@ -91,7 +91,6 @@ public class CardEntity : Entity
     private void Init()
     {
         // 根据配置表进行赋值，创建一张卡牌
-        click2DComponent = AddComponent<Click2DComponent>();
         cardShowComponent = AddComponent<CardShowComponent>();
         ConditionManageComponent = AddComponent<ConditionManageComponent>();
         EventComponent = AddComponent<EventComponent>();
@@ -99,8 +98,6 @@ public class CardEntity : Entity
         CardAttackActionAbility = AttachAbilityComponent<CardAttackActionAbility>(null);
         CardDamageActionAbility = AttachAbilityComponent<CardDamageActionAbility>(null);
         TurnActionAbility = AttachAbilityComponent<TurnActionAbility>(null);
-
-        click2DComponent.OnPointerClickCallBack = onClickAttack;
 
         if (isCreature)
         {
@@ -132,6 +129,7 @@ public class CardEntity : Entity
     {
         cardUI = uiPanel.gameObject.AddComponent<CardUI>();
         cardUI.Init(new UIParamBasic(Name, this, _enumCaty: (int)cardEntityParams.cardType));
+        cardUI.Subscribe("onClickCardUI", onClickCardUI);
         if (cardEntityParams.monsterData != null)
         {
             cardUI.Publish("SetConfig_Monster", new ConfigEvent()
@@ -172,6 +170,7 @@ public class CardEntity : Entity
     public void SetSeatNumber(int s)
     {
         SeatNumber = s;
+        gameObject.name = $"Card_{s}_{TurnActionAbility.team}";
     }
     public int GetSeatNumber()
     {
@@ -370,23 +369,25 @@ public class CardEntity : Entity
         DestroyEntity();
     }
 
-    public void onClickAttack()
+    public void onClickCardUI(EventParams _params = null)
     {
-        return ;
-        if (RoomEntity.Instance.isActEnemy(SeatNumber, out int enemyIndex))
+        if (isCreature)
         {
-            if (GetTeam().Item2 != Player.GetTeam().Item2)
+            if (RoomEntity.Instance.isActEnemy(SeatNumber, out int enemyIndex))
             {
-                if (Player.CardAttackActionAbility.TryCreateAction(out var action))
+                if (GetTeam().Item2 != Player.GetTeam().Item2)
                 {
-                    //var monster = this;
+                    if (Player.CardAttackActionAbility.TryCreateAction(out var action))
+                    {
+                        //var monster = this;
 
-                    action.OwnerEntity = Player;
-                    action.Target = this;
-                    action.BeginExecute();
-                    Entity.Destroy(action);
+                        action.OwnerEntity = Player;
+                        action.Target = this;
+                        action.BeginExecute();
+                        Entity.Destroy(action);
+                    }
+                    RoomController.Instance.StartCombat();
                 }
-                RoomController.Instance.StartCombat();
             }
         }
     }

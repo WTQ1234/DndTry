@@ -11,7 +11,6 @@ using UnityEngine.UIElements;
 using DG.Tweening;
 using ET;
 using GameUtils;
-using UnityEngine.UI;
 using System.Linq;
 
 public class RoomEntity : Entity
@@ -209,7 +208,7 @@ public class RoomEntity : Entity
                 targetPos = GerCurPosByIndex(i - seatPos);
                 curCard.OnCardPosMove(targetPos);
             }
-            tran.rotation = Camera.main.transform.rotation;
+            // tran.rotation = Camera.main.transform.rotation;
         }
 
         int length_hero = HeroEntities.Count;
@@ -221,7 +220,7 @@ public class RoomEntity : Entity
             targetPos.y = 0;
             targetPos.z = 0;
             tran.DetectToMove_Local(targetPos);
-            tran.rotation = Camera.main.transform.rotation;
+            // tran.rotation = Camera.main.transform.rotation;
         }
     }
     // 刷新卡牌UI显示的优先级sortorder

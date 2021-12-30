@@ -47,8 +47,6 @@ public class CardUI : UIBasic
     {
         base.Init(param);
 
-
-        print("zzzzzzzzzzzzzzzzzzzzzz");
         ui.GetChild("n17").asButton.onClick.Add(() => {
             print("click click click222222");
         });
@@ -58,7 +56,9 @@ public class CardUI : UIBasic
         });
         print($"{ui.touchable} {ui.enabled} {ui.visible}");
 
-
+        ui.GetChild("ClickArea").onTouchBegin.Add(() => {
+            // Publish("onClickCardUI");
+        });
         CardType cardType = (CardType)param.enumCaty;
         switch(cardType)
         {
@@ -71,4 +71,16 @@ public class CardUI : UIBasic
         }
         return true;
     }
+
+    // public override void Start()
+    // {
+    //     UIPackage.AddPackage("FairyGUI/common");
+    //     ui.GetChild("ClickArea").onTouchBegin.Add(() => {
+    //         var btn = ui.GetChild("ClickArea");
+    //         // Publish("onClickCardUI");
+    //     });
+    //     ui.GetChild("ClickArea").onClick.Add(() => {
+    //         // Publish("onClickCardUI");
+    //     });
+    // }
 }

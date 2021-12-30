@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<packageDescription id="4djj2cw4" jpegQuality="80" compressPNG="true">
+<packageDescription id="4djj2cw4">
   <resources>
     <component id="ltdbm" name="equip_kuang.xml" path="/btn/" exported="true"/>
     <component id="ltdb1f" name="btn_1_1.xml" path="/btn/" exported="true"/>
@@ -55,8 +55,8 @@
     <component id="jdybmj8" name="equip_circle.xml" path="/btn/" exported="true"/>
     <image id="h5idmjo" name="btn_close_3_down.png" path="/images/"/>
     <image id="h5idmjp" name="btn_close_3_up.png" path="/images/"/>
-    <image id="xiozmjr" name="btn_7_1_down.png" path="/images/"/>
-    <image id="xiozmjs" name="btn_7_1_up.png" path="/images/"/>
+    <image id="xiozmjr" name="btn_7_1_down.png" path="/images/" exported="true"/>
+    <image id="xiozmjs" name="btn_7_1_up.png" path="/images/" exported="true"/>
     <component id="smnumjv" name="btn_4_3.xml" path="/btn/" exported="true"/>
     <image id="smnumjy" name="btn_8_1_down.png" path="/images/"/>
     <image id="smnumjz" name="btn_8_1_up.png" path="/images/"/>

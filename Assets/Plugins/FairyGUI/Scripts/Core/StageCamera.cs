@@ -48,13 +48,15 @@ namespace FairyGUI
         public static int screenSizeVer = 1;
 
         public const string Name = "Stage Camera";
-        public const string LayerName = "UI";
+        public static string LayerName = "UI";
 
         public static float DefaultCameraSize = 5;
         public static float DefaultUnitsPerPixel = 0.02f;
 
+        public string preLayerName;
         void OnEnable()
         {
+            LayerName = preLayerName ?? "UI";
             cachedTransform = this.transform;
             cachedCamera = this.GetComponent<Camera>();
             if (this.gameObject.name == Name)

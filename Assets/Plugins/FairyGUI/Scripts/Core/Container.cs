@@ -511,7 +511,7 @@ namespace FairyGUI
                 else
                     return null;
             }
-
+            // todo 怀疑是这里的StageCamera.main不太对劲
             HitTestContext.screenPoint = new Vector3(stagePoint.x, Screen.height - stagePoint.y, 0);
             if (Display.displays.Length > 1)
             {

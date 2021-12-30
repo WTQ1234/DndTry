@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.EventSystems;
+// using UnityEngine.EventSystems;
 
 public class Click2DComponent : EGamePlay.Component
 {

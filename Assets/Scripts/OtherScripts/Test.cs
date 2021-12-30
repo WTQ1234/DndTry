@@ -11,6 +11,7 @@ using ET;
 using LitJson;
 using RegexHelper;
 using System.Reflection;
+using FairyGUI;
 
 public class Test : SingleTon<Test>
 {
@@ -86,6 +87,7 @@ public class Test : SingleTon<Test>
         //    print("==============================");
         //    print(kv.Value.testbool.ToString() + kv.Value.AttrType);
         //}
+        print( Stage._clickTestThreshold);
     }
 
     (int, T) a<T>() where T: Test

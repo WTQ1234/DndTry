@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9062985106561552224}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StatusParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,8 +39,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6035950528623654622}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 428658515442550257}
+>>>>>>> 47cbb6def7b65bf6812a35ccd260c28fc3961a27
   - component: {fileID: 6035950528623654618}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,70 +60,23 @@ Transform:
   m_GameObject: {fileID: 6035950528623654619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
   m_Children:
   - {fileID: 9062985106561552224}
-  - {fileID: 5926806329543375322}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!114 &6035950528623654618
+=======
+--- !u!114 &428658515442550257
+>>>>>>> 47cbb6def7b65bf6812a35ccd260c28fc3961a27
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6035950528623654619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bec733308d8d1a94fb41409855cf362d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardType: 1
-  isCreature: 1
-  isSpeak: 0
-  isTool: 0
-  SeatNumber: 0
-  ActionControlType: 0
-  targetPos: {x: 0, y: 0, z: 0}
---- !u!1 &8184334190478263423
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5926806329543375322}
-  - component: {fileID: 5907959516752938716}
-  m_Layer: 0
-  m_Name: UIPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5926806329543375322
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8184334190478263423}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.688, y: 1.039, z: 0}
-  m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
-  m_Children: []
-  m_Father: {fileID: 6035950528623654622}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5907959516752938716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8184334190478263423}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 024553ecf96a65649b929ee08c9214fd, type: 3}
@@ -140,3 +97,22 @@ MonoBehaviour:
   cachedUISize: {x: 300, y: 450}
   hitTestMode: 0
   setNativeChildrenOrder: 0
+--- !u!114 &6035950528623654618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6035950528623654619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec733308d8d1a94fb41409855cf362d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardType: 1
+  isCreature: 1
+  isSpeak: 0
+  isTool: 0
+  SeatNumber: 0
+  ActionControlType: 0
+  targetPos: {x: 0, y: 0, z: 0}
