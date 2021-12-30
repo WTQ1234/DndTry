@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<packageDescription id="sa4gna93">
+<packageDescription id="sa4gna93" jpegQuality="80" compressPNG="true">
   <resources>
     <component id="maxz0" name="main.xml" path="/" exported="true"/>
     <component id="maxz1" name="bar_hp.xml" path="/ui/"/>
@@ -11,6 +11,7 @@
     <image id="rn97b" name="QQ图片20211120230124.png" path="/img/"/>
     <component id="rn97c" name="mc_hide.xml" path="/ui/"/>
     <component id="rn97d" name="mc_monster.xml" path="/ui/"/>
+    <component id="glqee" name="Button1.xml" path="/"/>
   </resources>
-  <publish name=""/>
+  <publish name="ui_card"/>
 </packageDescription>

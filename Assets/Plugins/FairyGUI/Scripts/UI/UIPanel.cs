@@ -321,6 +321,7 @@ namespace FairyGUI
                 _ui.rotationX = rotation.x;
                 _ui.rotationY = rotation.y;
                 _ui.rotation = rotation.z;
+                print(this.container);
                 if (this.container.hitArea != null)
                 {
                     UpdateHitArea();

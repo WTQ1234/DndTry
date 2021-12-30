@@ -372,6 +372,7 @@ public class CardEntity : Entity
 
     public void onClickAttack()
     {
+        return ;
         if (RoomEntity.Instance.isActEnemy(SeatNumber, out int enemyIndex))
         {
             if (GetTeam().Item2 != Player.GetTeam().Item2)

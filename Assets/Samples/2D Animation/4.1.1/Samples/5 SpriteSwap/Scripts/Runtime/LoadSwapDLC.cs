@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Experimental.U2D.Animation;
+// using UnityEngine.Experimental.U2D.Animation;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -34,17 +34,17 @@ namespace Unity.U2D.Animation.Sample
                 var assets = subBundle.LoadAllAssets();
                 foreach (var asset in assets)
                 {
-                    if (asset is SpriteLibraryAsset)
-                    {
-                        var sla = (SpriteLibraryAsset)asset;
-                        foreach (var sfs in swapFullSkin)
-                        {
-                            var list = sfs.spriteLibraries.ToList();
-                            list.Add(sla);
-                            sfs.spriteLibraries = list.ToArray();
-                        }
+                    // if (asset is SpriteLibraryAsset)
+                    // {
+                    //     var sla = (SpriteLibraryAsset)asset;
+                    //     foreach (var sfs in swapFullSkin)
+                    //     {
+                    //         var list = sfs.spriteLibraries.ToList();
+                    //         list.Add(sla);
+                    //         sfs.spriteLibraries = list.ToArray();
+                    //     }
                         
-                    }
+                    // }
                 }
             }
             foreach (var sfs in swapFullSkin)

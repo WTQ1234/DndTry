@@ -36,7 +36,7 @@ public class CardUI_Monster : EGamePlay.Component
         // go.transform.localEulerAngles = new Vector3(0, 100, 0);
         GoWrapper goWrapper = new GoWrapper(go);
         // goWrapper.sort
-        mc_monster.GetChild("n6").asGraph.SetNativeObject(goWrapper);
+        mc_monster.GetChild("empty_center").asGraph.SetNativeObject(goWrapper);
     }
 
     public bool Init(UIParamBasic param = null)

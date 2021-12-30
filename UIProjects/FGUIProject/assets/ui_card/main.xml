@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="300,450">
-  <controller name="state" pages="1,monster,0,hide,2,item,3,treasure" selected="1">
+  <controller name="state" pages="1,monster,0,hide,2,item,3,treasure" selected="0">
     <remark page="1" value="未揭露"/>
   </controller>
   <displayList>
@@ -13,18 +13,21 @@
     <component id="n15_rn97" name="mc_monster" src="rn97d" fileName="ui/mc_monster.xml" xy="0,0" pivot="0.5,0.5">
       <gearDisplay controller="state" pages="1"/>
     </component>
+    <component id="n17_glqe" name="n17" src="glqee" fileName="Button1.xml" xy="9,-116" size="267,111">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
   </displayList>
-  <transition name="atk" frameRate="30">
+  <transition name="atk">
     <item time="0" type="Scale" target="n15_rn97" tween="true" startValue="1,1" endValue="1.3,1.3" duration="5"/>
     <item time="5" type="Scale" target="n15_rn97" tween="true" startValue="1.3,1.3" endValue="1.3,1.3" duration="2"/>
     <item time="7" type="Scale" target="n15_rn97" tween="true" startValue="1.3,1.3" endValue="1,1" duration="2"/>
   </transition>
-  <transition name="def" frameRate="30">
+  <transition name="def">
     <item time="0" type="Scale" target="n15_rn97" tween="true" startValue="1,1" endValue="0.8,0.8" duration="5"/>
     <item time="5" type="Scale" target="n15_rn97" tween="true" startValue="0.8,0.8" endValue="0.8,0.8" duration="2"/>
     <item time="7" type="Scale" target="n15_rn97" tween="true" startValue="0.8,0.8" endValue="1,1" duration="2"/>
   </transition>
-  <transition name="def_shake" frameRate="30">
+  <transition name="def_shake">
     <item time="0" type="Scale" target="n15_rn97" tween="true" startValue="1,1" endValue="0.8,0.8" duration="5"/>
     <item time="0" type="Shake" target="n15_rn97" value="10,0.2"/>
     <item time="5" type="Scale" target="n15_rn97" tween="true" startValue="0.8,0.8" endValue="0.8,0.8" duration="2"/>
