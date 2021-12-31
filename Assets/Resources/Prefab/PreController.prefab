@@ -60,9 +60,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
   - key: AttrConfig
-    gameObject: {fileID: 4900000, guid: 5cb75d605b265a84c9cb422b60fbc2b2, type: 3}
+    gameObject: {fileID: 0}
   - key: StatusConfig
-    gameObject: {fileID: 4900000, guid: 67607761fcb6b3543aa97695d5e9783c, type: 3}
+    gameObject: {fileID: 0}
 --- !u!114 &7958594722025806125
 MonoBehaviour:
   m_ObjectHideFlags: 0
