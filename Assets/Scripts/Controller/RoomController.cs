@@ -44,6 +44,7 @@ public class RoomController : SingleTon<RoomController>
             ChangePointPos();
         }
         rooms[0].GetComponent<SpriteRenderer>().color = startColor;//改变第1个房间的颜色
+        rooms[0].GetComponent<SpriteRenderer>().color = endColor;//改变第1个房间的颜色
     }
 
 
