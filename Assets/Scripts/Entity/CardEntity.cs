@@ -73,7 +73,6 @@ public class CardEntity : Entity
         StatusParent = transform.Find("StatusParent");
         // uiPanel = transform.Find("UIPanel");
         uiPanel = transform;
-        transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
     }
 
     public override void Setup(object initData = null, bool asGameObject = false)
@@ -127,21 +126,21 @@ public class CardEntity : Entity
 
     private void InitShow(CardEntityParams cardEntityParams)
     {
-        cardUI = uiPanel.gameObject.AddComponent<CardUI>();
-        cardUI.Init(new UIParamBasic(Name, this, _enumCaty: (int)cardEntityParams.cardType));
-        cardUI.Subscribe("onClickCardUI", onClickCardUI);
-        if (cardEntityParams.monsterData != null)
-        {
-            cardUI.Publish("SetConfig_Monster", new ConfigEvent()
-            {
-                config = cardEntityParams.monsterData,
-            });
-        }
-        cardUI.Publish("SetHp", new HpEvent()
-        {
-            hpValue = healthPointComponent.Value,
-            hpMaxValue = healthPointComponent.MaxValue,
-        });
+        // cardUI = uiPanel.gameObject.AddComponent<CardUI>();
+        // cardUI.Init(new UIParamBasic(Name, this, _enumCaty: (int)cardEntityParams.cardType));
+        // cardUI.Subscribe("onClickCardUI", onClickCardUI);
+        // if (cardEntityParams.monsterData != null)
+        // {
+        //     cardUI.Publish("SetConfig_Monster", new ConfigEvent()
+        //     {
+        //         config = cardEntityParams.monsterData,
+        //     });
+        // }
+        // cardUI.Publish("SetHp", new HpEvent()
+        // {
+        //     hpValue = healthPointComponent.Value,
+        //     hpMaxValue = healthPointComponent.MaxValue,
+        // });
     }
     #endregion
 
@@ -184,16 +183,16 @@ public class CardEntity : Entity
     // 设置UI
     public void SetCardUIParam(int sort = -1)
     {
-        cardUI.SetCardUIParam(sort);
+        cardUI?.SetCardUIParam(sort);
     }
     // 设置位置
     public void SetPos(Vector3 pos)
     {
-        if (CameraController.Instance.MainCamera == null) {return;}
-        Vector3 screenPos = CameraController.Instance.MainCamera.WorldToScreenPoint(pos + transform.parent.position);
-        screenPos.y = Screen.height - screenPos.y;
-        Vector2 pt = GRoot.inst.GlobalToLocal(screenPos);
-        cardUI.ui.position = screenPos;
+        // if (CameraController.Instance.MainCamera == null) {return;}
+        // Vector3 screenPos = CameraController.Instance.MainCamera.WorldToScreenPoint(pos + transform.parent.position);
+        // screenPos.y = Screen.height - screenPos.y;
+        // Vector2 pt = GRoot.inst.GlobalToLocal(screenPos);
+        // cardUI.ui.position = screenPos;
     }
     #endregion
 
@@ -305,7 +304,7 @@ public class CardEntity : Entity
         var damageAction = combatAction as CardDamageAction;
         RoomEntity.Instance.Log($"造成伤害：{damageAction.DamageValue}");
         healthPointComponent.Minus(damageAction.DamageValue);
-        cardUI.Publish("SetHp", new HpEvent()
+        cardUI?.Publish("SetHp", new HpEvent()
         {
             hpValue = healthPointComponent.Value,
             hpMaxValue = healthPointComponent.MaxValue,

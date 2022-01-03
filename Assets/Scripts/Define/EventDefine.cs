@@ -8,6 +8,11 @@ public class EventParams
 
 }
 
+public class ClickEvent : EventParams
+{
+    public Vector2 clickPoint;
+}
+
 public class DeadEvent : EventParams
 {
     public CardEntity killer;          // 杀手

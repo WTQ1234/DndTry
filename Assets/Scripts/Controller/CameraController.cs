@@ -23,6 +23,7 @@ public class CameraController : SingleTon<CameraController>
 
     private void Start()
     {
+        return;
         MainCamera = GameObject.Find("Cameras/Main Camera").GetComponent<Camera>();
         StageCamera = GameObject.Find("Cameras/Stage Camera").GetComponent<Camera>();
         NormalUICamera = GameObject.Find("Cameras/NormalUI Camera").GetComponent<Camera>();
@@ -35,6 +36,7 @@ public class CameraController : SingleTon<CameraController>
 
     void Update()
     {
+        return;
         Vector3 input = Input.mousePosition;
         float X = moveRate * cameraRadius_X * Mathf.Clamp((input.x - halfScreenWidth) / halfScreenWidth, -1f, 1f);
         float Y = moveRate * cameraRadius_Y * Mathf.Clamp((input.y - halfScreenHeight) / halfScreenHeight, -1f, 1f);

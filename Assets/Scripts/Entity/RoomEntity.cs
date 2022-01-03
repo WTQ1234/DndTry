@@ -13,6 +13,7 @@ using ET;
 using GameUtils;
 using System.Linq;
 using FairyGUI;
+using UnityEngine.Tilemaps;
 
 public class RoomEntity : Entity
 {
@@ -42,10 +43,14 @@ public class RoomEntity : Entity
 
     private Transform HeroParent;
     private Transform EnemyParent;
-    private GameObject Prefab_Card;
+    private GameObject Prefab_CombatEntity;
     private RoomUI roomUI;
 
     RoomData roomDataConfig;
+
+    // Tile
+    public Tilemap tilemap;
+
 
     public override void Awake()
     {
@@ -53,10 +58,11 @@ public class RoomEntity : Entity
         Instance = this;
         AddComponent<CombatActionManageComponent>();
         //AddComponent<UpdateComponent>();      // 这里会导致二次调用
+        MasterEntity.Instance.Subscribe("onClickObj2D", onClickTile);
 
         HeroParent = transform.Find("HeroParent");
         EnemyParent = transform.Find("EnemyParent");
-        Prefab_Card = Resources.Load<GameObject>("Prefab/Card");
+        Prefab_CombatEntity = Resources.Load<GameObject>("Prefab/CombatEntity");
 
         roomDataConfig = ConfigController.Instance.Get<RoomData>(1);
 
@@ -72,27 +78,30 @@ public class RoomEntity : Entity
     #region 创建
     public void CreateTeam()
     {
+        var e = AddHeroEntity(0);
+        e.isMe = true;
         // 创建一个主角和一个随从
-        for (int i = 0; i < myTeamNum; i++)
-        {
-            var e = AddHeroEntity(i);
-            e.isMe = i == (int)(myTeamNum / 2);
-        }
-        interactNum = 2 + myTeamNum - 1;
+        // for (int i = 0; i < myTeamNum; i++)
+        // {
+        //     var e = AddHeroEntity(i);
+        //     e.isMe = i == (int)(myTeamNum / 2);
+        // }
+
+        // interactNum = 2 + myTeamNum - 1;
         // 创建3个敌人
-        for (int i = 0; i < enemyTeamNum; i++)
-        {
-            var e = AddMonsterEntity(i);
-        }
-        OnCardAdd();
+        // for (int i = 0; i < enemyTeamNum; i++)
+        // {
+        //     var e = AddMonsterEntity(i);
+        // }
+        // OnCardAdd();
     }
 
     public CardEntity AddHeroEntity(int seat)
     {
         MonsterData monsterData = ConfigController.Instance.Get<MonsterData>(1);    // 主角暂时读取固定为1的monster配置
         var entity = Create<CardEntity>(
-            initData: new CardEntityParams(){cardType = CardType.Monster, monsterData = monsterData}, 
-            prefab: Prefab_Card, parent: this, ownerParent: HeroParent, Name: $"CardEntity_{GetNewCardId()}");
+            initData: new CardEntityParams(){cardType = CardType.Monster, monsterData = monsterData},
+            prefab: Prefab_CombatEntity, parent: this, ownerParent: HeroParent, Name: $"CardEntity_{GetNewCardId()}");
         HeroEntities.Add(entity);
         entity.SetSeatNumber(seat);
         entity.SetTeam(1);
@@ -106,8 +115,8 @@ public class RoomEntity : Entity
         //roomDataConfig.MonsterIds()
         MonsterData monsterData = ConfigController.Instance.Get<MonsterData>(1);
         var entity = Create<CardEntity>(
-            initData: new CardEntityParams(){cardType = CardType.Monster, monsterData = monsterData}, 
-            prefab: Prefab_Card, parent: this, ownerParent: EnemyParent, Name: $"CardEntity_{GetNewCardId()}");
+            initData: new CardEntityParams(){cardType = CardType.Monster, monsterData = monsterData},
+            prefab: Prefab_CombatEntity, parent: this, ownerParent: EnemyParent, Name: $"CardEntity_{GetNewCardId()}");
         MonsterEntities.Add(entity);
         entity.SetSeatNumber(seat);
         entity.SetTeam(-1);
@@ -272,6 +281,15 @@ public class RoomEntity : Entity
     #endregion
 
     #region input
+    public void onClickTile(EventParams param)
+    {
+        ClickEvent clickEvent = param as ClickEvent;
+        Vector3Int a = tilemap.WorldToCell(clickEvent.clickPoint);
+        print(a);
+        CardEntity.Player.SetPos(a);
+        // CardEntity.Player.transform.position = a;
+    }
+
     public void NextTurn()
     {
         print("下一回合");

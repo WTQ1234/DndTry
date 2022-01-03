@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EGamePlay;
 
 public class InputController : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class InputController : MonoBehaviour
         camera_main = Camera.main;
     }
 
-    void Update()
+    // 暂时弃用
+    void Update3D()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -27,21 +29,21 @@ public class InputController : MonoBehaviour
                     }
                 }
             }
+        }
+    }
 
-            //RaycastHit hit;
-            //bool grounded = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit);
-            //// 可控制投射距离bool grounded = Physics.Raycast(transform.position, -Vector3.up, out hit,100.0);
-            //if (grounded)
-            //{
-            //    Debug.Log("发生了碰撞");
-            //    Debug.Log("距离是：" + hit.distance);
-            //    Debug.Log("被碰撞的物体是：" + hit.collider.gameObject.name);
-
-            //}
-            //else
-            //{
-            //    Debug.Log("碰撞结束");
-            //}
+    void Update()
+    {
+        if(Input.GetMouseButtonUp(0))
+        {
+            Vector2 v2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit2D = Physics2D.Raycast(v2, Vector2.zero);
+            if (hit2D.collider != null)
+            {
+                MasterEntity.Instance.Publish("onClickObj2D", new ClickEvent(){clickPoint = hit2D.point});
+                // Vector3Int a = tilemap.WorldToCell(hit2D.point);
+                // print(a);
+            }
         }
     }
 }

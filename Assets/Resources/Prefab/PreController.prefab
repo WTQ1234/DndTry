@@ -59,10 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: AttrConfig
-    gameObject: {fileID: 0}
-  - key: StatusConfig
-    gameObject: {fileID: 0}
+  - key: AttrData
+    gameObject: {fileID: 4900000, guid: 22d930064d210b046a963b73ecee4e0d, type: 3}
+  - key: MonsterData
+    gameObject: {fileID: 4900000, guid: 994c6cb0f13874345a4852cff71f7501, type: 3}
+  - key: RoomData
+    gameObject: {fileID: 4900000, guid: 739f161b9058c6844a98562536a1951b, type: 3}
+  - key: StatusData
+    gameObject: {fileID: 4900000, guid: c15fe540686671a4d9a6f4fa3a5d127c, type: 3}
 --- !u!114 &7958594722025806125
 MonoBehaviour:
   m_ObjectHideFlags: 0

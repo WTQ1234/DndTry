@@ -35,7 +35,7 @@ public class RoomController : SingleTon<RoomController>
         //combatFlow.Startup();
 
 
-
+        return;
         for (int i = 0; i < roomNumber; i++)
         {
             rooms.Add(Instantiate(roomPrefab, generatorPoint.position, Quaternion.identity));

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -405,6 +405,7 @@ MonoBehaviour:
   enemyTeamNum: 10
   Radius: 5
   actAngle: 10
+  tilemap: {fileID: 0}
 --- !u!33 &360900233
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -964,58 +965,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1766824978, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: Log
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8957007620084665256, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: m_Name
       value: PreController
       objectReference: {fileID: 0}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.data[0].key
-      value: AttrData
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.data[1].key
-      value: MonsterData
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.data[2].key
-      value: RoomData
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.data[3].key
-      value: StatusData
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.data[4].key
-      value: -1884472961
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.data[5].key
-      value: -1428344949
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.data[0].gameObject
-      value: 
-      objectReference: {fileID: 4900000, guid: 22d930064d210b046a963b73ecee4e0d, type: 3}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.data[1].gameObject
-      value: 
-      objectReference: {fileID: 4900000, guid: 994c6cb0f13874345a4852cff71f7501, type: 3}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.data[2].gameObject
-      value: 
-      objectReference: {fileID: 4900000, guid: 739f161b9058c6844a98562536a1951b, type: 3}
-    - target: {fileID: 8957007620084665262, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-      propertyPath: data.Array.data[3].gameObject
-      value: 
-      objectReference: {fileID: 4900000, guid: c15fe540686671a4d9a6f4fa3a5d127c, type: 3}
     - target: {fileID: 8957007620084665263, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1060,11 +1013,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1766824979, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-    - {fileID: 1766824978, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-    - {fileID: 3070154449088442858, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
-    - {fileID: 1153611884066131700, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65ef3756840fd9c4bafab58c8af09086, type: 3}
 --- !u!1 &1490458504
 GameObject:
