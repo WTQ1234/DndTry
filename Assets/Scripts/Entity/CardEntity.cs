@@ -45,7 +45,7 @@ public class CardEntity : Entity
     public Action Action_OnAttrChange;
     public Action Action_OnTrunStart;
 
-    public Vector3 targetPos;  // 卡牌tween移动的目标位置
+    public Vector3Int currentPos;  // 卡牌tween移动的目标位置
 
     #region 组件
     private HealthPointComponent healthPointComponent { get; set; }
@@ -186,8 +186,10 @@ public class CardEntity : Entity
         cardUI?.SetCardUIParam(sort);
     }
     // 设置位置
-    public void SetPos(Vector3 pos)
+    public void SetMoveTarget(Vector3Int pos)
     {
+        currentPos = pos;
+        transform.position = pos;
         // if (CameraController.Instance.MainCamera == null) {return;}
         // Vector3 screenPos = CameraController.Instance.MainCamera.WorldToScreenPoint(pos + transform.parent.position);
         // screenPos.y = Screen.height - screenPos.y;

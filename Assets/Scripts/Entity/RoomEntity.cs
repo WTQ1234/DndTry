@@ -14,6 +14,8 @@ using GameUtils;
 using System.Linq;
 using FairyGUI;
 using UnityEngine.Tilemaps;
+using namespace_PathHelper;
+
 
 public class RoomEntity : Entity
 {
@@ -79,6 +81,7 @@ public class RoomEntity : Entity
     public void CreateTeam()
     {
         var e = AddHeroEntity(0);
+        e.SetMoveTarget(Vector3Int.zero);
         e.isMe = true;
         // 创建一个主角和一个随从
         // for (int i = 0; i < myTeamNum; i++)
@@ -211,12 +214,12 @@ public class RoomEntity : Entity
                 targetPos.x = (enemyActIndex[curCard.GetSeatNumber()]) * 2f;
                 targetPos.y = 0;
                 targetPos.z = -4;
-                curCard.SetPos(targetPos);
+                // curCard.SetPos(targetPos);
             }
             else
             {
                 targetPos = GerCurPosByIndex(i - seatPos);
-                curCard.SetPos(targetPos);
+                // curCard.SetPos(targetPos);
             }
         }
 
@@ -228,7 +231,7 @@ public class RoomEntity : Entity
             targetPos.x = (i - length_hero / 2) * 1.5f;
             targetPos.y = 0;
             targetPos.z = 0;
-            curCard.SetPos(targetPos);
+            // curCard.SetPos(targetPos);
         }
     }
     // 刷新卡牌UI显示的优先级sortorder
@@ -245,7 +248,7 @@ public class RoomEntity : Entity
             else
             {
                 // 设置sort递减
-                curCard.SetCardUIParam(500 - (int)curCard.targetPos.z * 10);
+                curCard.SetCardUIParam(500 - (int)curCard.currentPos.z * 10);
             }
         }
     }
@@ -284,9 +287,11 @@ public class RoomEntity : Entity
     public void onClickTile(EventParams param)
     {
         ClickEvent clickEvent = param as ClickEvent;
-        Vector3Int a = tilemap.WorldToCell(clickEvent.clickPoint);
-        print(a);
-        CardEntity.Player.SetPos(a);
+        Vector3Int targetPos = tilemap.WorldToCell(clickEvent.clickPoint);
+        print(targetPos);
+        PathHelper.AStarSearchPath2D(CardEntity.Player.currentPos, targetPos, new Vector2Int(10, 10), new List<Vector3Int>(), out Vector3Int NextPos);
+        print(NextPos);
+        CardEntity.Player.SetMoveTarget(NextPos);
         // CardEntity.Player.transform.position = a;
     }
 

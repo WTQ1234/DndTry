@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PathHelper
+namespace namespace_PathHelper
 {
     public static class PathHelper
     {
@@ -13,7 +13,7 @@ namespace PathHelper
         /// <param name="endPos"> 终点 </param>
         /// <param name="mapSize"> 地图长宽 </param>
         /// <param name="obstacle"> 障碍物列表 </param>
-        public static void AStarSearchPath2D(Vector3Int startPos, Vector3Int endPos, Vector2Int mapSize, List<Vector3Int> obstacle)
+        public static bool AStarSearchPath2D(Vector3Int startPos, Vector3Int endPos, Vector2Int mapSize, List<Vector3Int> obstacle, out Vector3Int nextPos)
         {
             Dictionary<Vector3Int, int> search = new Dictionary<Vector3Int, int>();     //要进行的查找任务
             Dictionary<Vector3Int, int> cost = new Dictionary<Vector3Int, int>();       //起点到当前点的消耗
@@ -46,16 +46,22 @@ namespace PathHelper
                     }
                 }
             }
-
+            Debug.Log("=======================================");
+            foreach(var a in pathSave)
+            {
+                Debug.Log(a);
+            }
             if (pathSave.ContainsKey(endPos))
             {
-                // ShowPath();
-                // okk
+                bool success = pathSave.TryGetValue(endPos, out nextPos);
+                return success;
             }
             else
             {
                 Debug.Log("No road");
             }
+            nextPos = Vector3Int.zero;
+            return false;
         }
 
         private static Vector3Int GetShortestPos(Dictionary<Vector3Int, int> search)
@@ -91,12 +97,12 @@ namespace PathHelper
                 neighbors.Add(target + Vector3Int.right);
             }
             //Left
-            if (left.x >= 0 && !obstacle.Contains(left))
+            if (left.x >= (mapSize.x * -1) && !obstacle.Contains(left))
             {
                 neighbors.Add(target - Vector3Int.right);
             }
             //Down
-            if (down.y >= 0 && !obstacle.Contains(down))
+            if (down.y >= (mapSize.y * -1) && !obstacle.Contains(down))
             {
                 neighbors.Add(target - Vector3Int.up);
             }
