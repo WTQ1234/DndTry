@@ -69,7 +69,7 @@ namespace EGamePlay
         /// <param name="ownerParent">Transform指定Parent</param>
         /// <returns></returns>
         private static Entity _Create(
-            Type type = null, object initData = null, GameObject owner = null, 
+            Type type = null, object initData = null, GameObject owner = null,
             GameObject prefab = null, Entity parent = null, Transform ownerParent = null, string Name = null)
         {
             bool needObj = owner == null;
@@ -77,7 +77,6 @@ namespace EGamePlay
             var component = owner.GetComponent(type);
             var entity = (component != null ? component : owner.AddComponent(type)) as Entity;
 
-            Master.AddEntity(type, entity);
             (parent == null ? Master : parent).AddChild(entity);
 
             if (ownerParent != null) entity.SetTransformParent(ownerParent);
@@ -85,7 +84,8 @@ namespace EGamePlay
             long id = IdFactory.NewInstanceId();
             entity.InstanceId = entity.Id = id;
             entity.Name = Name != null ? Name : type.ToString();
-            
+            Master.SetEntity(type, entity);
+
             entity.Setup(initData, needObj);
 
             if (EnableLog) Log.Debug($"Entity->Create, {type.Name}={entity.InstanceId}");
@@ -137,6 +137,8 @@ namespace EGamePlay
         #endregion
 
         #region 事件
+        private Dictionary<long, (string, EventDelegate)> subscribeOnList = new Dictionary<long, (string, EventDelegate)>();
+        // 监听
         public void Subscribe(string key, EventDelegate action)
         {
             var eventComponent = GetEntityComponent<EventComponent>();
@@ -146,6 +148,13 @@ namespace EGamePlay
             }
             eventComponent.Subscribe(key, action);
         }
+        // 监听挂在其他物体上
+        public void SubscribeOnObj(Entity obj, string key, EventDelegate action)
+        {
+            subscribeOnList.Add(obj.Id, (key, action));     // 将此监听数据保存起来，在Entity被销毁时，尝试进行释放
+            obj.Subscribe(key, action);
+        }
+        // 取消监听
         public void UnSubscribe(string key, EventDelegate action)
         {
             var eventComponent = GetEntityComponent<EventComponent>();
@@ -154,6 +163,20 @@ namespace EGamePlay
                 eventComponent.UnSubscribe(key, action);
             }
         }
+        // 取消挂在其他物体上的监听
+        private void UnSubscribeOnDispose()
+        {
+            if (subscribeOnList.Count > 0)
+            {
+                foreach(var kv in subscribeOnList)
+                {
+                    Entity entity = Master.GetEntity(kv.Key);
+                    entity.UnSubscribe(kv.Value.Item1, kv.Value.Item2);
+                }
+                subscribeOnList.Clear();
+            }
+        }
+        // 发布
         public void Publish(string key, EventParams eventParams)
         {
             var eventComponent = GetEntityComponent<EventComponent>();
@@ -183,6 +206,9 @@ namespace EGamePlay
                 }
             }
 
+            // 清除事件监听
+            UnSubscribeOnDispose();
+
             Parent?.RemoveChild(this);
             foreach (Component component in this.Components.Values)
             {
@@ -190,11 +216,9 @@ namespace EGamePlay
                 component.Dispose();
             }
             this.Components.Clear();
+            Master.RemoveEntity(this);
             InstanceId = 0;
-            if (Master.Entities.ContainsKey(GetType()))
-            {
-                Master.Entities[GetType()].Remove(this);
-            }
+            Id = 0;
         }
 
         public virtual void OnSetParent(Entity parent)

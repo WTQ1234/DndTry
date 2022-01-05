@@ -13,12 +13,12 @@ namespace namespace_PathHelper
         /// <param name="endPos"> 终点 </param>
         /// <param name="mapSize"> 地图长宽 </param>
         /// <param name="obstacle"> 障碍物列表 </param>
-        public static bool AStarSearchPath2D(Vector3Int startPos, Vector3Int endPos, Vector2Int mapSize, List<Vector3Int> obstacle, out Vector3Int nextPos)
+        public static bool AStarSearchPath2D(Vector3Int startPos, Vector3Int endPos, Vector3Int mapSize, List<Vector3Int> obstacle, out Dictionary<Vector3Int, Vector3Int> pathSave)
         {
             Dictionary<Vector3Int, int> search = new Dictionary<Vector3Int, int>();     //要进行的查找任务
             Dictionary<Vector3Int, int> cost = new Dictionary<Vector3Int, int>();       //起点到当前点的消耗
-            Dictionary<Vector3Int, Vector3Int> pathSave = new Dictionary<Vector3Int, Vector3Int>();//保存回溯路径
             List<Vector3Int> hadSearch = new List<Vector3Int>();//已经查找过的坐标
+            pathSave = new Dictionary<Vector3Int, Vector3Int>();//保存回溯路径
 
             //初始化
             search.Add(startPos, GetHeuristic(startPos, endPos));
@@ -53,14 +53,13 @@ namespace namespace_PathHelper
             }
             if (pathSave.ContainsKey(endPos))
             {
-                bool success = pathSave.TryGetValue(endPos, out nextPos);
+                bool success = pathSave.ContainsKey(endPos);
                 return success;
             }
             else
             {
                 Debug.Log("No road");
             }
-            nextPos = Vector3Int.zero;
             return false;
         }
 
@@ -79,7 +78,7 @@ namespace namespace_PathHelper
         }
 
         //获取周围可用的邻居
-        private static List<Vector3Int> GetNeighbors(Vector2Int mapSize, Vector3Int target, List<Vector3Int> obstacle)
+        private static List<Vector3Int> GetNeighbors(Vector3Int mapSize, Vector3Int target, List<Vector3Int> obstacle)
         {
             List<Vector3Int> neighbors = new List<Vector3Int>();
             Vector3Int up = target + Vector3Int.up;

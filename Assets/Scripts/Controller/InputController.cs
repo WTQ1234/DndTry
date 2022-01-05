@@ -6,6 +6,7 @@ using EGamePlay;
 public class InputController : MonoBehaviour
 {
     private Camera camera_main;
+    private float updateTime = 0;
 
     public void Awake()
     {
@@ -34,15 +35,26 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonUp(0))
+        updateTime += Time.deltaTime;
+        if (updateTime > 0.2f)
         {
-            Vector2 v2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit2D = Physics2D.Raycast(v2, Vector2.zero);
-            if (hit2D.collider != null)
+            updateTime -= 0.2f;
+        }
+        else
+        {
+            return;
+        }
+        Vector2 v2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit2D = Physics2D.Raycast(v2, Vector2.zero);
+        if (hit2D.collider != null)
+        {
+            if(Input.GetMouseButtonUp(0))
             {
                 MasterEntity.Instance.Publish("onClickObj2D", new ClickEvent(){clickPoint = hit2D.point});
-                // Vector3Int a = tilemap.WorldToCell(hit2D.point);
-                // print(a);
+            }
+            else
+            {
+                MasterEntity.Instance.Publish("onMouseShowObj2D", new ClickEvent(){clickPoint = hit2D.point});
             }
         }
     }

@@ -52,7 +52,10 @@ public class RoomEntity : Entity
 
     // Tile
     public Tilemap tilemap;
-
+    public Tile pathTile;       //寻路展示tile
+    public Vector3Int roomSize = new Vector3Int(10, 10, 10);
+    private Vector3Int cacheTargetMovePos;
+    private Dictionary<Vector3Int, Vector3Int> cachePath;
 
     public override void Awake()
     {
@@ -60,7 +63,8 @@ public class RoomEntity : Entity
         Instance = this;
         AddComponent<CombatActionManageComponent>();
         //AddComponent<UpdateComponent>();      // 这里会导致二次调用
-        MasterEntity.Instance.Subscribe("onClickObj2D", onClickTile);
+        SubscribeOnObj(MasterEntity.Instance, "onClickObj2D", onClickTile);
+        SubscribeOnObj(MasterEntity.Instance, "onMouseShowObj2D", onMouseShowObj2D);
 
         HeroParent = transform.Find("HeroParent");
         EnemyParent = transform.Find("EnemyParent");
@@ -284,15 +288,49 @@ public class RoomEntity : Entity
     #endregion
 
     #region input
-    public void onClickTile(EventParams param)
+    // 点击正式移动
+    private void onClickTile(EventParams param)
+    {
+        // 先重新计算一次防止点击速度过快路径未更新
+        onMouseShowObj2D(param);
+
+        ClickEvent clickEvent = param as ClickEvent;
+        Vector3Int targetPos = tilemap.WorldToCell(clickEvent.clickPoint);
+        print(targetPos);
+        PathHelper.AStarSearchPath2D(CardEntity.Player.currentPos, targetPos, roomSize, new List<Vector3Int>(), out Dictionary<Vector3Int, Vector3Int> Path);
+
+        // 1.预览
+
+        // 2.点击后根据情况
+        
+        // print(NextPos);
+        // CardEntity.Player.SetMoveTarget(NextPos);
+        // CardEntity.Player.transform.position = a;
+    }
+    // 鼠标移动预览路线
+    private void onMouseShowObj2D(EventParams param)
     {
         ClickEvent clickEvent = param as ClickEvent;
         Vector3Int targetPos = tilemap.WorldToCell(clickEvent.clickPoint);
         print(targetPos);
-        PathHelper.AStarSearchPath2D(CardEntity.Player.currentPos, targetPos, new Vector2Int(10, 10), new List<Vector3Int>(), out Vector3Int NextPos);
-        print(NextPos);
-        CardEntity.Player.SetMoveTarget(NextPos);
-        // CardEntity.Player.transform.position = a;
+        if ((cacheTargetMovePos == null) || (cacheTargetMovePos.x != targetPos.x) || (cacheTargetMovePos.y != targetPos.y))
+        {
+            cacheTargetMovePos = targetPos;
+            // todo 在更换预览路线前先把之前的预览路线还原为默认tile
+            bool success = PathHelper.AStarSearchPath2D(CardEntity.Player.currentPos, targetPos, roomSize, new List<Vector3Int>(), out cachePath);
+            if (success)
+            {
+                // todo 展示
+                Vector3Int current = targetPos;
+                while (current != CardEntity.Player.currentPos)
+                {
+                    Vector3Int next = cachePath[current];
+                    tilemap.SetTile(current, pathTile);
+                    current = next;
+                }
+            }
+        }
+
     }
 
     public void NextTurn()
