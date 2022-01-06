@@ -35,26 +35,35 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        updateTime += Time.deltaTime;
-        if (updateTime > 0.2f)
+        if(Input.GetMouseButtonUp(0))
         {
-            updateTime -= 0.2f;
+            Vector2 v2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit2D = Physics2D.Raycast(v2, Vector2.zero);
+            MasterEntity.Instance.Publish("onClickObj2D", new ClickEvent(){clickPoint = hit2D.point});
         }
         else
         {
-            return;
-        }
-        Vector2 v2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit2D = Physics2D.Raycast(v2, Vector2.zero);
-        if (hit2D.collider != null)
-        {
-            if(Input.GetMouseButtonUp(0))
+            updateTime += Time.deltaTime;
+            if (updateTime > 0.2f)
             {
-                MasterEntity.Instance.Publish("onClickObj2D", new ClickEvent(){clickPoint = hit2D.point});
+                updateTime -= 0.2f;
             }
             else
             {
-                MasterEntity.Instance.Publish("onMouseShowObj2D", new ClickEvent(){clickPoint = hit2D.point});
+                return;
+            }
+            Vector2 v2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit2D = Physics2D.Raycast(v2, Vector2.zero);
+            if (hit2D.collider != null)
+            {
+                if(Input.GetMouseButtonUp(0))
+                {
+                    MasterEntity.Instance.Publish("onClickObj2D", new ClickEvent(){clickPoint = hit2D.point});
+                }
+                else
+                {
+                    MasterEntity.Instance.Publish("onMouseShowObj2D", new ClickEvent(){clickPoint = hit2D.point});
+                }
             }
         }
     }

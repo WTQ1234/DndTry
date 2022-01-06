@@ -137,7 +137,7 @@ namespace EGamePlay
         #endregion
 
         #region 事件
-        private Dictionary<long, (string, EventDelegate)> subscribeOnList = new Dictionary<long, (string, EventDelegate)>();
+        private Dictionary<long, List<(string, EventDelegate)>> subscribeOnList = new Dictionary<long, List<(string, EventDelegate)>>();
         // 监听
         public void Subscribe(string key, EventDelegate action)
         {
@@ -151,7 +151,15 @@ namespace EGamePlay
         // 监听挂在其他物体上
         public void SubscribeOnObj(Entity obj, string key, EventDelegate action)
         {
-            subscribeOnList.Add(obj.Id, (key, action));     // 将此监听数据保存起来，在Entity被销毁时，尝试进行释放
+            // 将此监听数据保存起来，在Entity被销毁时，尝试进行释放
+            if (subscribeOnList.ContainsKey(obj.Id))
+            {
+                subscribeOnList[obj.Id].Add((key, action));
+            }
+            else
+            {
+                subscribeOnList.Add(obj.Id, new List<(string, EventDelegate)> () {(key, action)});
+            }
             obj.Subscribe(key, action);
         }
         // 取消监听
@@ -171,7 +179,11 @@ namespace EGamePlay
                 foreach(var kv in subscribeOnList)
                 {
                     Entity entity = Master.GetEntity(kv.Key);
-                    entity.UnSubscribe(kv.Value.Item1, kv.Value.Item2);
+                    List<(string, EventDelegate)> list = kv.Value;
+                    foreach(var actionValue in list)
+                    {
+                        entity.UnSubscribe(actionValue.Item1, actionValue.Item2);
+                    }
                 }
                 subscribeOnList.Clear();
             }

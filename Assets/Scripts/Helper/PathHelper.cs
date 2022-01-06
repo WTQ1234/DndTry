@@ -46,11 +46,6 @@ namespace namespace_PathHelper
                     }
                 }
             }
-            Debug.Log("=======================================");
-            foreach(var a in pathSave)
-            {
-                Debug.Log(a);
-            }
             if (pathSave.ContainsKey(endPos))
             {
                 bool success = pathSave.ContainsKey(endPos);
