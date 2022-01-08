@@ -1,11 +1,11 @@
 using UnityEngine;
-using System.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 // 正则表达式相关解析Helper
-namespace RegexHelper
+namespace GameUtils
 {
     public static class RegexHelper
     {

@@ -6,7 +6,8 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using UnityEditor;
 using UnityEngine;
-using RegexHelper;
+using GameUtils;
+
 namespace ET
 {
     public struct CellInfo
@@ -184,9 +185,9 @@ namespace ET
                                 {
                                     continue;
                                 }
-                                if (RegexHelper.RegexHelper.RegexIsOK("enum_.*", fieldType))
+                                if (RegexHelper.RegexIsOK("enum_.*", fieldType))
                                 {
-                                    fieldType = RegexHelper.RegexHelper.RegexReplace("enum_", fieldType, GlobalDefine.str_Empty);
+                                    fieldType = RegexHelper.RegexReplace("enum_", fieldType, GlobalDefine.str_Empty);
                                 }
                                 if (fieldType == "stringArray")
                                 {
@@ -441,14 +442,14 @@ namespace ET
 
         private static string Convert(string type, string value)
         {
-            if (RegexHelper.RegexHelper.RegexIsOK("enum_.*", type))
+            if (RegexHelper.RegexIsOK("enum_.*", type))
             {
                 // 是枚举
                 return $"\"{value}\"";
             }
             if (type == "stringArray")
             {
-                return $"\"{RegexHelper.RegexHelper.RegexReplace("\n", value, ";")}\"";
+                return $"\"{RegexHelper.RegexReplace("\n", value, ";")}\"";
                 //return $"[\"{RegexHelper.RegexHelper.RegexReplace("\n", value, "\",\"")}\"]";
             }
             switch (type)

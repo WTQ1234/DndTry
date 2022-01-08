@@ -34,7 +34,10 @@ namespace EGamePlay
             {
                 EventActionLists.Add(key, action);
             }
-            EventActionLists[key] += action;
+            else
+            {
+                EventActionLists[key] += action;
+            }
         }
         public void UnSubscribe(string key, EventDelegate action)
         {

@@ -11,6 +11,7 @@ public class EventParams
 public class ClickEvent : EventParams
 {
     public Vector2 clickPoint;
+    public bool getClick = true;
 }
 
 public class DeadEvent : EventParams

@@ -14,8 +14,6 @@ using GameUtils;
 using System.Linq;
 using FairyGUI;
 using UnityEngine.Tilemaps;
-using namespace_PathHelper;
-
 
 public class RoomEntity : Entity
 {
@@ -52,11 +50,16 @@ public class RoomEntity : Entity
 
     // Tile
     private Tilemap tilemap_Main;
+    private Tilemap tilemap_Tree;
     private Tilemap tilemap_PreviewPath;
-    private Tile tile_MovePath;       //寻路展示tile
-    private Tile tile_MoveTarget;       //寻路展示tile
+    private Tile tile_Floor;          // 地板tile
+    private Tile tile_Obstacle;       // 障碍物tile
+    private Tile tile_MovePath;       // 寻路展示tile
+    private Tile tile_MoveTarget;     // 寻路展示tile
+    private Tile tile_MoveTargetBlocked;   // 寻路目标堵塞tile
 
     public Vector3Int roomSize = new Vector3Int(10, 10, 10);
+    public List<Vector3Int> obstacleList = new List<Vector3Int>();
     private bool canFindPath = false;
     private bool forceFindPath = false;
     private Vector3Int cacheTargetStep;
@@ -72,10 +75,8 @@ public class RoomEntity : Entity
         SubscribeOnObj(MasterEntity.Instance, "onClickObj2D", onClickTile);
         SubscribeOnObj(MasterEntity.Instance, "onMouseShowObj2D", onMouseShowObj2D);
 
-        tilemap_Main = GameObject.Find("Tilemap_Main").GetComponent<Tilemap>();
-        tilemap_PreviewPath = GameObject.Find("Tilemap_PreviewPath").GetComponent<Tilemap>();
-        tile_MovePath = Resources.Load<Tile>("TileMap/TileAsset/MovePath");
-        tile_MoveTarget = Resources.Load<Tile>("TileMap/TileAsset/MoveTarget");
+        InitTile();
+        cacheTargetStep = roomSize + Vector3Int.one;    // 使暂存数据强行出界，以使下次强制寻路
 
         HeroParent = transform.Find("HeroParent");
         EnemyParent = transform.Find("EnemyParent");
@@ -90,6 +91,37 @@ public class RoomEntity : Entity
     {
         base.Start();
         roomUI = UIController.Instance.onGetUI("RoomUI") as RoomUI;
+    }
+
+    private void InitTile()
+    {
+        tilemap_Main = GameObject.Find("Tilemap_Main").GetComponent<Tilemap>();
+        tilemap_Tree = GameObject.Find("Tilemap_Tree").GetComponent<Tilemap>();
+        tilemap_PreviewPath = GameObject.Find("Tilemap_PreviewPath").GetComponent<Tilemap>();
+        tile_Floor = Resources.Load<Tile>("TileMap/TileAsset/TestFloor1");
+        tile_Obstacle = Resources.Load<Tile>("TileMap/TileAsset/TestObstacle1");
+        tile_MovePath = Resources.Load<Tile>("TileMap/TileAsset/MovePath");
+        tile_MoveTarget = Resources.Load<Tile>("TileMap/TileAsset/MoveTarget");
+        tile_MoveTargetBlocked = Resources.Load<Tile>("TileMap/TileAsset/MoveTargetBlocked");
+
+        Vector3Int cache_Pointer = Vector3Int.zero;
+        for (int x = -roomSize.x; x <= roomSize.x; x++)
+        {
+            cache_Pointer.x = x;
+            for (int y = -roomSize.y; y <= roomSize.y; y++)
+            {
+                cache_Pointer.y = y;
+                tilemap_Main.SetTile(cache_Pointer, tile_Floor);
+            }
+        }
+        int obstacleCount = 10;
+        for(int i = 0; i < obstacleCount; i++)
+        {
+            cache_Pointer.x = RandomHelper.RandomNumber(-roomSize.x, roomSize.x);
+            cache_Pointer.y = RandomHelper.RandomNumber(-roomSize.y, roomSize.y);
+            tilemap_Tree.SetTile(cache_Pointer, tile_Obstacle);
+            obstacleList.Add(cache_Pointer);    // todo 如果将来要做动态障碍物，则需要设置一个添加障碍物的接口，改变时统一刷新寻路，然后考虑把列表改成字典
+        }
     }
 
     #region 创建
@@ -305,11 +337,13 @@ public class RoomEntity : Entity
         // 设置强制计算，重新计算一次防止点击速度过快路径未更新
         forceFindPath = true;
         onMouseShowObj2D(param);
-        if (canFindPath)
+        // 正式移动
+        Vector3Int currentPos = CardEntity.Player.currentPos;
+        if (canFindPath && (!cacheNextStep.Equals(currentPos)))
         {
-            // 点击后移动
-            print($"{CardEntity.Player.currentPos}================={cacheNextStep}");
+            Vector3Int deltaPos = cacheNextStep - currentPos;
             CardEntity.Player.SetMoveTarget(cacheNextStep);
+            CameraController.Instance.onPlayerMove(cacheNextStep, deltaPos);
         }
         // 再次强制计算
         forceFindPath = true;
@@ -319,40 +353,51 @@ public class RoomEntity : Entity
     private void onMouseShowObj2D(EventParams param)
     {
         ClickEvent clickEvent = param as ClickEvent;
+        Vector3Int currentPos = CardEntity.Player.currentPos;
         Vector3Int targetPos = tilemap_Main.WorldToCell(clickEvent.clickPoint);
-        if (forceFindPath || (cacheTargetStep.x != targetPos.x) || (cacheTargetStep.y != targetPos.y))
+        if (currentPos.Equals(targetPos) || !clickEvent.getClick)
         {
             forceFindPath = false;
-            if ((targetPos.x < roomSize.x) || (targetPos.x > roomSize.x * -1)
-                || (targetPos.y < roomSize.y) || (targetPos.y > roomSize.y * -1))
+            cacheNextStep = currentPos;
+            tilemap_PreviewPath.ClearAllTiles();
+        }
+        else
+        {
+            if (forceFindPath || (!cacheTargetStep.Equals(targetPos)))
             {
-                cacheTargetStep = targetPos;
-                // 在更换预览路线前先把之前的预览路线还原为默认tile
-                tilemap_PreviewPath.ClearAllTiles();
-                bool success = PathHelper.AStarSearchPath2D(CardEntity.Player.currentPos, targetPos, roomSize, new List<Vector3Int>(){roomSize}, out cachePath);
-                if (success)
+                forceFindPath = false;
+                if ((targetPos.x < roomSize.x) || (targetPos.x > roomSize.x * -1) ||
+                    (targetPos.y < roomSize.y) || (targetPos.y > roomSize.y * -1))
                 {
-                    Vector3Int current = targetPos;
-                    while (current != CardEntity.Player.currentPos)
+                    cacheTargetStep = targetPos;
+                    // 在更换预览路线前先把之前的预览路线还原为默认tile
+                    tilemap_PreviewPath.ClearAllTiles();
+                    bool success = PathHelper.AStarSearchPath2D(currentPos, targetPos, in roomSize, in obstacleList, out cachePath);
+                    if (success)
                     {
-                        Vector3Int next = cachePath[current];
-                        current = next;
-                        tilemap_PreviewPath.SetTile(current, tile_MovePath);
-                        if (current != CardEntity.Player.currentPos)
+                        Vector3Int current = targetPos;
+                        cacheNextStep = targetPos;  // 防止路径只有一格
+                        while (current != currentPos)
                         {
-                            cacheNextStep = current;
+                            Vector3Int next = cachePath[current];
+                            current = next;
+                            tilemap_PreviewPath.SetTile(current, tile_MovePath);
+                            if (current != currentPos)
+                            {
+                                cacheNextStep = current;
+                            }
                         }
+                        canFindPath = true;
+                        tilemap_PreviewPath.SetTile(targetPos, tile_MoveTarget);
+                        tilemap_PreviewPath.SetTile(currentPos, null);
                     }
-                    canFindPath = true;
-                    tilemap_PreviewPath.SetTile(targetPos, tile_MoveTarget);
-                }
-                else
-                {
-                    // 不可寻路到，则不变或隐藏？
-                    canFindPath = false;
-                    cacheNextStep = CardEntity.Player.currentPos;
-                    tilemap_PreviewPath.SetTile(targetPos, tile_MoveTarget);
-                    tilemap_PreviewPath.SetColor(targetPos, Color.red);
+                    else
+                    {
+                        // 不可寻路到，则不变或隐藏？
+                        canFindPath = false;
+                        cacheNextStep = currentPos;
+                        tilemap_PreviewPath.SetTile(targetPos, tile_MoveTargetBlocked);
+                    }
                 }
             }
         }

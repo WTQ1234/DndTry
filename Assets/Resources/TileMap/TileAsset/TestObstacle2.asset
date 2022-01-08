@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TestTile3
+  m_Name: TestObstacle2
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 3699411935678113739, guid: dbb6eae69648f3040a639b774875ab15, type: 3}
   m_Color: {r: 0.053529978, g: 1, b: 0, a: 1}

@@ -9,7 +9,6 @@ using ExpressionParserHelper;
 using GameUtils;
 using ET;
 using LitJson;
-using RegexHelper;
 using System.Reflection;
 using FairyGUI;
 
@@ -72,8 +71,8 @@ public class Test : SingleTon<Test>
         #endregion
 
         #region 正则替换 以及解析数值修饰公式
-        //string fomula = RegexHelper.RegexHelper.RegexReplace(" ", "Power_Add_Power*1.2+1;Physique_Add_Physique * 1.2 + 1", "");
-        //string[] item = RegexHelper.RegexHelper.RegexSplit(fomula, ";");
+        //string fomula = RegexHelper.RegexReplace(" ", "Power_Add_Power*1.2+1;Physique_Add_Physique * 1.2 + 1", "");
+        //string[] item = RegexHelper.RegexSplit(fomula, ";");
         //foreach(var it in item)
         //{
         //    print(it);

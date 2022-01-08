@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace namespace_PathHelper
+namespace GameUtils
 {
     public static class PathHelper
     {
@@ -13,7 +14,7 @@ namespace namespace_PathHelper
         /// <param name="endPos"> 终点 </param>
         /// <param name="mapSize"> 地图长宽 </param>
         /// <param name="obstacle"> 障碍物列表 </param>
-        public static bool AStarSearchPath2D(Vector3Int startPos, Vector3Int endPos, Vector3Int mapSize, List<Vector3Int> obstacle, out Dictionary<Vector3Int, Vector3Int> pathSave)
+        public static bool AStarSearchPath2D(Vector3Int startPos, Vector3Int endPos, in Vector3Int mapSize, in List<Vector3Int> obstacle, out Dictionary<Vector3Int, Vector3Int> pathSave)
         {
             Dictionary<Vector3Int, int> search = new Dictionary<Vector3Int, int>();     //要进行的查找任务
             Dictionary<Vector3Int, int> cost = new Dictionary<Vector3Int, int>();       //起点到当前点的消耗
@@ -53,7 +54,7 @@ namespace namespace_PathHelper
             }
             else
             {
-                Debug.Log("No road");
+                // Debug.Log("No road");
             }
             return false;
         }
@@ -80,27 +81,44 @@ namespace namespace_PathHelper
             Vector3Int right = target + Vector3Int.right;
             Vector3Int left = target - Vector3Int.right;
             Vector3Int down = target - Vector3Int.up;
-            //Up
-            if (up.y < mapSize.y && !obstacle.Contains(up))
+
+            Vector3Int up_left = target + Vector3Int.up + Vector3Int.left;
+            Vector3Int up_right = target + Vector3Int.up + Vector3Int.right;
+            Vector3Int down_left = target + Vector3Int.down + Vector3Int.left;
+            Vector3Int down_right = target + Vector3Int.down + Vector3Int.right;
+
+            if (!obstacle.Contains(up) && !obstacle.Contains(left))
             {
-                neighbors.Add(up);
+                tryAddNeighbors(up_left, mapSize, neighbors, obstacle);
             }
-            //Right
-            if (right.x < mapSize.x && !obstacle.Contains(right))
+            if (!obstacle.Contains(up) && !obstacle.Contains(right))
             {
-                neighbors.Add(target + Vector3Int.right);
+                tryAddNeighbors(up_right, mapSize, neighbors, obstacle);
             }
-            //Left
-            if (left.x >= (mapSize.x * -1) && !obstacle.Contains(left))
+            if (!obstacle.Contains(down) && !obstacle.Contains(left))
             {
-                neighbors.Add(target - Vector3Int.right);
+                tryAddNeighbors(down_left, mapSize, neighbors, obstacle);
             }
-            //Down
-            if (down.y >= (mapSize.y * -1) && !obstacle.Contains(down))
+            if (!obstacle.Contains(down) && !obstacle.Contains(right))
             {
-                neighbors.Add(target - Vector3Int.up);
+                tryAddNeighbors(down_right, mapSize, neighbors, obstacle);
             }
+            tryAddNeighbors(up, mapSize, neighbors, obstacle);
+            tryAddNeighbors(right, mapSize, neighbors, obstacle);
+            tryAddNeighbors(left, mapSize, neighbors, obstacle);
+            tryAddNeighbors(down, mapSize, neighbors, obstacle);
             return neighbors;
+        }
+        // 判断是否出界，是否有障碍物，以及是否已经Add过了
+        private static void tryAddNeighbors(Vector3Int point, Vector3Int mapSize, List<Vector3Int> neighbors, List<Vector3Int> obstacle)
+        {
+            if (!neighbors.Contains(point) && !obstacle.Contains(point))
+            {
+                if (point.x <= mapSize.x && point.x >= -mapSize.x && point.y <= mapSize.y && point.y >= -mapSize.y)
+                {
+                    neighbors.Add(point);
+                }
+            }
         }
 
         //获取当前位置到终点的消耗

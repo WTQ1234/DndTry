@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace ET
+namespace GameUtils
 {
 	public static class RandomHelper
 	{
-		private static readonly Random random = new Random();
+		private static readonly System.Random random = new System.Random();
 
-		private static byte[] byte8 = new byte[8]; 
+		private static byte[] byte8 = new byte[8];
 
 		public static UInt64 RandUInt64()
 		{
@@ -31,5 +34,11 @@ namespace ET
 			int value = random.Next(lower, upper);
 			return value;
 		}
+
+		public static int RandomRate()
+        {
+            int value = random.Next(1, 101);
+            return value;
+        }
 	}
 }

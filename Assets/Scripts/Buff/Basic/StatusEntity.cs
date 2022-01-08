@@ -74,12 +74,12 @@ public class StatusEntity : Entity
         //单次即时属性修饰——长时间属性修饰如力量翻倍，使用Effect
         if (!string.IsNullOrEmpty(StatusConfig.AttrModifyFormula))
         {
-            string AttrModifyFormula = RegexHelper.RegexHelper.RegexReplace(" ", StatusConfig.AttrModifyFormula, GlobalDefine.str_Empty);
-            string[] fomulas = RegexHelper.RegexHelper.RegexSplit(AttrModifyFormula, ";");
+            string AttrModifyFormula = RegexHelper.RegexReplace(" ", StatusConfig.AttrModifyFormula, GlobalDefine.str_Empty);
+            string[] fomulas = RegexHelper.RegexSplit(AttrModifyFormula, ";");
             foreach (string formula in fomulas)
             {
                 // 公式例子 "Power_Add_Power * 1.2 + 1; Physique_Add_Physique * 1.2 + 1"
-                string[] formulaExpress = RegexHelper.RegexHelper.RegexSplit(formula, "_");
+                string[] formulaExpress = RegexHelper.RegexSplit(formula, "_");
                 AttrType attrType = Common.ParseEnum<AttrType>(formulaExpress[0]);
                 AddNumericType addNumericType = Common.ParseEnum<AddNumericType>(formulaExpress[1]);
 
