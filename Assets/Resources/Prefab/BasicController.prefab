@@ -56,6 +56,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d49341d52a44d4fbb1d8d70adb0ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveRate: 0.7
-  cameraRadius_X: 1
-  cameraRadius_Y: 1
+  offset: {x: 0, y: 0, z: -10}
+  moveRatio: 0.1
+  outLineRatio: 4
+  changeSizeSpeed: 10
+  maxOrthographicSize: 12
+  minOrthographicSize: 8

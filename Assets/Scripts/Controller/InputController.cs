@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EGamePlay;
@@ -36,6 +36,16 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
+        //Zoom
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            CameraController.Instance.onSetOrthographicSize(Time.deltaTime);
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            CameraController.Instance.onSetOrthographicSize(-Time.deltaTime);
+        }
+
         if(Input.GetMouseButtonDown(2))
         {
             isDragNow = true;

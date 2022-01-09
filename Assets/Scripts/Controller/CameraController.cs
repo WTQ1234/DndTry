@@ -7,15 +7,11 @@ using DG.Tweening;
 // FairyGUI的摄像机会在Enable自动设置一次位置和坐标，所以需要分别控制
 public class CameraController : SingleTon<CameraController>
 {
-    public float moveRate = 1f;
-    public float cameraRadius_X = 1;
-    public float cameraRadius_Y = 1;
+    private Camera MainCamera;
+    private Camera MainCamera2;
+    private Camera StageCamera;
 
-    public Camera MainCamera;
-    public Camera MainCamera2;
-    public Camera StageCamera;
-
-    public Vector3 offset;
+    public Vector3 offset = new Vector3(0, 0, -10);
 
     public float moveRatio = 0.1f;
     private bool isDragNow = false;
@@ -31,11 +27,17 @@ public class CameraController : SingleTon<CameraController>
     private float heightOutLine1;
     private float heightOutLine2;
 
+    public float changeSizeSpeed = 10;
+    public float maxOrthographicSize = 12;
+    public float minOrthographicSize = 8;
+    private float targetOrthographicSize = 0;
+    private bool changeOrthographicSize = false;
+
     private void Start()
     {
         MainCamera = GameObject.Find("Cameras/Main Camera").GetComponent<Camera>();
+        MainCamera2 = GameObject.Find("Cameras/Main Camera2").GetComponent<Camera>();
         StageCamera = GameObject.Find("Cameras/Stage Camera").GetComponent<Camera>();
-        offset = new Vector3(0, 0, -10);
         width = Screen.width;
         height = Screen.height;
         maxDragDistance = width;
@@ -43,12 +45,20 @@ public class CameraController : SingleTon<CameraController>
         widthOutLine2 = widthOutLine1 * (outLineRatio - 1);
         heightOutLine1 = height / outLineRatio;
         heightOutLine2 = heightOutLine1 * (outLineRatio - 1);
-
+        targetOrthographicSize = MainCamera.orthographicSize;
         onResetPos(CardEntity.Player.transform.position);
     }
 
-    void Update()
+    void LateUpdate()
     {
+        if (changeOrthographicSize)
+        {
+            MainCamera.orthographicSize = Mathf.Clamp(Mathf.Lerp(targetOrthographicSize, MainCamera.orthographicSize, 0.5f), minOrthographicSize, maxOrthographicSize);
+            if (Math.Abs(MainCamera.orthographicSize - targetOrthographicSize) < 0.01f)
+            {
+                changeOrthographicSize = false;
+            }
+        }
         if (isDragNow)
         {
             Vector3 input = MainCamera2.ScreenToWorldPoint(Input.mousePosition);
@@ -66,6 +76,15 @@ public class CameraController : SingleTon<CameraController>
             }
             MainCamera.transform.position = pos;
             mousePos = input;
+        }
+    }
+
+    public void onSetOrthographicSize(float delta)
+    {
+        targetOrthographicSize = Mathf.Clamp(targetOrthographicSize + delta * changeSizeSpeed, minOrthographicSize, maxOrthographicSize);
+        if (Math.Abs(MainCamera.orthographicSize - targetOrthographicSize) > 0.01f)
+        {
+            changeOrthographicSize = true;
         }
     }
 
