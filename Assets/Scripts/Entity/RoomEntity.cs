@@ -130,6 +130,10 @@ public class RoomEntity : Entity
         var e = AddHeroEntity(0);
         e.SetMoveTarget(Vector3Int.zero);
         e.isMe = true;
+
+        var e2 = AddMonsterEntity(0);
+        e2.SetMoveTarget(Vector3Int.one);
+        // e2.isMe = true;
         // 创建一个主角和一个随从
         // for (int i = 0; i < myTeamNum; i++)
         // {
@@ -372,6 +376,7 @@ public class RoomEntity : Entity
                     cacheTargetStep = targetPos;
                     // 在更换预览路线前先把之前的预览路线还原为默认tile
                     tilemap_PreviewPath.ClearAllTiles();
+                    // todo 寻路前应该读取所有活物，把其坐标放进去，以防止重叠
                     bool success = PathHelper.AStarSearchPath2D(currentPos, targetPos, in roomSize, in obstacleList, out cachePath);
                     if (success)
                     {

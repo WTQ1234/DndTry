@@ -67,6 +67,7 @@ public class InputController : MonoBehaviour
                 RaycastHit2D hit2D = Physics2D.Raycast(v2, Vector2.zero);
                 if (hit2D.collider != null)
                 {
+                    print(hit2D.collider.tag);
                     MasterEntity.Instance.Publish("onClickObj2D", new ClickEvent(){clickPoint = hit2D.point});
                 }
                 else
